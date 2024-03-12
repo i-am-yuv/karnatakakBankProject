@@ -3,9 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     loadChildren: () =>
       import('./landing/landing.module').then((m) => m.LandingModule),
+    //  canActivate: [AuthGuard]
+  },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./auth/auth.module').then((m) => m.AuthModule),
     //  canActivate: [AuthGuard]
   }
 ];
