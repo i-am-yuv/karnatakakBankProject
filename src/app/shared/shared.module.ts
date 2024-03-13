@@ -23,7 +23,8 @@ import { LayoutComponent } from './layout/layout.component';
   ],
   imports: [
     CommonModule,
-    MenubarModule
+    MenubarModule,
+    InputTextModule,
   ],
   exports: [
     LayoutComponent,

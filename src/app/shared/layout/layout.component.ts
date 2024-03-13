@@ -12,4 +12,18 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  isCompressed: boolean = false;
+
+  togglePanel() {
+    this.isCompressed = !this.isCompressed;
+  }
+
+  navigateToHome() {
+    // Your logic to navigate to the home page
+  }
+
+  logout() {
+    // Your logic to handle logout
+  }
+
 }
