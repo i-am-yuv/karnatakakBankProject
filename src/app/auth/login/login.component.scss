@@ -1,0 +1,21 @@
+.banner {
+    overflow: hidden;
+}
+
+.animation-logo {
+    display: inline-block;
+    padding-right: 50px;
+    padding-left: 0;
+    animation: moveText 5s linear infinite;
+    white-space: nowrap;
+}
+
+@keyframes moveText {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
