@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   onClickLogin() {
-    alert(JSON.stringify(this.loginForm.value));
+  //    alert(JSON.stringify(this.loginForm.value));
 
     if (this.loginForm.value.username == '7204839067') {
       sessionStorage.setItem('loginBy', "Pooja");
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(["/dashboard"]);
     }
     else if (this.loginForm.value.username == '9745899658') {
-      sessionStorage.setItem('loginBy', "Narayana");
+      sessionStorage.setItem('loginBy', "Narayanan");
       sessionStorage.setItem('loginRole', "Branch Manager");
       this.router.navigate(["/dashboard/branchManager"]);
     }

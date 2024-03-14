@@ -24,7 +24,7 @@ import { LayoutComponent } from './layout/layout.component';
   imports: [
     CommonModule,
     MenubarModule,
-    InputTextModule,
+    InputTextModule
   ],
   exports: [
     LayoutComponent,
@@ -44,6 +44,7 @@ import { LayoutComponent } from './layout/layout.component';
     SidebarModule,
     BlockUIModule,
     MultiSelectModule
-  ]
+  ],
+  
 })
 export class SharedModule { }

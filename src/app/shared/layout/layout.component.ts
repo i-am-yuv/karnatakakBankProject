@@ -11,6 +11,7 @@ export class LayoutComponent implements OnInit {
   name : any;
   role: any;
 
+  isCheckIn : boolean = true; 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
