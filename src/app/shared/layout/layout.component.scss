@@ -1,0 +1,42 @@
+.left-panel {
+    width: 22%;
+    background-color: #f2f2f2;
+    transition: width 0.3s ease;
+
+    &.compressed {
+        width: 74px;
+    }
+
+    .panel-header {
+        padding: 10px;
+
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+    }
+
+    .panel-body {
+        .menu-item {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #ddd;
+            }
+
+            i {
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+:host::ng-deep {
+    .p-button-label {
+        font-family: "Manrope", sans-serif;
+    }
+}

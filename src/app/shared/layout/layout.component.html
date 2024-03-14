@@ -1,1 +1,255 @@
-<p>layout works!</p>
+<div class="w-full">
+    <div class="flex">
+
+        <!-- LEFT SIDEBAR PANEL -->
+        <div class="bg-white left-panel" style="border-right:1px solid #E9EBF0;"
+            [ngClass]="{'compressed': isCompressed}">
+
+            <div class="flex align-items-center justify-content-around " style="height: 88px;" *ngIf="!isCompressed">
+                <img src="/assets/KB_logo.png" alt="Image" style="width: 168px; height: auto;">
+                <img class="cursor-pointer" src="/assets/menu_open.png" alt="Image" style="width: 24px; height: 24px;"
+                    (click)="togglePanel()">
+            </div>
+
+            <div class="flex align-items-center justify-content-around" style="height: 88px;" *ngIf="isCompressed">
+                <img class="cursor-pointer" src="/assets/menu_open.png" alt="Image" style="width: 24px; height: 24px;"
+                    (click)="togglePanel()">
+            </div>
+
+            <div>
+                <div class="flex align-items-center justify-content-between" style="border-bottom:1px solid #E9EBF0;"
+                    *ngIf="!isCompressed">
+                    <div class="flex align-items-center justify-content-start">
+                        <img src="/assets/Avatar.png" alt="Image" style="width: 50px; height: auto;">
+                        <div class="ml-3" style="width: inherit;">
+                            <p style="color: #92278F;font-weight: 700;font-size: 12px;">Kavitha</p>
+                            <p style="color: #C2C2C2;font-weight: 700;font-size: 11px;">Account Manager</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <img src="/assets/unfold_more.png" alt="Image" style="width: 24px; height: 24px;">
+                    </div>
+                </div>
+
+                <div class="flex align-items-center justify-content-around mx-2" *ngIf="isCompressed">
+                    <img src="/assets/Avatar.png" alt="Image" style="width: 50px; height: auto;">
+                </div>
+            </div>
+
+            <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer">
+                <img src="/assets/dashboard_customize.png" alt="Image" style="width: 24px; height: 24px;">
+                <div class="ml-3">
+                    <div style="color: #92278F; font-weight: 700; font-size: 14px;" *ngIf="!isCompressed">Dashboard
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer">
+                <img src="/assets/fluent_notepad-edit-16-regular.png" alt="Image" style="width: 24px; height: 24px;">
+                <div class="ml-3">
+                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px; " *ngIf="!isCompressed">To do list
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer">
+                <img src="/assets/access_time.png" alt="Image" style="width: 24px; height: 24px;">
+                <div class="ml-3">
+                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;" *ngIf="!isCompressed">Updates</div>
+                </div>
+            </div>
+
+            <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer">
+                <img src="/assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;">
+                <div class="ml-3">
+                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;" *ngIf="!isCompressed">Reports</div>
+                </div>
+            </div>
+
+            <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer">
+                <img src="/assets/Group.png" alt="Image" style="width: 24px; height: 24px;">
+                <div class="ml-3">
+                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;" *ngIf="!isCompressed">Calender</div>
+                </div>
+            </div>
+
+            <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer">
+                <img src="/assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;">
+                <div class="ml-3">
+                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;" *ngIf="!isCompressed">Customer
+                        insights</div>
+                </div>
+            </div>
+
+            <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer">
+                <img src="/assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;">
+                <div class="ml-3">
+                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;" *ngIf="!isCompressed">Events & news
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer">
+                <img src="/assets/icon-park-outline_message-security (1).png" alt="Image"
+                    style="width: 24px; height: 24px;">
+                <div class="ml-3">
+                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;" *ngIf="!isCompressed">People connect
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer">
+                <img src="/assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
+                <div class="ml-3">
+                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;" *ngIf="!isCompressed">Document
+                        centre
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer">
+                <img src="/assets/material-symbols_chat-outline.png" alt="Image" style="width: 24px; height: 24px;">
+                <div class="ml-3">
+                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;" *ngIf="!isCompressed">Secure Chat
+                    </div>
+                </div>
+                <div
+                    style="width: 24px; height: 24px; margin-left: 12px;
+                              display: flex; align-items: center;justify-content: center;  padding: 3px; background: #F9D4FF; border-radius: 50%;">
+                    <p style="color: #92278F; font-weight: 700; font-size: 12px; ">21</p>
+                </div>
+            </div>
+
+            <div class="flex align-items-center justify-content-start mx-4 mt-4">
+                <img src="/assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;">
+                <div class="ml-3">
+                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;" *ngIf="!isCompressed">Circular</div>
+                </div>
+            </div>
+
+            <div class="flex align-items-center justify-content-start mx-4 mt-4">
+                <img src="/assets/streamline_customer-support-1.png" alt="Image" style="width: 24px; height: 24px;">
+                <div class="ml-3">
+                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;" *ngIf="!isCompressed">Help desk
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex align-items-center justify-content-start mx-2 mt-4">
+                <div style="color: #92278F; font-weight: 700; font-size: 18px; " *ngIf="!isCompressed">Branch details
+                </div>
+                <div class="ml-5">
+                    <img src="/assets/Vector 2.png" alt="Image" style="width: 6px; height: 12px;">
+                </div>
+            </div>
+
+            <div class="flex align-items-center justify-content-start mx-2 mt-4" style="margin-bottom: 80px;">
+                <div style="color: #92278F; font-weight: 700; font-size: 18px; " *ngIf="!isCompressed">HR Corner
+                </div>
+                <div class="ml-5">
+                    <img src="/assets/Vector 2.png" alt="Image" style="width: 6px; height: 12px;">
+                </div>
+            </div>
+
+            <div>
+                <div class="bg-white"
+                    style="width: 18%; height: 60px; position: fixed; bottom: 0; border-right:1px solid #E9EBF0; border-top:1px solid #E9EBF0;"
+                    *ngIf="!isCompressed">
+                    <div class="flex align-items-center justify-content-center mx-2 mt-4">
+                        <img src="/assets/material-symbols_logout.png" alt="Image" style="width: 24px; height: 24px;">
+                        <div style="color: #92278F; font-weight: 700; font-size: 14px;">Logout
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white"
+                    style="height: 60px; position: fixed; bottom: 0; border-right:1px solid #E9EBF0; border-top:1px solid #E9EBF0;"
+                    *ngIf="isCompressed">
+                    <div class="flex align-items-center justify-content-center mx-4 mt-4">
+                        <img src="/assets/material-symbols_logout.png" alt="Image" style="width: 24px; height: 24px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div style="margin-left: 66.16px; position: fixed; bottom:0">
+                <div style="display: flex; justify-content: start; align-items: center;height: 24px;">
+                    <div>
+                        <img src="/assets/material-symbols_logout.png" alt="Image" style="width: 24px; height: 24px;">
+                    </div>
+                    <div style="margin-left: 16px;">
+                        <p style="color: #92278F; font-weight: 700; font-size: 14px; ">Logout</p>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+
+        <!-- Right Side Panel With Navbar -->
+        <div class="bg-white w-full">
+            <div class="flex align-items-center justify-content-between"
+                style="height: 88px; border-bottom: 1px solid #E9EBF0;">
+
+                <div class="col-3 px-2 flex align-items-center justify-content-around" *ngIf="!isCompressed">
+                    <p class="" style="color: #141515; font-size: 40px; font-weight: 700;">My Portal</p>
+                    <div class="flex align-items-center justify-content-center border-round-xl"
+                        style=" width: 70px; height: 21px; background: #F9F785;">
+                        <p style="font-size: 10px; font-weight: 700; color: #92278F;">Employee</p>
+                    </div>
+                </div>
+
+                <div class="col-3 flex align-items-center justify-content-start ml-3" style="height: 88px;"
+                    *ngIf="isCompressed">
+                    <img src="/assets/KB_logo.png" alt="Image" style="width: 168px; height: auto;">
+                    <!-- <img src="/assets/menu_open.png" alt="Image" style="width: 24px; height: 24px;"
+                        (click)="togglePanel()"> -->
+                </div>
+
+                <div class="col-4 flex align-items-center justify-content-center">
+                    <div class="flex align-items-center justify-content-around border-round-md"
+                        style="height: 48px; border: 2px solid #E9EBF0;">
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input type="text" pInputText placeholder="Search" style="border: none;" />
+                        </span>
+                        <img class="mr-2" src="/assets/Icon (1).png" width="24px" height="24px" alt="">
+                    </div>
+
+                    <img class="mx-2" src="/assets/keyboard_voice.png" alt="Image" style="width: 24px; height: 24px;">
+                </div>
+
+                <div class="col-3 px-3 flex align-items-center justify-content-around">
+                    <div class="w-full border-round-sm flex align-items-center justify-content-between py-2"
+                        style="height: 48px; background: #92278F;">
+
+                        <div class="w-full h-full flex align-items-center justify-content-center border-round-xs mx-2"
+                            style="background-color: #FFFFFF;">
+                            <p style="color: #92278F; font-size: 12px; font-weight: 700;">Checkin</p>
+                        </div>
+
+                        <div class="w-full h-full flex align-items-center justify-content-center border-round-xs mx-2"
+                            style="background-color: #92278F;">
+                            <p style="color: #FFFFFF; font-size: 12px; font-weight: 700;">Checkout</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-2 flex align-items-center justify-content-center px-5">
+                    <img class="mx-1" src="/assets/icon-park-outline_message-security.png" alt="Image"
+                        style="width: 24px; height: 24px;">
+
+                    <img class="mx-1" src="/assets/ant-design_home-outlined.png" alt="Image"
+                        style=" width: 24px; height: 24px;">
+
+                    <img class="mx-1" src="/assets/notifications_none.png" alt="Image"
+                        style="  width: 24px; height: 24px;">
+                </div>
+            </div>
+
+            <div class="p-2 h-full" style="background: #EEEEEE;">
+                <router-outlet></router-outlet>
+            </div>
+
+        </div>
+
+    </div>
+</div>
