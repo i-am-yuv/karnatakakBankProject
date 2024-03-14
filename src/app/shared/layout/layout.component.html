@@ -6,7 +6,7 @@
             [ngClass]="{'compressed': isCompressed}">
 
             <div class="flex align-items-center justify-content-around " style="height: 88px;" *ngIf="!isCompressed">
-                <img src="/assets/KB_logo.png" alt="Image" style="width: 168px; height: auto;">
+                <img src="/assets/KB_logo.png" alt="Image" style="width: 168px; height: auto;" class="cursor-pointer" routerLink="/dashboard">
                 <img class="cursor-pointer" src="/assets/menu_open.png" alt="Image" style="width: 24px; height: 24px;"
                     (click)="togglePanel()">
             </div>
@@ -19,8 +19,8 @@
             <div>
                 <div class="flex align-items-center justify-content-between" style="border-bottom:1px solid #E9EBF0;"
                     *ngIf="!isCompressed">
-                    <div class="flex align-items-center justify-content-start">
-                        <img src="/assets/Avatar.png" alt="Image" style="width: 50px; height: auto;">
+                    <div class="flex align-items-center justify-content-start"  routerLink="/dashboard/branchManager">
+                        <img src="/assets/Avatar.png" alt="Image" style="width: 50px; height: auto;" class="cursor-pointer">
                         <div class="ml-3" style="width: inherit;">
                             <p style="color: #92278F;font-weight: 700;font-size: 12px;">Kavitha</p>
                             <p style="color: #C2C2C2;font-weight: 700;font-size: 11px;">Account Manager</p>
@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer">
+            <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer" routerLink="/dashboard">
                 <img src="/assets/dashboard_customize.png" alt="Image" style="width: 24px; height: 24px;">
                 <div class="ml-3">
                     <div style="color: #92278F; font-weight: 700; font-size: 14px;" *ngIf="!isCompressed">Dashboard
@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-            <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer">
+            <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer" routerLink="/master/todo-list">
                 <img src="/assets/fluent_notepad-edit-16-regular.png" alt="Image" style="width: 24px; height: 24px;">
                 <div class="ml-3">
                     <div style="color: #6D6D6D; font-weight: 700; font-size: 14px; " *ngIf="!isCompressed">To do list
@@ -190,7 +190,7 @@
                 style="height: 88px; border-bottom: 1px solid #E9EBF0;">
 
                 <div class="col-3 px-2 flex align-items-center justify-content-around" *ngIf="!isCompressed">
-                    <p class="" style="color: #141515; font-size: 40px; font-weight: 700;">My Portal</p>
+                    <p class="" style="color: #141515; font-size: 32px; font-weight: 700;" class="cursor-pointer" routerLink="/dashboard">My Portal</p>
                     <div class="flex align-items-center justify-content-center border-round-xl"
                         style=" width: 70px; height: 21px; background: #F9F785;">
                         <p style="font-size: 10px; font-weight: 700; color: #92278F;">Employee</p>
@@ -204,7 +204,7 @@
                         (click)="togglePanel()"> -->
                 </div>
 
-                <div class="col-4 flex align-items-center justify-content-center">
+                <div class="col-3 flex align-items-center justify-content-center">
                     <div class="flex align-items-center justify-content-around border-round-md"
                         style="height: 48px; border: 2px solid #E9EBF0;">
                         <span class="p-input-icon-left">
@@ -245,7 +245,7 @@
                 </div>
             </div>
 
-            <div class="p-2 h-full" style="background: #EEEEEE;">
+            <div class="" style="background: #EEEEEE;">
                 <router-outlet></router-outlet>
             </div>
 
