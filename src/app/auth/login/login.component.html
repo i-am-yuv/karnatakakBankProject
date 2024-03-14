@@ -8,7 +8,7 @@
             <div class="text-xl mr-8" style="color: #92278F;">Support</div>
         </div>
         <button pButton pRipple label="Login" class="p-button-help border-round-sm"
-            style="background-color: #92278F; width: 125px;" routerLink="/dashboard"></button>
+            style="background-color: #92278F; width: 125px;"></button>
     </div>
 
     <div class="flex align-items-center justify-content-between p-2 banner"
@@ -144,51 +144,37 @@
         </div>
 
         <!-- login form -->
-        <div class="col-5 px-3 flex flex-column gap-5" style="margin-top: 120px;">
-            <div class="text-center text-3xl font-semibold">Login</div>
+        <div class="col-5 px-3" style="margin-top: 50px;">
+            <form [formGroup]="loginForm" (ngSubmit)="onClickLogin()">
+                <div class="text-center text-3xl font-semibold" >Login</div>
 
-            <div class="p-inputgroup flex flex-column gap-2">
-                <label for="username">Username</label>
-                <div class="bg-white p-1 border-round-xl shadow-2">
-                    <input pInputText type="text" class="form-control inputfield w-full" name="login"
-                        style="border: none; height: 40px;" placeholder="you@domain.com" />
+                <div class="flex flex-column gap-2" class="mb-5 mt-5">
+                    <label for="username" >Username</label>
+                    <div class="bg-white p-1 border-round-xl shadow-2" style="margin-top: 12px;">
+                        <input pInputText type="text" formControlName="username" class=" form-control inputfield w-full" name="login"
+                           maxlength="10" minlength="10" style="border: none; height: 40px;" placeholder="Enter your username" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="p-inputgroup flex flex-column gap-2">
-                <label for="password">Password</label>
-                <div class="bg-white p-1 border-round-xl shadow-2">
-                    <input pInputText type="text" class="form-control inputfield w-full" name="login"
-                        style="border: none; height: 40px;" placeholder="Enter your password" />
+                <div class="" class="flex flex-column gap-2" class="mb-2">
+                    <label for="password">Password</label>
+                    <div class="bg-white p-1 border-round-xl shadow-2" style="margin-top: 12px;">
+                        <input pInputText type="text" class="form-control inputfield w-full" name="login"
+                        formControlName="password" style="border: none; height: 40px;" placeholder="Enter your password" />
+                    </div>
                 </div>
-            </div>
-
-            <!-- <div class="gap-2 w-full bg-white p-1 border-round-lg">
-                <label for="username">Username</label>
-                <input class="w-full" pInputText id="username" placeholder="you@domain.com" />
-            </div>
-
-            <div class="flex flex-column gap-2">
-                <label for="username">Password</label>
-                <input pInputText type="password" id="username" placeholder="Password" />
-            </div> -->
-
-            <div class="flex align-items-center justify-content-between mb-6">
-                <div class="flex align-items-center">
-                    <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
-                    <label for="rememberme1" class="text-sm">Remember me</label>
+                <div class="flex align-items-center justify-content-between mb-6" style="margin-top: 32px;">
+                    <div class="flex align-items-center">
+                        <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
+                        <label for="rememberme1" class="text-sm">Remember me</label>
+                    </div>
+                    <a class="font-medium no-underline ml-2 text-right cursor-pointer text-sm"
+                        style="color: #92278F;">Forgot
+                        password?</a>
                 </div>
-                <!-- <i class="pi pi-spin pi-spinner ml-4" style="font-size: 2rem"></i> -->
-                <a class="font-medium no-underline ml-2 text-right cursor-pointer text-sm"
-                    style="color: #92278F;">Forgot
-                    password?</a>
-            </div>
-
-            <!-- <button pButton pRipple label="Login" class="p-button-help w-full border-round-sm"
-                style="background-color: #92278F; height: 48px;" routerLink="/dashboard"></button> -->
-            <button pButton pRipple label="Login" class="p-button-help w-full border-round-sm"
-                style="background-color: #92278F; height: 48px;" routerLink="/master/todo-list"></button>
-
+                <button pButton pRipple type="submit" [disabled]="!loginForm.valid" label="Login" class="p-button-help w-full border-round-sm"
+                    style="background-color: #92278F; height: 48px;" ></button>
+            </form>
         </div>
     </div>
 </div>

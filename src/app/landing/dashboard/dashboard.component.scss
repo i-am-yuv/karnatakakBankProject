@@ -10,5 +10,5 @@ padding: 0px;
 :host::ng-deep{
     .inputField:focus {
         border-color: none !important; /* Set border color to transparent when focused */
-      }
+    }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -7,9 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
+  name : any;
+  role: any;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.getLoginInfo();
+  }
+
+  getLoginInfo(){
+     this.name = sessionStorage.getItem('loginBy');
+     this.role = sessionStorage.getItem('loginRole');
+
+  }
+
+  findDashboard()
+  {
+      if( this.name== 'Pooja Kumari')
+      {
+        this.router.navigate(["/dashboard"]);
+      }
+      else if(this.name == 'Narayana'){
+        this.router.navigate(["/dashboard/branchManager"]);
+      }
   }
 
   isCompressed: boolean = false;

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-branch-manager',
+  templateUrl: './branch-manager.component.html',
+  styleUrls: ['./branch-manager.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class BranchManagerComponent implements OnInit {
 
+  
   name : any;
   role: any;
 
