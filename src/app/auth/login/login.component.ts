@@ -20,21 +20,23 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  onClickLogin()
-  {
+  onClickLogin() {
     alert(JSON.stringify(this.loginForm.value));
 
-    if( this.loginForm.value.username == '7204839067')
-    {
-      sessionStorage.setItem('loginBy', "Pooja") ;
-      sessionStorage.setItem('loginRole' , "Employee");
+    if (this.loginForm.value.username == '7204839067') {
+      sessionStorage.setItem('loginBy', "Pooja");
+      sessionStorage.setItem('loginRole', "Employee");
       this.router.navigate(["/dashboard"]);
     }
-    else if(this.loginForm.value.username == '9745899658')
-    {
-      sessionStorage.setItem('loginBy', "Narayana") ;
-      sessionStorage.setItem('loginRole' , "Branch Manager");
+    else if (this.loginForm.value.username == '9745899658') {
+      sessionStorage.setItem('loginBy', "Narayana");
+      sessionStorage.setItem('loginRole', "Branch Manager");
       this.router.navigate(["/dashboard/branchManager"]);
+    }
+    else if (this.loginForm.value.username == '7683876626') {
+      sessionStorage.setItem('loginBy', "Gyana");
+      sessionStorage.setItem('loginRole', "CEO Portal");
+      this.router.navigate(["/master/todo-list"]);
     }
   }
 
