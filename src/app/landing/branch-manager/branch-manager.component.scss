@@ -1,8 +1,12 @@
+.banner {
+    overflow: hidden;
+    // white-space: nowrap;
+}
+
 .animation-logo {
     display: inline-block;
-    padding-right: 50px;
     padding-left: 0;
-    animation: moveText 5s linear infinite;
+    animation: moveText 2s linear infinite;
     white-space: nowrap;
 }
 
