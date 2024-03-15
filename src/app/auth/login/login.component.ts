@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
     else if (this.loginForm.value.username == '7683876626') {
       sessionStorage.setItem('loginBy', "Gyana");
       sessionStorage.setItem('loginRole', "CEO Portal");
-      this.router.navigate(["/master/todo-list"]);
+      this.router.navigate(["/dashboard/ceoPortal"]);
     }
   }
 

@@ -1,51 +1,85 @@
 .banner {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .animation-logo {
-    display: inline-block;
-    padding-right: 50px;
-    padding-left: 0;
-    animation: moveText 2s linear infinite;
-    white-space: nowrap;
+  display: inline-block;
+  padding-right: 50px;
+  padding-left: 0;
+  animation: moveText 2s linear infinite;
+  white-space: nowrap;
 }
 
 @keyframes moveText {
-    0% {
-        transform: translateX(0%);
-    }
+  0% {
+    transform: translateX(0%);
+  }
 
-    100% {
-        transform: translateX(100%);
-    }
+  100% {
+    transform: translateX(100%);
+  }
 }
+
 .scroll-container {
-    height: 150px;
-    overflow-y: auto;
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #E9EBF0 transparent; /* For Firefox */
-    
-    &::-webkit-scrollbar {
-      width: 8px; /* For Chrome, Safari, and Opera */
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background-color: #E9EBF0; /* For Chrome, Safari, and Opera */
-    }
+  height: 150px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: #E9EBF0 transparent;
+  /* For Firefox */
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    /* For Chrome, Safari, and Opera */
   }
 
-  .scroll-containerH {
-    height: 250px;
-    overflow-x: auto;
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #E9EBF0 transparent; /* For Firefox */
-    
-    &::-webkit-scrollbar {
-      width: 8px; /* For Chrome, Safari, and Opera */
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background-color: #E9EBF0; /* For Chrome, Safari, and Opera */
-    }
+  &::-webkit-scrollbar-thumb {
+    background-color: #E9EBF0;
+    /* For Chrome, Safari, and Opera */
   }
-  
+}
+
+.scroll-containerH {
+  height: 250px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: #E9EBF0 transparent;
+  /* For Firefox */
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    /* For Chrome, Safari, and Opera */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #E9EBF0;
+    /* For Chrome, Safari, and Opera */
+  }
+}
+
+:host::ng-deep {
+  .p-dropdown {
+    border-color: #92278F;
+    border-radius: 10px;
+    background: #F4EFEE;
+  }
+
+  .p-inputtext {
+    font-size: 0.8rem;
+    color: #92278F;
+  }
+
+  .p-dropdown .p-dropdown-label.p-placeholder {
+    color: #92278F75;
+  }
+
+  .p-dropdown .p-dropdown-trigger {
+    color: #92278F;
+    width: 4.357rem;
+  }
+
+  .pi-chevron-down:before {
+    content: "\e906";
+  }
+}

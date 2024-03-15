@@ -32,7 +32,7 @@ export class LayoutComponent implements OnInit {
       this.router.navigate(["/dashboard/branchManager"]);
     }
     else if (this.name == 'Gyana') {
-      this.router.navigate(["/master/todo-list"]);
+      this.router.navigate(["/dashboard/ceoPortal"]);
     }
   }
 

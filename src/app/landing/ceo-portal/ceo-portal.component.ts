@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-todo-list',
-  templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.scss']
+  selector: 'app-ceo-portal',
+  templateUrl: './ceo-portal.component.html',
+  styleUrls: ['./ceo-portal.component.scss']
 })
-export class TodoListComponent implements OnInit {
-
+export class CeoPortalComponent implements OnInit {
 
   upcomingEvents = [
     {
