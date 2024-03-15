@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
+  goldLoans: any;
 
   constructor(private router: Router) { }
 
@@ -18,10 +19,20 @@ export class LoginComponent implements OnInit {
       username: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
       password: new FormControl('', [Validators.required, Validators.maxLength(30),])
     })
+
+    this.goldLoans = [
+      { name: 'New York', code: 'NY' },
+      { name: 'Rome', code: 'RM' },
+      { name: 'London', code: 'LDN' },
+      { name: 'Istanbul', code: 'IST' },
+      { name: 'Paris', code: 'PRS' }
+    ]
   }
 
+
+
   onClickLogin() {
-  //    alert(JSON.stringify(this.loginForm.value));
+    //    alert(JSON.stringify(this.loginForm.value));
 
     if (this.loginForm.value.username == '7204839067') {
       sessionStorage.setItem('loginBy', "Pooja");

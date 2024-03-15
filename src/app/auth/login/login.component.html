@@ -109,11 +109,15 @@
                                     <div style="color: #606060; font-size: 7px;">Feb 29, 8:34:24 PM UTC+5:30</div>
                                     <div style="color: #606060; font-size: 7px;">INR . NSE . Disclaimer</div>
                                 </div>
-                                <div class="w-full border-round-md border-1 flex justify-content-between align-items-center p-2 mt-2"
+                                <!-- <div class="w-full border-round-md border-1 flex justify-content-between align-items-center p-2 mt-2"
                                     style="height:30px ; border-color: #92278F;">
                                     <div class="text-sm" style="color: #92278F; opacity: 46%;">Bengaluru</div>
                                     <img src="/assets/Polygon 4.png" width="12px" height="12px" alt="">
-                                </div>
+                                </div> -->
+
+                                <p-dropdown formControlName="selectedCity" [options]="goldLoans" optionLabel="name"
+                                    placeholder="Select a City"></p-dropdown>
+
                             </div>
                             <div class="col-4">
                                 <img src="/assets/gold.png" width="64px" height="77px" alt="">
@@ -130,10 +134,10 @@
                 <div class="text-lg" style="color: #92278F;">KBL Campaign Program</div>
 
                 <div class="flex justify-content-between mt-3">
-                    <img src="/assets/ads image 1.png" width="300px" height="168px" alt="">
-                    <img src="/assets/ads image 2.png" width="80px" height="168px" alt="">
-                    <img src="/assets/ads image 3.png" width="129px" height="168px" alt="">
-                    <img src="/assets/ads image 4.png" width="168px" height="168px" alt="">
+                    <img class="w-full m-1" src="/assets/ads image 1.png" height="168px" alt="">
+                    <img class="w-full m-1" src="/assets/ads image 2.png" height="168px" alt="">
+                    <img class="w-full m-1" src="/assets/ads image 3.png" height="168px" alt="">
+                    <img class="w-full v" src="/assets/ads image 4.png" height="168px" alt="">
                 </div>
             </div>
 
@@ -147,13 +151,14 @@
         <!-- login form -->
         <div class="col-5 px-3" style="margin-top: 50px;">
             <form [formGroup]="loginForm" (ngSubmit)="onClickLogin()">
-                <div class="text-center text-3xl font-semibold" >Login</div>
+                <div class="text-center text-3xl font-semibold">Login</div>
 
                 <div class="flex flex-column gap-2" class="mb-5 mt-5">
-                    <label for="username" >Username</label>
+                    <label for="username">Username</label>
                     <div class="bg-white p-1 border-round-xl shadow-2" style="margin-top: 12px;">
-                        <input pInputText type="text" formControlName="username" class=" form-control inputfield w-full" name="login"
-                           maxlength="10" minlength="10" style="border: none; height: 40px;" placeholder="Enter your username" />
+                        <input pInputText type="text" formControlName="username" class=" form-control inputfield w-full"
+                            name="login" maxlength="10" minlength="10" style="border: none; height: 40px;"
+                            placeholder="Enter your username" />
                     </div>
                 </div>
 
@@ -161,7 +166,8 @@
                     <label for="password">Password</label>
                     <div class="bg-white p-1 border-round-xl shadow-2" style="margin-top: 12px;">
                         <input pInputText type="text" class="form-control inputfield w-full" name="login"
-                        formControlName="password" style="border: none; height: 40px;" placeholder="Enter your password" />
+                            formControlName="password" style="border: none; height: 40px;"
+                            placeholder="Enter your password" />
                     </div>
                 </div>
                 <div class="flex align-items-center justify-content-between mb-6" style="margin-top: 32px;">
@@ -173,8 +179,9 @@
                         style="color: #92278F;">Forgot
                         password?</a>
                 </div>
-                <button pButton pRipple type="submit" [disabled]="!loginForm.valid" label="Login" class="p-button-help w-full border-round-sm"
-                    style="background-color: #92278F; height: 48px;" ></button>
+                <button pButton pRipple type="submit" [disabled]="!loginForm.valid" label="Login"
+                    class="p-button-help w-full border-round-sm"
+                    style="background-color: #92278F; height: 48px;"></button>
             </form>
         </div>
     </div>
