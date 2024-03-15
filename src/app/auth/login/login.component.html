@@ -1,19 +1,20 @@
-<p-toast></p-toast>
-
-<div class="w-full h-full">
-    <div class="bg-white-100 flex align-items-center justify-content-between px-5" style="height: 100px;">
+<div class="w-full h-full"
+    style="background: url('/assets/login\ background.png'); background-size: cover; background-position: center;">
+    <div class=" flex align-items-center justify-content-between px-5" style="height: 100px;">
         <div>
             <!-- <img src="/assets/kbdcl logo.png" width="300px" height="55px" alt=""> -->
             <img src="https://karnatakabank.com/sites/default/files/logo.gif" width="300px" height="55px" alt="">
         </div>
-        <div class="flex">
-            <div class="text-xl mr-8" style="color: #92278F;">Home</div>
-            <div class="text-xl mr-8" style="color: #92278F;">Support</div>
+        <div class="w-full flex align-items-center justify-content-end gap-8 mr-8">
+            <div class="text-xl cursor-pointer" style="color: #92278F;">Home</div>
+            <div class="text-xl cursor-pointer" style="color: #92278F;">Support</div>
         </div>
         <button pButton pRipple label="Login" class="p-button-help border-round-sm"
-            style="background-color: #92278F; width: 125px;"></button>
+            style="background-color: #92278F; width: 125px;">
+        </button>
     </div>
 
+    <!-- Celebrating 100 Years Animation -->
     <div class="flex align-items-center justify-content-between p-2 banner"
         style="background-color: #F9F785; height: 40px;">
         <div class="flex animation-logo">
@@ -99,9 +100,9 @@
                                 </div>
                                 <div class="mt-2">
                                     <p-dropdown formControlName="selectedCity" [options]="goldLoans" optionLabel="name"
-                                    placeholder="Select a City"></p-dropdown>
+                                        placeholder="Select a City"></p-dropdown>
                                 </div>
-                                
+
 
                             </div>
                             <div class="col-4">
@@ -134,13 +135,20 @@
         </div>
 
         <!-- login form -->
-        <div class="col-5 px-3" style="margin-top: 50px;">
+        <div class="col-5 px-3">
+
+
+            <div class="flex align-items-center justify-content-center mt-3">
+                <img src="/assets/login top.png" alt="" width="150px">
+            </div>
+
+
             <form [formGroup]="loginForm" (ngSubmit)="onClickLogin()">
                 <div class="text-center text-3xl font-semibold">Login</div>
 
                 <div class="flex flex-column gap-2" class="mb-5 mt-5">
                     <label for="username">Username</label>
-                    <div class="bg-white p-1 border-round-xl shadow-2" style="margin-top: 12px;">
+                    <div class="bg-white p-1 border-round-lg shadow-2" style="margin-top: 12px;">
                         <input pInputText type="text" formControlName="username" class=" form-control inputfield w-full"
                             name="login" maxlength="10" minlength="10" style="border: none; height: 40px;"
                             placeholder="Enter your username" />
@@ -149,7 +157,7 @@
 
                 <div class="" class="flex flex-column gap-2" class="mb-2">
                     <label for="password">Password</label>
-                    <div class="bg-white p-1 border-round-xl shadow-2" style="margin-top: 12px;">
+                    <div class="bg-white p-1 border-round-lg shadow-2" style="margin-top: 12px;">
                         <input pInputText type="text" class="form-control inputfield w-full" name="login"
                             formControlName="password" style="border: none; height: 40px;"
                             placeholder="Enter your password" />
