@@ -12,6 +12,39 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   goldLoans: any;
 
+  rbiGuildelines = [
+    {
+      date: 'Mar 6, 2024',
+      info: 'Arrangements with Card Networks for issue of Credit Cards',
+      pdfLink: 'https://rbidocs.rbi.org.in/rdocs/notification/PDFs/FINALCIRCULARDPSSC622292228054F9BB686657192C0D8F9.PDF'
+      ,size:'288 kb'
+    },
+    {
+      date: 'Mar 7, 2024',
+      info: 'Amendment to the Master Direction - Credit Card and Debit Card – Issuance and Conduct Directions, 2022',
+      pdfLink: 'https://rbidocs.rbi.org.in/rdocs/notification/PDFs/CIRCULARAMENDMENTTOMDA5CCCE00D45C4B6E8990BCEEE5810A87.PDF'
+      ,size:'691 kb'
+    },
+    {
+      date: 'Mar 11, 2024',
+      info: 'Implementation of Section 12A of the Weapons of Mass Destruction and their Delivery Systems (Prohibition of Unlawful Activities) Act, 2005: Designated List (Amendments)',
+      pdfLink: 'https://rbidocs.rbi.org.in/rdocs/notification/PDFs/CIRCULARWMDACT8D157A23CB32466F98029FDB4445ABEB.PDF'
+      ,size:'203 kb'
+    },
+    {
+      date: 'Mar 13, 2024',
+      info: 'Cut-off time for uploading of GST, ICEGATE and TIN 2.0 luggage files',
+      pdfLink: 'https://rbidocs.rbi.org.in/rdocs/notification/PDFs/NT1368306A232331B475F8E9BDE6A21F507B4.PDF'
+      ,size:'358 kb'
+    },
+    {
+      date: 'Mar 13, 2024',
+      info: 'Reporting and Accounting of Central Government transactions for March 2024',
+      pdfLink: 'https://rbidocs.rbi.org.in/rdocs/notification/PDFs/REPORTINGACCOUNTINGD8E7308C991842018E9CB6699CAF49F4.PDF'
+      ,size:'360 kb'
+    }
+  ]
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -26,8 +59,17 @@ export class LoginComponent implements OnInit {
       { name: 'London', code: 'LDN' },
       { name: 'Istanbul', code: 'IST' },
       { name: 'Paris', code: 'PRS' }
-    ]
+    ];
+
+    setInterval(() => {
+      this.firstVisible = this.generateRandomBoolean();
+      this.secondVisible = this.generateRandomBoolean();
+      this.thirdVisible = this.generateRandomBoolean();
+      this.fourthVisible = this.generateRandomBoolean();
+
+    }, 5000);
   }
+
 
 
 
@@ -49,6 +91,37 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('loginRole', "CEO Portal");
       this.router.navigate(["/master/todo-list"]);
     }
+  }
+
+  openWebsite(url:any)
+  {
+    window.open(url, '_blank');
+  }
+
+  firstVisible: boolean = true;
+  secondVisible: boolean = true;
+  thirdVisible: boolean = false;
+  fourthVisible: boolean = true;
+
+  toggleFirstVisible() {
+    this.firstVisible = !this.firstVisible;
+  }
+
+  toggleSecondVisible() {
+    this.secondVisible = !this.secondVisible;
+  }
+
+  toggleThirdVisible() {
+    this.thirdVisible = !this.thirdVisible;
+  }
+
+  toggleFourthVisible() {
+    this.fourthVisible = !this.fourthVisible;
+  }
+
+
+  private generateRandomBoolean(): boolean {
+    return Math.random() < 0.5;
   }
 
 }

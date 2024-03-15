@@ -55,44 +55,30 @@
             <div class="flex mt-5">
                 <div class="col-7 p-2">
                     <div class="border-round-2xl p-2" style="background-color: #F4EFEE; height: 270px;">
-                        <div class="flex">
+                        <div class="flex" style="justify-content: space-between; align-items: center;">
                             <div class="col-8">
                                 <div class="text-xl mt-2" style="color: #92278F;">RBI Guidelines & Notification</div>
-                                <div class="text-sm mt-3" style="color: #92278F;">Mar 01, 2024</div>
+                                <!-- <div class="text-sm mt-3" style="color: #92278F;">Mar 01, 2024</div> -->
                             </div>
                             <div class="col-4">
                                 <img src="/assets/news.png" width="108px" height="90px" alt="">
                             </div>
                         </div>
+                        <div class="scroll-container" >
+                            <div *ngFor="let rbiNoti of rbiGuildelines" class="pb-1">
+                                <div class="text-sm mt-3 mx-3" style="color: #92278F;">{{rbiNoti.date}}</div>
+                                <div class="flex justify-content-between mx-2">
+                                    <div class="text-xs col-9" style="color: #382A29;">{{rbiNoti.info}}
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="flex">
+                                            <div class="text-xs mr-1" style="color: #382A29;">{{rbiNoti.size}}</div>
+                                            <img src="/assets/downloan image.png" width="12px" height="12px" alt=""
+                                                (click)="openWebsite(rbiNoti.pdfLink)" class="cursor-pointer">
+                                        </div>
+                                    </div>
 
-                        <div class="flex justify-content-between mx-2">
-                            <div class="text-xs" style="color: #382A29;">Review of Guidelines - Withdrawal of Circulars
-                            </div>
-                            <div class="flex">
-                                <div class="text-xs mr-1" style="color: #382A29;">840 kb</div>
-                                <img src="/assets/downloan image.png" width="12px" height="12px" alt="">
-                            </div>
-                        </div>
-
-                        <div class="text-sm mt-3 mx-2" style="color: #92278F;">Feb 29, 2024</div>
-                        <div class="flex justify-content-between mx-2">
-                            <div class="text-xs" style="color: #382A29;">Master Direction – Reserve Bank of India
-                                (Bharat Bill Payment System) Directions, 2024
-                            </div>
-                            <div class="flex">
-                                <div class="text-xs mr-1" style="color: #382A29;">823 kb</div>
-                                <img src="/assets/downloan image.png" width="12px" height="12px" alt="">
-                            </div>
-                        </div>
-
-                        <div class="text-sm mt-3 mx-2" style="color: #92278F;">Feb 28, 2024</div>
-                        <div class="flex justify-content-between mx-2">
-                            <div class="text-xs" style="color: #382A29;">Capital Adequacy Guidelines – Review of Trading
-                                Book
-                            </div>
-                            <div class="flex">
-                                <div class="text-xs mr-1" style="color: #382A29;">724 kb</div>
-                                <img src="/assets/downloan image.png" width="12px" height="12px" alt="">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -133,11 +119,11 @@
                 style="height: 270px; background-color: #FCFBC8;">
                 <div class="text-lg" style="color: #92278F;">KBL Campaign Program</div>
 
-                <div class="flex justify-content-between mt-3">
-                    <img class="w-full m-1" src="/assets/ads image 1.png" height="168px" alt="">
-                    <img class="w-full m-1" src="/assets/ads image 2.png" height="168px" alt="">
-                    <img class="w-full m-1" src="/assets/ads image 3.png" height="168px" alt="">
-                    <img class="w-full v" src="/assets/ads image 4.png" height="168px" alt="">
+                <div class="flex mt-3 scroll-containerH" style="justify-content: start;">
+                    <img  class="w-auto m-1" src="/assets/ads image 1.png"  alt="">
+                    <img *ngIf="this.secondVisible" class="w-auto m-1" src="/assets/ads image 2.png"  alt="">
+                    <img *ngIf="this.thirdVisible" class="w-auto m-1" src="/assets/ads image 3.png"  alt="">
+                    <img  *ngIf="this.fourthVisible" class="w-auto m-1" src="/assets/ads image 4.png"  alt="">
                 </div>
             </div>
 
