@@ -28,6 +28,51 @@ export class DashboardComponent implements OnInit {
     // Add more items as needed
   ];
 
+  holidaysData = [
+    {
+      date: '23',
+      month:'March',
+      day: 'Saturday',
+      occasion: 'Fourth Saturday Bank Holiday'
+    },
+    {
+      date: '29',
+      month:'March',
+      day: 'Friday',
+      occasion: 'Good Friday'
+    },
+    {
+      date: '10',
+      month:'April',
+      day: 'Wednesday',
+      occasion: 'Eid-Ul-Fitr'
+    },
+    {
+      date: '13',
+      month:'April',
+      day: 'Saturday',
+      occasion: 'Second Saturday Bank Holiday'
+    },
+    {
+      date: '17',
+      month:'April',
+      day: 'Wednesday',
+      occasion: 'Ram Navami'
+    },
+    {
+      date: '21',
+      month:'April',
+      day: 'Sunday',
+      occasion: 'Mahavir Jayanti'
+    },
+    {
+      date: '27',
+      month:'April',
+      day: 'Saturday',
+      occasion: 'Fourth Saturday Bank Holiday'
+    }
+  ];
+
   name: any;
   role: any;
 
