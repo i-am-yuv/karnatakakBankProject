@@ -118,25 +118,49 @@
                                 My HR Symphony
                             </div>
 
-                            <div class="gap-1" style="display: flex; justify-content: space-between; align-items: center;
-                          margin-top: 12px; margin-left: 16px;margin-right: 16px;">
+                            <div class="gap-1" style="display: flex; justify-content: start; align-items: center;
+                          margin-top: 12px; margin-left: 8px;margin-right: 8px;">
                                 <div class="col-6">
-                                    <div style="  border-radius: 4px; background: #F9F78578;">
+                                    <!-- <div style="  border-radius: 4px; background: #F9F78578;" class="p-2">
                                         <div style="display: flex; justify-content: start;align-items: center;">
                                             <img src="/assets/Group 1171276671.png" alt="Image"
                                                 style="width: 40px; height: 40px; ">
-                                            <div style="margin-left: 22px; font-size: 16px; font-weight: 600;">
+                                            <div style="margin-left: 12px; font-size: 13px; font-weight: 600;">
                                                 My Leave
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="animated-container" (mouseenter)="expandCard()"
+                                        (mouseleave)="shrinkCard()">
+                                        <div class="content">
+                                            <div class="icon-container">
+                                                <img src="/assets/Group 1171276671.png" alt="Image"
+                                                    style="width: 30px; height: 30px;">
+                                            </div>
+                                            <div class="text-container">
+                                                My Payroll
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <div style=" border-radius: 4px; background: #F9F78578;">
+                                    <!-- <div style=" border-radius: 4px; background: #F9F78578;" class="p-2">
                                         <div style="display: flex; justify-content: start;align-items: center;">
                                             <img src="/assets/Group 1171276671 (2).png" alt="Image"
                                                 style="width: 40px; height: 40px; ">
-                                            <div style="margin-left: 22px; font-size: 16px; font-weight: 600;">
+                                            <div style="margin-left: 12px; font-size: 13px; font-weight: 600;">
+                                                My Attendance
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="animated-container" (mouseenter)="expandCard()"
+                                        (mouseleave)="shrinkCard()">
+                                        <div class="content">
+                                            <div class="icon-container">
+                                                <img src="/assets/Group 1171276671 (2).png" alt="Image"
+                                                    style="width: 30px; height: 30px; ">
+                                            </div>
+                                            <div class="text-container">
                                                 My Attendance
                                             </div>
                                         </div>
@@ -144,29 +168,56 @@
                                 </div>
                             </div>
 
-                            <div class="gap-1" style="display: flex; justify-content: space-between; align-items: center;
-                          margin-top: 1px; margin-left: 16px;margin-right: 16px;">
+                            <div class="gap-1" style="display: flex; justify-content: start; align-items: center;
+                          margin-top: 1px; margin-left: 8px;margin-right: 8px;">
                                 <div class="col-6">
-                                    <div style=" border-radius: 4px; background: #F9F78578;">
+                                    <!-- <div style=" border-radius: 4px; background: #F9F78578;" class="p-2">
                                         <div style="display: flex; justify-content: start;align-items: center;">
                                             <img src="/assets/Group 1171276671 (2).png" alt="Image"
                                                 style="width: 40px; height: 40px;">
-                                            <div style="margin-left: 22px; font-size: 16px; font-weight: 600;">
+                                            <div style="margin-left: 12px; font-size: 13px; font-weight: 600;">
                                                 My Payroll
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div style=" border-radius: 4px; background: #F9F78578;">
-                                        <div style="display: flex; justify-content: start;align-items: center;">
-                                            <img src="/assets/Group 1171276671 (3).png" alt="Image"
-                                                style="width: 40px; height: 40px;">
-                                            <div style="margin-left: 22px; font-size: 16px; font-weight: 600;">
-                                                My info
+                                    </div> -->
+
+                                    <div class="animated-container" (mouseenter)="expandCard()"
+                                        (mouseleave)="shrinkCard()">
+                                        <div class="content">
+                                            <div class="icon-container">
+                                                <img src="/assets/Group 1171276671 (2).png" alt="Image"
+                                                    style="width: 30px; height: 30px;">
+                                            </div>
+                                            <div class="text-container">
+                                                My Leave
                                             </div>
                                         </div>
                                     </div>
+
+                                </div>
+                                <div class="col-6">
+                                    <!-- <div style=" border-radius: 4px; background: #F9F78578;" class="p-2">
+                                        <div style="display: flex; justify-content: start;align-items: center;">
+                                            <img src="/assets/Group 1171276671 (3).png" alt="Image"
+                                                style="width: 40px; height: 40px;">
+                                            <div style="margin-left: 12px; font-size: 13px; font-weight: 600;">
+                                                My info
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="animated-container" (mouseenter)="expandCard()"
+                                            (mouseleave)="shrinkCard()">
+                                            <div class="content">
+                                                <div class="icon-container">
+                                                    <img src="/assets/Group 1171276671 (3).png" alt="Image"
+                                                        style="width: 30px; height: 30px;">
+                                                </div>
+                                                <div class="text-container">
+                                                    My info
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
                                 </div>
                             </div>
 
@@ -622,10 +673,12 @@
 
                     <div class="scroll-container2 ">
                         <div *ngFor="let event of upcomingEvents">
-                            <div class=" flex align-items-center" style="margin-top: 19px; justify-content: space-between;">
+                            <div class=" flex align-items-center"
+                                style="margin-top: 19px; justify-content: space-between;">
                                 <div class="border-circle flex align-items-center justify-content-center"
                                     style="background-color: #e480e0; width: 33px; height: 33px;">
-                                    <div style="font-size: 12px; color: black; font-weight: 900;">{{event.firstLetter}}</div>
+                                    <div style="font-size: 12px; color: black; font-weight: 900;">{{event.firstLetter}}
+                                    </div>
                                 </div>
 
                                 <div class="flex flex-column justify-content-center ml-2 w-full text-left">
