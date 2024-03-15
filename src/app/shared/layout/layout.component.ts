@@ -26,12 +26,15 @@ export class LayoutComponent implements OnInit {
 
   findDashboard()
   {
-      if( this.name== 'Pooja Kumari')
+      if( this.name== 'Pooja')
       {
         this.router.navigate(["/dashboard"]);
       }
       else if(this.name == 'Narayana'){
         this.router.navigate(["/dashboard/branchManager"]);
+      }
+      else if(this.name == 'Gyana'){
+        this.router.navigate(["/master/todo-list"]);
       }
   }
 
