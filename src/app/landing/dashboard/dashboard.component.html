@@ -517,22 +517,31 @@
                 <div class="bg-white border-round-lg m-3" style=" height: 1069px; padding: 23px 23px 29px 29px;">
                     <div class="font-semibold" style="color: #92278F; font-size: 16px;"> Upcoming Holidays</div>
 
-                    <div class="flex align-items-center border-round-lg mt-3 px-2"
-                        style="height: 44px; background-color: #F2F2F2;">
-                        <div class="bg-white" style="height: 28px; border-radius: 4px;">
-                            <div class="flex align-items-center justify-content-center border-round-lg"
-                                style="background-color: #92278F; height: 12px;">
-                                <div class="text-center text-white" style="font-size: 7px;">Mar</div>
+                    <div class="scroll-container">
+                        <div *ngFor="let holiday of holidaysData">
+                            <div class="flex align-items-center border-round-lg mt-3 px-2"
+                                style="height: 44px; background-color: #F2F2F2;">
+                                <div class="bg-white" style="height: 28px; border-radius: 4px;">
+                                    <div class="flex align-items-center justify-content-center border-round-lg"
+                                        style="background-color: #92278F; height: 12px;">
+                                        <div class="text-center text-white" style="font-size: 7px;">{{holiday.month}}
+                                        </div>
+                                    </div>
+                                    <div class="text-center font-semibold" style="font-size: 11px;">{{holiday.date}}
+                                    </div>
+                                </div>
+                                <div class="mx-3">
+                                    <div class="" style="font-size: 10px;">{{holiday.day}}</div>
+                                    <div class="font-semibold" style="font-size: 12px; color: #92278F;">
+                                        {{holiday.occasion}}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="text-center font-semibold" style="font-size: 11px;">29</div>
-                        </div>
-                        <div class="mx-3">
-                            <div class="" style="font-size: 10px;">Friday</div>
-                            <div class="font-semibold" style="font-size: 15px; color: #92278F;">Good Friday</div>
                         </div>
                     </div>
 
-                    <div class="flex align-items-center border-round-lg mt-4 px-2"
+
+                    <!-- <div class="flex align-items-center border-round-lg mt-4 px-2"
                         style="height: 44px; background-color: #F2F2F2;">
                         <div class="bg-white" style=" height: 28px; border-radius: 4px;">
                             <div class="flex align-items-center justify-content-center border-round-lg"
@@ -560,7 +569,7 @@
                             <div class="" style="font-size: 10px;">Wednesday</div>
                             <div class="font-semibold" style="font-size: 15px; color: #92278F;">May Day</div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="flex align-items-center justify-content-center">
                         <div class="flex align-items-center justify-content-center border-round-sm mt-4"
