@@ -66,4 +66,12 @@ export class BranchManagerComponent implements OnInit {
 
   }
 
+  expandCard() {
+    // Add any additional functionality if needed when hovering
+  }
+
+  shrinkCard() {
+    // Add any additional functionality if needed when unhovering
+  }
+
 }
