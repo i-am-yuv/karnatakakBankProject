@@ -1,0 +1,11 @@
+:host::ng-deep{
+    .p-checkbox .p-checkbox-box {
+        border: none !important;
+        background-color: #92278F !important;
+    }
+    .p-checkbox-label {
+        color: #000000;
+        font-weight: 600;
+        font-size: 14px;
+    }
+}
