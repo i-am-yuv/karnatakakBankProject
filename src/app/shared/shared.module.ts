@@ -16,6 +16,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { BlockUIModule } from 'primeng/blockui';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { LayoutComponent } from './layout/layout.component';
+import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 
 @NgModule({
   declarations: [
