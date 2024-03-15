@@ -1,74 +1,82 @@
 .col-12 {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .p {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 :host::ng-deep {
-    .inputField:focus {
-        border-color: none !important;
-        /* Set border color to transparent when focused */
-    }
+  .inputField:focus {
+    border-color: none !important;
+    /* Set border color to transparent when focused */
+  }
 
-    .p-button {
-        font-size: 10px;
-        font-weight: 700;
-        color: #92278F !important;
-    }
+  .p-button {
+    font-size: 10px;
+    font-weight: 700;
+    color: #92278F !important;
+  }
 }
 
 .banner {
-    overflow: hidden;
-    // white-space: nowrap;
+  overflow: hidden;
+  // white-space: nowrap;
 }
 
 .animation-logo {
-    display: inline-block;
-    padding-left: 0;
-    animation: moveText 2s linear infinite;
-    white-space: nowrap;
+  display: inline-block;
+  padding-left: 0;
+  animation: moveText 2s linear infinite;
+  white-space: nowrap;
 }
 
 @keyframes moveText {
-    0% {
-        transform: translateX(0%);
-    }
+  0% {
+    transform: translateX(0%);
+  }
 
-    100% {
-        transform: translateX(100%);
-    }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .scroll-container {
-    height: 300px;
-    overflow-y: auto;
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #E9EBF0 transparent; /* For Firefox */
-    
-    &::-webkit-scrollbar {
-      width: 8px; /* For Chrome, Safari, and Opera */
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background-color: #E9EBF0; /* For Chrome, Safari, and Opera */
-    }
+  height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: #E9EBF0 transparent;
+  /* For Firefox */
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    /* For Chrome, Safari, and Opera */
   }
-  
-  .scroll-container2 {
-    height: 180px;
-    overflow-y: auto;
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #E9EBF0 transparent; /* For Firefox */
-    
-    &::-webkit-scrollbar {
-      width: 8px; /* For Chrome, Safari, and Opera */
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background-color: #E9EBF0; /* For Chrome, Safari, and Opera */
-    }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #E9EBF0;
+    /* For Chrome, Safari, and Opera */
   }
+}
+
+.scroll-container2 {
+  height: 180px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: #E9EBF0 transparent;
+  /* For Firefox */
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    /* For Chrome, Safari, and Opera */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #E9EBF0;
+    /* For Chrome, Safari, and Opera */
+  }
+}
