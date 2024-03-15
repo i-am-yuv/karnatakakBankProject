@@ -197,9 +197,9 @@
                 <div class="col-3 px-2 flex align-items-center justify-content-start" *ngIf="!isCompressed">
                     <p class="" style="color: #141515; font-size: 32px; font-weight: 700;" class="cursor-pointer"
                         (click)="findDashboard()">My Portal</p>
-                    <div class="flex align-items-center justify-content-center border-round-xl ml-3"
-                        style=" width: 70px; height: 21px; background: #F9F785;">
-                        <p style="font-size: 10px; font-weight: 700; color: #92278F;">Employee</p>
+                    <div *ngIf="this.role != 'CEO Portal'" class="flex align-items-center justify-content-center border-round-xl ml-3 px-2"
+                        style=" background: #F9F785;">
+                        <p  style="font-size: 10px; font-weight: 700; color: #92278F;">{{this.role}}</p>
                     </div>
                 </div>
 
@@ -224,7 +224,7 @@
                     <img class="mx-2" src="/assets/keyboard_voice.png" alt="Image" style="width: 24px; height: 24px;">
                 </div>
 
-                <div class="col-3 px-3 flex align-items-center justify-content-around">
+                <div *ngIf="this.role != 'CEO Portal'" class="col-3 px-3 flex align-items-center justify-content-around">
                     <div class="w-full border-round-sm flex align-items-center justify-content-between py-2"
                         style="height: 48px; background: #92278F;">
 
