@@ -8,34 +8,32 @@ import { Router } from '@angular/router';
 })
 export class LayoutComponent implements OnInit {
 
-  name : any;
+  name: any;
   role: any;
 
-  isCheckIn : boolean = true; 
+  isCheckIn: boolean = true;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.getLoginInfo();
   }
 
-  getLoginInfo(){
-     this.name = sessionStorage.getItem('loginBy');
-     this.role = sessionStorage.getItem('loginRole');
+  getLoginInfo() {
+    this.name = sessionStorage.getItem('loginBy');
+    this.role = sessionStorage.getItem('loginRole');
 
   }
 
-  findDashboard()
-  {
-      if( this.name== 'Pooja')
-      {
-        this.router.navigate(["/dashboard"]);
-      }
-      else if(this.name == 'Narayana'){
-        this.router.navigate(["/dashboard/branchManager"]);
-      }
-      else if(this.name == 'Gyana'){
-        this.router.navigate(["/master/todo-list"]);
-      }
+  findDashboard() {
+    if (this.name == 'Pooja') {
+      this.router.navigate(["/dashboard"]);
+    }
+    else if (this.name == 'Narayana') {
+      this.router.navigate(["/dashboard/branchManager"]);
+    }
+    else if (this.name == 'Gyana') {
+      this.router.navigate(["/master/todo-list"]);
+    }
   }
 
   isCompressed: boolean = false;

@@ -5,12 +5,14 @@ import { MasterRoutingModule } from './master-routing.module';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReportComponent } from './report/report.component';
+import { TodoListsComponent } from './todo-lists/todo-lists.component';
 
 
 @NgModule({
   declarations: [
     TodoListComponent,
-    ReportComponent
+    ReportComponent,
+    TodoListsComponent
   ],
   imports: [
     CommonModule,
