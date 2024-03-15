@@ -1,14 +1,30 @@
 import { Component, OnInit } from '@angular/core';
+import { trigger, transition, style, animate, state } from '@angular/animations';
 
 @Component({
   selector: 'app-branch-manager',
   templateUrl: './branch-manager.component.html',
-  styleUrls: ['./branch-manager.component.scss']
+  styleUrls: ['./branch-manager.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      state('visible', style({
+        opacity: 1
+      })),
+      state('hidden', style({
+        opacity: 0
+      })),
+      transition('visible => hidden', [
+        animate('0.5s')
+      ]),
+      transition('hidden => visible', [
+        animate('0.5s')
+      ])
+    ])
+  ]
 })
 export class BranchManagerComponent implements OnInit {
 
-  
-  name : any;
+  name: any;
   role: any;
 
   upcomingEvents = [
@@ -58,11 +74,12 @@ export class BranchManagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLoginInfo();
+    this.imagesDisplayIntervalTime();
   }
 
-  getLoginInfo(){
-     this.name = sessionStorage.getItem('loginBy');
-     this.role = sessionStorage.getItem('loginRole');
+  getLoginInfo() {
+    this.name = sessionStorage.getItem('loginBy');
+    this.role = sessionStorage.getItem('loginRole');
 
   }
 
@@ -72,6 +89,24 @@ export class BranchManagerComponent implements OnInit {
 
   shrinkCard() {
     // Add any additional functionality if needed when unhovering
+  }
+
+  private currentIndex = 0;
+  townhallImages = [
+    { src: '/assets/townhall meeting.png', alt: 'Image 1' },
+    { src: '/assets/diversity and inclusion  workshop.png', alt: 'Image 2' },
+    { src: '/assets/wellness week activites.png', alt: 'Image 3' },
+    { src: '/assets/employee appriciation dar.png', alt: 'Image 4' },
+  ]
+
+  isVisible(index: number): boolean {
+    return this.currentIndex === index;
+  }
+
+  imagesDisplayIntervalTime() {
+    setInterval(() => {
+      this.currentIndex = (this.currentIndex + 1) % this.townhallImages.length;
+    }, 5000);
   }
 
 }

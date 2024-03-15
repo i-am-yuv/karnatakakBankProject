@@ -253,8 +253,10 @@
                 </div>
             </div>
 
-            <img class="w-full h-auto" style="margin-top: 19px;" src="/assets/town hall meeting.png"
-                alt="Town hall image">
+            <div style="margin-top: 19px;" *ngFor="let image of townhallImages; let i = index" class="image-container"
+                [style.display]="isVisible(i) ? 'block' : 'none'">
+                <img [src]="image.src" [alt]="image.alt" class="w-full h-auto">
+            </div>
 
             <div class="flex align-items-center justify-content-center mt-2">
                 <img src="/assets/bottom arrow.png" width="11px" height="5px" alt="">

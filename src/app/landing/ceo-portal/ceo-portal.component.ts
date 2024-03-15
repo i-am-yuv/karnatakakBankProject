@@ -1,9 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { trigger, transition, style, animate, state } from '@angular/animations';
 
 @Component({
   selector: 'app-ceo-portal',
   templateUrl: './ceo-portal.component.html',
-  styleUrls: ['./ceo-portal.component.scss']
+  styleUrls: ['./ceo-portal.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      state('visible', style({
+        opacity: 1
+      })),
+      state('hidden', style({
+        opacity: 0
+      })),
+      transition('visible => hidden', [
+        animate('0.5s')
+      ]),
+      transition('hidden => visible', [
+        animate('0.5s')
+      ])
+    ])
+  ]
 })
 export class CeoPortalComponent implements OnInit {
 
@@ -53,6 +70,25 @@ export class CeoPortalComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.imagesDisplayIntervalTime();
+  }
+
+  private currentIndex = 0;
+  townhallImages = [
+    { src: '/assets/townhall meeting.png', alt: 'Image 1' },
+    { src: '/assets/diversity and inclusion  workshop.png', alt: 'Image 2' },
+    { src: '/assets/wellness week activites.png', alt: 'Image 3' },
+    { src: '/assets/employee appriciation dar.png', alt: 'Image 4' },
+  ]
+
+  isVisible(index: number): boolean {
+    return this.currentIndex === index;
+  }
+
+  imagesDisplayIntervalTime() {
+    setInterval(() => {
+      this.currentIndex = (this.currentIndex + 1) % this.townhallImages.length;
+    }, 5000);
   }
 
 }

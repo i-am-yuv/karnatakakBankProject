@@ -205,18 +205,18 @@
                                         </div>
                                     </div> -->
                                     <div class="animated-container" (mouseenter)="expandCard()"
-                                            (mouseleave)="shrinkCard()">
-                                            <div class="content">
-                                                <div class="icon-container">
-                                                    <img src="/assets/Group 1171276671 (3).png" alt="Image"
-                                                        style="width: 30px; height: 30px;">
-                                                </div>
-                                                <div class="text-container">
-                                                    My Info
-                                                </div>
+                                        (mouseleave)="shrinkCard()">
+                                        <div class="content">
+                                            <div class="icon-container">
+                                                <img src="/assets/Group 1171276671 (3).png" alt="Image"
+                                                    style="width: 30px; height: 30px;">
+                                            </div>
+                                            <div class="text-container">
+                                                My Info
                                             </div>
                                         </div>
-                                    
+                                    </div>
+
                                 </div>
                             </div>
 
@@ -227,26 +227,30 @@
                     <div class="col-5">
                         <div class="bg-white border-round-xl py-2 px-3">
 
-                            <div class="font-bold" style="font-size: 16px; color:#92278F;">
+                            <div class="font-bold mt-2" style="font-size: 16px; color:#92278F;">
                                 Reward and Recognition
                                 <!-- Congratulation {{name}}! -->
                             </div>
 
-                            <div class="flex align-items-center justify-content-between mt-2">
+                            <div class="flex align-items-center justify-content-between mt-3">
 
-                                <div class="col-6 flex align-items-center justify-content-center">
-                                    <img src="/assets/9486855 1.png" alt="Image" style="width: 126px; height: 122px;">
+                                <div class="col-6 flex align-items-center justify-content-center"
+                                    *ngFor="let image of rewardImages; let i = index" class="image-container"
+                                    [style.display]="isVisible(i) ? 'block' : 'none'">
+                                    <img class="border-round-lg" [src]="image.src" [alt]="image.alt" width="115"
+                                        height="108">
                                 </div>
 
-                                <div class="col-6 flex flex-column align-items-center justify-content-center gap-1">
+                                <div
+                                    class="col-6 flex flex-column align-items-center justify-content-center gap-1 mt-2">
 
                                     <div class="flex align-items-center justify-content-between gap-2">
-                                        <img src="/assets/business impact award.png" width="60px" alt="">
-                                        <img src="/assets/business impact award.png" width="60px" alt="">
+                                        <img src="/assets/business impac award badge.png" width="60px" alt="">
+                                        <img src="/assets/long serving award badge.png" width="60px" alt="">
                                     </div>
                                     <div class="flex align-items-center justify-content-between gap-2">
-                                        <img src="/assets/business impact award.png" width="60px" alt="">
-                                        <img src="/assets/business impact award.png" width="60px" alt="">
+                                        <img src="/assets/employee of the month badge.png" width="60px" alt="">
+                                        <img src="/assets/best achiver award badge.png" width="60px" alt="">
                                     </div>
                                     <!-- <div class="flex align-items-center justify-content-between gap-2">
                                         <img src="/assets/business impact award.png" width="48px" alt="">
@@ -288,16 +292,16 @@
                                     <div class="font-bold" style="font-size: 6px; color: #92278F;">+4</div>
                                 </div>
 
-                                <div class="text-left ml-2" style="font-size: 8px;">Thank you for your exception
+                                <div class="text-left ml-2" style="font-size: 10px;">Thank you for your exception
                                 </div>
                             </div>
-                            <div class="" style="font-size: 8px;">contribution in KBL Vasool project. </div>
+                            <div class="" style="font-size: 10px;">contribution in KBL Vasool project. </div>
 
                             <div class="flex align-items-center justify-content-start mt-2">
-                                <img src="/assets/heart.png" width="5px" alt="">
-                                <div class="text-left ml-1" style="font-size: 6px; color: #848585;">3 likes
+                                <img src="/assets/heart.png" width="10px" alt="">
+                                <div class="text-left ml-1" style="font-size: 10px; color: #848585;">3 likes
                                 </div>
-                                <div class="text-left ml-4" style="font-size: 6px; color: #848585;">1 Comments
+                                <div class="text-left ml-4" style="font-size: 10px; color: #848585;">1 Comments
                                 </div>
                             </div>
 
@@ -312,7 +316,7 @@
                                 </div>
                             </div>
 
-                            <div class="text-left mt-2" style="font-size: 6px; color: #848585;">Add comment...
+                            <div class="text-left mt-2" style="font-size: 10px; color: #848585;">Add comment...
                             </div>
 
                         </div>
@@ -630,36 +634,6 @@
                     </div>
 
 
-                    <!-- <div class="flex align-items-center border-round-lg mt-4 px-2"
-                        style="height: 44px; background-color: #F2F2F2;">
-                        <div class="bg-white" style="width: 32px; height: 28px; border-radius: 4px;">
-                            <div class="flex align-items-center justify-content-center border-round-lg"
-                                style="background-color: #92278F; height: 10px;">
-                                <div class="text-center text-white" style="font-size: 7px;">Apr</div>
-                            </div>
-                            <div class="text-center font-semibold" style="font-size: 11px;">10</div>
-                        </div>
-                        <div class="mx-3">
-                            <div class="" style="font-size: 10px;">Wednesday</div>
-                            <div class="font-semibold" style="font-size: 15px; color: #92278F;"> Idul Fitr</div>
-                        </div>
-                    </div>
-
-                    <div class="flex align-items-center border-round-lg mt-4 px-2"
-                        style="height: 44px; background-color: #F2F2F2;">
-                        <div class="bg-white" style="width: 32px; height: 28px; border-radius: 4px;">
-                            <div class="flex align-items-center justify-content-center border-round-lg"
-                                style="background-color: #92278F; height: 10px;">
-                                <div class="text-center text-white" style="font-size: 7px;">Mar</div>
-                            </div>
-                            <div class="text-center font-semibold" style="font-size: 11px;">01</div>
-                        </div>
-                        <div class="mx-3">
-                            <div class="" style="font-size: 10px;">Wednesday</div>
-                            <div class="font-semibold" style="font-size: 15px; color: #92278F;">May Day</div>
-                        </div>
-                    </div> -->
-
                     <div class="flex align-items-center justify-content-center">
                         <div class="flex align-items-center justify-content-center border-round-sm mt-4"
                             style="background-color: #92278F;  height: 30px;">
@@ -668,7 +642,8 @@
                     </div>
 
                     <div class="font-semibold" style="color: #92278F; margin-top: 30px; font-size: 16px;">Upcoming
-                        events</div>
+                        events
+                    </div>
 
                     <div class="scroll-container2 ">
                         <div *ngFor="let event of upcomingEvents">
@@ -691,8 +666,10 @@
                         </div>
                     </div>
 
-
-                    <img style="margin-top: 19px;" src="/assets/town hall meeting.png" class="w-full h-auto" alt="">
+                    <div style="margin-top: 19px;" *ngFor="let image of townhallImages; let i = index"
+                        class="image-container" [style.display]="isVisible(i) ? 'block' : 'none'">
+                        <img [src]="image.src" [alt]="image.alt" class="w-full h-auto">
+                    </div>
 
                     <div class="flex align-items-center justify-content-center mt-2">
                         <img src="/assets/bottom arrow.png" width="11px" height="5px" alt="">

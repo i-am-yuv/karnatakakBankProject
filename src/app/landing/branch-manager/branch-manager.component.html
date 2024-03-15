@@ -33,6 +33,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col-6">
                 <div style="display: flex; justify-content: start; align-items: center;">
                     <div class="col-6">
@@ -199,9 +200,10 @@
                         </div>
                     </div>
 
-
-
-                    <img style="margin-top: 19px;" src="/assets/town hall meeting.png" class="w-full h-auto" alt="">
+                    <div style="margin-top: 19px;" *ngFor="let image of townhallImages; let i = index"
+                        class="image-container" [style.display]="isVisible(i) ? 'block' : 'none'">
+                        <img [src]="image.src" [alt]="image.alt" class="w-full h-auto">
+                    </div>
 
                     <div class="flex align-items-center justify-content-center mt-2">
                         <img src="/assets/bottom arrow.png" width="11px" height="5px" alt="">
@@ -378,11 +380,9 @@
                                 </div>
                             </div>
 
-
-
-
                         </div>
                     </div>
+                    
                     <div class="col-4">
                         <div class="" style=" height: 201px; border-radius: 16px; background: white;">
                             <div class="mx-3 pt-2">
