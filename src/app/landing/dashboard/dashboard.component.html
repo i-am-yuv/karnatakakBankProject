@@ -54,13 +54,13 @@
         </div>
 
         <!-- Animated -->
-        <div class="mx-2 " style="display: flex; justify-content: space-between; align-items: start;">
+        <div class="mx-2 " style="display: flex; justify-content: space-between; align-items: start; ">
             <div class="col-8">
 
                 <div class="flex align-items-start justify-content-between gap-1">
 
                     <div class="col-7 ">
-                        <div class="flex align-items-start justify-content-start">
+                        <div class="flex align-items-start justify-content-start" >
                             <div class="w-full mr-2" style="height: 150px; border-radius: 16px; background: white;">
                                 <div
                                     style="display: flex; flex-direction: column; justify-content: space-between; align-items: start;">
@@ -118,7 +118,7 @@
                             </div>
 
                             <div class="gap-1" style="display: flex; justify-content: start; align-items: center;
-                          margin-top: 12px; margin-left: 8px;margin-right: 8px;">
+                          margin-top: 12px; margin-left: 8px;margin-right: 8px; ">
                                 <div class="col-6">
                                     <!-- <div style="  border-radius: 4px; background: #F9F78578;" class="p-2">
                                         <div style="display: flex; justify-content: start;align-items: center;">
@@ -168,7 +168,7 @@
                             </div>
 
                             <div class="gap-1" style="display: flex; justify-content: start; align-items: center;
-                          margin-top: 1px; margin-left: 8px;margin-right: 8px;">
+                          margin-top: 1px; margin-left: 8px;margin-right: 8px; "> 
                                 <div class="col-6">
                                     <!-- <div style=" border-radius: 4px; background: #F9F78578;" class="p-2">
                                         <div style="display: flex; justify-content: start;align-items: center;">
@@ -232,7 +232,7 @@
                                 <!-- Congratulation {{name}}! -->
                             </div>
 
-                            <div class="flex align-items-center justify-content-between mt-3">
+                            <div class="flex align-items-center justify-content-between mt-3 " style="flex-wrap: wrap;" >
 
                                 <div class="col-6 flex align-items-center justify-content-center"
                                     *ngFor="let image of rewardImages; let i = index" class="image-container"
@@ -325,7 +325,7 @@
                 </div>
 
 
-                <div class="flex align-items-start justify-content-between gap-1">
+                <div class="flex align-items-start justify-content-between gap-1" >
                     <div class="col-7">
                         <div class="bg-white py-3 px-5" style=" height: 220px; border-radius: 16px;">
 
@@ -410,7 +410,7 @@
                 </div>
 
 
-                <div class="flex align-items-start justify-content-between gap-1">
+                <div class="flex align-items-start justify-content-between gap-1" >
 
                     <div class="col-7">
                         <div style="background: #FFFFFF; border-radius: 16px; height: 200px;" class="pt-3 pl-2">
@@ -439,7 +439,7 @@
                                                     style="font-size: 12px; font-weight: 700; margin-left: 17px; color: #92278F;">
                                                     {{task.task}}</div>
 
-                                                <div style="width: 40px;  border-radius: 16px; background: #92278F;
+                                                <div style="  border-radius: 16px; background: #92278F;
                                      display: flex; justify-content: center; align-items: center;">
                                                     <div style="color:#FFFFFF ; font-size: 8px; font-weight: 600;"
                                                         class="p-2">
@@ -482,7 +482,7 @@
                 </div>
 
 
-                <div class="gap-1" style="display: flex; justify-content: space-between; align-items: start;">
+                <div class="gap-1" style="display: flex; justify-content: space-between; align-items: start; ">
                     <div class="col-7">
                         <div style="height: 250px; background: #FFFFFF; border-radius: 16px;" class="pt-4 pl-4">
                             <div style="font-size: 14px; font-weight: 700; color: #92278F;">Learning and Development
@@ -594,17 +594,17 @@
                         <div *ngFor="let holiday of holidaysData">
                             <div class="flex align-items-center border-round-lg mt-3 px-2"
                                 style="height: 44px; background-color: #F2F2F2;">
-                                <div class="bg-white" style="height: 28px; border-radius: 4px;">
+                                <div class="bg-white" style=" border-radius: 4px;">
                                     <div class="flex align-items-center justify-content-center border-round-lg"
-                                        style="background-color: #92278F; height: 12px;">
-                                        <div class="text-center text-white" style="font-size: 7px;">{{holiday.month}}
+                                        style="background-color: #92278F; ">
+                                        <div class="text-center text-white p-1" style="font-size: 10px;">{{holiday.month}}
                                         </div>
                                     </div>
                                     <div class="text-center font-semibold" style="font-size: 11px;">{{holiday.date}}
                                     </div>
                                 </div>
                                 <div class="mx-3">
-                                    <div class="" style="font-size: 10px;">{{holiday.day}}</div>
+                                    <div class="" style="font-size: 11px;">{{holiday.day}}</div>
                                     <div class="font-semibold" style="font-size: 12px; color: #92278F;">
                                         {{holiday.occasion}}
                                     </div>
@@ -638,7 +638,7 @@
                                 <div class="flex flex-column justify-content-center ml-2 w-full text-left">
                                     <div style="font-size: 12px; color: black; font-weight: 900;">{{event.title}}
                                     </div>
-                                    <div style="font-size: 9px; color: black; opacity: 50%;">{{event.desc}}</div>
+                                    <div style="font-size: 10px; color: black; opacity: 80%;">{{event.desc}}</div>
                                 </div>
                                 <img src="/assets/right arrow.png" width="5px" height="11px" alt="">
                             </div>

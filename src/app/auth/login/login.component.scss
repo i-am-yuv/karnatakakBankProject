@@ -83,3 +83,13 @@
     content: "\e906";
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .col-7 {
+    flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
+  }
+  
+  .col-5 {
+    flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
+  }
+}

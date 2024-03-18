@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { Checkbox } from 'primeng/checkbox';
 import { MasterService } from 'src/app/master/master.service';
 
 @Component({
@@ -77,7 +78,16 @@ export class LoginComponent implements OnInit {
       selectedCity: ['Chennai'] // Default value 'chennai' (code: 'CHE')
     });
     this.findGoldRate('Chennai');
+
   }
+
+  isLessThan800px()
+  {
+    const screenWidth = window.innerWidth;
+    // Return true if screen width is less than 800px, otherwise false
+    return screenWidth < 800;
+  }
+
 
 
 

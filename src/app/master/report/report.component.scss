@@ -23,3 +23,15 @@
       background-color: #E9EBF0; /* For Chrome, Safari, and Opera */
     }
   }
+
+  @media screen and (max-width: 768px) {
+    .col-6 {
+      flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
+    }
+    .col-8 {
+      flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
+    }
+    .col-4 {
+      flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
+    }
+  }
