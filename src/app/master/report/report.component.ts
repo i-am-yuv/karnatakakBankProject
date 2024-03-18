@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MasterService } from '../master.service';
 
 @Component({
   selector: 'app-report',
@@ -42,7 +43,7 @@ export class ReportComponent implements OnInit {
    
   
 
-  constructor() { }
+  constructor(private masterService : MasterService) { }
 
   ngOnInit(): void {
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate, state } from '@angular/animations';
+import { MasterService } from 'src/app/master/master.service';
 
 @Component({
   selector: 'app-ceo-portal',
@@ -23,6 +24,9 @@ import { trigger, transition, style, animate, state } from '@angular/animations'
   ]
 })
 export class CeoPortalComponent implements OnInit {
+
+  regions: any;
+
 
   upcomingEvents = [
     {
@@ -67,10 +71,18 @@ export class CeoPortalComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private masterService : MasterService) { }
 
   ngOnInit(): void {
     this.imagesDisplayIntervalTime();
+    this.regions = [
+      { name: 'East', code: 'E' },
+      { name: 'West', code: 'W' },
+      { name: 'North', code: 'N' },
+      { name: 'South', code: 'S' }
+    ];
+    this.findRegionalPerformance('South');
+    this.getTodoList();
   }
 
   private currentIndex = 0;
@@ -91,4 +103,45 @@ export class CeoPortalComponent implements OnInit {
     }, 5000);
   }
 
+  currPerformance: any;
+  currRegion = 'South';
+  findRegionalPerformance(region: string) {
+    if (region == 'North') {
+      this.currPerformance = "78 %";
+      this.currRegion = 'North';
+    }
+    else if (region == 'South') {
+      this.currPerformance = "65 %";
+      this.currRegion = 'South';
+
+    }
+    else if (region == 'East') {
+      this.currPerformance = "35 %";
+      this.currRegion = 'East';
+
+    }
+    else if (region == 'West') {
+      this.currPerformance = "98 %";
+      this.currRegion = 'West';
+
+    }
+    else {
+      this.currPerformance = "Data not found!!";
+      this.currRegion = 'N/A';
+    }
+  }
+
+  todoList : any;
+  getTodoList()
+  {
+    this.masterService.todoListItems().then(
+      (res)=>{
+        this.todoList = res;
+      }
+    ).catch(
+      (err)=>{
+
+      }
+    )
+  }
 }

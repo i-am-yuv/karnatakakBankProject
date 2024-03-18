@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate, state } from '@angular/animations';
+import { MasterService } from 'src/app/master/master.service';
 
 @Component({
   selector: 'app-branch-manager',
@@ -70,7 +71,7 @@ export class BranchManagerComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private masterService : MasterService) { }
 
   ngOnInit(): void {
     this.getLoginInfo();

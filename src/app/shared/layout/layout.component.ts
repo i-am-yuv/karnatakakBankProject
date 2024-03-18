@@ -28,7 +28,7 @@ export class LayoutComponent implements OnInit {
     if (this.name == 'Pooja') {
       this.router.navigate(["/dashboard"]);
     }
-    else if (this.name == 'Narayana') {
+    else if (this.name == 'Narayanan') {
       this.router.navigate(["/dashboard/branchManager"]);
     }
     else if (this.name == 'Gyana') {

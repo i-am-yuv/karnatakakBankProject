@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate, state } from '@angular/animations';
+import { MasterService } from 'src/app/master/master.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -135,13 +136,14 @@ export class DashboardComponent implements OnInit {
   name: any;
   role: any;
 
-  constructor() {
+  constructor(private masterService : MasterService) {
 
   }
 
   ngOnInit(): void {
     this.getLoginInfo();
     this.imagesDisplayIntervalTime();
+    this.getTodoList();
   }
 
   getLoginInfo() {
@@ -186,6 +188,20 @@ export class DashboardComponent implements OnInit {
     setInterval(() => {
       this.currentIndex = (this.currentIndex + 1) % this.townhallImages.length;
     }, 5000);
+  }
+
+  todoList : any;
+  getTodoList()
+  {
+    this.masterService.todoListItems().then(
+      (res)=>{
+        this.todoList = res;
+      }
+    ).catch(
+      (err)=>{
+
+      }
+    )
   }
 
 }

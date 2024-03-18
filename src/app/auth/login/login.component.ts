@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { MasterService } from 'src/app/master/master.service';
 
 @Component({
   selector: 'app-login',
@@ -48,7 +49,8 @@ export class LoginComponent implements OnInit {
 
   yourForm !: FormGroup;
 
-  constructor(private router: Router, private message: MessageService, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private message: MessageService, private formBuilder: FormBuilder ,
+     private masterService : MasterService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -72,9 +74,9 @@ export class LoginComponent implements OnInit {
     }, 5000);
 
     this.yourForm = this.formBuilder.group({
-      selectedCity: ['chennai'] // Default value 'chennai' (code: 'CHE')
+      selectedCity: ['Chennai'] // Default value 'chennai' (code: 'CHE')
     });
-    this.findGoldRate('chennai');
+    this.findGoldRate('Chennai');
   }
 
 

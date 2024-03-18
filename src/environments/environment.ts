@@ -3,6 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  commonUrl : 'https://api.ifyn.com/helpdesk/api',
   production: false
 };
 
