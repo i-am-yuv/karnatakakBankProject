@@ -75,7 +75,7 @@ export class BranchManagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLoginInfo();
-    this.imagesDisplayIntervalTime();
+    this.townhallImagesDisplayIntervalTime();
   }
 
   getLoginInfo() {
@@ -92,7 +92,7 @@ export class BranchManagerComponent implements OnInit {
     // Add any additional functionality if needed when unhovering
   }
 
-  private currentIndex = 0;
+  private currentTownhallImageIndex = 0;
   townhallImages = [
     { src: '/assets/townhall meeting.png', alt: 'Image 1' },
     { src: '/assets/diversity and inclusion  workshop.png', alt: 'Image 2' },
@@ -100,13 +100,13 @@ export class BranchManagerComponent implements OnInit {
     { src: '/assets/employee appriciation dar.png', alt: 'Image 4' },
   ]
 
-  isVisible(index: number): boolean {
-    return this.currentIndex === index;
+  isTownhallImageVisible(index: number): boolean {
+    return this.currentTownhallImageIndex === index;
   }
 
-  imagesDisplayIntervalTime() {
+  townhallImagesDisplayIntervalTime() {
     setInterval(() => {
-      this.currentIndex = (this.currentIndex + 1) % this.townhallImages.length;
+      this.currentTownhallImageIndex = (this.currentTownhallImageIndex + 1) % this.townhallImages.length;
     }, 5000);
   }
 

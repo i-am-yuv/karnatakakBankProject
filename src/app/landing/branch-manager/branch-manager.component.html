@@ -201,7 +201,7 @@
                     </div>
 
                     <div style="margin-top: 19px;" *ngFor="let image of townhallImages; let i = index"
-                        class="image-container" [style.display]="isVisible(i) ? 'block' : 'none'">
+                        class="image-container" [style.display]="isTownhallImageVisible(i) ? 'block' : 'none'">
                         <img [src]="image.src" [alt]="image.alt" class="w-full h-auto">
                     </div>
 
@@ -407,7 +407,7 @@
                                     </div>
                                 </div>
 
-                                <div class="mt-2" style="display: flex; justify-content: start; align-items: center;">
+                                <div class="w-full flex align-items-center justify-content-between mt-2">
                                     <div>
                                         <div style="font-size: 8px; font-weight: 700; color: #BA68C8;">Joining Date :
                                             12th Sep, 2018</div>
@@ -416,7 +416,7 @@
                                         <div class="mt-2" style="font-size: 8px; font-weight: 700; color: #BA68C8;">EMP
                                             No : 009821002</div>
                                     </div>
-                                    <div class="py-1 px-2" style="background: #F9F785; border-radius: 30px;">
+                                    <div class="border-round-xl py-1 px-2" style="background: #F9F785; ">
                                         <div style="color: #92278F; font-size: 8px; font-weight: 400;">Enter employee no
                                         </div>
                                     </div>
