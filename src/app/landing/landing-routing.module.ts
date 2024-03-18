@@ -4,26 +4,30 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BranchManagerComponent } from './branch-manager/branch-manager.component';
 import { LayoutComponent } from '../shared/layout/layout.component';
 import { CeoPortalComponent } from './ceo-portal/ceo-portal.component';
+import { BusinessHeadComponent } from './business-head/business-head.component';
 
 const routes: Routes = [
   {
     path: '', component: LayoutComponent,
     children: [
-      { path: '', component: DashboardComponent }
+      { path: '', component: DashboardComponent },
+      { path: 'branchManager', component: BranchManagerComponent },
+      { path: 'ceoPortal', component: CeoPortalComponent },
+      { path: 'business-head', component: BusinessHeadComponent }
     ]
   },
-  {
-    path: '', component: LayoutComponent,
-    children: [
-      { path: 'branchManager', component: BranchManagerComponent }
-    ]
-  },
-  {
-    path: '', component: LayoutComponent,
-    children: [
-      { path: 'ceoPortal', component: CeoPortalComponent }
-    ]
-  }
+  // {
+  //   path: '', component: LayoutComponent,
+  //   children: [
+  //     { path: 'branchManager', component: BranchManagerComponent }
+  //   ]
+  // },
+  // {
+  //   path: '', component: LayoutComponent,
+  //   children: [
+  //     { path: 'ceoPortal', component: CeoPortalComponent }
+  //   ]
+  // }
 ];
 
 @NgModule({

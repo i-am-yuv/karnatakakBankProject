@@ -6,13 +6,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BranchManagerComponent } from './branch-manager/branch-manager.component';
 import { SharedModule } from '../shared/shared.module';
 import { CeoPortalComponent } from './ceo-portal/ceo-portal.component';
+import { BusinessHeadComponent } from './business-head/business-head.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     BranchManagerComponent,
-    CeoPortalComponent
+    CeoPortalComponent,
+    BusinessHeadComponent
   ],
   imports: [
     CommonModule,

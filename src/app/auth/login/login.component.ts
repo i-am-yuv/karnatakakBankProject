@@ -137,6 +137,17 @@ export class LoginComponent implements OnInit {
       }, 2000);
 
     }
+    else if (this.loginForm.value.username == '7300234997' && this.loginForm.value.password == '123456') {
+      sessionStorage.setItem('loginBy', "Yuvraj");
+      sessionStorage.setItem('loginRole', "Business head");
+      this.message.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Login Successfully',
+        life: 3000,
+      });
+      this.router.navigate(["/dashboard/business-head"]);
+    }
   }
 
   openWebsite(url: any) {
