@@ -141,7 +141,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLoginInfo();
-    this.imagesDisplayIntervalTime();
+    this.rewardImagesDisplayIntervalTime();
+    this.townhallImagesDisplayIntervalTime();
   }
 
   getLoginInfo() {
@@ -158,7 +159,7 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  private currentIndex = 0;
+  private currentRewardImageIndex = 0;
   rewardImages = [
     { src: '/assets/9486855 1.png', alt: 'Image 1' },
     { src: '/assets/best achiever award.png', alt: 'Image 2' },
@@ -167,6 +168,17 @@ export class DashboardComponent implements OnInit {
     { src: '/assets/business impact award.png', alt: 'Image 5' }
   ];
 
+  isRewardImageVisible(index: number): boolean {
+    return this.currentRewardImageIndex === index;
+  }
+
+  rewardImagesDisplayIntervalTime() {
+    setInterval(() => {
+      this.currentRewardImageIndex = (this.currentRewardImageIndex + 1) % this.rewardImages.length;
+    }, 5000);
+  }
+
+  private currentTownhallIndex = 0;
   townhallImages = [
     { src: '/assets/townhall meeting.png', alt: 'Image 1' },
     { src: '/assets/diversity and inclusion  workshop.png', alt: 'Image 2' },
@@ -174,17 +186,13 @@ export class DashboardComponent implements OnInit {
     { src: '/assets/employee appriciation dar.png', alt: 'Image 4' },
   ]
 
-  isVisible(index: number): boolean {
-    return this.currentIndex === index;
+  isTownhallImageVisible(index: number): boolean {
+    return this.currentTownhallIndex === index;
   }
 
-  imagesDisplayIntervalTime() {
+  townhallImagesDisplayIntervalTime() {
     setInterval(() => {
-      this.currentIndex = (this.currentIndex + 1) % this.rewardImages.length;
-    }, 5000);
-
-    setInterval(() => {
-      this.currentIndex = (this.currentIndex + 1) % this.townhallImages.length;
+      this.currentTownhallIndex = (this.currentTownhallIndex + 1) % this.townhallImages.length;
     }, 5000);
   }
 

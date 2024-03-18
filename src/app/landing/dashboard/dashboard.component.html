@@ -236,7 +236,7 @@
 
                                 <div class="col-6 flex align-items-center justify-content-center"
                                     *ngFor="let image of rewardImages; let i = index" class="image-container"
-                                    [style.display]="isVisible(i) ? 'block' : 'none'">
+                                    [style.display]="isRewardImageVisible(i) ? 'block' : 'none'">
                                     <img class="border-round-lg" [src]="image.src" [alt]="image.alt" width="115"
                                         height="108">
                                 </div>
@@ -420,8 +420,7 @@
 
                             <div style="margin-right: 30px; margin-top: 8px;">
 
-                                <div style=" height: 40px; border: 1px solid #F9F785BF; border-radius: 24px;"
-                                    class="px-2">
+                                <div class="px-2 border-round-3xl" style=" height: 40px; border: 1px solid #F9F785BF;">
                                     <div
                                         style=" height: 38px; display: flex; justify-content: space-between; align-items: center;">
 
@@ -667,7 +666,7 @@
                     </div>
 
                     <div style="margin-top: 19px;" *ngFor="let image of townhallImages; let i = index"
-                        class="image-container" [style.display]="isVisible(i) ? 'block' : 'none'">
+                        class="image-container" [style.display]="isTownhallImageVisible(i) ? 'block' : 'none'">
                         <img [src]="image.src" [alt]="image.alt" class="w-full h-auto">
                     </div>
 
