@@ -92,15 +92,17 @@
                         <div class="flex align-items-center justify-content-center mx-2">
                             <div class="col-8">
                                 <div class="text-xl mt-2" style="color: #92278F;">Gold Rate</div>
-                                <div class=" text-sm" style="color: #263238"><span class="font-semibold">₹ 65,440.00
-                                    </span>Indian Rupee</div>
+                                <div class=" text-sm" style="color: #263238"><span class="font-semibold">₹ {{this.goldRate}}
+                                    </span>
+                                    <!-- Indian Rupee -->
+                                </div>
                                 <div class="flex justify-content-between">
                                     <div style="color: #606060; font-size: 7px;">Feb 29, 8:34:24 PM UTC+5:30</div>
                                     <div style="color: #606060; font-size: 7px;">INR . NSE . Disclaimer</div>
                                 </div>
                                 <div class="mt-2">
-                                    <p-dropdown formControlName="selectedCity" [options]="goldLoans" optionLabel="name"
-                                        placeholder="Select a City"></p-dropdown>
+                                    <p-dropdown formControlName="selectedCity" [options]="goldLoans" optionLabel="name" optionValue="name"
+                                        placeholder="Chennai" (onChange)="findGoldRate( $event.value)"></p-dropdown>
                                 </div>
 
 
