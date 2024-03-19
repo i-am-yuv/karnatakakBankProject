@@ -64,6 +64,13 @@
     border-radius: 10px;
     background: #F4EFEE;
   }
+  .p-inputtext:enabled:focus {
+    box-shadow: none !important;
+  }
+  .p-dropdown:not(.p-disabled).p-focus {
+    box-shadow: none !important;
+    border-color: #92278F;
+  }
 
   .p-inputtext {
     font-size: 0.8rem;
@@ -84,7 +91,7 @@
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1000px) {
   .col-7 {
     flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
   }
