@@ -7,6 +7,7 @@ import { BranchManagerComponent } from './branch-manager/branch-manager.componen
 import { SharedModule } from '../shared/shared.module';
 import { CeoPortalComponent } from './ceo-portal/ceo-portal.component';
 import { BusinessHeadComponent } from './business-head/business-head.component';
+import { DigitalTeamComponent } from './digital-team/digital-team.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { BusinessHeadComponent } from './business-head/business-head.component';
     DashboardComponent,
     BranchManagerComponent,
     CeoPortalComponent,
-    BusinessHeadComponent
+    BusinessHeadComponent,
+    DigitalTeamComponent
   ],
   imports: [
     CommonModule,

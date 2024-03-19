@@ -16,7 +16,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { BlockUIModule } from 'primeng/blockui';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { LayoutComponent } from './layout/layout.component';
-import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @NgModule({
   declarations: [
@@ -44,8 +44,9 @@ import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
     DialogModule,
     SidebarModule,
     BlockUIModule,
-    MultiSelectModule
+    MultiSelectModule,
+    ProgressBarModule
   ],
-  
+
 })
 export class SharedModule { }
