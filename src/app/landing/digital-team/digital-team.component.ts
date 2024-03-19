@@ -10,6 +10,8 @@ export class DigitalTeamComponent implements OnInit {
   role: any;
   analyticWebTraffic: any[] = [];
   expenses: any[] = [];
+  socialMediaEngagement: any[] = [];
+  searchEngineVisibility: any[] = [];
 
   isVisible = false;
 
@@ -17,6 +19,18 @@ export class DigitalTeamComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLoginInfo();
+
+    this.socialMediaEngagement = [
+      { competitors: 'Axis Bank', followers: '34.5k', bounceRate: '46.5%', reach: '13.8 M' },
+      { competitors: 'Yes Bank ', followers: '10.6k', bounceRate: '12.4%', reach: '1.9 M' },
+      { competitors: 'ICICI Bank ', followers: '398k', bounceRate: '67.2%', reach: '33.3 M' }
+    ];
+
+    this.searchEngineVisibility = [
+      { competitors: 'IndusIand Bank ', organicTraffic: '56.98%', keywordRanking: '4.2', backlinkProfile: '87.5%' },
+      { competitors: 'Canara Bank', organicTraffic: '10.67%', keywordRanking: '6.7', backlinkProfile: '58.5%' },
+      { competitors: 'State Bank ', organicTraffic: '39.8%', keywordRanking: '2.4', backlinkProfile: '64.2%' }
+    ]
 
     this.analyticWebTraffic = [
       { channel: 'Organic search', progressValue: '32.64', conversionRate: '32.64%', avgTimeOnSite: '5m 49 s', bounceRate: '52.64%', eventSessionRatio: '1.00:1' },
