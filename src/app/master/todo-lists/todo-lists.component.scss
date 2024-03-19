@@ -1,0 +1,19 @@
+@media screen and (max-width: 768px) {
+    .col-8 {
+      flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
+    }
+    .col-4 {
+      flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
+    }
+  }
+
+  .flex-item {
+    flex: 0 0 calc(50% - 10px); /* Two columns with 10px spacing in between */
+    margin: 5px; /* Adjust margin to set spacing */
+  }
+  
+  @media screen and (max-width: 768px) {
+    .flex-item {
+      flex: 0 0 calc(100% - 10px); /* Each item takes 100% width with 10px spacing on smaller screens */
+    }
+  }
