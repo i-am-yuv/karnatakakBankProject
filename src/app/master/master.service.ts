@@ -60,10 +60,7 @@ export class MasterService {
   {
     var url = this.apiurl + 'gold-rate?city='+city;
     const goldRate = await lastValueFrom(this.http.get<any>(url));
-  //  console.log(goldRate);
-  //   var rateInString = goldRate.split[":"];
-  //   console.log(rateInString[1]);
-
+    console.log(JSON.stringify(goldRate));
     return goldRate;
   }
   
