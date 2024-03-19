@@ -114,6 +114,7 @@ export class CeoPortalComponent implements OnInit {
   currPerformance: any;
   currRegion = 'South';
   findRegionalPerformance(region: string) {
+    this.currRegion = region ;
     this.masterService.getBranchPerformace(region).then(
       (res)=>{
          this.currPerformance = res.additionalProp2;

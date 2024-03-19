@@ -392,7 +392,11 @@
                         <div style="margin-top: 18px;">
                             <div class="flex align-items-center justify-content-start">
                                 <img src="/assets/Avatar.png" width="25px" height="25px" alt="">
-                                <div class="ml-3" style="font-size: 12px;">{{news}}
+                                <div class="ml-3" style="font-size: 12px; font-weight: 700;">
+                                    <span class="yellow">{{ news.split(' ')[0]+' ' }}</span> <!-- First word in yellow -->
+                                    <span>{{ news.split(' ')[1]+' ' }}</span> <!-- Second word in default color -->
+                                    <span class="green">{{ news.split(' ')[2]+' ' }}</span> <!-- Third word in green -->
+                                    <span>{{ news.split(' ').slice(3).join(' ') }}</span>
                                 </div>
                             </div>
 
