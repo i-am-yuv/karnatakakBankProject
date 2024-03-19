@@ -138,7 +138,7 @@
 
                     <div class="flex align-items-center justify-content-between">
                         <div class="flex align-items-center">
-                            <div class="font-semibold">₹261.00</div>
+                            <div class="font-semibold">₹ {{this.bankShare}}</div>
 
                             <div class="flex align-items-center justify-content-center border-round-sm ml-8"
                                 style="width: 36px; height: 15px; background-color: #FBE2E1;">
@@ -212,10 +212,10 @@
                 <div class="flex align-items-center justify-content-between">
                     <div class="w-full mr-1">
                         <div class="text-center" style="font-size: 44px; font-weight: 800; color: #92278F;">
-                            {{this.currPerformance}}</div>
+                            {{this.currPerformance}}%</div>
                         <div class="font-semibold text-center" style="font-size: 8px;  color: #92278F;">Our branch
                             work performance is
-                            {{this.currPerformance}} better compare to
+                            {{this.currPerformance}}% better compare to
                             last month</div>
                     </div>
                     <div class="w-full ml-1">
@@ -278,20 +278,20 @@
 
                         <div class="flex align-items-center justify-content-start">
                             <div class="flex flex-column align-items-center justify-content-center">
-                                <div class="font-bold" style="font-size: 10px; color: #92278F;">{{task.date}}</div>
+                                <div class="font-bold" style="font-size: 10px; color: #92278F;">{{task.additionalProp1}}</div>
                                 <!-- <div class="font-normal" style="font-size: 9px; color: #92278F;">May</div> -->
                             </div>
 
                             <div class="ml-2" style="width: 1px; height: 20px; background-color: #92278F;"></div>
 
-                            <div class="font-bold ml-2" style="font-size: 10px; color: #92278F;">{{task.task}}
+                            <div class="font-bold ml-2" style="font-size: 10px; color: #92278F;">{{task.additionalProp2}}
                             </div>
                         </div>
 
                         <div class="flex align-items-center justify-content-between">
                             <div
                                 class="flex align-items-center justify-content-center bg-white border-round-md w-auto px-2">
-                                <div class="font-normal" style="font-size: 10px; color: #92278F;">{{task.status}}</div>
+                                <div class="font-normal" style="font-size: 10px; color: #92278F;">{{task.additionalProp3}}</div>
                             </div>
 
                             <i class="pi pi-ellipsis-v ml-2" style="font-size: 7px; color: #92278F;"></i>

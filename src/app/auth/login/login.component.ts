@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Checkbox } from 'primeng/checkbox';
 import { MasterService } from 'src/app/master/master.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -51,7 +52,7 @@ export class LoginComponent implements OnInit {
   yourForm !: FormGroup;
 
   constructor(private router: Router, private message: MessageService, private formBuilder: FormBuilder ,
-     private masterService : MasterService) { }
+     private masterService : MasterService , private authService:AuthService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -60,10 +61,10 @@ export class LoginComponent implements OnInit {
     })
 
     this.goldLoans = [
-      { name: 'Mumbai', code: 'MUM' },
-      { name: 'Delhi', code: 'DEL' },
-      { name: 'Kolkata', code: 'KOL' },
-      { name: 'Chennai', code: 'CHE' }
+      { name: 'mumbai', code: 'MUM' },
+      { name: 'delhi', code: 'DEL' },
+      { name: 'kolkata', code: 'KOL' },
+      { name: 'chennai', code: 'CHE' }
     ];
 
     setInterval(() => {
@@ -75,10 +76,9 @@ export class LoginComponent implements OnInit {
     }, 5000);
 
     this.yourForm = this.formBuilder.group({
-      selectedCity: ['Chennai'] // Default value 'chennai' (code: 'CHE')
+      selectedCity: ['chennai'] // Default value 'chennai' (code: 'CHE')
     });
-    this.findGoldRate('Chennai');
-
+    this.findGoldRate('chennai');
   }
 
   isLessThan800px()
@@ -95,59 +95,71 @@ export class LoginComponent implements OnInit {
   onClickLogin() {
     //    alert(JSON.stringify(this.loginForm.value));
 
-    if (this.loginForm.value.username == '7204839067' && this.loginForm.value.password == '123456') {
-      sessionStorage.setItem('loginBy', "Pooja");
-      sessionStorage.setItem('loginRole', "Employee");
-      this.message.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: 'Login Successfully',
-        life: 2000,
-      });
-      setTimeout(() => {
-        this.router.navigate(["/dashboard"]);
-      }, 2000);
-    }
-    else if (this.loginForm.value.username == '9745899658' && this.loginForm.value.password == '123456') {
-      sessionStorage.setItem('loginBy', "Narayanan");
-      sessionStorage.setItem('loginRole', "Branch Manager");
-      this.message.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: 'Login Successfully',
-        life: 2000,
-      });
-      setTimeout(() => {
-        this.router.navigate(["/dashboard/branchManager"]);
-      }, 2000);
+    // if (this.loginForm.value.username == '7204839067' && this.loginForm.value.password == '123456') {
+    //   sessionStorage.setItem('loginBy', "Pooja");
+    //   sessionStorage.setItem('loginRole', "Employee");
+    //   this.message.add({
+    //     severity: 'success',
+    //     summary: 'Success',
+    //     detail: 'Login Successfully',
+    //     life: 2000,
+    //   });
+    //   setTimeout(() => {
+    //     this.router.navigate(["/dashboard"]);
+    //   }, 2000);
+    // }
+    // else if (this.loginForm.value.username == '9745899658' && this.loginForm.value.password == '123456') {
+    //   sessionStorage.setItem('loginBy', "Narayanan");
+    //   sessionStorage.setItem('loginRole', "Branch Manager");
+    //   this.message.add({
+    //     severity: 'success',
+    //     summary: 'Success',
+    //     detail: 'Login Successfully',
+    //     life: 2000,
+    //   });
+    //   setTimeout(() => {
+    //     this.router.navigate(["/dashboard/branchManager"]);
+    //   }, 2000);
 
-    }
-    else if (this.loginForm.value.username == '7683876626' && this.loginForm.value.password == '123456') {
-      sessionStorage.setItem('loginBy', "Gyana");
-      sessionStorage.setItem('loginRole', "CEO Portal");
-      this.message.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: 'Login Successfully',
-        life: 2000,
-      });
+    // }
+    // else if (this.loginForm.value.username == '7683876626' && this.loginForm.value.password == '123456') {
+    //   sessionStorage.setItem('loginBy', "Gyana");
+    //   sessionStorage.setItem('loginRole', "CEO Portal");
+    //   this.message.add({
+    //     severity: 'success',
+    //     summary: 'Success',
+    //     detail: 'Login Successfully',
+    //     life: 2000,
+    //   });
 
-      setTimeout(() => {
-        this.router.navigate(["/dashboard/ceoPortal"]);
-      }, 2000);
+    //   setTimeout(() => {
+    //     this.router.navigate(["/dashboard/ceoPortal"]);
+    //   }, 2000);
 
-    }
-    else if (this.loginForm.value.username == '7300234997' && this.loginForm.value.password == '123456') {
-      sessionStorage.setItem('loginBy', "Yuvraj");
-      sessionStorage.setItem('loginRole', "Business head");
-      this.message.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: 'Login Successfully',
-        life: 3000,
-      });
-      this.router.navigate(["/dashboard/business-head"]);
-    }
+    // }
+    // else if (this.loginForm.value.username == '7300234997' && this.loginForm.value.password == '123456') {
+    //   sessionStorage.setItem('loginBy', "Yuvraj");
+    //   sessionStorage.setItem('loginRole', "Business Head Manager");
+    //   this.message.add({
+    //     severity: 'success',
+    //     summary: 'Success',
+    //     detail: 'Login Successfully',
+    //     life: 3000,
+    //   });
+    //   this.router.navigate(["/dashboard/business-head"]);
+    // }
+
+    this.authService.authenticate(this.loginForm.value).then(
+      (res)=>{
+        sessionStorage.setItem('token', res.jwt);
+        sessionStorage.setItem('refreshToken', res.refreshToken);
+        this.navigateToDashboard();
+      }
+    ).catch(
+      (err)=>{
+
+      }
+    )
   }
 
   openWebsite(url: any) {
@@ -182,21 +194,79 @@ export class LoginComponent implements OnInit {
 
   goldRate: any;
   findGoldRate(city: string) {
-    if (city == 'Mumbai') {
-      this.goldRate = "60000 INR per 10 grams";
+    
+    this.masterService.getGoldRateByCity(city).then(
+      (res)=>{
+          this.goldRate = res;
+      }
+    ).catch(
+      (err)=>{
+        console.log(err);
+      }
+    )
+  }
+
+  navigateToDashboard()
+  {
+     var username = this.authService.getUserName();
+     var roles = this.authService.getRoles();
+    //  alert(username);
+    //  alert(roles);
+
+    if (username == '7204839067') {
+      sessionStorage.setItem('loginBy', "Pooja");
+      sessionStorage.setItem('loginRole', roles);
+      this.message.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Login Successfully',
+        life: 2000,
+      });
+      setTimeout(() => {
+        this.router.navigate(["/dashboard"]);
+      }, 2000);
     }
-    else if (city == 'Delhi') {
-      this.goldRate = "59500 INR per 10 grams";
+    else if (username == '9745899658') {
+      sessionStorage.setItem('loginBy', "Narayanan");
+      sessionStorage.setItem('loginRole', roles);
+      this.message.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Login Successfully',
+        life: 2000,
+      });
+      setTimeout(() => {
+        this.router.navigate(["/dashboard/branchManager"]);
+      }, 2000);
+
     }
-    else if (city == 'Kolkata') {
-      this.goldRate = "59800 INR per 10 grams";
+    else if (username == '7683876626') {
+      sessionStorage.setItem('loginBy', "Gyana");
+      sessionStorage.setItem('loginRole', roles);
+      this.message.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Login Successfully',
+        life: 2000,
+      });
+
+      setTimeout(() => {
+        this.router.navigate(["/dashboard/ceoPortal"]);
+      }, 2000);
+
     }
-    else if (city == 'Chennai') {
-      this.goldRate = "60200 INR per 10 grams";
+    else if (username == '7300234997') {
+      sessionStorage.setItem('loginBy', "Yuvraj");
+      sessionStorage.setItem('loginRole', roles);
+      this.message.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Login Successfully',
+        life: 3000,
+      });
+      this.router.navigate(["/dashboard/business-head"]);
     }
-    else {
-      this.goldRate = "City not found or not supported";
-    }
+
   }
 
 }

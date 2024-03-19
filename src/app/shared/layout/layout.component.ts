@@ -21,7 +21,7 @@ export class LayoutComponent implements OnInit {
   getLoginInfo() {
     this.name = sessionStorage.getItem('loginBy');
     this.role = sessionStorage.getItem('loginRole');
-
+   
   }
 
   findDashboard() {

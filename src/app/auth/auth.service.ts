@@ -145,4 +145,10 @@ export class AuthService {
     const sendOtpResponse = await lastValueFrom(this.http.post<any>(url, data));
     return sendOtpResponse;
   }
+
+  async authenticate(authPayload: any) {
+    var url = this.apiurl + 'api/auth/authenticate';
+    const authenticate = await lastValueFrom(this.http.post<any>(url, authPayload));
+    return authenticate;
+  }
 }

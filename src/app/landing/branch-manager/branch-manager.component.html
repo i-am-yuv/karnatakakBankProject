@@ -227,7 +227,7 @@
                             </div>
 
                             <div style="margin-top: 6px; display: flex; justify-content: start; align-items: center;">
-                                <div style="font-size: 14px; font-weight: 700; color: #000000;">₹261.00</div>
+                                <div style="font-size: 14px; font-weight: 700; color: #000000;">₹{{this.bankShare}}</div>
                                 <div style="margin-left: 79px; border-radius: 4px; background: #FBE2E1;">
                                     <div
                                         style="padding: 4px ; display: flex; justify-content: space-between; align-items: start;">
@@ -442,7 +442,7 @@
 
                             <div
                                 style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px;">
-                                <div style="font-weight: 600; font-size: 16px; color: #92278F;">South Region Performance
+                                <div style="font-weight: 600; font-size: 16px; color: #92278F;">{{this.currRegion}} Region Performance
                                 </div>
                                 <div style="font-weight: 400; font-size: 10px; color: #BA68C8;">Dec30- Feb30</div>
                             </div>
@@ -450,10 +450,10 @@
                             <div class="gap-4"
                                 style="display: flex; justify-content: space-between; align-items: center;">
                                 <div class="col-5">
-                                    <div style="font-size: 44px; font-weight: 800; color: #92278F;">65 %</div>
+                                    <div style="font-size: 44px; font-weight: 800; color: #92278F;">{{this.currPerformance}} %</div>
                                     <div style="margin-top: 4px; font-size: 10px; font-weight: 500; color: #92278F;">Our
                                         branch work performance is
-                                        65% better compare to last month</div>
+                                        {{this.currPerformance}}% better compare to last month</div>
                                 </div>
                                 <div class="col-7">
                                     <div style="display: flex; justify-content: end; align-items: center;">
@@ -484,25 +484,23 @@
                                 <div style="font-weight: 600; font-size: 12px; color: #BA68C8;">See All</div>
                             </div>
 
-                            <div style="margin-top: 18px;">
-                                <div class="flex align-items-center justify-content-between">
-                                    <img src="/assets/Avatar.png" width="25px" height="25px" alt="">
-                                    <div class="ml-2" style="font-size: 12px;">We are thrilled to 🤩 <span
-                                            class="font-semibold" style="color: #FAA026;">announce</span> the expansion
-                                        of
-                                        our operations
-                                        into <span class="font-semibold" style="color: #92278F;">new territories 🥳
-                                            create
-                                            new opportunities 👏
-                                            for</span> <span class="font-semibold"
-                                            style="color: #05B901;">growth.</span>
+                            <div class="scroll-container3">
+                                <div *ngFor="let news of allNews">
+
+                                    <div style="margin-top: 18px;">
+                                        <div class="flex align-items-center justify-content-start">
+                                            <img src="/assets/Avatar.png" width="25px" height="25px" alt="">
+                                            <div class="ml-3" style="font-size: 12px;">{{news}}
+                                            </div>
+                                        </div>
+
+                                        <div class="text-right mt-1" style="font-size: 8px; color: #B687C6;">12 Hours
+                                            ago </div>
                                     </div>
                                 </div>
-
-                                <div class="text-right mt-1" style="font-size: 8px; color: #B687C6;">12 Hours ago </div>
                             </div>
 
-                            <div style="margin-top: 18px;">
+                            <!-- <div style="margin-top: 18px;">
                                 <div class="flex align-items-center justify-content-between">
                                     <img src="/assets/Avatar 2.png" width="25px" height="25px" alt="">
                                     <div class="ml-2" style="font-size: 12px;">In our commitment 😃 to staying at the
@@ -532,7 +530,7 @@
                                 </div>
 
                                 <div class="text-right mt-1" style="font-size: 8px; color: #B687C6;">23 Hours ago </div>
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>

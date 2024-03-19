@@ -8,6 +8,7 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './auth/jwt-interceptor';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { JwtInterceptor } from './auth/jwt-interceptor';
     NoopAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
   ],
   providers: [MessageService, HttpClientModule,
     ConfirmationService,

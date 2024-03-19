@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { MasterService } from 'src/app/master/master.service';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-branch-manager',
@@ -27,6 +28,7 @@ export class BranchManagerComponent implements OnInit {
 
   name: any;
   role: any;
+  stocks : any;
 
   upcomingEvents = [
     {
@@ -71,11 +73,21 @@ export class BranchManagerComponent implements OnInit {
     }
   ];
 
-  constructor(private masterService : MasterService) { }
+  constructor(private masterService : MasterService) { 
+    this.stocks = ["AAPL", "GOOGL", "AMZN", "MSFT", "TSLA"];
+  }
 
   ngOnInit(): void {
     this.getLoginInfo();
     this.townhallImagesDisplayIntervalTime();
+    this.getRegionalNews();
+    this.findRegionalPerformance('South');
+    
+
+    const intervalObservable = interval(5000); // 5000 milliseconds = 5 seconds
+    intervalObservable.subscribe(() => {
+      this.getBankShare();
+    });
   }
 
   getLoginInfo() {
@@ -110,4 +122,54 @@ export class BranchManagerComponent implements OnInit {
     }, 5000);
   }
 
+
+  allNews : any;
+  getRegionalNews()
+  {
+    this.masterService.getRegionalNews().then(
+      (res)=>{
+        this.allNews = res;
+      }
+    ).catch(
+      (err)=>{
+
+      }
+    )
+  }
+
+  bankShare : any;
+  getBankShare()
+  {
+
+    var index = this.getRandomIndex() ;
+    this.masterService.getKarnatakBankShare(this.stocks[index]).then(
+      (res)=>{
+        this.bankShare = res;
+      }
+    ).catch(
+      (err)=>{
+
+      }
+    )
+  }
+
+  getRandomIndex(): number {
+    // Generate a random index within the range of the array length
+    const randomIndex = Math.floor(Math.random() * this.stocks.length);
+    return randomIndex;
+  }
+
+
+  currPerformance: any;
+  currRegion = 'South';
+  findRegionalPerformance(region: string) {
+    this.masterService.getBranchPerformace(region).then(
+      (res)=>{
+         this.currPerformance = res.additionalProp2;
+      }
+    ).catch(
+      (err)=>{
+      }
+    )
+  }
 }

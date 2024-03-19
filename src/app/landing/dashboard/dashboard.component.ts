@@ -145,6 +145,7 @@ export class DashboardComponent implements OnInit {
     this.getTodoList();
     this.rewardImagesDisplayIntervalTime();
     this.townhallImagesDisplayIntervalTime();
+    this.getRegionalNews();
   }
 
   getLoginInfo() {
@@ -204,6 +205,20 @@ export class DashboardComponent implements OnInit {
     this.masterService.todoListItems().then(
       (res)=>{
         this.todoList = res;
+      }
+    ).catch(
+      (err)=>{
+
+      }
+    )
+  }
+
+  allNews : any;
+  getRegionalNews()
+  {
+    this.masterService.getRegionalNews().then(
+      (res)=>{
+        this.allNews = res;
       }
     ).catch(
       (err)=>{

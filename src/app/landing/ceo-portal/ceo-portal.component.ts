@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { MasterService } from 'src/app/master/master.service';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-ceo-portal',
@@ -26,7 +27,7 @@ import { MasterService } from 'src/app/master/master.service';
 export class CeoPortalComponent implements OnInit {
 
   regions: any;
-
+  stocks : any;
 
   upcomingEvents = [
     {
@@ -71,7 +72,9 @@ export class CeoPortalComponent implements OnInit {
     }
   ];
 
-  constructor(private masterService : MasterService) { }
+  constructor(private masterService : MasterService) { 
+    this.stocks = ["AAPL", "GOOGL", "AMZN", "MSFT", "TSLA"];
+  }
 
   ngOnInit(): void {
     this.imagesDisplayIntervalTime();
@@ -83,6 +86,11 @@ export class CeoPortalComponent implements OnInit {
     ];
     this.findRegionalPerformance('South');
     this.getTodoList();
+
+    const intervalObservable = interval(5000); // 5000 milliseconds = 5 seconds
+    intervalObservable.subscribe(() => {
+      this.getBankShare();
+    });
   }
 
   private currentIndex = 0;
@@ -106,29 +114,14 @@ export class CeoPortalComponent implements OnInit {
   currPerformance: any;
   currRegion = 'South';
   findRegionalPerformance(region: string) {
-    if (region == 'North') {
-      this.currPerformance = "78 %";
-      this.currRegion = 'North';
-    }
-    else if (region == 'South') {
-      this.currPerformance = "65 %";
-      this.currRegion = 'South';
-
-    }
-    else if (region == 'East') {
-      this.currPerformance = "35 %";
-      this.currRegion = 'East';
-
-    }
-    else if (region == 'West') {
-      this.currPerformance = "98 %";
-      this.currRegion = 'West';
-
-    }
-    else {
-      this.currPerformance = "Data not found!!";
-      this.currRegion = 'N/A';
-    }
+    this.masterService.getBranchPerformace(region).then(
+      (res)=>{
+         this.currPerformance = res.additionalProp2;
+      }
+    ).catch(
+      (err)=>{
+      }
+    )
   }
 
   todoList : any;
@@ -144,4 +137,27 @@ export class CeoPortalComponent implements OnInit {
       }
     )
   }
+
+  bankShare : any;
+  getBankShare()
+  {
+
+    var index = this.getRandomIndex() ;
+    this.masterService.getKarnatakBankShare(this.stocks[index]).then(
+      (res)=>{
+        this.bankShare = res;
+      }
+    ).catch(
+      (err)=>{
+
+      }
+    )
+  }
+
+  getRandomIndex(): number {
+    // Generate a random index within the range of the array length
+    const randomIndex = Math.floor(Math.random() * this.stocks.length);
+    return randomIndex;
+  }
+
 }

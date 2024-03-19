@@ -60,7 +60,7 @@
                 <div class="flex align-items-start justify-content-between gap-1">
 
                     <div class="col-7 ">
-                        <div class="flex align-items-start justify-content-start" >
+                        <div class="flex align-items-start justify-content-start">
                             <div class="w-full mr-2" style="height: 150px; border-radius: 16px; background: white;">
                                 <div
                                     style="display: flex; flex-direction: column; justify-content: space-between; align-items: start;">
@@ -168,7 +168,7 @@
                             </div>
 
                             <div class="gap-1" style="display: flex; justify-content: start; align-items: center;
-                          margin-top: 1px; margin-left: 8px;margin-right: 8px; "> 
+                          margin-top: 1px; margin-left: 8px;margin-right: 8px; ">
                                 <div class="col-6">
                                     <!-- <div style=" border-radius: 4px; background: #F9F78578;" class="p-2">
                                         <div style="display: flex; justify-content: start;align-items: center;">
@@ -231,7 +231,7 @@
                                 <!-- Congratulation {{name}}! -->
                             </div>
 
-                            <div class="flex align-items-center justify-content-between mt-3 " style="flex-wrap: wrap;" >
+                            <div class="flex align-items-center justify-content-between mt-3 " style="flex-wrap: wrap;">
 
                                 <div class="col-6 flex align-items-center justify-content-center"
                                     *ngFor="let image of rewardImages; let i = index" class="image-container"
@@ -324,7 +324,7 @@
                 </div>
 
 
-                <div class="flex align-items-start justify-content-between gap-1" >
+                <div class="flex align-items-start justify-content-between gap-1">
                     <div class="col-7">
                         <div class="bg-white py-3 px-5" style=" height: 220px; border-radius: 16px;">
 
@@ -409,7 +409,7 @@
                 </div>
 
 
-                <div class="flex align-items-start justify-content-between gap-1" >
+                <div class="flex align-items-start justify-content-between gap-1">
 
                     <div class="col-7">
                         <div style="background: #FFFFFF; border-radius: 16px; height: 200px;" class="pt-3 pl-2">
@@ -428,7 +428,8 @@
                                                 style=" height: 38px; display: flex; justify-content: space-between; align-items: center;">
 
                                                 <div style="width: 18px; height: 29.62px; color: #92278F; font-size: 10px; font-weight: 700;
-                                      margin-left: 12px; padding-top: 1px; padding-bottom: 2px;">{{task.date}}</div>
+                                      margin-left: 12px; padding-top: 1px; padding-bottom: 2px;">
+                                                    {{task.additionalProp1}}</div>
 
                                                 <div class=""
                                                     style="width: 1px; height: 20px; background-color: #92278F;">
@@ -436,13 +437,13 @@
 
                                                 <div
                                                     style="font-size: 12px; font-weight: 700; margin-left: 17px; color: #92278F;">
-                                                    {{task.task}}</div>
+                                                    {{task.additionalProp2}}</div>
 
                                                 <div style="  border-radius: 16px; background: #92278F;
                                      display: flex; justify-content: center; align-items: center;">
                                                     <div style="color:#FFFFFF ; font-size: 8px; font-weight: 600;"
                                                         class="p-2">
-                                                        {{task.status}}
+                                                        {{task.additionalProp3}}
                                                     </div>
                                                 </div>
 
@@ -596,7 +597,8 @@
                                 <div class="bg-white" style=" border-radius: 4px;">
                                     <div class="flex align-items-center justify-content-center border-round-lg"
                                         style="background-color: #92278F; ">
-                                        <div class="text-center text-white p-1" style="font-size: 10px;">{{holiday.month}}
+                                        <div class="text-center text-white p-1" style="font-size: 10px;">
+                                            {{holiday.month}}
                                         </div>
                                     </div>
                                     <div class="text-center font-semibold" style="font-size: 11px;">{{holiday.date}}
@@ -661,22 +663,21 @@
                             all</div>
                     </div>
 
-                    <div style="margin-top: 18px;">
-                        <div class="flex align-items-center justify-content-between">
-                            <img src="/assets/Avatar.png" width="25px" height="25px" alt="">
-                            <div class="ml-2" style="font-size: 12px;">We are thrilled to 🤩 <span class="font-semibold"
-                                    style="color: #FAA026;">announce</span> the expansion of
-                                our operations
-                                into <span class="font-semibold" style="color: #92278F;">new territories 🥳 create
-                                    new opportunities 👏
-                                    for</span> <span class="font-semibold" style="color: #05B901;">growth.</span>
+                    <div class="scroll-container4">
+                        <div *ngFor="let new of allNews">
+                            <div style="margin-top: 18px;">
+                                <div class="flex align-items-center justify-content-start">
+                                    <img src="/assets/Avatar.png" width="25px" height="25px" alt="">
+                                    <div class="ml-3" style="font-size: 12px;">{{new}}
+                                    </div>
+                                </div>
+                                <div class="text-right mt-1" style="font-size: 8px; color: #B687C6;">12 Hours ago </div>
                             </div>
                         </div>
-
-                        <div class="text-right mt-1" style="font-size: 8px; color: #B687C6;">12 Hours ago </div>
                     </div>
 
-                    <div style="margin-top: 18px;">
+
+                    <!-- <div style="margin-top: 18px;">
                         <div class="flex align-items-center justify-content-between">
                             <img src="/assets/Avatar 2.png" width="25px" height="25px" alt="">
                             <div class="ml-2" style="font-size: 12px;">In our commitment 😃 to staying at the
@@ -700,7 +701,7 @@
                         </div>
 
                         <div class="text-right mt-1" style="font-size: 8px; color: #B687C6;">29 Feb, 2024 </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
