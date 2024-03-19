@@ -5,7 +5,8 @@
             <!-- <img src="/assets/kbdcl logo.png" width="300px" height="55px" alt=""> -->
             <img src="https://karnatakabank.com/sites/default/files/logo.gif" width="300px" height="55px" alt="">
         </div>
-        <div class="w-full flex align-items-center justify-content-end gap-8 mr-8" *ngIf="isLessThan800px() ? false : true ">
+        <div class="w-full flex align-items-center justify-content-end gap-8 mr-8"
+            *ngIf="isLessThan800px() ? false : true ">
             <div class="text-xl cursor-pointer" style="color: #92278F;">Home</div>
             <div class="text-xl cursor-pointer" style="color: #92278F;">Support</div>
         </div>
@@ -92,7 +93,8 @@
                         <div class="flex align-items-center justify-content-center mx-2" style="flex-wrap: wrap;">
                             <div class="col-8">
                                 <div class="text-xl mt-2" style="color: #92278F;">Gold Rate</div>
-                                <div class=" text-sm" style="color: #263238"><span class="font-semibold">₹ {{this.goldRate}}
+                                <div class=" text-sm" style="color: #263238"><span class="font-semibold">₹
+                                        {{this.goldRate}}
                                     </span>
                                     <!-- Indian Rupee -->
                                 </div>
@@ -101,7 +103,7 @@
                                     <div style="color: #606060; font-size: 7px;">INR . NSE . Disclaimer</div>
                                 </div>
                                 <div class="mt-2">
-                                    <p-dropdown  [options]="goldLoans" optionLabel="name" optionValue="name"
+                                    <p-dropdown [options]="goldLoans" optionLabel="name" optionValue="name"
                                         placeholder="Chennai" (onChange)="findGoldRate( $event.value)"></p-dropdown>
                                 </div>
 
@@ -158,12 +160,17 @@
 
                 <div class="" class="flex flex-column gap-2" class="mb-2">
                     <label for="password">Password</label>
-                    <div class="bg-white p-1 border-round-lg shadow-2" style="margin-top: 12px;">
+                    <div class="flex align-items-center bg-white p-1 border-round-lg shadow-2"
+                        style="margin-top: 12px;">
                         <input pInputText type="text" class="form-control inputfield w-full" name="login"
                             formControlName="password" style="border: none; height: 40px;"
-                            placeholder="Enter your password" />
+                            placeholder="Enter your password" [type]="passwordVisible ? 'text' : 'password'" />
+
+                        <i class="pi pi-eye cursor-pointer mx-2" (click)="toggleFieldTextType()"></i>
                     </div>
+
                 </div>
+
                 <div class="flex align-items-center justify-content-between mb-6" style="margin-top: 32px;">
                     <div class="flex align-items-center">
                         <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>

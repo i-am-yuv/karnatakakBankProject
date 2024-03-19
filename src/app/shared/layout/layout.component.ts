@@ -12,6 +12,10 @@ export class LayoutComponent implements OnInit {
   role: any;
 
   isCheckIn: boolean = true;
+
+  extendBranchDetails = false;
+  extendHRCorner = false;
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -21,7 +25,7 @@ export class LayoutComponent implements OnInit {
   getLoginInfo() {
     this.name = sessionStorage.getItem('loginBy');
     this.role = sessionStorage.getItem('loginRole');
-   
+
   }
 
   findDashboard() {
@@ -50,6 +54,14 @@ export class LayoutComponent implements OnInit {
 
   navigateToHome() {
     // Your logic to navigate to the home page
+  }
+
+  toggleBranchDetails() {
+    this.extendBranchDetails = !this.extendBranchDetails;
+  }
+
+  toggleHRCorner() {
+    this.extendHRCorner = !this.extendHRCorner;
   }
 
   logout() {
