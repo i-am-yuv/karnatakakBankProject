@@ -10,8 +10,8 @@
             <div class="text-xl cursor-pointer" style="color: #92278F;">Home</div>
             <div class="text-xl cursor-pointer" style="color: #92278F;">Support</div>
         </div>
-        <button *ngIf="isLessThan800px() ? false : true " pButton pRipple label="Login" class="p-button-help border-round-sm"
-            style="background-color: #92278F; width: 125px;">
+        <button *ngIf="isLessThan800px() ? false : true " pButton pRipple label="Login"
+            class="p-button-help border-round-sm" style="background-color: #92278F; width: 125px;">
         </button>
     </div>
 
@@ -153,7 +153,8 @@
                     <label for="username">Username</label>
                     <div class="bg-white p-1 border-round-lg shadow-2" style="margin-top: 12px;">
                         <input pInputText type="text" formControlName="username" class=" form-control inputfield w-full"
-                            name="login" maxlength="10" minlength="10" style="border: none; height: 40px; font-size: 18px; color: black;"
+                            name="login" maxlength="10" minlength="10"
+                            style="border: none; height: 40px; font-size: 18px; color: black;"
                             placeholder="Enter your username" />
                     </div>
                 </div>
@@ -164,7 +165,9 @@
                         style="margin-top: 12px;">
                         <input pInputText type="text" class="form-control inputfield w-full" name="login"
                             formControlName="password" style="border: none; height: 40px;"
-                            placeholder="Enter your password" [type]="passwordVisible ? 'text' : 'password'" />
+                            placeholder="Enter your password"
+                            style="border: none; height: 40px; font-size: 18px; color: black;"
+                            [type]="passwordVisible ? 'text' : 'password'" />
 
                         <i class="pi pi-eye cursor-pointer mx-2" (click)="toggleFieldTextType()"></i>
                     </div>
