@@ -5,6 +5,7 @@ import { BranchManagerComponent } from './branch-manager/branch-manager.componen
 import { LayoutComponent } from '../shared/layout/layout.component';
 import { CeoPortalComponent } from './ceo-portal/ceo-portal.component';
 import { BusinessHeadComponent } from './business-head/business-head.component';
+import { DigitalTeamComponent } from './digital-team/digital-team.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
       { path: '', component: DashboardComponent },
       { path: 'branchManager', component: BranchManagerComponent },
       { path: 'ceoPortal', component: CeoPortalComponent },
-      { path: 'business-head', component: BusinessHeadComponent }
+      { path: 'business-head', component: BusinessHeadComponent },
+      { path: 'digital-team', component: DigitalTeamComponent }
     ]
   },
   // {

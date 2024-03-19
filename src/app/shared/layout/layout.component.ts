@@ -37,6 +37,9 @@ export class LayoutComponent implements OnInit {
     else if (this.name == 'Yuvraj') {
       this.router.navigate(["/dashboard/business-head"]);
     }
+    else if (this.name == 'kaushik') {
+      this.router.navigate(["/dashboard/digital-team"]);
+    }
   }
 
   isCompressed: boolean = false;

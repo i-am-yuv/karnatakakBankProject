@@ -269,6 +269,17 @@ export class LoginComponent implements OnInit {
       });
       this.router.navigate(["/dashboard/business-head"]);
     }
+    else if (username == '9154794915') {
+      sessionStorage.setItem('loginBy', "kaushik");
+      sessionStorage.setItem('loginRole', roles);
+      this.message.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Login Successfully',
+        life: 3000,
+      });
+      this.router.navigate(["/dashboard/digital-team"]);
+    }
 
   }
 
