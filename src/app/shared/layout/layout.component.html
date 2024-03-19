@@ -255,8 +255,8 @@
             <!-- Branch Details Expansion -->
             <div>
                 <div class="flex align-items-center justify-content-start cursor-pointer ml-4 mt-4"
-                    (click)="toggleBranchDetails()">
-                    <div style="color: #92278F; font-weight: 700; font-size: 18px;" *ngIf="!isCompressed">Branch
+                    *ngIf="!isCompressed" (click)="toggleBranchDetails()">
+                    <div style="color: #92278F; font-weight: 700; font-size: 18px;">Branch
                         details
                     </div>
                     <div class="ml-5">
@@ -266,6 +266,15 @@
                         <i class="pi pi-chevron-down" *ngIf="extendBranchDetails"
                             style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
                     </div>
+                </div>
+
+                <div class="flex align-items-center justify-content-start cursor-pointer mx-4 mt-4" *ngIf="isCompressed"
+                    (click)="toggleBranchDetails()">
+                    <i class="pi pi-chevron-right" *ngIf="!extendBranchDetails"
+                        style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
+
+                    <i class="pi pi-chevron-down" *ngIf="extendBranchDetails"
+                        style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
                 </div>
 
                 <div *ngIf="extendBranchDetails">
@@ -316,8 +325,8 @@
             <!-- HR Corner Expansion -->
             <div style="margin-bottom: 80px;">
                 <div class="flex align-items-center justify-content-start cursor-pointer ml-4 mt-4"
-                    (click)="toggleHRCorner()">
-                    <div style="color: #92278F; font-weight: 700; font-size: 18px; " *ngIf="!isCompressed">HR Corner
+                    *ngIf="!isCompressed" (click)="toggleHRCorner()">
+                    <div style="color: #92278F; font-weight: 700; font-size: 18px; ">HR Corner
                     </div>
 
                     <div class="ml-5">
@@ -327,6 +336,15 @@
                         <i class="pi pi-chevron-down" *ngIf="extendHRCorner"
                             style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
                     </div>
+                </div>
+
+                <div class="flex align-items-center justify-content-start cursor-pointer ml-4 mt-4" *ngIf="isCompressed"
+                    (click)="toggleHRCorner()">
+                    <i class="pi pi-chevron-right" *ngIf="!extendHRCorner"
+                        style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
+
+                    <i class="pi pi-chevron-down" *ngIf="extendHRCorner"
+                        style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
                 </div>
 
                 <div *ngIf="extendHRCorner">
