@@ -163,10 +163,42 @@
     </div>
 
     <div class="flex p-2">
-        <section class="col-4 bg-white flex flex-column border-round-xl mx-2 p-3" style="height: 206px;">
-            <div class="font-bold" style="color: #92278F;">Competitor Analysis</div>
+        <section class="col-4 bg-white flex flex-column align-items-center justify-content-between border-round-xl mx-2"
+            style="height: 206px;">
+            <div class="w-full text-left font-bold px-2" style="color: #92278F;">Competitor Analysis</div>
 
-            <img class="w-full h-full" src="/assets/Competitor Analysis.png" alt="Competitor Analysis">
+            <div class="font-bold" style="font-size: 8px;">Social Media Engagement</div>
+            <table class="w-full" style="border-collapse: collapse;">
+                <tr style="background-color: #EBDFDA;">
+                    <th class="font-medium" style="font-size: 8px; color: #92278F;">Competitors</th>
+                    <th class="font-medium" style="font-size: 8px; color: #92278F;">Followers/Fans </th>
+                    <th class="font-medium" style="font-size: 8px; color: #92278F;">Bounce Rate</th>
+                    <th class="font-medium" style="font-size: 8px; color: #92278F;">Reach</th>
+                </tr>
+                <tr *ngFor="let item of socialMediaEngagement">
+                    <td class="font-medium" style="font-size: 8px;">{{item.competitors}}</td>
+                    <td class="font-medium" style="font-size: 8px;">{{item.followers}}</td>
+                    <td class="font-medium" style="font-size: 8px;">{{item.bounceRate}}</td>
+                    <td class="font-medium" style="font-size: 8px;">{{item.reach}}</td>
+                </tr>
+            </table>
+
+            <div class="font-bold" style="font-size: 8px;">Search Engine Visibility</div>
+            <table class="w-full" style="border-collapse: collapse;">
+                <tr style="background-color: #EBDFDA;">
+                    <th class="font-medium" style="font-size: 8px; color: #92278F;">Competitors</th>
+                    <th class="font-medium" style="font-size: 8px; color: #92278F;">Organic Traffic </th>
+                    <th class="font-medium" style="font-size: 8px; color: #92278F;">Keyword Rankings </th>
+                    <th class="font-medium" style="font-size: 8px; color: #92278F;">Backlink Profile </th>
+                </tr>
+                <tr *ngFor="let item of searchEngineVisibility">
+                    <td class="font-medium" style="font-size: 8px;">{{item.competitors}}</td>
+                    <td class="font-medium" style="font-size: 8px;">{{item.organicTraffic}}</td>
+                    <td class="font-medium" style="font-size: 8px;">{{item.keywordRanking}}</td>
+                    <td class="font-medium" style="font-size: 8px;">{{item.backlinkProfile}}</td>
+                </tr>
+            </table>
+
 
         </section>
 
@@ -174,7 +206,7 @@
             <div class="font-bold" style="color: #92278F;">Expenses</div>
 
             <div class="w-full flex mt-3">
-                <div class="col-6 flex flex-column gap-3">
+                <div class="w-full p-2 flex flex-column gap-3">
                     <div class="font-bold" style="font-size: 10px; color: #92278F;">Product Promotions: </div>
                     <div class="font-bold" style="font-size: 10px; color: #92278F;">Cross-selling and Upselling: </div>
                     <div class="font-bold" style="font-size: 10px; color: #92278F;">Affiliate Marketing: </div>
@@ -182,7 +214,7 @@
                     <div class="font-bold" style="font-size: 10px; color: #92278F;">Email Campaigns: </div>
                 </div>
 
-                <div class="col-6 flex">
+                <div class="w-full p-2 flex">
                     <div class="" style="width: 1px; height: 120px; background-color: #000000; opacity: 5%;"></div>
 
                     <div class="flex flex-column ml-1 gap-3">
