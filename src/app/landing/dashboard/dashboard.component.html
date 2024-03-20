@@ -422,41 +422,42 @@
                                 <div class="scroll-container3">
                                     <div *ngFor=" let task of todoList">
 
-                                        <div style=" height: 40px; border: 1px solid #92278F; background: #F9F785BF; border-radius: 24px; margin-top: 12px;"
-                                            class="px-2">
-                                            <div
-                                                style=" height: 38px; display: flex; justify-content: space-between; align-items: center;">
+                                        <!-- <div class=""> -->
 
-                                                <div class="w-full flex align-items-center">
-                                                    <div style="width: 18px; height: 29.62px; color: #92278F; font-size: 10px; font-weight: 700;
-                                                    margin-left: 12px; padding-top: 1px; padding-bottom: 2px;">
-                                                        {{task.additionalProp1}}</div>
+                                        <div class="w-full flex align-items-center justify-content-between px-2"
+                                            style=" height: 40px; border: 1px solid #92278F; background: #F9F785BF; border-radius: 24px; margin-top: 12px;">
 
-                                                    <div class="ml-5"
-                                                        style="width: 1px; height: 20px; background-color: #92278F;">
-                                                    </div>
-
-                                                    <div
-                                                        style="font-size: 12px; font-weight: 700; margin-left: 17px; color: #92278F;">
-                                                        {{task.additionalProp2}}
-                                                    </div>
+                                            <div class="w-full flex align-items-center">
+                                                <div class="text-center"
+                                                    style="width: 18px; color: #92278F; font-size: 10px; font-weight: 700;">
+                                                    {{task.additionalProp1}}
                                                 </div>
 
-                                                <div class="w-full flex align-items-center justify-content-end">
-                                                    <div class="flex align-items-center justify-content-center mr-5"
-                                                        style="border-radius: 16px; background: #92278F;">
-                                                        <div style="color:#FFFFFF ; font-size: 8px; font-weight: 600;"
-                                                            class="p-2">
-                                                            {{task.additionalProp3}}
-                                                        </div>
-                                                    </div>
-
-                                                    <i class="pi pi-ellipsis-v"></i>
+                                                <div class="ml-4"
+                                                    style="width: 1px; height: 20px; background-color: #92278F;">
                                                 </div>
 
-
+                                                <div class="ml-2"
+                                                    style="font-size: 12px; font-weight: 700; color: #92278F;">
+                                                    {{task.additionalProp2}}
+                                                </div>
                                             </div>
+
+                                            <div class="flex align-items-center justify-content-end">
+                                                <div class="flex align-items-center justify-content-center mr-2"
+                                                    style="border-radius: 16px; background: #92278F;">
+                                                    <div style="color:#FFFFFF ; font-size: 8px; font-weight: 600;"
+                                                        class="p-2">
+                                                        {{task.additionalProp3}}
+                                                    </div>
+                                                </div>
+
+                                                <i class="pi pi-ellipsis-v"></i>
+                                            </div>
+
+
                                         </div>
+                                        <!-- </div> -->
 
                                     </div>
                                     <div class="flex align-items-center justify-content-center py-2 mt-2">

@@ -4,7 +4,7 @@ import { Observable, Subject, catchError, map, switchMap, throwError } from "rxj
 import { AuthService } from "./auth.service";
 
 @Injectable()
-export class JwtInterceptor implements HttpInterceptor{
+export class JwtInterceptor implements HttpInterceptor {
     refreshTokenInProgress = false;
 
     tokenRefreshedSource = new Subject();
@@ -21,48 +21,6 @@ export class JwtInterceptor implements HttpInterceptor{
             return this.handleResponseError(error, request, next);
         }));
     }
-
-    // intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    //     // add auth header with jwt if account is logged in and request is to the api url
-    //     const accountToken = sessionStorage.getItem("token");
-    //     const isLoggedIn = accountToken;
-    //     const isApiUrl = request.url.startsWith(environment.apiurl);
-    //     if (isLoggedIn && isApiUrl) {
-    //         request = request.clone({
-    //             setHeaders: { Authorization: `Bearer ${accountToken}` }
-    //         });
-    //     }
-
-    //     return next.handle(request).pipe(
-    //         map((event: HttpEvent<any>) => {
-    //             return event;
-    //         }),
-    //         catchError(
-    //             (
-    //                 httpErrorResponse: HttpErrorResponse,
-    //                 _: Observable<HttpEvent<any>>
-    //             ) => {
-    //                 if (httpErrorResponse.status === 401) {
-    //                     // this.authService.redirectInvalid();
-    //                     const token = sessionStorage.getItem("refreshToken");
-    //                     if (token) {
-    //                         sessionStorage.clear();
-    //                         this.authService.renewRefreshToken().then((res: any) => {
-    //                             sessionStorage.setItem('token', res.jwt);
-    //                             sessionStorage.setItem('refreshToken', res.refreshToken);
-    //                             return next.handle(this.addTokenHeader(request, res.jwt));
-    //                         }).catch(err => {
-    //                             this.authService.redirectInvalid();
-    //                         });
-    //                     }
-    //                 } else if (httpErrorResponse.status === 403) {
-    //                     this.authService.redirectToLogin();
-    //                 }
-    //                 return throwError(httpErrorResponse);
-    //             }
-    //         )
-    //     );
-    // }
 
     private tokenExpired(token: string) {
         const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
@@ -87,7 +45,8 @@ export class JwtInterceptor implements HttpInterceptor{
                     observer.complete();
                 });
             });
-        } else {
+        } 
+        else {
             this.refreshTokenInProgress = true;
             return this.authService.renewRefreshToken().pipe(map((data: any) => {
                 sessionStorage.setItem('token', data.jwt);
@@ -122,7 +81,8 @@ export class JwtInterceptor implements HttpInterceptor{
                 catchError((e: any) => {
                     if (e.status !== 401) {
                         return this.handleResponseError(e);
-                    } else {
+                    } 
+                    else {
                         this.authService.redirectInvalid();
                     }
                 }));

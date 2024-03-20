@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
   goldLoans: any;
+  passwordVisible = false;
 
   rbiGuildelines = [
     {
@@ -51,8 +52,8 @@ export class LoginComponent implements OnInit {
 
   yourForm !: FormGroup;
 
-  constructor(private router: Router, private message: MessageService, private formBuilder: FormBuilder ,
-     private masterService : MasterService , private authService:AuthService) { }
+  constructor(private router: Router, private message: MessageService, private formBuilder: FormBuilder,
+    private masterService: MasterService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -81,16 +82,15 @@ export class LoginComponent implements OnInit {
     this.findGoldRate('chennai');
   }
 
-  isLessThan800px()
-  {
+  isLessThan800px() {
     const screenWidth = window.innerWidth;
     // Return true if screen width is less than 800px, otherwise false
     return screenWidth < 800;
   }
 
-
-
-
+  toggleFieldTextType() {
+    this.passwordVisible = !this.passwordVisible;
+  }
 
   onClickLogin() {
     //    alert(JSON.stringify(this.loginForm.value));
@@ -150,13 +150,13 @@ export class LoginComponent implements OnInit {
     // }
 
     this.authService.authenticate(this.loginForm.value).then(
-      (res)=>{
+      (res) => {
         sessionStorage.setItem('token', res.jwt);
         sessionStorage.setItem('refreshToken', res.refreshToken);
         this.navigateToDashboard();
       }
     ).catch(
-      (err)=>{
+      (err) => {
 
       }
     )
@@ -194,25 +194,24 @@ export class LoginComponent implements OnInit {
 
   goldRate: any;
   findGoldRate(city: string) {
-    
+
     this.masterService.getGoldRateByCity(city).then(
-      (res)=>{
-          this.goldRate = res;
+      (res) => {
+        this.goldRate = res;
       }
     ).catch(
-      (err)=>{
+      (err) => {
         var text = err.error.text;
-        var any = text.split(':'); ;
+        var any = text.split(':');;
         this.goldRate = any[1];
         console.log(err);
       }
     )
   }
 
-  navigateToDashboard()
-  {
-     var username = this.authService.getUserName();
-     var roles = this.authService.getRoles();
+  navigateToDashboard() {
+    var username = this.authService.getUserName();
+    var roles = this.authService.getRoles();
     //  alert(username);
     //  alert(roles);
 
