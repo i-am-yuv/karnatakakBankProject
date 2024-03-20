@@ -44,97 +44,165 @@
 }
 
 .scroll-container {
-    height: 190px;
-    overflow-y: auto;
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #E9EBF0 transparent; /* For Firefox */
-    
-    &::-webkit-scrollbar {
-      width: 8px; /* For Chrome, Safari, and Opera */
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background-color: #E9EBF0; /* For Chrome, Safari, and Opera */
-    }
-  }
-  
-  .scroll-container2 {
-    height: 180px;
-    overflow-y: auto;
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #E9EBF0 transparent; /* For Firefox */
-    
-    &::-webkit-scrollbar {
-      width: 8px; /* For Chrome, Safari, and Opera */
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background-color: #E9EBF0; /* For Chrome, Safari, and Opera */
-    }
+  height: 190px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: #E9EBF0 transparent;
+  /* For Firefox */
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    /* For Chrome, Safari, and Opera */
   }
 
-  .scroll-container3 {
-    height: 130px;
-    overflow-y: auto;
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #E9EBF0 transparent; /* For Firefox */
-    
-    &::-webkit-scrollbar {
-      width: 8px; /* For Chrome, Safari, and Opera */
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background-color: #E9EBF0; /* For Chrome, Safari, and Opera */
-    }
+  &::-webkit-scrollbar-thumb {
+    background-color: #E9EBF0;
+    /* For Chrome, Safari, and Opera */
+  }
+}
+
+.scroll-container2 {
+  height: 180px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: #E9EBF0 transparent;
+  /* For Firefox */
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    /* For Chrome, Safari, and Opera */
   }
 
-  .scroll-container4 {
-    height: 270px;
-    overflow-y: auto;
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #E9EBF0 transparent; /* For Firefox */
-    
-    &::-webkit-scrollbar {
-      width: 8px; /* For Chrome, Safari, and Opera */
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background-color: #E9EBF0; /* For Chrome, Safari, and Opera */
-    }
+  &::-webkit-scrollbar-thumb {
+    background-color: #E9EBF0;
+    /* For Chrome, Safari, and Opera */
+  }
+}
+
+.scroll-container3 {
+  height: 130px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: #E9EBF0 transparent;
+  /* For Firefox */
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    /* For Chrome, Safari, and Opera */
   }
 
-  .animated-container {
-    border-radius: 4px;
-    background: #F9F78578;
-    transition: all 0.3s ease;
-    cursor: pointer;
-  
-    .content {
-      display: flex;
-      justify-content: start;
-      align-items: center;
-      padding: 12px;
-    }
-  
-    &:hover {
-      transform: scale(1.08);
-      background-color: #F9D4FF;
-  
-      .text-container {
-        color: #92278F;
-        font-size: 15px;
-      }
-    }
-  
+  &::-webkit-scrollbar-thumb {
+    background-color: #E9EBF0;
+    /* For Chrome, Safari, and Opera */
+  }
+}
+
+.scroll-container4 {
+  height: 270px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: #E9EBF0 transparent;
+  /* For Firefox */
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    /* For Chrome, Safari, and Opera */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #E9EBF0;
+    /* For Chrome, Safari, and Opera */
+  }
+}
+
+.animated-container {
+  border-radius: 4px;
+  background: #F9F78578;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  .content {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 12px;
+  }
+
+  &:hover {
+    transform: scale(1.08);
+    background-color: #F9D4FF;
+
     .text-container {
-      font-size: 14px;
-      font-weight: 600;
-      margin-left: 12px;
-      transition: color 0.3s ease;
+      color: #92278F;
+      font-size: 15px;
     }
   }
-  @media screen and (max-width: 768px) {
-    .col-6 {
-      flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
-    }
+
+  .text-container {
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 12px;
+    transition: color 0.3s ease;
   }
+}
+
+// @media screen and (max-width: 768px) {
+//   .col-6 {
+//     flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
+//   }
+// }
+
+
+.flex-item {
+  flex: 0 0 calc(50% - 10px);
+  /* Two columns with 10px spacing in between */
+  margin: 5px;
+  /* Adjust margin to set spacing */
+}
+
+.col-8 {
+  flex: 1 0 calc(66.6667% - 10px);
+  /* Two-thirds of the container width with spacing */
+  margin-right: 10px;
+  /* Adjust margin to set spacing */
+}
+
+.col-4 {
+  flex: 1 0 calc(33.3333% - 10px);
+  /* One-third of the container width with spacing */
+  margin-bottom: 10px;
+  /* Adjust margin to set spacing */
+}
+
+.col-7 {
+  flex: 1 0 calc(58.3333% - 10px); /* 58.3333% is approximately 7/12 of the container width with spacing */
+  margin-right: 10px; /* Adjust margin to set spacing */
+}
+
+.col-5 {
+  flex: 1 0 calc(41.6667% - 10px); /* 41.6667% is approximately 5/12 of the container width with spacing */
+  margin-bottom: 10px; /* Adjust margin to set spacing */
+}
+
+@media screen and (max-width: 768px) {
+  .flex-item {
+    flex: 0 0 calc(100% - 10px);
+    /* Each item takes 100% width with 10px spacing on smaller screens */
+  }
+
+  .col-8,
+  .col-4,
+  .col-7,
+  .col-5 {
+    flex: 1 0 calc(100% - 10px);
+    /* Each item takes 100% width with spacing on smaller screens */
+    margin-right: 0;
+    /* Remove right margin for col-8 */
+    margin-bottom: 10px;
+    /* Adjust bottom margin for col-4 */
+  }
+}
