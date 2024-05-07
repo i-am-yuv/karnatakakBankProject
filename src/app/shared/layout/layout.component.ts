@@ -1,5 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
+import { CheckIn, CheckOut } from './checkkIn';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-layout',
@@ -16,7 +20,7 @@ export class LayoutComponent implements OnInit {
   extendBranchDetails = false;
   extendHRCorner = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private message: MessageService, private http: HttpClient, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getLoginInfo();
@@ -28,6 +32,107 @@ export class LayoutComponent implements OnInit {
 
   }
 
+
+  locationName!: any;
+  logintime!: any;
+  checkIn!: CheckIn;
+  checkOut!: CheckOut;
+  checkInTime() {
+    this.isCheckIn = true;
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          console.log(latitude + "   " + longitude);
+
+          this.checkIn.latitude = latitude;
+          this.checkIn.longitude = longitude;
+
+          this.authService.docheckIn(this.checkIn).then((res: any) => {
+            this.isCheckIn = true;
+            console.log(JSON.stringify(res));
+            this.message.add({
+              severity: 'sucess',
+              summary: 'Successfully CheckedIn',
+              detail: 'Successfully CheckedIn',
+              life: 3000,
+            });
+          })
+          // Using OpenStreetMap Nominatim API
+          const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+
+          this.http.get(apiUrl).subscribe(
+            (data: any) => {
+              this.locationName = data.display_name;
+              console.log('Location Name:', this.locationName);
+
+            },
+            (error: any) => {
+              console.error('Nominatim API error:', error);
+
+            }
+          );
+        },
+        (error) => {
+          console.error('Error getting geolocation:', error.message);
+
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+
+    }
+  }
+  checkOutTime() {
+    this.isCheckIn = true;
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          console.log(latitude + "   " + longitude);
+
+          this.checkOut.latitude = latitude;
+          this.checkOut.longitude = longitude;
+
+          this.authService.docheckOut(this.checkOut).then((res: any) => {
+            console.log(JSON.stringify(res));
+            this.isCheckIn = false;
+            this.message.add({
+              severity: 'sucess',
+              summary: 'Successfully CheckedOut',
+              detail: 'Successfully CheckedOut',
+              life: 3000,
+            });
+          });
+          // Using OpenStreetMap Nominatim API
+          const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+
+          this.http.get(apiUrl).subscribe(
+            (data: any) => {
+              this.locationName = data.display_name;
+              console.log('Location Name:', this.locationName);
+
+            },
+            (error: any) => {
+              console.error('Nominatim API error:', error);
+
+            }
+          );
+        },
+        (error) => {
+          console.error('Error getting geolocation:', error.message);
+
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+
+    }
+  }
   findDashboard() {
     if (this.name == 'Pooja') {
       this.router.navigate(["/dashboard"]);

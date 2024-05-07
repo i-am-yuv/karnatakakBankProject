@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -17,6 +17,9 @@ import { BlockUIModule } from 'primeng/blockui';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { LayoutComponent } from './layout/layout.component';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { MessageService, ConfirmationService } from 'primeng/api';
+import { JwtInterceptor } from '../auth/jwt-interceptor';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,12 @@ import { ProgressBarModule } from 'primeng/progressbar';
     CommonModule,
     MenubarModule,
     InputTextModule
+  ], providers: [
+    HttpClientModule,
+    MessageService,
+    DatePipe,
+    ConfirmationService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   exports: [
     LayoutComponent,
@@ -45,7 +54,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
     SidebarModule,
     BlockUIModule,
     MultiSelectModule,
-    ProgressBarModule
+    HttpClientModule,
+    ProgressBarModule,
   ],
 
 })

@@ -4,11 +4,25 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { CheckIn } from '../shared/layout/checkkIn';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+ 
+
+  async docheckIn(data: any) {
+    var url = this.apiurl + '/kbldc/check-in';
+    const chekcIn = await lastValueFrom(this.http.post<any>(url, data));
+    return chekcIn;
+  }
+
+  async docheckOut(data: any) {
+    var url = this.apiurl + '/kbldc/check-out';
+    const checkOut = await lastValueFrom(this.http.post<any>(url, data));
+    return checkOut;
+  }
   apiurl: string = environment.commonUrl;
 
   constructor(private router: Router, private http: HttpClient, private message: MessageService) { }
