@@ -47,8 +47,8 @@ export class LayoutComponent implements OnInit {
 
           console.log(latitude + "   " + longitude);
 
-          this.checkIn.latitude = latitude;
-          this.checkIn.longitude = longitude;
+          this.checkIn.latitude = position.coords.latitude;
+          this.checkIn.longitude = position.coords.longitude;
 
           this.authService.docheckIn(this.checkIn).then((res: any) => {
             this.isCheckIn = true;
@@ -95,8 +95,9 @@ export class LayoutComponent implements OnInit {
 
           console.log(latitude + "   " + longitude);
 
-          this.checkOut.latitude = latitude;
-          this.checkOut.longitude = longitude;
+
+          this.checkOut.latitude = position.coords.latitude;
+          this.checkOut.longitude = position.coords.longitude;
 
           this.authService.docheckOut(this.checkOut).then((res: any) => {
             console.log(JSON.stringify(res));
