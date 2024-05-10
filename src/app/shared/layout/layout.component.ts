@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { CheckIn, CheckOut } from './checkkIn';
@@ -24,6 +24,7 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLoginInfo();
+    this.checkTabletView();
   }
 
   getLoginInfo() {
@@ -173,5 +174,19 @@ export class LayoutComponent implements OnInit {
   logout() {
     // Your logic to handle logout
   }
+
+  // code for left pannel removal for less than tablet view
+  isTabletView: boolean = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkTabletView();
+  }
+
+  checkTabletView() {
+    this.isTabletView = window.innerWidth < 1000;
+  }
+
+  sidebarVisible: boolean = false;
 
 }

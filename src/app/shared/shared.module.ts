@@ -28,7 +28,9 @@ import { JwtInterceptor } from '../auth/jwt-interceptor';
   imports: [
     CommonModule,
     MenubarModule,
-    InputTextModule
+    InputTextModule,
+    SidebarModule ,
+    ButtonModule
   ], providers: [
     HttpClientModule,
     MessageService,
@@ -41,7 +43,6 @@ import { JwtInterceptor } from '../auth/jwt-interceptor';
     FormsModule,
     ReactiveFormsModule,
     InputTextModule,
-    ButtonModule,
     CheckboxModule,
     ToastModule,
     DropdownModule,
