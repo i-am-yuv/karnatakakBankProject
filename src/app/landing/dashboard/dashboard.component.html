@@ -8,7 +8,7 @@
             background-image: url('/assets/banner\ background.png'); background-size: cover; background-position: center ;">
 
             <div class="w-full flex flex-col-reverse md:flex-row align-items-center justify-content-between">
-                <div style="padding-left: 24px; padding-top: 16px;">
+                <div style="padding-left: 24px;">
                     <div style="color: white;  font-weight: 600;" class="text-lg sm:text-lg md:text-2xl lg:text-3xl">
                         Welcome {{name}},</div>
                     <div style="color: white;  font-weight: 500; margin-top: 12px;"
@@ -25,7 +25,7 @@
 
         </div>
 
-        <!-- celebrating 100 years  -->
+        <!-- CELEBRATING 100 YEARS  -->
         <div class="mt-4 w-full flex align-items-center justify-content-between p-2 banner"
             style="background-color: #F9F785; height: 40px;">
             <div class="flex animation-logo">
@@ -63,51 +63,52 @@
                 <div class="flex align-items-start justify-content-between" style="flex-wrap: wrap;">
 
                     <div class="col-7 ">
-                        <div class="flex align-items-start justify-content-start">
-                            <div class="w-full mr-2" [style.height.px]="isMobile ? '170' : '150'"
+                        <div class="flex align-items-start justify-content-between">
+
+                            <div class="w-full flex flex-column justify-content-start  mr-2 py-2"
+                                [ngStyle]="{'height.px': isMobile ? 175 : 155}"
                                 style="border-radius: 16px; background: white;">
-                                <div class="flex flex-column align-items-start justify-content-between y-2">
-                                    <div class="px-4" style="color: #92278F; font-weight: 700; font-size: 16px;
+                                <div class="px-4" style="color: #92278F; font-weight: 700; font-size: 16px;
                                       ">Our Mission
-                                    </div>
-                                    <div class="w-full flex align-items-center justify-content-center">
-                                        <img src="/assets/na_feb_17 1.png" alt="Image" style="width: 112.63px; ">
-                                    </div>
-                                    <div class="">
-                                        <div class="text-left mx-4"
-                                            style=" color: #92278F; font-weight: 500; font-size: 8px; height: 35px; line-height:10.93px">
-                                            Our mission is to be a technology savvy, customer centric progressive
-                                            bank with a national presence, driven by the highest.
-                                        </div>
-                                        <div style="color: #FAA026; font-weight: 500; font-size: 8px; margin-right: 16px;"
-                                            class="text-right">
-                                            Know more
-                                        </div>
-                                    </div>
+                                </div>
+
+                                <div class="w-full flex align-items-center justify-content-center">
+                                    <img src="/assets/na_feb_17 1.png" alt="Image" style="width: 112.63px; ">
+                                </div>
+
+                                <div class="text-left mx-4"
+                                    style=" color: #92278F; font-weight: 500; font-size: 8px; line-height: 10px; ">
+                                    Our mission is to be a technology savvy, customer centric progressive
+                                    bank with a national presence, driven by the highest.
+                                </div>
+
+                                <div class="text-right"
+                                    style="color: #FAA026; font-weight: 500; font-size: 8px; margin-right: 16px;">
+                                    Know more
                                 </div>
                             </div>
 
-                            <div class="w-full ml-2" [style.height.px]="isMobile ? '170' : '150'"
+                            <div class="w-full flex flex-column justify-content-start justify-content-between ml-2 py-2"
+                                [ngStyle]="{'height.px': isMobile ? 175 : 155}"
                                 style="border-radius: 16px; background: white;">
-                                <div class="py-2"
-                                    style="display: flex; flex-direction: column; justify-content: start; align-items: start;">
-                                    <div>
-                                        <div class="px-4" style="color: #92278F; font-weight: 700; font-size: 16px;">Our
-                                            Vision</div>
+                                <div>
+                                    <div class="px-4" style="color: #92278F; font-weight: 700; font-size: 16px;">Our
+                                        Vision
                                     </div>
+
                                     <div class="w-full flex align-items-center justify-content-center">
-                                        <img src="/assets/g8.png" alt="Image" style="width: 85px;">
+                                        <img src="/assets/g8.png" alt="Image" style="width: 90px;">
                                     </div>
-                                    <div class="mt-1">
-                                        <div class="text-left mx-4"
-                                            style=" color: #92278F; font-weight: 500; font-size: 8px; height: 35px; line-height:10.93px">
-                                            Our vision is to be a progressive, prosperous and well governed bank.
-                                        </div>
-                                        <div style="color: #FAA026; font-weight: 500; font-size: 8px; margin-right: 16px;"
-                                            class="text-right">
-                                            Know more
-                                        </div>
+
+                                    <div class="text-left mx-4"
+                                        style=" color: #92278F; font-weight: 500; font-size: 8px; line-height: 10px;">
+                                        Our vision is to be a progressive, prosperous and well governed bank.
                                     </div>
+                                </div>
+
+                                <div style="color: #FAA026; font-weight: 500; font-size: 8px; margin-right: 16px;"
+                                    class="text-right">
+                                    Know more
                                 </div>
                             </div>
                         </div>
@@ -143,6 +144,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-6">
                                     <!-- <div style=" border-radius: 4px; background: #F9F78578;" class="p-2">
                                         <div style="display: flex; justify-content: start;align-items: center;">

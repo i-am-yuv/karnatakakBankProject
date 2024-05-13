@@ -11,6 +11,8 @@ import { CheckIn } from '../shared/layout/checkkIn';
 })
 export class AuthService {
 
+  apiurl: string = environment.commonUrl;
+  
   constructor(private router: Router, private http: HttpClient, private message: MessageService) { }
 
   async docheckIn(data: any) {
@@ -24,7 +26,6 @@ export class AuthService {
     const checkOut = await lastValueFrom(this.http.post<any>(url, data));
     return checkOut;
   }
-  apiurl: string = environment.commonUrl;
 
   async signup(data: any) {
     var url = this.apiurl + '/auth/signup';
