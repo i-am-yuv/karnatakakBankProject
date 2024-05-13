@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { MasterService } from 'src/app/master/master.service';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-dashboard',
@@ -136,7 +137,9 @@ export class DashboardComponent implements OnInit {
   name: any;
   role: any;
 
-  constructor(private masterService : MasterService) {
+  isMobile!: boolean;
+
+  constructor(private masterService: MasterService, private primengConfig: PrimeNGConfig) {
 
   }
 
@@ -146,6 +149,15 @@ export class DashboardComponent implements OnInit {
     this.rewardImagesDisplayIntervalTime();
     this.townhallImagesDisplayIntervalTime();
     this.getRegionalNews();
+
+    this.checkScreenSize();
+    window.addEventListener('resize', () => {
+      this.checkScreenSize();
+    });
+  }
+
+  checkScreenSize() {
+    this.isMobile = window.innerWidth < 768; // Change the breakpoint according to your design
   }
 
   getLoginInfo() {
@@ -199,29 +211,27 @@ export class DashboardComponent implements OnInit {
     }, 5000);
   }
 
-  todoList : any;
-  getTodoList()
-  {
+  todoList: any;
+  getTodoList() {
     this.masterService.todoListItems().then(
-      (res)=>{
+      (res) => {
         this.todoList = res;
       }
     ).catch(
-      (err)=>{
+      (err) => {
 
       }
     )
   }
 
-  allNews : any;
-  getRegionalNews()
-  {
+  allNews: any;
+  getRegionalNews() {
     this.masterService.getRegionalNews().then(
-      (res)=>{
+      (res) => {
         this.allNews = res;
       }
     ).catch(
-      (err)=>{
+      (err) => {
 
       }
     )

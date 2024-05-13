@@ -107,3 +107,21 @@
     transition: color 0.3s ease;
   }
 }
+@media screen and (max-width: 768px) {
+  .flex-item {
+    flex: 0 0 calc(100% - 10px);
+  }
+
+  .col-9,
+  .col-3,
+  .col-7,
+  .col-5,
+  .col-8,
+  .col-4,
+  .col-6 {
+    flex: 1 0 calc(100% - 10px);
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+}

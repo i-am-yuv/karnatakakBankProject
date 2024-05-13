@@ -10,7 +10,10 @@ import { CheckIn } from '../shared/layout/checkkIn';
   providedIn: 'root'
 })
 export class AuthService {
- 
+
+  apiurl: string = environment.commonUrl;
+  
+  constructor(private router: Router, private http: HttpClient, private message: MessageService) { }
 
   async docheckIn(data: any) {
     var url = this.apiurl + '/kbldc/check-in';
@@ -23,9 +26,6 @@ export class AuthService {
     const checkOut = await lastValueFrom(this.http.post<any>(url, data));
     return checkOut;
   }
-  apiurl: string = environment.commonUrl;
-
-  constructor(private router: Router, private http: HttpClient, private message: MessageService) { }
 
   async signup(data: any) {
     var url = this.apiurl + '/auth/signup';
@@ -100,7 +100,7 @@ export class AuthService {
     return user;
   }
 
-  getUserName(): string { 
+  getUserName(): string {
     const token = sessionStorage.getItem('token');
     let jwt: any = {};
 
@@ -142,6 +142,7 @@ export class AuthService {
     const user = await lastValueFrom(this.http.get<any>(url));
     return user;
   }
+
   async resendEmail(email: string) {
     var url =
       this.apiurl +
