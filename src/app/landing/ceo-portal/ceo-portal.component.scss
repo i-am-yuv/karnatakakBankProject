@@ -1,31 +1,36 @@
-
 .scroll-container2 {
-    height: 180px;
-    overflow-y: auto;
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #E9EBF0 transparent; /* For Firefox */
-    
-    &::-webkit-scrollbar {
-      width: 8px; /* For Chrome, Safari, and Opera */
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background-color: #E9EBF0; /* For Chrome, Safari, and Opera */
-    }
+  height: 180px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: #E9EBF0 transparent;
+  /* For Firefox */
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    /* For Chrome, Safari, and Opera */
   }
 
-  
+  &::-webkit-scrollbar-thumb {
+    background-color: #E9EBF0;
+    /* For Chrome, Safari, and Opera */
+  }
+}
+
+
 :host::ng-deep {
   .p-dropdown {
-     border: none !important;
-    // border-radius: 10px;
-     background: none !important;
-  }
-  .p-dropdown:focus{
     border: none !important;
     // border-radius: 10px;
-     background: none !important;
+    background: none !important;
   }
+
+  .p-dropdown:focus {
+    border: none !important;
+    // border-radius: 10px;
+    background: none !important;
+  }
+
   .p-inputtext {
     font-size: 0.8rem;
     // color: #92278F;
@@ -43,12 +48,36 @@
   .pi-chevron-down:before {
     content: "\e906";
   }
+
   .ui-dropdown-trigger.ui-state-focus {
-    border: 1px solid transparent; /* Remove the border on focus */
-    outline: none; /* Remove outline on focus */
+    border: 1px solid transparent;
+    /* Remove the border on focus */
+    outline: none;
+    /* Remove outline on focus */
   }
+
   .ui-dropdown-trigger.ui-state-default.ui-corner-right {
-    border: 1px solid transparent; /* Remove the border */
-    outline: none; /* Remove outline */
+    border: 1px solid transparent;
+    /* Remove the border */
+    outline: none;
+    /* Remove outline */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .flex-item {
+    flex: 0 0 calc(100% - 10px);
+  }
+
+  .col-3,
+  .col-4,
+  .col-5,
+  .col-6,
+  .col-7,
+  .col-8,
+  .col-9 {
+    flex: 1 0 calc(100% - 10px);
+    margin-right: 0;
+    margin-bottom: 10px;
   }
 }
