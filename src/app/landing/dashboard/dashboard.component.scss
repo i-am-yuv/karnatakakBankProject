@@ -173,25 +173,22 @@
 
 .col-4 {
   flex: 1 0 calc(33.3333% - 10px);
-  /* One-third of the container width with spacing */
   margin-bottom: 10px;
-  /* Adjust margin to set spacing */
 }
 
 .col-7 {
-  flex: 1 0 calc(58.3333% - 10px); /* 58.3333% is approximately 7/12 of the container width with spacing */
-  margin-right: 10px; /* Adjust margin to set spacing */
+  flex: 1 0 calc(58.3333% - 10px);
+  margin-right: 10px;
 }
 
 .col-5 {
-  flex: 1 0 calc(41.6667% - 10px); /* 41.6667% is approximately 5/12 of the container width with spacing */
-  margin-bottom: 10px; /* Adjust margin to set spacing */
+  flex: 1 0 calc(41.6667% - 10px);
+  margin-bottom: 10px;
 }
 
 @media screen and (max-width: 768px) {
   .flex-item {
     flex: 0 0 calc(100% - 10px);
-    /* Each item takes 100% width with 10px spacing on smaller screens */
   }
 
   .col-8,
@@ -199,10 +196,19 @@
   .col-7,
   .col-5 {
     flex: 1 0 calc(100% - 10px);
-    /* Each item takes 100% width with spacing on smaller screens */
     margin-right: 0;
-    /* Remove right margin for col-8 */
     margin-bottom: 10px;
-    /* Adjust bottom margin for col-4 */
+  }
+
+  @media (min-width: 768px) {
+    .h-large {
+      height: 150px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .h-mobile {
+      height: 170px;
+    }
   }
 }

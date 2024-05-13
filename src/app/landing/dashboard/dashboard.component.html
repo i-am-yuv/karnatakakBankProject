@@ -7,16 +7,19 @@
             style="width: -webkit-fill-available; height: 182.7px; margin-top: 12px; border-radius:6px;
             background-image: url('/assets/banner\ background.png'); background-size: cover; background-position: center ;">
 
-            <div class="w-full flex align-items-center justify-content-between">
+            <div class="w-full flex flex-col-reverse md:flex-row align-items-center justify-content-between">
                 <div style="padding-left: 24px; padding-top: 16px;">
-                    <div style="color: white;  font-weight: 600;" class="lg:text-3xl md:text-base">Welcome {{name}},</div>
-                    <div style="color: white;  font-weight: 500; margin-top: 12px;" class="lg:text-xl md:text-xs">
+                    <div style="color: white;  font-weight: 600;" class="text-lg sm:text-lg md:text-2xl lg:text-3xl">
+                        Welcome {{name}},</div>
+                    <div style="color: white;  font-weight: 500; margin-top: 12px;"
+                        class="text-xs sm:text-xs md:text-base lg:text-lg xl:text-xl">
                         I can’t change the direction of the wind, but I can adjust my sails to always reach my<br>
                         destination.
                     </div>
                 </div>
 
-                <img class="mr-2" src="/assets/office guy image.png" width="167px" height="172px" alt="">
+                <img class="mr-2 md:mr-0 md:ml-2 mb-2 md:mb-0" src="/assets/office guy image.png" width="167px"
+                    height="172px" alt="">
             </div>
 
 
@@ -61,17 +64,16 @@
 
                     <div class="col-7 ">
                         <div class="flex align-items-start justify-content-start">
-
-                            <div class="w-full mr-2" style="height: 150px; border-radius: 16px; background: white;">
-                                <div class="py-2" style="display: flex; flex-direction: column; justify-content: space-between; align-items: start;">
-                                    <div class="px-4" style="color: #92278F; font-weight: 700; font-size: 16px; 
+                            <div class="w-full mr-2" [style.height.px]="isMobile ? '170' : '150'"
+                                style="border-radius: 16px; background: white;">
+                                <div class="flex flex-column align-items-start justify-content-between y-2">
+                                    <div class="px-4" style="color: #92278F; font-weight: 700; font-size: 16px;
                                       ">Our Mission
                                     </div>
                                     <div class="w-full flex align-items-center justify-content-center">
-                                        <img src="/assets/na_feb_17 1.png" alt="Image"
-                                            style="width: 112.63px; ">
+                                        <img src="/assets/na_feb_17 1.png" alt="Image" style="width: 112.63px; ">
                                     </div>
-                                    <div >
+                                    <div class="">
                                         <div class="text-left mx-4"
                                             style=" color: #92278F; font-weight: 500; font-size: 8px; height: 35px; line-height:10.93px">
                                             Our mission is to be a technology savvy, customer centric progressive
@@ -85,17 +87,18 @@
                                 </div>
                             </div>
 
-                            <div class="w-full ml-2" style="height: 150px; border-radius: 16px; background: white;">
+                            <div class="w-full ml-2" [style.height.px]="isMobile ? '170' : '150'"
+                                style="border-radius: 16px; background: white;">
                                 <div class="py-2"
                                     style="display: flex; flex-direction: column; justify-content: start; align-items: start;">
                                     <div>
-                                        <div class="px-4" style="color: #92278F; font-weight: 700; font-size: 16px;">Our Vision</div>
+                                        <div class="px-4" style="color: #92278F; font-weight: 700; font-size: 16px;">Our
+                                            Vision</div>
                                     </div>
                                     <div class="w-full flex align-items-center justify-content-center">
-                                        <img src="/assets/g8.png" alt="Image"
-                                            style="width: 85px;">
+                                        <img src="/assets/g8.png" alt="Image" style="width: 85px;">
                                     </div>
-                                    <div  class="mt-1">
+                                    <div class="mt-1">
                                         <div class="text-left mx-4"
                                             style=" color: #92278F; font-weight: 500; font-size: 8px; height: 35px; line-height:10.93px">
                                             Our vision is to be a progressive, prosperous and well governed bank.
@@ -217,7 +220,6 @@
 
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -587,7 +589,7 @@
             </div>
 
             <div class="col-4">
-                <div class="bg-white border-round-lg m-2 px-4 py-2" >
+                <div class="bg-white border-round-lg m-2 px-4 py-2">
                     <div class="" style="color: #92278F; font-size: 16px; font-weight: 700;"> Upcoming Holidays</div>
 
                     <div class="scroll-container mt-2">
