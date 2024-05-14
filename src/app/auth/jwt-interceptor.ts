@@ -45,7 +45,7 @@ export class JwtInterceptor implements HttpInterceptor {
                     observer.complete();
                 });
             });
-        } 
+        }
         else {
             this.refreshTokenInProgress = true;
             return this.authService.renewRefreshToken().pipe(map((data: any) => {
@@ -58,12 +58,8 @@ export class JwtInterceptor implements HttpInterceptor {
                 this.authService.redirectInvalid();
                 return throwError(() => err);
             }));
-
-
         }
     }
-
-
 
     handleResponseError(error: any, request?: any, next?: any): any {
         // Business error
@@ -81,31 +77,27 @@ export class JwtInterceptor implements HttpInterceptor {
                 catchError((e: any) => {
                     if (e.status !== 401) {
                         return this.handleResponseError(e);
-                    } 
+                    }
                     else {
                         this.authService.redirectInvalid();
                     }
                 }));
         }
-
         // Access denied error
         else if (error.status === 403) {
             // Show message
             // Logout
             this.authService.redirectInvalid();
         }
-
         // Server error
         else if (error.status === 500) {
             // Show message
         }
-
         // Maintenance error
         else if (error.status === 503) {
             // Show message
             // Redirect to the maintenance page
         }
-
         return throwError(() => error);
     }
 

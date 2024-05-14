@@ -1,137 +1,183 @@
 .arrow-design {
-    width: 200px;
-    height: 100px;
-    background-color: #3498db;
-    transform: rotate(90deg);
-    clip-path: polygon(50% 0%, 100% 25%, 100% 100%, 50% 100%, 0% 100%, 0% 25%);
+  width: 200px;
+  height: 100px;
+  background-color: #3498db;
+  transform: rotate(90deg);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 100%, 50% 100%, 0% 100%, 0% 25%);
 }
 
 .first-arrow-bg {
-    height: 100px;
-    background-image: url('/assets/first\ arrow.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  height: 100px;
+  background-image: url('/assets/first\ arrow.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .forward-arrow-bg {
-    height: 100px;
-    background-image: url('/assets/forward\ arrow\ bg.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  height: 100px;
+  background-image: url('/assets/forward\ arrow\ bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .banner {
-    overflow: hidden;
-    // white-space: nowrap;
+  overflow: hidden;
+  // white-space: nowrap;
 }
 
 .animation-logo {
-    display: inline-block;
-    padding-left: 0;
-    animation: moveText 2s linear infinite;
-    white-space: nowrap;
+  display: inline-block;
+  padding-left: 0;
+  animation: moveText 2s linear infinite;
+  white-space: nowrap;
 }
 
 @keyframes moveText {
-    0% {
-        transform: translateX(0%);
-    }
+  0% {
+    transform: translateX(0%);
+  }
 
-    100% {
-        transform: translateX(100%);
-    }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .animated-container {
-    border-radius: 4px;
-    background: #F9F78578;
-    transition: all 0.3s ease;
-    cursor: pointer;
+  border-radius: 4px;
+  background: #F9F78578;
+  transition: all 0.3s ease;
+  cursor: pointer;
 
-    .content {
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        padding: 12px;
-    }
+  .content {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 12px;
+  }
 
-    &:hover {
-        transform: scale(1.08);
-        background-color: #F9D4FF;
-
-        .text-container {
-            color: #92278F;
-            font-size: 15px;
-        }
-    }
+  &:hover {
+    transform: scale(1.08);
+    background-color: #F9D4FF;
 
     .text-container {
-        font-size: 14px;
-        font-weight: 600;
-        margin-left: 12px;
-        transition: color 0.3s ease;
+      color: #92278F;
+      font-size: 15px;
     }
+  }
+
+  .text-container {
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 12px;
+    transition: color 0.3s ease;
+  }
 }
 
 :host::ng-deep {
-    .p-dropdown {
-       border: none !important;
-      // border-radius: 10px;
-       background: none !important;
-    }
-    .p-dropdown:focus{
-      border: none !important;
-      // border-radius: 10px;
-       background: none !important;
-    }
-    .p-inputtext {
-      font-size: 0.8rem;
-      // color: #92278F;
-    }
-  
-    .p-dropdown .p-dropdown-label.p-placeholder {
-      color: #92278F75;
-    }
-  
-    .p-dropdown .p-dropdown-trigger {
-      // color: #92278F;
-      width: 4.357rem;
-    }
-  
-    .pi-chevron-down:before {
-      content: "\e906";
-    }
-    .ui-dropdown-trigger.ui-state-focus {
-      border: 1px solid transparent; /* Remove the border on focus */
-      outline: none; /* Remove outline on focus */
-    }
-    .ui-dropdown-trigger.ui-state-default.ui-corner-right {
-      border: 1px solid transparent; /* Remove the border */
-      outline: none; /* Remove outline */
-    }
+  .p-dropdown {
+    border: none !important;
+    // border-radius: 10px;
+    background: none !important;
   }
 
-  .scroll-container {
-    height: 370px;
-    overflow-y: auto;
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #E9EBF0 transparent; /* For Firefox */
-    
-    &::-webkit-scrollbar {
-      width: 8px; /* For Chrome, Safari, and Opera */
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background-color: #E9EBF0; /* For Chrome, Safari, and Opera */
-    }
+  .p-dropdown:focus {
+    border: none !important;
+    // border-radius: 10px;
+    background: none !important;
   }
 
-  .yellow {
-    color: #92278F;
+  .p-inputtext {
+    font-size: 0.8rem;
+    // color: #92278F;
   }
-  
-  .green {
-    color: #FAA026;
+
+  .p-dropdown .p-dropdown-label.p-placeholder {
+    color: #92278F75;
   }
+
+  .p-dropdown .p-dropdown-trigger {
+    // color: #92278F;
+    width: 4.357rem;
+  }
+
+  .pi-chevron-down:before {
+    content: "\e906";
+  }
+
+  .ui-dropdown-trigger.ui-state-focus {
+    border: 1px solid transparent;
+    /* Remove the border on focus */
+    outline: none;
+    /* Remove outline on focus */
+  }
+
+  .ui-dropdown-trigger.ui-state-default.ui-corner-right {
+    border: 1px solid transparent;
+    /* Remove the border */
+    outline: none;
+    /* Remove outline */
+  }
+}
+
+.scroll-container {
+  height: 370px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: #E9EBF0 transparent;
+  /* For Firefox */
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    /* For Chrome, Safari, and Opera */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #E9EBF0;
+    /* For Chrome, Safari, and Opera */
+  }
+}
+
+.yellow {
+  color: #92278F;
+}
+
+.green {
+  color: #FAA026;
+}
+
+@media screen and (max-width: 768px) {
+  .flex-item {
+    flex: 0 0 calc(100% - 10px);
+  }
+
+  .col-9,
+  .col-3,
+  .col-7,
+  .col-5,
+  .col-8,
+  .col-4,
+  .col-6 {
+    flex: 1 0 calc(100% - 10px);
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .auto-height {
+    height: auto !important;
+    /* Adjust the height for small screens */
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .auto-height {
+
+    height: 80px !important;
+    /* Default height for larger screens */
+  }
+}

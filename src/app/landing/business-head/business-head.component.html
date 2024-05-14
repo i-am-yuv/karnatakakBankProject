@@ -1,18 +1,21 @@
 <div class="w-full">
 
     <!-- First Top Sections -->
-    <div class="flex">
+    <div class="flex flex-wrap align-items-start justify-content-between">
+
+        <!-- Welcome Business Head -->
         <section class="col-9 pl-0 mt-4">
-            <div class="bg-white flex align-items-center justify-content-between border-round-right-xl px-3"
-                style="height: 80px;">
+            <div class="bg-white flex flex-wrap align-items-center justify-content-between border-round-right-xl"
+                [ngClass]="{'auto-height': true}">
                 <div class="col-5" style="font-size: 28px;">Welcome, <span class="font-bold"
                         style="color: #92278F;">{{this.name}} 🤩 </span>
                 </div>
 
-                <div class="w-full flex align-items-center justify-content-end px-4">
-                    <div class="flex align-items-center justify-content-center border-round-3xl px-4 gap-3"
+                <div class="col-7 flex align-items-center justify-content-end px-2 sm:px-2 md:px-3 lg:px-4">
+                    <div class="flex align-items-center justify-content-center border-round-3xl px-2 sm:px-2 md:px-3 lg:px-4 gap-1 sm:gap-1 md:gap-2 lg:gap-3"
                         style="height: 42px; background-color: #92278F;">
-                        <div class="text-white font-medium" style="font-size: 16px;">Show My Tasks</div>
+                        <div class="text-white font-medium text-xs sm:text-xs md:text-base lg:text-lg">Show My Tasks
+                        </div>
                         <div class="bg-white border-circle px-2 py-1">
                             <i class="pi pi-arrow-up-right" style="font-size: 14px; color: #92278F;"></i>
                         </div>
@@ -31,29 +34,32 @@
                         style="color: #92278F;" alt="">
 
                 </div>
-
             </div>
 
+            <!-- ARROW WITH INFORMATION -->
             <div class="w-full flex align-items-center justify-content-between mt-3 px-3">
                 <div class="w-full first-arrow-bg flex flex-column align-items-center justify-content-center">
-                    <div class="font-bold mr-3" style="font-size: 24px; color: #92278F;">458</div>
-                    <div class="font-bold mt-2 mr-3" style="font-size: 14px;">Account Opened</div>
+                    <div class="font-bold text-lg sm:text-lg md:text-xl lg:text-2xl" style=" color: #92278F;">458
+                    </div>
+                    <div class="font-bold text-center text-xs sm:text-xs md:text-xs lg:text-sm">Account Opened</div>
                 </div>
 
                 <div class="w-full forward-arrow-bg flex flex-column align-items-center justify-content-center">
-                    <div class="font-bold" style="font-size: 24px; color: #92278F;">256</div>
-                    <div class="font-bold mt-2 " style="font-size: 14px;">Clients</div>
+                    <div class="font-bold text-lg sm:text-lg md:text-xl lg:text-2xl" style=" color: #92278F;">256</div>
+                    <div class="font-bold text-center text-xs sm:text-xs md:text-xs lg:text-sm">Clients</div>
                 </div>
 
                 <div class="w-full forward-arrow-bg flex flex-column align-items-center justify-content-center">
-                    <div class="font-bold" style="font-size: 24px; color: #92278F;">98</div>
-                    <div class="font-bold mt-2" style="font-size: 14px;">Loans Approved</div>
+                    <div class="font-bold text-lg sm:text-lg md:text-xl lg:text-2xl" style=" color: #92278F;">98</div>
+                    <div class="font-bold text-center text-xs sm:text-xs md:text-xs lg:text-sm">Loans Approved</div>
                 </div>
 
                 <div class="w-full forward-arrow-bg flex flex-column align-items-center justify-content-center">
-                    <div class="font-bold" style="font-size: 24px; color: #92278F;">50Lakh</div>
-                    <div class="font-bold mt-2" style="font-size: 14px;">Amount
-                        Deposited</div>
+                    <div class="font-bold text-lg sm:text-lg md:text-xl lg:text-2xl" style=" color: #92278F;">50Lakh
+                    </div>
+                    <div class="font-bold text-center text-xs sm:text-xs md:text-xs lg:text-sm">Amount
+                        Deposited
+                    </div>
                 </div>
             </div>
         </section>
@@ -105,8 +111,8 @@
 
     </div>
 
-    <div class="flex">
-        <section class="col-9 flex">
+    <div class="flex flex-wrap align-items-center justify-content-between">
+        <section class="col-9 flex flex-wrap align-items-center justify-content-between">
 
             <div class="col-5">
                 <div class="bg-white align-items-center justify-content-between border-round-xl p-2"
@@ -147,24 +153,17 @@
             </div>
 
             <div class="col-7">
-                <div class="bg-white  border-round-xl px-3" style="height: 193px;">
+                <div class="pb-2" style="border-radius: 16px; background: white; height: 193px;">
                     <div
                         style="margin-left: 32px; padding-top: 12px; color: #92278F; font-size: 14px; font-weight: 700;">
                         My HR Symphony
                     </div>
 
-                    <div class="gap-1" style="display: flex; justify-content: start; align-items: center;
-                          margin-top: 6px; margin-left: 8px;margin-right: 8px;">
-                        <div class="col-6">
-                            <!-- <div style="  border-radius: 4px; background: #F9F78578;" class="p-2">
-                                        <div style="display: flex; justify-content: start;align-items: center;">
-                                            <img src="/assets/Group 1171276671.png" alt="Image"
-                                                style="width: 40px; height: 40px; ">
-                                            <div style="margin-left: 12px; font-size: 13px; font-weight: 600;">
-                                                My Leave
-                                            </div>
-                                        </div>
-                                    </div> -->
+                    <div class="flex align-items-center justify-content-start px-2 gap-3"
+                        style="margin-top: 12px; margin-left: 8px;margin-right: 8px;">
+
+                        <!-- My Payroll -->
+                        <div class="w-full">
                             <div class="animated-container" (mouseenter)="expandCard()" (mouseleave)="shrinkCard()">
                                 <div class="content">
                                     <div class="icon-container">
@@ -177,16 +176,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <!-- <div style=" border-radius: 4px; background: #F9F78578;" class="p-2">
-                                        <div style="display: flex; justify-content: start;align-items: center;">
-                                            <img src="/assets/Group 1171276671 (2).png" alt="Image"
-                                                style="width: 40px; height: 40px; ">
-                                            <div style="margin-left: 12px; font-size: 13px; font-weight: 600;">
-                                                My Attendance
-                                            </div>
-                                        </div>
-                                    </div> -->
+
+                        <!-- My Attendance -->
+                        <div class="w-full">
                             <div class="animated-container" (mouseenter)="expandCard()" (mouseleave)="shrinkCard()">
                                 <div class="content">
                                     <div class="icon-container">
@@ -201,10 +193,11 @@
                         </div>
                     </div>
 
-                    <div class="gap-1" style="display: flex; justify-content: start; align-items: center;
-                          margin-top: 1px; margin-left: 8px;margin-right: 8px;">
-                        <div class="col-6">
+                    <div class="flex align-items-center justify-content-start px-2 gap-3"
+                        style="margin-top: 12px; margin-left: 8px;margin-right: 8px;">
 
+                        <!-- My Leave -->
+                        <div class="w-full">
                             <div class="animated-container" (mouseenter)="expandCard()" (mouseleave)="shrinkCard()">
                                 <div class="content">
                                     <div class="icon-container">
@@ -216,9 +209,10 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                        <div class="col-6">
+
+                        <!-- My Info -->
+                        <div class="w-full">
                             <div class="animated-container" (mouseenter)="expandCard()" (mouseleave)="shrinkCard()">
                                 <div class="content">
                                     <div class="icon-container">
@@ -230,7 +224,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -261,11 +254,10 @@
         </section>
     </div>
 
-    <div class="flex pl-3 pr-2 gap-3">
+    <div class="flex flex-wrap align-items-center justify-content-between">
 
-        <section class="w-full">
-            <div class="bg-white flex flex-column justify-content-between border-round-xl p-3 my-2"
-                style="height: 403px;">
+        <div class="col-4">
+            <div class="bg-white flex flex-column justify-content-between border-round-xl p-3" style="height: 403px;">
 
                 <div class="font-bold" style="color: #92278F;">Our KBL Performance</div>
 
@@ -309,10 +301,10 @@
                 </div>
 
             </div>
-        </section>
+        </div>
 
-        <section class="w-full">
-            <div class="bg-white border-round-xl p-3 my-2" style="height: 403px;">
+        <div class="col-4">
+            <div class="bg-white border-round-xl p-3" style="height: 403px;">
 
                 <div class="font-bold" style="color: #92278F;"></div>
                 Our KBL Performance
@@ -374,11 +366,10 @@
                 </div>
 
             </div>
-        </section>
+        </div>
 
-        <section class="w-full">
-            <div class="bg-white flex flex-column justify-content-between border-round-xl p-3 my-2"
-                style="height: 403px;">
+        <div class="col-4">
+            <div class="bg-white flex flex-column justify-content-between border-round-xl p-3" style="height: 403px;">
 
                 <div class="flex align-items-center justify-content-between">
                     <div class="font-semibold" style="color: #92278F; font-size: 16px;">
@@ -393,7 +384,8 @@
                             <div class="flex align-items-center justify-content-start">
                                 <img src="/assets/Avatar.png" width="25px" height="25px" alt="">
                                 <div class="ml-3" style="font-size: 12px; font-weight: 700;">
-                                    <span class="yellow">{{ news.split(' ')[0]+' ' }}</span> <!-- First word in yellow -->
+                                    <span class="yellow">{{ news.split(' ')[0]+' ' }}</span>
+                                    <!-- First word in yellow -->
                                     <span>{{ news.split(' ')[1]+' ' }}</span> <!-- Second word in default color -->
                                     <span class="green">{{ news.split(' ')[2]+' ' }}</span> <!-- Third word in green -->
                                     <span>{{ news.split(' ').slice(3).join(' ') }}</span>
@@ -432,6 +424,6 @@
                 </div> -->
 
             </div>
-        </section>
+        </div>
     </div>
 </div>

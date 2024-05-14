@@ -1,7 +1,7 @@
 <div class="w-full">
 
     <!-- First Top Section -->
-    <div class="flex p-2">
+    <div class="flex flex-wrap align-items-center justify-content-between p-2">
 
         <section class="col-9">
             <div class="bg-white flex flex-column align-items-start justify-content-center border-round-xl p-4"
@@ -19,7 +19,10 @@
                         </div>
                     </div>
 
-                    <img src="/assets/marketing image.png" alt="" width="530" height="163">
+                    <!-- <img src="/assets/marketing image.png" alt="" class="w-full"> -->
+                    <div class="w-full"
+                        style="width: 530px; height: 200px; background-image: url(/assets/marketing\ image.png);background-size: contain; background-position: center; background-repeat: no-repeat;">
+                    </div>
                 </div>
 
             </div>
@@ -64,7 +67,6 @@
 
             </div>
         </section>
-
     </div>
 
     <!-- Celebrating 100 Yars  -->
@@ -98,226 +100,249 @@
 
     </div>
 
-    <div class="flex p-2 mt-2">
-        <section class="col-4 bg-white flex flex-column border-round-xl mx-2 p-3" style="height: 206px;">
-            <div class="font-bold" style="color: #92278F;">Traffic from social media</div>
+    <!-- Second Section -->
+    <div class="flex flex-wrap align-items-center justify-content-between mt-2 px-2">
+        <div class="col-4">
+            <section class="bg-white flex flex-column border-round-xl p-3" style="height: 206px;">
+                <div class="font-bold" style="color: #92278F;">Traffic from social media</div>
 
-            <img class="w-full mt-2" src="/assets/traffic from social media graph.png" alt="Traffic from social media"
-                height="124">
+                <img class="w-full mt-2" src="/assets/traffic from social media graph.png"
+                    alt="Traffic from social media" height="124">
 
-            <div class="w-full flex align-items-center justify-content-around mt-2">
-                <div class="flex align-items-center">
-                    <div class="border-circle" style="width: 6px; height: 6px; background-color: #FAA026;"></div>
-                    <div class="font-bold ml-2" style="font-size: 6px;">LINKEDIN</div>
-                </div>
-
-                <div class="flex align-items-center">
-                    <div class="border-circle" style="width: 6px; height: 6px; background-color: #1877F2;"></div>
-                    <div class="font-bold ml-2" style="font-size: 6px;">Facebook</div>
-                </div>
-
-                <div class="flex align-items-center">
-                    <div class="border-circle" style="width: 6px; height: 6px; background-color: #FF3295;"></div>
-                    <div class="font-bold ml-2" style="font-size: 6px;">Instagram</div>
-                </div>
-
-                <div class="flex align-items-center">
-                    <div class="border-circle" style="width: 6px; height: 6px; background-color: #F21818;"></div>
-                    <div class="font-bold ml-2" style="font-size: 6px;">Youtube</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="col-4 bg-white flex flex-column justify-content-between border-round-xl mx-2 p-3"
-            style="height: 206px;">
-            <div class="font-bold" style="color: #92278F;">Campaign ROI</div>
-
-            <img class="w-full" src="/assets/campaign roi graph.png" alt="Campaign ROI" height="132px">
-
-            <div class="w-full flex align-items-center justify-content-center">
-                <div class="flex align-items-center mx-4">
-                    <div class="border-round-xs" style="width: 10px; height: 10px; background-color: #E9ECF3;"></div>
-                    <div class="font-bold ml-2" style="font-size: 8px;">Planned</div>
-                </div>
-
-                <div class="flex align-items-center mx-4">
-                    <div class="border-round-xs" style="width: 10px; height: 10px; background-color: #92278F;"></div>
-                    <div class="font-bold ml-2" style="font-size: 8px;">Actual</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="w-full bg-white flex flex-column border-round-xl mx-2 p-3" style="height: 206px;">
-            <div class="font-bold" style="color: #92278F;">Revenue for the month</div>
-
-            <img src="/assets/Revenue for the month.png" alt="Campaign ROI" width="234px" height="107px">
-
-            <img src="/assets/Revenue for the month bar.png" alt="Campaign ROI" width="250px" height="40px">
-
-            <div class="flex align-items-center">
-                <div class="font-bold" style="color: #92278F; font-size: 12px;">Revenue for the month</div>
-                <img class="ml-3" src="/assets/Polygon 37.png" alt="Campaign ROI" width="16px" height="14px">
-                <div class="font-bold ml-1" style="font-size: 12px;">34.6%</div>
-            </div>
-        </section>
-    </div>
-
-    <div class="flex p-2">
-        <section class="col-4 bg-white flex flex-column align-items-center justify-content-between border-round-xl mx-2"
-            style="height: 206px;">
-            <div class="w-full text-left font-bold px-2" style="color: #92278F;">Competitor Analysis</div>
-
-            <div class="font-bold" style="font-size: 8px;">Social Media Engagement</div>
-            <table class="w-full" style="border-collapse: collapse;">
-                <tr style="background-color: #EBDFDA;">
-                    <th class="font-medium" style="font-size: 8px; color: #92278F;">Competitors</th>
-                    <th class="font-medium" style="font-size: 8px; color: #92278F;">Followers/Fans </th>
-                    <th class="font-medium" style="font-size: 8px; color: #92278F;">Bounce Rate</th>
-                    <th class="font-medium" style="font-size: 8px; color: #92278F;">Reach</th>
-                </tr>
-                <tr *ngFor="let item of socialMediaEngagement">
-                    <td class="font-medium" style="font-size: 8px;">{{item.competitors}}</td>
-                    <td class="font-medium" style="font-size: 8px;">{{item.followers}}</td>
-                    <td class="font-medium" style="font-size: 8px;">{{item.bounceRate}}</td>
-                    <td class="font-medium" style="font-size: 8px;">{{item.reach}}</td>
-                </tr>
-            </table>
-
-            <div class="font-bold" style="font-size: 8px;">Search Engine Visibility</div>
-            <table class="w-full" style="border-collapse: collapse;">
-                <tr style="background-color: #EBDFDA;">
-                    <th class="font-medium" style="font-size: 8px; color: #92278F;">Competitors</th>
-                    <th class="font-medium" style="font-size: 8px; color: #92278F;">Organic Traffic </th>
-                    <th class="font-medium" style="font-size: 8px; color: #92278F;">Keyword Rankings </th>
-                    <th class="font-medium" style="font-size: 8px; color: #92278F;">Backlink Profile </th>
-                </tr>
-                <tr *ngFor="let item of searchEngineVisibility">
-                    <td class="font-medium" style="font-size: 8px;">{{item.competitors}}</td>
-                    <td class="font-medium" style="font-size: 8px;">{{item.organicTraffic}}</td>
-                    <td class="font-medium" style="font-size: 8px;">{{item.keywordRanking}}</td>
-                    <td class="font-medium" style="font-size: 8px;">{{item.backlinkProfile}}</td>
-                </tr>
-            </table>
-
-
-        </section>
-
-        <section class="col-4 bg-white flex flex-column border-round-xl mx-2 p-3" style="height: 206px;">
-            <div class="font-bold" style="color: #92278F;">Expenses</div>
-
-            <div class="w-full flex mt-3">
-                <div class="w-full p-2 flex flex-column gap-3">
-                    <div class="font-bold" style="font-size: 10px; color: #92278F;">Product Promotions: </div>
-                    <div class="font-bold" style="font-size: 10px; color: #92278F;">Cross-selling and Upselling: </div>
-                    <div class="font-bold" style="font-size: 10px; color: #92278F;">Affiliate Marketing: </div>
-                    <div class="font-bold" style="font-size: 10px; color: #92278F;">Content Marketing: </div>
-                    <div class="font-bold" style="font-size: 10px; color: #92278F;">Email Campaigns: </div>
-                </div>
-
-                <div class="w-full p-2 flex">
-                    <div class="" style="width: 1px; height: 120px; background-color: #000000; opacity: 5%;"></div>
-
-                    <div class="flex flex-column ml-1 gap-3">
-                        <div *ngFor="let item of expenses">
-                            <div class="font-bold" style="font-size: 10px;">{{item.progressValue}}% </div>
-                        </div>
+                <div class="w-full flex align-items-center justify-content-around mt-2">
+                    <div class="flex align-items-center">
+                        <div class="border-circle" style="width: 6px; height: 6px; background-color: #FAA026;"></div>
+                        <div class="font-bold ml-2" style="font-size: 6px;">LINKEDIN</div>
                     </div>
 
-                    <div class="w-full ml-1 gap-3">
-                        <div *ngFor="let item of expenses">
-                            <div style="margin-bottom: 25px;">
-                                <span style="font-size: 10px;" *ngIf="isVisible">{{item.progressValue}} </span>
-                                <p-progressBar [value]="item.progressValue"></p-progressBar>
+                    <div class="flex align-items-center">
+                        <div class="border-circle" style="width: 6px; height: 6px; background-color: #1877F2;"></div>
+                        <div class="font-bold ml-2" style="font-size: 6px;">Facebook</div>
+                    </div>
+
+                    <div class="flex align-items-center">
+                        <div class="border-circle" style="width: 6px; height: 6px; background-color: #FF3295;"></div>
+                        <div class="font-bold ml-2" style="font-size: 6px;">Instagram</div>
+                    </div>
+
+                    <div class="flex align-items-center">
+                        <div class="border-circle" style="width: 6px; height: 6px; background-color: #F21818;"></div>
+                        <div class="font-bold ml-2" style="font-size: 6px;">Youtube</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="col-4">
+            <section class=" bg-white flex flex-column justify-content-between border-round-xl p-3"
+                style="height: 206px;">
+                <div class="font-bold" style="color: #92278F;">Campaign ROI</div>
+
+                <img class="w-full" src="/assets/campaign roi graph.png" alt="Campaign ROI" height="132px">
+
+                <div class="w-full flex align-items-center justify-content-center">
+                    <div class="flex align-items-center mx-4">
+                        <div class="border-round-xs" style="width: 10px; height: 10px; background-color: #E9ECF3;">
+                        </div>
+                        <div class="font-bold ml-2" style="font-size: 8px;">Planned</div>
+                    </div>
+
+                    <div class="flex align-items-center mx-4">
+                        <div class="border-round-xs" style="width: 10px; height: 10px; background-color: #92278F;">
+                        </div>
+                        <div class="font-bold ml-2" style="font-size: 8px;">Actual</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="col-4">
+            <section class="bg-white flex flex-column border-round-xl p-3" style="height: 206px;">
+                <div class="font-bold" style="color: #92278F;">Revenue for the month</div>
+
+                <img src="/assets/Revenue for the month.png" alt="Campaign ROI" width="234px" height="107px">
+
+                <img src="/assets/Revenue for the month bar.png" alt="Campaign ROI" width="250px" height="40px">
+
+                <div class="flex align-items-center">
+                    <div class="font-bold" style="color: #92278F; font-size: 12px;">Revenue for the month</div>
+                    <img class="ml-3" src="/assets/Polygon 37.png" alt="Campaign ROI" width="16px" height="14px">
+                    <div class="font-bold ml-1" style="font-size: 12px;">34.6%</div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Third Section -->
+    <div class="flex flex-wrap align-items-center justify-content-between mt-2 px-2">
+        <div class="col-4">
+            <section class="bg-white flex flex-column align-items-center justify-content-between border-round-xl"
+                style="height: 206px;">
+                <div class="w-full text-left font-bold px-2" style="color: #92278F;">Competitor Analysis</div>
+
+                <div class="font-bold" style="font-size: 8px;">Social Media Engagement</div>
+                <table class="w-full" style="border-collapse: collapse;">
+                    <tr style="background-color: #EBDFDA;">
+                        <th class="font-medium" style="font-size: 8px; color: #92278F;">Competitors</th>
+                        <th class="font-medium" style="font-size: 8px; color: #92278F;">Followers/Fans </th>
+                        <th class="font-medium" style="font-size: 8px; color: #92278F;">Bounce Rate</th>
+                        <th class="font-medium" style="font-size: 8px; color: #92278F;">Reach</th>
+                    </tr>
+                    <tr *ngFor="let item of socialMediaEngagement">
+                        <td class="font-medium" style="font-size: 8px;">{{item.competitors}}</td>
+                        <td class="font-medium" style="font-size: 8px;">{{item.followers}}</td>
+                        <td class="font-medium" style="font-size: 8px;">{{item.bounceRate}}</td>
+                        <td class="font-medium" style="font-size: 8px;">{{item.reach}}</td>
+                    </tr>
+                </table>
+
+                <div class="font-bold" style="font-size: 8px;">Search Engine Visibility</div>
+                <table class="w-full" style="border-collapse: collapse;">
+                    <tr style="background-color: #EBDFDA;">
+                        <th class="font-medium" style="font-size: 8px; color: #92278F;">Competitors</th>
+                        <th class="font-medium" style="font-size: 8px; color: #92278F;">Organic Traffic </th>
+                        <th class="font-medium" style="font-size: 8px; color: #92278F;">Keyword Rankings </th>
+                        <th class="font-medium" style="font-size: 8px; color: #92278F;">Backlink Profile </th>
+                    </tr>
+                    <tr *ngFor="let item of searchEngineVisibility">
+                        <td class="font-medium" style="font-size: 8px;">{{item.competitors}}</td>
+                        <td class="font-medium" style="font-size: 8px;">{{item.organicTraffic}}</td>
+                        <td class="font-medium" style="font-size: 8px;">{{item.keywordRanking}}</td>
+                        <td class="font-medium" style="font-size: 8px;">{{item.backlinkProfile}}</td>
+                    </tr>
+                </table>
+
+
+            </section>
+        </div>
+
+        <div class="col-4">
+            <section class="bg-white flex flex-column border-round-xl p-3" style="height: 206px;">
+                <div class="font-bold" style="color: #92278F;">Expenses</div>
+
+                <div class="w-full flex mt-3">
+                    <div class="w-full p-2 flex flex-column gap-3">
+                        <div class="font-bold" style="font-size: 10px; color: #92278F;">Product Promotions: </div>
+                        <div class="font-bold" style="font-size: 10px; color: #92278F;">Cross-selling and Upselling:
+                        </div>
+                        <div class="font-bold" style="font-size: 10px; color: #92278F;">Affiliate Marketing: </div>
+                        <div class="font-bold" style="font-size: 10px; color: #92278F;">Content Marketing: </div>
+                        <div class="font-bold" style="font-size: 10px; color: #92278F;">Email Campaigns: </div>
+                    </div>
+
+                    <div class="w-full p-2 flex">
+                        <div class="" style="width: 1px; height: 120px; background-color: #000000; opacity: 5%;"></div>
+
+                        <div class="flex flex-column ml-1 gap-3">
+                            <div *ngFor="let item of expenses">
+                                <div class="font-bold" style="font-size: 10px;">{{item.progressValue}}% </div>
                             </div>
-
-
                         </div>
+
+                        <div class="w-full ml-1 gap-3">
+                            <div *ngFor="let item of expenses">
+                                <div style="margin-bottom: 25px;">
+                                    <span style="font-size: 10px;" *ngIf="isVisible">{{item.progressValue}} </span>
+                                    <p-progressBar [value]="item.progressValue"></p-progressBar>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
+
+        <div class="col-4">
+            <section class="bg-white flex flex-column justify-content-between border-round-xl p-3"
+                style="height: 206px;">
+                <div class="font-bold" style="color: #92278F;">Leads breakdown(today)</div>
+
+                <img src="/assets/Leads breakdown.png" alt="Leads breakdown" width="136" height="136">
+            </section>
+        </div>
+    </div>
+
+    <!-- Last Section -->
+    <div class="flex flex-wrap align-items-center justify-content-between mt-2 px-2">
+        <div class="col-4">
+            <section class="bg-white flex flex-column justify-content-between border-round-xl p-3"
+                style="height: 206px;">
+                <div class="font-bold" style="color: #92278F;">Social Activities</div>
+
+                <div class="flex align-items-center gap-3">
+                    <div class="flex align-items-center justify-content-center">
+                        <img src="/assets/wellness week activites.png" alt="welless week activities" width="44"
+                            height="33">
+                    </div>
+
+                    <div class="">
+                        <div class="font-semibold" style="font-size: 12px;">Uploaded this file in instagram</div>
                     </div>
                 </div>
 
-            </div>
+                <div class="flex align-items-center gap-3">
+                    <div class="flex align-items-center justify-content-center">
+                        <img src="/assets/ads image 4.png" alt="welless week activities" width="26" height="26">
+                    </div>
 
-        </section>
-
-        <section class="w-full bg-white flex flex-column justify-content-between border-round-xl mx-2 p-3"
-            style="height: 206px;">
-            <div class="font-bold" style="color: #92278F;">Leads breakdown(today)</div>
-
-            <img src="/assets/Leads breakdown.png" alt="Leads breakdown" width="136" height="136">
-        </section>
-    </div>
-
-    <div class="flex p-2">
-        <section class="col-4 bg-white flex flex-column justify-content-between border-round-xl mx-2 p-3"
-            style="height: 206px;">
-            <div class="font-bold" style="color: #92278F;">Social Activities</div>
-
-            <div class="flex align-items-center">
-                <div class="col-3 flex align-items-center justify-content-center">
-                    <img src="/assets/wellness week activites.png" alt="welless week activities" width="44" height="33">
+                    <div class="">
+                        <div class="font-semibold" style="font-size: 12px;">1.2k people Like this post in facebook</div>
+                    </div>
                 </div>
 
-                <div class="col-9">
-                    <div class="font-semibold" style="font-size: 12px;">Uploaded this file in instagram</div>
-                </div>
-            </div>
+                <div class="flex align-items-center gap-3">
+                    <div class="flex align-items-center justify-content-center">
+                        <img src="/assets/ads image 3.png" alt="welless week activities" width="22" height="29">
+                    </div>
 
-            <div class="flex align-items-center">
-                <div class="col-3 flex align-items-center justify-content-center">
-                    <img src="/assets/ads image 4.png" alt="welless week activities" width="26" height="26">
-                </div>
-
-                <div class="col-9">
-                    <div class="font-semibold" style="font-size: 12px;">1.2k people Like this post in facebook</div>
-                </div>
-            </div>
-
-            <div class="flex align-items-center">
-                <div class="col-3 flex align-items-center justify-content-center">
-                    <img src="/assets/ads image 3.png" alt="welless week activities" width="22" height="29">
+                    <div class="">
+                        <div class="font-semibold" style="font-size: 12px;">188k tweeted in Twitter</div>
+                    </div>
                 </div>
 
-                <div class="col-9">
-                    <div class="font-semibold" style="font-size: 12px;">188k tweeted in Twitter</div>
+            </section>
+        </div>
+
+        <div class="col-8">
+            <section class="bg-white flex flex-column justify-content-between border-round-xl p-3"
+                style="height: 206px;">
+                <div class="font-bold" style="color: #92278F;">Google analytic web traffic(February)
                 </div>
-            </div>
 
-        </section>
+                <div class="w-full">
+                    <p-table [value]="analyticWebTraffic" [tableStyle]="{ 'min-width': '100%', 'font-size': '10px'}"
+                        styleClass="p-datatable-sm p-datatable-gridlines">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 16.67%">Channel</th>
+                                <th style="width: 16.67%">Progress</th>
+                                <th style="width: 16.67%">Conversion Rate</th>
+                                <th style="width: 16.67%">Avg Time on Site</th>
+                                <th style="width: 16.67%">Bounce Rate </th>
+                                <th style="width: 16.67%">Events : Session Ratio </th>
+                            </tr>
+                        </ng-template>
 
-        <section class="w-full bg-white flex flex-column justify-content-between border-round-xl mx-2 p-3"
-            style="height: 206px;">
-            <div class="font-bold" style="color: #92278F;">Google analytic web traffic(February)
-            </div>
+                        <ng-template pTemplate="body" let-item>
+                            <tr>
+                                <td>{{ item.channel }}</td>
+                                <!-- <td>{{ item.progress }}</td> -->
+                                <td><p-progressBar mode="determinate" [value]="item.progressValue"></p-progressBar></td>
+                                <td>{{ item.conversionRate }}</td>
+                                <td>{{ item.avgTimeOnSite }}</td>
+                                <td>{{ item.bounceRate }}</td>
+                                <td>{{ item.eventSessionRatio }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
 
-            <div class="w-full">
-                <p-table [value]="analyticWebTraffic" [tableStyle]="{ 'min-width': '100%', 'font-size': '10px'}"
-                    styleClass="p-datatable-sm p-datatable-gridlines">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th style="width: 16.67%">Channel</th>
-                            <th style="width: 16.67%">Progress</th>
-                            <th style="width: 16.67%">Conversion Rate</th>
-                            <th style="width: 16.67%">Avg Time on Site</th>
-                            <th style="width: 16.67%">Bounce Rate </th>
-                            <th style="width: 16.67%">Events : Session Ratio </th>
-                        </tr>
-                    </ng-template>
-
-                    <ng-template pTemplate="body" let-item>
-                        <tr>
-                            <td>{{ item.channel }}</td>
-                            <!-- <td>{{ item.progress }}</td> -->
-                            <td><p-progressBar mode="determinate" [value]="item.progressValue"></p-progressBar></td>
-                            <td>{{ item.conversionRate }}</td>
-                            <td>{{ item.avgTimeOnSite }}</td>
-                            <td>{{ item.bounceRate }}</td>
-                            <td>{{ item.eventSessionRatio }}</td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </div>
-
-        </section>
+            </section>
+        </div>
     </div>
 
 </div>
