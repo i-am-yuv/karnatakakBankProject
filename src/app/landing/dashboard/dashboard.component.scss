@@ -212,3 +212,18 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .ld-height {
+    height: auto !important;
+    /* Adjust the height for small screens */
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .ld-height {
+
+    height: 148px !important;
+    /* Default height for larger screens */
+  }
+}

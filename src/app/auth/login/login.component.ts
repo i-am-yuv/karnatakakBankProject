@@ -92,6 +92,7 @@ export class LoginComponent implements OnInit {
     this.passwordVisible = !this.passwordVisible;
   }
 
+  loading: boolean = false;
   onClickLogin() {
     //    alert(JSON.stringify(this.loginForm.value));
 
@@ -149,12 +150,15 @@ export class LoginComponent implements OnInit {
     //   this.router.navigate(["/dashboard/business-head"]);
     // }
 
+    this.loading = true;
     this.authService.authenticate(this.loginForm.value).then((res) => {
       sessionStorage.setItem('token', res.jwt);
       sessionStorage.setItem('refreshToken', res.refreshToken);
       this.navigateToDashboard();
     })
-      .catch((err) => { })
+      .catch((err) => {
+        this.loading = false;
+      })
   }
 
   openWebsite(url: any) {

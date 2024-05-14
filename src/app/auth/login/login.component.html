@@ -186,9 +186,11 @@
                         style="color: #92278F;">Forgot
                         password?</a>
                 </div>
-                <button pButton pRipple type="submit" [disabled]="!loginForm.valid" label="Login"
-                    class="p-button-help w-full border-round-sm"
-                    style="background-color: #92278F; height: 48px;"></button>
+
+                <button pButton pRipple type="submit" [disabled]="!loginForm.valid || loading" label="Login"
+                    class="p-button-help w-full border-round-sm" style="background-color: #92278F; height: 48px;">
+                    <i *ngIf="loading" class="pi pi-spin pi-spinner" style="margin-right: 5px;"></i>
+                </button>
             </form>
         </div>
     </div>
