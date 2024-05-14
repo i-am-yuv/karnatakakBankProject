@@ -1,19 +1,93 @@
 @media screen and (max-width: 768px) {
-    .col-8 {
-      flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
-    }
-    .col-4 {
-      flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
-    }
+  .col-8 {
+    flex: 0 0 100%;
+    /* Each column takes 100% width on smaller screens */
   }
 
+  .col-4 {
+    flex: 0 0 100%;
+    /* Each column takes 100% width on smaller screens */
+  }
+}
+
+.flex-item {
+  flex: 0 0 calc(50% - 10px);
+  /* Two columns with 10px spacing in between */
+  margin: 5px;
+  /* Adjust margin to set spacing */
+}
+
+@media screen and (max-width: 768px) {
   .flex-item {
-    flex: 0 0 calc(50% - 10px); /* Two columns with 10px spacing in between */
-    margin: 5px; /* Adjust margin to set spacing */
+    flex: 0 0 calc(100% - 10px);
+    /* Each item takes 100% width with 10px spacing on smaller screens */
   }
-  
-  @media screen and (max-width: 768px) {
-    .flex-item {
-      flex: 0 0 calc(100% - 10px); /* Each item takes 100% width with 10px spacing on smaller screens */
-    }
+}
+
+.titleText-responsive {
+  font-weight: bold;
+  color: #92278F;
+  font-size: 14px;
+  /* Default font size */
+}
+
+@media (min-width: 576px) {
+  .titleText-responsive {
+    font-size: 16px;
+    /* Adjust font size for small devices (sm) */
   }
+}
+
+@media (min-width: 768px) {
+  .titleText-responsive {
+    font-size: 18px;
+    /* Adjust font size for medium devices (md) */
+  }
+}
+
+@media (min-width: 992px) {
+  .titleText-responsive {
+    font-size: 20px;
+    /* Adjust font size for large devices (lg) */
+  }
+}
+
+@media (min-width: 1200px) {
+  .titleText-responsive {
+    font-size: 22px;
+    /* Adjust font size for extra large devices (xl) */
+  }
+}
+
+.desxText-responsive {
+  color: #000000;
+  font-size: 8px;
+}
+
+@media (min-width: 576px) {
+  .desxText-responsive {
+    font-size: 10px;
+    /* Adjust font size for small devices (sm) */
+  }
+}
+
+@media (min-width: 768px) {
+  .desxText-responsive {
+    font-size: 12px;
+    /* Adjust font size for medium devices (md) */
+  }
+}
+
+@media (min-width: 992px) {
+  .desxText-responsive {
+    font-size: 14px;
+    /* Adjust font size for large devices (lg) */
+  }
+}
+
+@media (min-width: 1200px) {
+  .desxText-responsive {
+    font-size: 16px;
+    /* Adjust font size for extra large devices (xl) */
+  }
+}

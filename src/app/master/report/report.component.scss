@@ -1,37 +1,83 @@
-:host::ng-deep{
-    .p-checkbox .p-checkbox-box {
-        border: none !important;
-        background-color: #92278F !important;
-    }
-    .p-checkbox-label {
-        color: #000000;
-        font-weight: 600;
-        font-size: 14px;
-    }
-}
-.scroll-container {
-    height: 260px;
-    overflow-y: auto;
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #E9EBF0 transparent; /* For Firefox */
-    
-    &::-webkit-scrollbar {
-      width: 8px; /* For Chrome, Safari, and Opera */
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background-color: #E9EBF0; /* For Chrome, Safari, and Opera */
-    }
+:host::ng-deep {
+  .p-checkbox .p-checkbox-box {
+    border: none !important;
+    background-color: #92278F !important;
   }
 
-  @media screen and (max-width: 768px) {
-    .col-6 {
-      flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
-    }
-    .col-8 {
-      flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
-    }
-    .col-4 {
-      flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
-    }
+  .p-checkbox-label {
+    color: #000000;
+    font-weight: 600;
+    font-size: 14px;
   }
+}
+
+.scroll-container {
+  height: 280px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: #E9EBF0 transparent;
+  /* For Firefox */
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    /* For Chrome, Safari, and Opera */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #E9EBF0;
+    /* For Chrome, Safari, and Opera */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .col-6 {
+    flex: 0 0 100%;
+    /* Each column takes 100% width on smaller screens */
+  }
+
+  .col-8 {
+    flex: 0 0 100%;
+    /* Each column takes 100% width on smaller screens */
+  }
+
+  .col-4 {
+    flex: 0 0 100%;
+    /* Each column takes 100% width on smaller screens */
+  }
+}
+
+.auto-height {
+  height: auto !important;
+}
+
+@media screen and (max-width: 768px) {
+  .auto-height {
+    height: auto !important;
+    /* Adjust the height for small screens */
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .auto-height {
+
+    height: 324px !important;
+    /* Default height for larger screens */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .auto-height1 {
+    height: auto !important;
+    /* Adjust the height for small screens */
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .auto-height1 {
+
+    height: 414px !important;
+    /* Default height for larger screens */
+  }
+}
+
