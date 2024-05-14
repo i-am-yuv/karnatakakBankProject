@@ -150,7 +150,7 @@ export class LoginComponent implements OnInit {
     //   this.router.navigate(["/dashboard/business-head"]);
     // }
 
-    this.loading = true;
+    this.loading = true; // loader 
     this.authService.authenticate(this.loginForm.value).then((res) => {
       sessionStorage.setItem('token', res.jwt);
       sessionStorage.setItem('refreshToken', res.refreshToken);
