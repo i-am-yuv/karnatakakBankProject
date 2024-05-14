@@ -126,7 +126,6 @@ export class AuthService {
       jwt = atob(token!.split('.')[1]);
       jwt = JSON.parse(jwt);
     }
-
     return jwt.roles;
   }
 
