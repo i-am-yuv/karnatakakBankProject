@@ -1,4 +1,4 @@
 export const environment = {
-  commonUrl : 'https://api.ifyn.com/kbldc/',
+  commonUrl : 'http://172.16.217.81/kbldc/',
   production: true
 };
