@@ -52,3 +52,10 @@
 .noneSelectedText {
     color: white;
 }
+
+:host::ng-deep {
+    .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+        background-color: #92278F !important;
+        /* Change background color */
+    }
+}

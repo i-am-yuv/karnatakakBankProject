@@ -20,6 +20,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { JwtInterceptor } from '../auth/jwt-interceptor';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 @NgModule({
   declarations: [
@@ -29,8 +30,11 @@ import { JwtInterceptor } from '../auth/jwt-interceptor';
     CommonModule,
     MenubarModule,
     InputTextModule,
-    SidebarModule ,
-    ButtonModule
+    SidebarModule,
+    ButtonModule,
+    InputSwitchModule,
+    FormsModule
+
   ], providers: [
     HttpClientModule,
     MessageService,
@@ -57,6 +61,7 @@ import { JwtInterceptor } from '../auth/jwt-interceptor';
     MultiSelectModule,
     HttpClientModule,
     ProgressBarModule,
+    InputSwitchModule
   ],
 
 })

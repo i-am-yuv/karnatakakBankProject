@@ -225,7 +225,7 @@
                 <!-- Circular -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed">
+                        *ngIf="!isCompressed" (click)="hyperlinkCircular()">
                         <img src="/assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;">
                         <div class="ml-3">
                             <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Circular</div>
@@ -241,7 +241,7 @@
                 <!-- Help desk -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed">
+                        *ngIf="!isCompressed" (click)="hyperlinkHelpdesk()">
                         <img src="/assets/streamline_customer-support-1.png" alt="Image"
                             style="width: 24px; height: 24px;">
                         <div class="ml-3">
@@ -840,7 +840,6 @@
             </p-sidebar>
         </div>
 
-
         <!-- Right Side Panel With Navbar -->
         <div class="bg-white w-full">
 
@@ -853,12 +852,13 @@
                     <i (click)="sidebarVisible = true" class="pi pi-bars"></i>
                 </div>
 
-
                 <div class="col-4 px-2 flex align-items-center justify-content-start" *ngIf="!isCompressed">
                     <p *ngIf="!isTabletView" class="" style="color: #141515; font-size: 32px; font-weight: 700;"
                         class="cursor-pointer" (click)="findDashboard()">My Portal</p>
+
                     <p *ngIf="isTabletView" class="" style="color: #141515; font-size: 18px; font-weight: 700;"
                         class="cursor-pointer" (click)="findDashboard()">My Portal</p>
+
                     <div *ngIf="this.role != 'CEO' && this.isTabletView == false"
                         class="flex align-items-center justify-content-center border-round-xl ml-3 px-2 py-1"
                         style=" background: #F9F785;">
@@ -911,9 +911,13 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="flex gap-5 mx-5" *ngIf="this.isTabletView == true">
                     <i class="pi pi-sign-in" (click)="checkInTime()"></i>
                     <i class="pi pi-sign-out" (click)="checkOutTime()"></i>
+
+                    <!-- For checkin and chekout using switch -->
+                    <!-- <p-inputSwitch [(ngModel)]="checkedIn"></p-inputSwitch> -->
                 </div>
 
                 <div *ngIf="this.isTabletView == false"
