@@ -53,12 +53,12 @@ export class LayoutComponent implements OnInit {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        console.log(latitude + "   " + longitude);
+        // console.log(latitude + "   " + longitude);
 
         this.checkIn.latitude = position.coords.latitude;
         this.checkIn.longitude = position.coords.longitude;
 
-        this.authService.docheckIn(this.checkIn).then((res: any) => {
+        this.authService.docheckIn(this.checkIn, latitude, longitude).then((res: any) => {
           this.isCheckIn = true;
           console.log(JSON.stringify(res));
           this.message.add({
@@ -69,15 +69,15 @@ export class LayoutComponent implements OnInit {
           });
         })
         // Using OpenStreetMap Nominatim API
-        const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+        // const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
 
-        this.http.get(apiUrl).subscribe((data: any) => {
-          this.locationName = data.display_name;
-          console.log('Location Name:', this.locationName);
+        // this.http.get(apiUrl).subscribe((data: any) => {
+        //   this.locationName = data.display_name;
+        //   console.log('Location Name:', this.locationName);
 
-        }, (error: any) => {
-          console.error('Nominatim API error:', error);
-        });
+        // }, (error: any) => {
+        //   console.error('Nominatim API error:', error);
+        // });
       },
         (error) => {
           console.error('Error getting geolocation:', error.message);
@@ -90,7 +90,7 @@ export class LayoutComponent implements OnInit {
 
   checkOutTime() {
     // this.checkedIn = false;
-    this.isCheckIn = true;
+    this.isCheckIn = false;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const latitude = position.coords.latitude;
@@ -113,15 +113,15 @@ export class LayoutComponent implements OnInit {
           });
         });
         // Using OpenStreetMap Nominatim API
-        const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+        // const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
 
-        this.http.get(apiUrl).subscribe((data: any) => {
-          this.locationName = data.display_name;
-          console.log('Location Name:', this.locationName);
+        // this.http.get(apiUrl).subscribe((data: any) => {
+        //   this.locationName = data.display_name;
+        //   console.log('Location Name:', this.locationName);
 
-        }, (error: any) => {
-          console.error('Nominatim API error:', error);
-        });
+        // }, (error: any) => {
+        //   console.error('Nominatim API error:', error);
+        // });
       },
         (error) => {
           console.error('Error getting geolocation:', error.message);

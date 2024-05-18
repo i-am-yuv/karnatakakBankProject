@@ -12,12 +12,16 @@ import { CheckIn } from '../shared/layout/checkkIn';
 export class AuthService {
 
   apiurl: string = environment.commonUrl;
-  
+
   constructor(private router: Router, private http: HttpClient, private message: MessageService) { }
 
-  async docheckIn(data: any) {
+  async docheckIn(data: any, l: any, la: any) {
+    console.log(JSON.stringify(data));
+    console.log(l);
+    console.log(la);
     var url = this.apiurl + '/kbldc/check-in';
     const chekcIn = await lastValueFrom(this.http.post<any>(url, data));
+
     return chekcIn;
   }
 
