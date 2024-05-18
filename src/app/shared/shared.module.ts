@@ -21,6 +21,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { JwtInterceptor } from '../auth/jwt-interceptor';
 import { InputSwitchModule } from 'primeng/inputswitch';
+// import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     SidebarModule,
     ButtonModule,
     InputSwitchModule,
-    FormsModule
+    FormsModule,
+    ToastModule
 
   ], providers: [
     HttpClientModule,
@@ -62,6 +64,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     HttpClientModule,
     ProgressBarModule,
     InputSwitchModule
+
   ],
 
 })

@@ -46,89 +46,147 @@ export class LayoutComponent implements OnInit {
   checkOut!: CheckOut;
 
   checkInTime() {
-    // this.checkedIn = true;
     this.isCheckIn = true;
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
 
-        // console.log(latitude + "   " + longitude);
+          console.log(latitude + "   " + longitude);
 
-        this.checkIn.latitude = position.coords.latitude;
-        this.checkIn.longitude = position.coords.longitude;
+          this.checkIn = {
+            "latitude": position.coords.latitude,
+            "longitude": position.coords.longitude,
+            "empId": this.authService.getUserName()
+          };
+          // this.checkIn.latitude = position.coords.latitude;
+          // this.checkIn.longitude = position.coords.longitude;
 
-        this.authService.docheckIn(this.checkIn, latitude, longitude).then((res: any) => {
-          this.isCheckIn = true;
-          console.log(JSON.stringify(res));
-          this.message.add({
-            severity: 'sucess',
-            summary: 'Successfully CheckedIn',
-            detail: 'Successfully CheckedIn',
-            life: 3000,
+          this.authService.docheckIn(this.checkIn).then((res: any) => {
+            if (res.status == 'fail') {
+              this.message.add({
+                severity: 'error',
+                summary: 'Error Checkout',
+                detail: res.msg,
+                life: 3000,
+              });
+            }
+            else {
+              this.isCheckIn = true;
+              console.log(JSON.stringify(res));
+              this.message.add({
+                severity: 'sucess',
+                summary: 'Successfully CheckedIn',
+                detail: 'Successfully CheckedIn',
+                life: 3000,
+              });
+            }
+
+          }).catch((e) => {
+            this.message.add({
+              severity: 'error',
+              summary: 'Successfully CheckedOut',
+              detail: 'Successfully CheckedOut',
+              life: 3000,
+            });
           });
-        })
-        // Using OpenStreetMap Nominatim API
-        // const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+          // // Using OpenStreetMap Nominatim API
+          // const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
 
-        // this.http.get(apiUrl).subscribe((data: any) => {
-        //   this.locationName = data.display_name;
-        //   console.log('Location Name:', this.locationName);
+          // this.http.get(apiUrl).subscribe(
+          //   (data: any) => {
+          //     this.locationName = data.display_name;
+          //     console.log('Location Name:', this.locationName);
 
-        // }, (error: any) => {
-        //   console.error('Nominatim API error:', error);
-        // });
-      },
+          //   },
+          //   (error: any) => {
+          //     console.error('Nominatim API error:', error);
+
+          //   }
+          // );
+        },
         (error) => {
           console.error('Error getting geolocation:', error.message);
-        });
-    }
-    else {
+
+        }
+      );
+    } else {
       console.error('Geolocation is not supported by this browser.');
+
     }
   }
 
   checkOutTime() {
-    // this.checkedIn = false;
-    this.isCheckIn = false;
+    this.isCheckIn = true;
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
 
-        console.log(latitude + "   " + longitude);
+          console.log(latitude + "   " + longitude);
 
 
-        this.checkOut.latitude = position.coords.latitude;
-        this.checkOut.longitude = position.coords.longitude;
+          this.checkOut = {
+            "latitude": position.coords.latitude,
+            "longitude": position.coords.longitude,
+            "empId": this.authService.getUserName()
+          };
 
-        this.authService.docheckOut(this.checkOut).then((res: any) => {
-          console.log(JSON.stringify(res));
-          this.isCheckIn = false;
-          this.message.add({
-            severity: 'sucess',
-            summary: 'Successfully CheckedOut',
-            detail: 'Successfully CheckedOut',
-            life: 3000,
+          console.log(JSON.stringify(this.checkOut))
+          this.authService.docheckOut(this.checkOut, position.coords.longitude, position.coords.latitude).then((res: any) => {
+            console.log(JSON.stringify(res));
+            if (res.status == 'fail') {
+              this.message.add({
+                severity: 'error',
+                summary: 'Error Checkout',
+                detail: res.msg,
+                life: 3000,
+              });
+            }
+            else {
+              this.isCheckIn = false;
+              this.message.add({
+                severity: 'sucess',
+                summary: 'Successfully CheckedOut',
+                detail: 'Successfully CheckedOut',
+                life: 3000,
+              });
+            }
+
+
+          }).catch((e) => {
+            this.message.add({
+              severity: 'error',
+              summary: 'Successfully CheckedOut',
+              detail: 'Successfully CheckedOut',
+              life: 3000,
+            });
           });
-        });
-        // Using OpenStreetMap Nominatim API
-        // const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+          // Using OpenStreetMap Nominatim API
+          // const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
 
-        // this.http.get(apiUrl).subscribe((data: any) => {
-        //   this.locationName = data.display_name;
-        //   console.log('Location Name:', this.locationName);
+          // this.http.get(apiUrl).subscribe(
+          //   (data: any) => {
+          //     this.locationName = data.display_name;
+          //     console.log('Location Name:', this.locationName);
 
-        // }, (error: any) => {
-        //   console.error('Nominatim API error:', error);
-        // });
-      },
+          //   },
+          //   (error: any) => {
+          //     console.error('Nominatim API error:', error);
+
+          //   }
+          // );
+        },
         (error) => {
           console.error('Error getting geolocation:', error.message);
-        });
-    }
-    else {
+
+        }
+      );
+    } else {
       console.error('Geolocation is not supported by this browser.');
+
     }
   }
 

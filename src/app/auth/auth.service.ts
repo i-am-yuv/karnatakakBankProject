@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CheckIn } from '../shared/layout/checkkIn';
+import { CheckIn, CheckOut } from '../shared/layout/checkkIn';
 
 @Injectable({
   providedIn: 'root'
@@ -15,18 +15,19 @@ export class AuthService {
 
   constructor(private router: Router, private http: HttpClient, private message: MessageService) { }
 
-  async docheckIn(data: any, l: any, la: any) {
-    console.log(JSON.stringify(data));
-    console.log(l);
-    console.log(la);
-    var url = this.apiurl + '/kbldc/check-in';
+  // Check in Api class
+  async docheckIn(data: any) {
+    var url = this.apiurl + 'api/attendance/check-in';
     const chekcIn = await lastValueFrom(this.http.post<any>(url, data));
-
     return chekcIn;
   }
 
-  async docheckOut(data: any) {
-    var url = this.apiurl + '/kbldc/check-out';
+  // Check out Api class
+  async docheckOut(data: CheckOut, lon: any, lat: any) {
+    // data.latitude=lat;
+    // data.longitude=lon;
+    alert(lon + "   " + lat + "  " + JSON.stringify(data));
+    var url = this.apiurl + 'api/attendance/check-out';
     const checkOut = await lastValueFrom(this.http.post<any>(url, data));
     return checkOut;
   }
