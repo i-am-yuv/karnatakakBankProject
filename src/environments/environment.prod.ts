@@ -1,4 +1,4 @@
 export const environment = {
-  commonUrl : 'http://172.16.217.81/kbldc/',
+  commonUrl : 'https://kbldcuat.ktkbank.com/kbldc/',
   production: true
 };
