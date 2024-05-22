@@ -290,7 +290,7 @@ alert("username == 'ramesh_splenta'>>>   "+(username == 'ramesh_splenta'));
       });
       this.router.navigate(["/dashboard/digital-team"]);
     }
-
+this.loading = false;
   }
 
 }
