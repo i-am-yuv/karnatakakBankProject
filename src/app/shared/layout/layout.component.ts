@@ -342,8 +342,8 @@ export class LayoutComponent implements OnInit {
 
           this.authService.docheckIn(this.checkIn).then((res: any) => {
             this.checkIn=res?.user?.checkIn;
-            if (res.status == 'fail') {
-              this.notifyError("Error In CheckIn");
+            if (res.status==false || res.status=="false") {
+              this.notifyError(res.msg);
               // this.message.add({
               //   severity: 'error',
               //   summary: 'Error In CheckIn',
@@ -355,7 +355,7 @@ export class LayoutComponent implements OnInit {
               this.isCheckIn = false;
               console.log(JSON.stringify(res));
 
-              this.notifySuccess("Successfully CheckedIn");
+              this.notifySuccess(res.msg);
               // this.message.add({
               //   severity: 'sucess',
               //   summary: 'Successfully CheckedIn',
@@ -425,9 +425,9 @@ export class LayoutComponent implements OnInit {
           this.authService.docheckOut(this.checkOut, position.coords.longitude, position.coords.latitude).then((res: any) => {
             console.log(JSON.stringify(res));
             this.checkOut=res?.user?.checkIn;
-            if (res.status == 'fail') {
+            if (res.status==false || res.status=="false") {
 
-              this.notifyError("Error In Checkout");
+              this.notifyError(res.msg);
               
               // this.message.add({
               //   severity: 'error',
@@ -439,7 +439,7 @@ export class LayoutComponent implements OnInit {
             }
             else {
               this.isCheckIn = true;
-              this.notifySuccess("Successfully CheckedOut");
+              this.notifySuccess(res.msg);
               // this.message.add({
               //   severity: 'sucess',
               //   summary: 'Successfully CheckedOut',
