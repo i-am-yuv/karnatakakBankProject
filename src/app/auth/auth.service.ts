@@ -26,7 +26,7 @@ export class AuthService {
   async docheckOut(data: CheckOut, lon: any, lat: any) {
     // data.latitude=lat;
     // data.longitude=lon;
-    alert(lon + "   " + lat + "  " + JSON.stringify(data));
+    //alert(lon + "   " + lat + "  " + JSON.stringify(data));
     var url = this.apiurl + 'api/attendance/check-out';
     const checkOut = await lastValueFrom(this.http.post<any>(url, data));
     return checkOut;
