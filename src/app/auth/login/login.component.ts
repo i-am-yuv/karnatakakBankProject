@@ -153,7 +153,7 @@ export class LoginComponent implements OnInit {
     this.loading = true; // loader 
     this.authService.authenticate(this.loginForm.value).then((res) => {
 
-      alert(JSON.stringify(res));
+      //alert(JSON.stringify(res));
       sessionStorage.setItem('token', res.jwt);
       sessionStorage.setItem('refreshToken', res.refreshToken);
       this.navigateToDashboard();
@@ -214,19 +214,19 @@ export class LoginComponent implements OnInit {
 
   navigateToDashboard() {
     
-      alert("navigateToDashboard");
+     // alert("navigateToDashboard");
       
 
     var username = this.authService.getUserName();
     var roles = this.authService.getRoles();
 
-    alert("navigateToDashboard>>>"+username+"   "+roles);
+  //  alert("navigateToDashboard>>>"+username+"   "+roles);
       
     //  alert(username);
     //  alert(roles);
 
-alert("username == 'ramesh_splenta'>>>   "+(username === 'ramesh_splenta'));
-    if (username === 'ramesh_splenta') {
+//alert("username == 'splenta_ramesh'>>>   "+(username === 'ramesh_splenta'));
+    if (username === 'splenta_ramesh') {
       sessionStorage.setItem('loginBy', "Ramesh");
       sessionStorage.setItem('loginRole', roles);
       this.message.add({
