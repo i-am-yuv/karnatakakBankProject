@@ -225,8 +225,8 @@ export class LoginComponent implements OnInit {
     //  alert(username);
     //  alert(roles);
 
-alert("username == 'ramesh_splenta'>>>   "+(username == 'ramesh_splenta'));
-    if (username == 'ramesh_splenta') {
+alert("username == 'ramesh_splenta'>>>   "+(username === 'ramesh_splenta'));
+    if (username === 'ramesh_splenta') {
       sessionStorage.setItem('loginBy', "Ramesh");
       sessionStorage.setItem('loginRole', roles);
       this.message.add({
