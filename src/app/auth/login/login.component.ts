@@ -156,7 +156,7 @@ export class LoginComponent implements OnInit {
       //alert(JSON.stringify(res));
       sessionStorage.setItem('token', res.jwt);
       sessionStorage.setItem('refreshToken', res.refreshToken);
-      this.navigateToDashboard();
+      this.navigateToDashboard(res);
     })
       .catch((err) => {
         
@@ -212,7 +212,7 @@ export class LoginComponent implements OnInit {
     )
   }
 
-  navigateToDashboard() {
+  navigateToDashboard(res:any) {
     
      // alert("navigateToDashboard");
       
@@ -227,7 +227,7 @@ export class LoginComponent implements OnInit {
 
 //alert("username == 'splenta_ramesh'>>>   "+(username === 'ramesh_splenta'));
     if (true) {
-      sessionStorage.setItem('loginBy',username);
+      sessionStorage.setItem('loginBy',res.displayName);
       sessionStorage.setItem('loginRole', roles);
       this.message.add({
         severity: 'success',
