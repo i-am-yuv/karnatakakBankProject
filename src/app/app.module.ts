@@ -9,6 +9,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './auth/jwt-interceptor';
 import { CommonModule } from '@angular/common';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,FullCalendarModule
   ],
   providers: [MessageService, HttpClientModule,
     ConfirmationService,

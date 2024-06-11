@@ -48,7 +48,7 @@
                         *ngIf="!isCompressed" (click)="findDashboard()">
                         <img src="/assets/dashboard_customize.png" alt="Image" style="width: 24px; height: 24px;">
                         <div class="ml-3">
-                            <div style="color: #92278F; font-weight: 700; font-size: 14px;">Dashboard
+                            <div style="color: #92278F; font-weight: 700; font-size: 14px;" class="cursor-pointer" routerLink="/dashboard">Dashboard
                             </div>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                 <!-- Calender -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed">
+                        *ngIf="!isCompressed" routerLink="/master/calender">
                         <img src="/assets/Group.png" alt="Image" style="width: 24px; height: 24px;">
                         <div class="ml-3">
                             <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Calender</div>
@@ -121,7 +121,7 @@
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
-                        *ngIf="isCompressed">
+                        *ngIf="isCompressed" >
                         <img src="/assets/Group.png" alt="Image" style="width: 24px; height: 24px;">
                     </div>
                 </div>
@@ -182,7 +182,7 @@
                 <!-- Document centre -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed">
+                        *ngIf="!isCompressed" (click)="hyperlinkDocumentCenter()"> 
                         <img src="/assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
                         <div class="ml-3">
                             <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Document
@@ -197,6 +197,22 @@
                     </div>
                 </div>
 
+                   <!-- Quick Links -->
+                   <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" routerLink="/master/quick-links"> 
+                        <img src="/assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
+                        <div class="ml-3">
+                            <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Quick Links
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed">
+                        <img src="/assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
+                    </div>
+                </div>
                 <!-- Secure Chat  -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
@@ -927,8 +943,11 @@
                     <img class="mr-2" src="/assets/ant-design_home-outlined.png" alt="Image"
                         style=" width: 24px; height: 24px;" (click)="findDashboard()" class="cursor-pointer">
 
-                    <img class="ml-2" src="/assets/notifications_none.png" alt="Image"
-                        style="  width: 24px; height: 24px;">
+                        <div style="position: relative; display: inline-block;">
+                            <img class="ml-2" src="/assets/notifications_none.png" alt="Image" class="cursor-pointer" [routerLink]="['/master/notification']" style="width: 24px; height: 24px;">
+                            <span *ngIf="totalRecords > 0" class="notification-count">{{ totalRecords > 99 ? '99+' : totalRecords }}</span>
+                          </div>
+                          
                 </div>
             </div>
 
@@ -941,4 +960,63 @@
 
     </div>
 </div>
+
+
+<p-dialog [(visible)]="timesheetDialog" [style]="{width: '450px'}" header="CheckIn" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="field">
+            <label for="username">user Name</label>
+            <input
+            type="text"
+            pInputText
+            name="username"
+            #username="ngModel"
+            [(ngModel)]="timesheet.username"
+            required
+            pattern="^[a-zA-Z]+$"
+            minlength="1"
+            maxlength="255"
+          />
+          <small class="p-error" *ngIf="submitted && !timesheet.username">User Name Required.</small>
+        </div>
+        <div class="field">
+            <label for="approvername">Approver Name</label>
+          <input
+            type="text"
+            pInputText
+            name="approvername"
+            #approvername="ngModel"
+            [(ngModel)]="timesheet.approvername"
+            required
+          />
+          <small class="p-error" *ngIf="submitted && !timesheet.approvername">Approver Name Required</small>
+        </div>
+        
+        <div class="field">
+            <label for="reason">Reason</label>
+          <input
+            type="text"
+            pInputText
+            name="reason"
+            #reason="ngModel"
+            [(ngModel)]="timesheet.reason"
+            required
+          />
+          <small class="p-error" *ngIf="submitted && !timesheet.reason">Reason Required</small>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple 
+        label="SendToAprover"
+        icon="pi pi-check"
+        (click)="sendToAprover(timesheet)" class="p-button-text"></button>
+
+    </ng-template>
+</p-dialog>
+
 <p-toast></p-toast>
+
+<p-confirmDialog></p-confirmDialog>

@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CheckIn, CheckOut } from '../shared/layout/checkkIn';
+import { CheckIn, CheckOut, TimeSheet } from '../shared/layout/checkkIn';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
 
   apiurl: string = environment.commonUrl;
 
@@ -21,7 +22,11 @@ export class AuthService {
     const chekcIn = await lastValueFrom(this.http.post<any>(url, data));
     return chekcIn;
   }
-
+  async sendToAprover(timesheet: TimeSheet) {
+    var url = this.apiurl + 'api/attendance/send-to-approver';
+    const chekcIn = await lastValueFrom(this.http.post<any>(url, timesheet));
+    return chekcIn;
+  }
   // Check out Api class
   async docheckOut(data: CheckOut, lon: any, lat: any) {
     // data.latitude=lat;

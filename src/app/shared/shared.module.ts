@@ -20,22 +20,28 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { JwtInterceptor } from '../auth/jwt-interceptor';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { ErrorMessageComponent } from './error-message/error-message.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 // import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
-    LayoutComponent
+    LayoutComponent,ErrorMessageComponent
   ],
   imports: [
     CommonModule,
     MenubarModule,
     InputTextModule,
     SidebarModule,
+    ConfirmDialogModule,
     ButtonModule,
     InputSwitchModule,
     FormsModule,
-    ToastModule
+    ToastModule,
+    DialogModule,
+    FullCalendarModule
 
   ], providers: [
     HttpClientModule,

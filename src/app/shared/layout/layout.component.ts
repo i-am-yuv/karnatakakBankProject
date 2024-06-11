@@ -262,8 +262,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-import { CheckIn, CheckOut } from './checkkIn';
-import { MessageService } from 'primeng/api';
+import { CheckIn, CheckOut, TimeSheet } from './checkkIn';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { NotificationService } from 'src/app/master/notification/notification.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-layout',
@@ -274,7 +276,7 @@ export class LayoutComponent implements OnInit {
 
   name: any;
   role: any;
-
+totalRecords:number=0;
   isCheckIn: boolean = true;
   // mobile view checkin and checkout state
   // checkedIn!: boolean;
@@ -282,12 +284,21 @@ export class LayoutComponent implements OnInit {
   extendBranchDetails = false;
   extendHRCorner = false;
 
-  constructor(private router: Router, private message: MessageService, private http: HttpClient, private authService: AuthService) { }
+  constructor(private router: Router,private messageService: MessageService,private notificationService:NotificationService,
+    private confirmationService: ConfirmationService, private message: MessageService, private http: HttpClient, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getLoginInfo();
     this.checkTabletView();
+    this.notificationService.getEmployeeLateRequests(0,1000000,'','ASC').then((res:any)=>{
 
+      res.content.forEach((element:any) => {
+        if(!element.reject && !element.approve){
+          this.totalRecords=this.totalRecords+1;
+        }
+      });
+      //this.totalRecords=res.totalElements;
+    });
     // if (this.checkedIn = true) {
     //   this.checkInTime();
     // }
@@ -298,7 +309,55 @@ export class LayoutComponent implements OnInit {
     this.role = sessionStorage.getItem('loginRole');
 
   }
+  timesheet!:TimeSheet;
+  timesheetDialog!:boolean;
+  submitted!: boolean;
+  sendToAprover(timesheet:TimeSheet){
 
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          console.log(latitude + "   " + longitude);
+          timesheet.latitude=position.coords.latitude;
+          timesheet.longitude=position.coords.longitude;
+          
+          this.authService.sendToAprover(timesheet).then((res:any)=>{
+
+            this.notifySuccess("Successfully Submitted for approval");
+            this.timesheetDialog=false;
+      
+          }).catch((err=>{
+            //alert(JSON.stringify(err));
+            this.notifyError("Something issue happend");
+          }));
+        },
+        (error) => {
+          console.error('Error getting geolocation:', error.message);
+
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+
+    }
+
+
+
+   
+  }
+  openNew() {
+    this.timesheet = {};
+    this.submitted = false;
+    this.timesheetDialog = true;
+  }
+  hideDialog() {
+    this.timesheetDialog = false;
+    this.submitted = false;
+  }
 
   locationName!: any;
   logintime!: any;
@@ -322,171 +381,213 @@ export class LayoutComponent implements OnInit {
       styleClass: 'custom-toast-center'
     });
   }
-  checkInTime() {
-    this.isCheckIn = false;
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
-
-          console.log(latitude + "   " + longitude);
-
-          this.checkIn = {
-            "latitude": position.coords.latitude,
-            "longitude": position.coords.longitude,
-            "empId": this.authService.getUserName()
-          };
-          // this.checkIn.latitude = position.coords.latitude;
-          // this.checkIn.longitude = position.coords.longitude;
-
-          this.authService.docheckIn(this.checkIn).then((res: any) => {
-            this.checkIn=res?.user?.checkIn;
-            if (res.status==false || res.status=="false") {
-              this.notifyError(res.msg);
-              // this.message.add({
-              //   severity: 'error',
-              //   summary: 'Error In CheckIn',
-              //   detail: res.msg,
-              //   life: 3000,
-              // });
-            }
-            else {
-              this.isCheckIn = false;
-              console.log(JSON.stringify(res));
-
-              this.notifySuccess(res.msg);
-              // this.message.add({
-              //   severity: 'sucess',
-              //   summary: 'Successfully CheckedIn',
-              //   detail: 'Successfully CheckedIn',
-              //   life: 3000,
-              //   styleClass: 'custom-toast-center'
-              // });
-            }
-
-          }).catch((e) => { 
-
-            alert(JSON.stringify(e));
-            this.notifyError("Issue Happend While CheckIn");
-              
-            // this.message.add({
-            //   severity: 'sucess',
-            //   summary: 'Successfully CheckedOut',
-            //   detail: 'Successfully CheckedOut',
-            //   styleClass: 'custom-toast-center',
-            //   life: 3000,
-            // });
-          });
-          // // Using OpenStreetMap Nominatim API
-          // const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
-
-          // this.http.get(apiUrl).subscribe(
-          //   (data: any) => {
-          //     this.locationName = data.display_name;
-          //     console.log('Location Name:', this.locationName);
-
-          //   },
-          //   (error: any) => {
-          //     console.error('Nominatim API error:', error);
-
-          //   }
-          // );
-        },
-        (error) => {
-          console.error('Error getting geolocation:', error.message);
-
-        }
-      );
-    } else {
-      console.error('Geolocation is not supported by this browser.');
-
-    }
+  notifyInfo(message: string) {
+    this.message.add({
+      severity: 'warn',
+      summary: 'Warning',
+      detail: message,
+      life: 1000,
+      styleClass: 'custom-toast-center-warning'
+    });
   }
 
-  checkOutTime() {
-    this.isCheckIn = true;
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
+  currentTime!: string;
+  checkInTimee!: Date;
+  isBeforeDeadline!: boolean;
+  checkInTime() {
 
-          console.log(latitude + "   " + longitude);
-
-
-          this.checkOut = {
-            "latitude": position.coords.latitude,
-            "longitude": position.coords.longitude,
-            "empId": this.authService.getUserName()
-          };
-
-          console.log(JSON.stringify(this.checkOut))
-          this.authService.docheckOut(this.checkOut, position.coords.longitude, position.coords.latitude).then((res: any) => {
-            console.log(JSON.stringify(res));
-            this.checkOut=res?.user?.checkIn;
-            if (res.status==false || res.status=="false") {
-
-              this.notifyError(res.msg);
-              
-              // this.message.add({
-              //   severity: 'error',
-              //   summary: 'Error Checkout',
-              //   detail: res.msg,
-              //   styleClass: 'custom-toast-center',
-              //   life: 3000,
-              // });
-            }
-            else {
-              this.isCheckIn = true;
-              this.notifySuccess(res.msg);
-              // this.message.add({
-              //   severity: 'sucess',
-              //   summary: 'Successfully CheckedOut',
-              //   detail: 'Successfully CheckedOut',
-              //   life: 3000,
-              //   styleClass: 'custom-toast-center'
-              // });
-            }
-
-
-          }).catch((e) => {
-
-            alert(JSON.stringify(e));
-            this.notifyError("Issue Happend While CheckedOut");
-              
-            // this.message.add({
-            //   severity: 'error',
-            //   summary: 'Successfully CheckedOut',
-            //   detail: 'Successfully CheckedOut',
-            //   life: 3000,
-            //   styleClass: 'custom-toast-center'
-            // });
-          });
-          // Using OpenStreetMap Nominatim API
-          // const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
-
-          // this.http.get(apiUrl).subscribe(
-          //   (data: any) => {
-          //     this.locationName = data.display_name;
-          //     console.log('Location Name:', this.locationName);
-
-          //   },
-          //   (error: any) => {
-          //     console.error('Nominatim API error:', error);
-
-          //   }
-          // );
-        },
-        (error) => {
-          console.error('Error getting geolocation:', error.message);
-
+    this.notificationService.checkAnyRequestExistByUser(this.authService.getUserName()).then((res:any)=>{
+      if(res){
+        this.notifyInfo("You have already raised checkin request so wait for approval ");
+        return;
+      }
+      else{
+        this.checkInTimee = new Date();
+        const deadline = new Date();
+        deadline.setHours(6, 15, 0, 0); // Set the deadline to 9:45 AM
+    
+        this.isBeforeDeadline = this.checkInTimee < deadline;
+        //on time
+        if(this.isBeforeDeadline){
+          this.isCheckIn = false;
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+      
+                console.log(latitude + "   " + longitude);
+      
+                this.checkIn = {
+                  "latitude": position.coords.latitude,
+                  "longitude": position.coords.longitude,
+                  "empId": this.authService.getUserName()
+                };
+                // this.checkIn.latitude = position.coords.latitude;
+                // this.checkIn.longitude = position.coords.longitude;
+      
+                this.authService.docheckIn(this.checkIn).then((res: any) => {
+                  this.checkIn=res?.user?.checkIn;
+                  if (res.status==false || res.status=="false") {
+                    this.notifyError(res.msg);
+                    // this.message.add({
+                    //   severity: 'error',
+                    //   summary: 'Error In CheckIn',
+                    //   detail: res.msg,
+                    //   life: 3000,
+                    // });
+                  }
+                  else {
+                    this.isCheckIn = false;
+                    console.log(JSON.stringify(res));
+      
+                    this.notifySuccess(res.msg);
+                    // this.message.add({
+                    //   severity: 'sucess',
+                    //   summary: 'Successfully CheckedIn',
+                    //   detail: 'Successfully CheckedIn',
+                    //   life: 3000,
+                    //   styleClass: 'custom-toast-center'
+                    // });
+                  }
+      
+                }).catch((e) => { 
+      
+                 this.notifyError("Issue Happend While CheckIn");
+                    
+                
+                });
+              },
+              (error) => {
+                console.error('Error getting geolocation:', error.message);
+      
+              }
+            );
+          } else {
+            console.error('Geolocation is not supported by this browser.');
+      
+          }
         }
-      );
-    } else {
-      console.error('Geolocation is not supported by this browser.');
+        else{
+          //check in time over so need to implement maker checker flow
+          this.notifyError("Your allowed checkin time has over so please submit request to your reporting manager");
+          this.timesheetDialog=true;
+          this.timesheet={};
+          this.timesheet.approvername="KH REDDY";
+          this.timesheet.username=this.authService.getUserName();
+    
+        }
+      }
+    });
+   
+  }
 
-    }
+  checkOutTimee!: Date;
+  checkOutTime() {
+
+
+
+    this.checkOutTimee = new Date();
+    const deadline = new Date();
+    deadline.setHours(18, 0o0, 0, 0); // Set the deadline to 6:00 PM
+
+    this.isBeforeDeadline = this.checkOutTimee < deadline;
+
+
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to Checkout?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+
+
+        this.isCheckIn = true;
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const latitude = position.coords.latitude;
+              const longitude = position.coords.longitude;
+    
+              console.log(latitude + "   " + longitude);
+    
+    
+              this.checkOut = {
+                "latitude": position.coords.latitude,
+                "longitude": position.coords.longitude,
+                "empId": this.authService.getUserName()
+              };
+    
+              console.log(JSON.stringify(this.checkOut))
+              this.authService.docheckOut(this.checkOut, position.coords.longitude, position.coords.latitude).then((res: any) => {
+                console.log(JSON.stringify(res));
+                this.checkOut=res?.user?.checkIn;
+                if (res.status==false || res.status=="false") {
+    
+                  this.notifyError(res.msg);
+                  
+                  // this.message.add({
+                  //   severity: 'error',
+                  //   summary: 'Error Checkout',
+                  //   detail: res.msg,
+                  //   styleClass: 'custom-toast-center',
+                  //   life: 3000,
+                  // });
+                }
+                else {
+                  this.isCheckIn = true;
+                  this.notifySuccess(res.msg);
+                  // this.message.add({
+                  //   severity: 'sucess',
+                  //   summary: 'Successfully CheckedOut',
+                  //   detail: 'Successfully CheckedOut',
+                  //   life: 3000,
+                  //   styleClass: 'custom-toast-center'
+                  // });
+                }
+    
+    
+              }).catch((e) => {
+    
+             
+                this.notifyError("Issue Happend While CheckedOut");
+                  
+                // this.message.add({
+                //   severity: 'error',
+                //   summary: 'Successfully CheckedOut',
+                //   detail: 'Successfully CheckedOut',
+                //   life: 3000,
+                //   styleClass: 'custom-toast-center'
+                // });
+              });
+              // Using OpenStreetMap Nominatim API
+              // const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+    
+              // this.http.get(apiUrl).subscribe(
+              //   (data: any) => {
+              //     this.locationName = data.display_name;
+              //     console.log('Location Name:', this.locationName);
+    
+              //   },
+              //   (error: any) => {
+              //     console.error('Nominatim API error:', error);
+    
+              //   }
+              // );
+            },
+            (error) => {
+              console.error('Error getting geolocation:', error.message);
+    
+            }
+          );
+        } else {
+          console.error('Geolocation is not supported by this browser.');
+    
+        }
+      },
+    });
+
+
+ 
   }
 
   findDashboard() {
@@ -544,14 +645,17 @@ export class LayoutComponent implements OnInit {
   sidebarVisible: boolean = false;
 
   hyperlinkCircular() {
-    const url = 'http://172.16.202.10:2080/kbldc/webapps/kdoc/out/out.ViewFolder.php';
+    const url = environment.hyperLinkCircular;
     window.open(url, '_blank');
   }
 
   hyperlinkHelpdesk() {
-    const url = 'http://172.16.202.111:8025/index.php';
+    const url = environment.helpDeskUrl;
     window.open(url, '_blank');
   }
-
+  hyperlinkDocumentCenter(){
+    const url = environment.fold;
+    window.open(url, '_blank');
+  }
 }
 

@@ -21,7 +21,7 @@ export class QuickLinksComponent implements OnInit {
   }
 
   hyperlinkHelpdesk() {
-    const url = environment.broms1;
+    const url = environment.broms1  ;
     window.open(url, '_blank');
   }
 }
