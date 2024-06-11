@@ -26,6 +26,7 @@ deploy-frontend:
     - "build-frontend"
   before_script:
     - apk add openssh-client
+    - apk add zip
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
