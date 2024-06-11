@@ -8,6 +8,7 @@ import { TodoListsComponent } from './todo-lists/todo-lists.component';
 import { NotificationComponent } from './notification/notification.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { QuickLinksComponent } from './quick-links/quick-links.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     ReportComponent,
     TodoListsComponent,
     NotificationComponent,
-    CalendarComponent
+    CalendarComponent,
+    QuickLinksComponent
   ],
   imports: [
     CommonModule,
