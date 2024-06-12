@@ -100,7 +100,7 @@ export class AuthService {
       jwt = atob(token!.split('.')[1]);
       jwt = JSON.parse(jwt);
     }
-    console.log("jwt>>> "+jwt);
+    console.log("jwt>>> "+JSON.stringify(jwt));
    
     return jwt.userDetails.id;
   }
