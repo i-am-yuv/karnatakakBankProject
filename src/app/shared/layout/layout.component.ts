@@ -279,7 +279,7 @@ export class LayoutComponent implements OnInit {
   name: any;
   role: any;
 totalRecords:number=0;
-  isCheckIn: boolean = true;
+  isCheckIn: boolean = false;
   // mobile view checkin and checkout state
   // checkedIn!: boolean;
 
