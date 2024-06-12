@@ -94,17 +94,20 @@ export class AuthService {
   getUserId(): string {
     const token = sessionStorage.getItem('token');
     let jwt: any = {};
-
+    console.log("token>>> "+token);
+    
     if (token) {
       jwt = atob(token!.split('.')[1]);
       jwt = JSON.parse(jwt);
     }
-
+    console.log("jwt>>> "+jwt);
+   
     return jwt.userDetails.id;
   }
 
   async getUser() {
     const currentUserId = this.getUserId();
+    console.log("currentUserId>>> "+currentUserId);
     var url = this.apiurl + 'api/user/get/' + encodeURIComponent(currentUserId);
     const user = await lastValueFrom(this.http.get<any>(url));
     return user;
