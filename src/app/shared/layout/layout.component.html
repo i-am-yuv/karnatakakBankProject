@@ -913,15 +913,26 @@
                     <div class="w-full border-round-sm flex align-items-center justify-content-between py-2"
                         style="height: 48px; background: #92278F;">
 
-                        <div class="cursor-pointer w-full h-full flex align-items-center justify-content-center border-round-xs mx-2"
-                            [ngClass]="{ 'bg-white' : isCheckIn }" (click)="checkInTime()">
-                            <p [ngClass]="{ 'selectedText' : isCheckIn , 'noneSelectedText' : !isCheckIn}"
+                        <div *ngIf="!isCheckIn"  class="cursor-pointer w-full h-full flex align-items-center justify-content-center border-round-xs mx-2"
+                            [ngClass]="{ 'bg-white' : !isCheckIn }" (click)="checkInTime()">
+                            <p [ngClass]="{ 'selectedText' : !isCheckIn , 'noneSelectedText' : isCheckIn}"
+                                style="font-size: 12px; font-weight: 700;">Checkin</p>
+                        </div>
+                        <div *ngIf="isCheckIn"  class="w-full h-full flex align-items-center justify-content-center border-round-xs mx-2"
+                           >
+                            <p [ngClass]="{ 'selectedText' : !isCheckIn , 'noneSelectedText' : isCheckIn}"
                                 style="font-size: 12px; font-weight: 700;">Checkin</p>
                         </div>
 
-                        <div class="cursor-pointer  w-full h-full flex align-items-center justify-content-center border-round-xs mx-2"
-                            [ngClass]="{ 'noneChecked' : !isCheckIn}" (click)="checkOutTime()">
-                            <p [ngClass]="{ 'selectedText' : !isCheckIn , 'noneSelectedText' : isCheckIn}"
+                        <div *ngIf="isCheckIn" class="cursor-pointer  w-full h-full flex align-items-center justify-content-center border-round-xs mx-2"
+                            [ngClass]="{ 'noneChecked' : !isCheckIn}" [ngClass]="{ 'bg-white' : isCheckIn }" (click)="checkOutTime()">
+                            <p [ngClass]="{ 'selectedText' : isCheckIn , 'noneSelectedText' : !isCheckIn}"
+                                style="font-size: 12px; font-weight: 700;">Checkout</p>
+                        </div>
+                        
+                        <div *ngIf="!isCheckIn" class="w-full h-full flex align-items-center justify-content-center border-round-xs mx-2"
+                            [ngClass]="{ 'noneChecked' : isCheckIn}">
+                            <p [ngClass]="{ 'selectedText' : isCheckIn , 'noneSelectedText' : !isCheckIn}"
                                 style="font-size: 12px; font-weight: 700;">Checkout</p>
                         </div>
                     </div>

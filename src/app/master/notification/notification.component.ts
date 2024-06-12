@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeLateRequest } from './notification';
 import { LazyLoadEvent, MessageService } from 'primeng/api';
 import { NotificationService } from './notification.service';
+import { SharedServiceService } from 'src/app/shared-service.service';
 
 @Component({
   selector: 'app-notification',
@@ -14,7 +15,7 @@ cols!:any;
   employeeLateRequests!:EmployeeLateRequest[];
   selectedEmployeeLateRequests!:any;
   totalRecords!:any;
-  constructor(private notificationService:NotificationService, private messageService: MessageService,) { }
+  constructor(private notificationService:NotificationService, private messageService: MessageService,private sharedServiceService:SharedServiceService) { }
 
   ngOnInit(): void {
     this.cols = [
@@ -35,7 +36,7 @@ cols!:any;
         detail: 'Successfully Approved',
         life: 3000,
       });
-
+this.sharedServiceService.callMethod();
       this.notificationService
       .getEmployeeLateRequests(this.pageNo, this.pageSize, this.sortField, this.sortDir)
       .then((data) => {

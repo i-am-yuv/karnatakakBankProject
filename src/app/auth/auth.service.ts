@@ -105,7 +105,7 @@ export class AuthService {
 
   async getUser() {
     const currentUserId = this.getUserId();
-    var url = this.apiurl + '/user/get/' + encodeURIComponent(currentUserId);
+    var url = this.apiurl + 'api/user/get/' + encodeURIComponent(currentUserId);
     const user = await lastValueFrom(this.http.get<any>(url));
     return user;
   }

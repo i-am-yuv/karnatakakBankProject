@@ -266,6 +266,8 @@ import { CheckIn, CheckOut, TimeSheet } from './checkkIn';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { NotificationService } from 'src/app/master/notification/notification.service';
 import { environment } from 'src/environments/environment';
+import { SharedServiceService } from 'src/app/shared-service.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-layout',
@@ -285,9 +287,15 @@ totalRecords:number=0;
   extendHRCorner = false;
 
   constructor(private router: Router,private messageService: MessageService,private notificationService:NotificationService,
-    private confirmationService: ConfirmationService, private message: MessageService, private http: HttpClient, private authService: AuthService) { }
+    private confirmationService: ConfirmationService, private message: MessageService, 
+    private http: HttpClient, private authService: AuthService,
+  private sharedService:SharedServiceService) { }
+  private subscription!: Subscription;
 
   ngOnInit(): void {
+    this.subscription = this.sharedService.methodCalled$.subscribe(() => {
+      this.fetchCheckInData();
+    });
     this.getLoginInfo();
     this.checkTabletView();
     this.notificationService.getEmployeeLateRequests(0,1000000,'','ASC').then((res:any)=>{
@@ -302,12 +310,21 @@ totalRecords:number=0;
     // if (this.checkedIn = true) {
     //   this.checkInTime();
     // }
-  }
 
+    
+  }
+  fetchCheckInData() {
+    this.authService.getUser().then((res)=>{
+      this.isCheckIn=res.checkIn;
+    })
+    // Add the logic you want to execute in Component B
+  }
   getLoginInfo() {
     this.name = sessionStorage.getItem('loginBy');
     this.role = sessionStorage.getItem('loginRole');
-
+    this.authService.getUser().then((res)=>{
+      this.isCheckIn=res.checkIn;
+    })
   }
   timesheet!:TimeSheet;
   timesheetDialog!:boolean;
@@ -409,7 +426,7 @@ totalRecords:number=0;
         this.isBeforeDeadline = this.checkInTimee < deadline;
         //on time
         if(this.isBeforeDeadline){
-          this.isCheckIn = false;
+         
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
               (position) => {
@@ -438,9 +455,9 @@ totalRecords:number=0;
                     // });
                   }
                   else {
-                    this.isCheckIn = false;
+                    this.isCheckIn = true;
                     console.log(JSON.stringify(res));
-      
+                   
                     this.notifySuccess(res.msg);
                     // this.message.add({
                     //   severity: 'sucess',
@@ -481,10 +498,39 @@ totalRecords:number=0;
     });
    
   }
-
+  //  isToday(date: Date): boolean {
+  //   const today = new Date();
+  
+  //   // Extract year, month, and day
+  //   const todayYear = today.getFullYear();
+  //   const todayMonth = today.getMonth();
+  //   const todayDay = today.getDate();
+  
+  //   const dateYear = date.getFullYear();
+  //   const dateMonth = date.getMonth();
+  //   const dateDay = date.getDate();
+  
+  //   // Compare year, month, and day
+  //   return todayYear === dateYear && todayMonth === dateMonth && todayDay === dateDay;
+  // }
   checkOutTimee!: Date;
   checkOutTime() {
 
+    // this.authService.getUser().then((res)=>{
+    //     if(res){
+    //       var checkoutTime=res.checkOutTime;
+    //       var isCheckout=res.checkout;
+
+    //         alert(this.isToday(checkoutTime) && isCheckout==true)
+    //       if(this.isToday(checkoutTime) && isCheckout==true){
+    //         this.notifyError("You have already checkedout for the day");
+    //         return;
+
+    //       }
+
+    //     }
+    // })
+    
 
 
     this.checkOutTimee = new Date();
@@ -534,7 +580,7 @@ totalRecords:number=0;
                   // });
                 }
                 else {
-                  this.isCheckIn = true;
+                  this.isCheckIn = false;
                   this.notifySuccess(res.msg);
                   // this.message.add({
                   //   severity: 'sucess',

@@ -160,7 +160,7 @@ export class LoginComponent implements OnInit {
     })
       .catch((err) => {
         
-      alert(JSON.stringify(err));
+      console.log("login error>>>>"+JSON.stringify(err));
         this.loading = false;
       })
   }

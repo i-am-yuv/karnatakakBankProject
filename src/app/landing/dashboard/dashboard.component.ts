@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { MasterService } from 'src/app/master/master.service';
 import { PrimeNGConfig } from 'primeng/api';
+import { SharedServiceService } from 'src/app/shared-service.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -133,17 +135,21 @@ export class DashboardComponent implements OnInit {
     }
   ];
 
-
+  subscription!:Subscription;
   name: any;
   role: any;
 
   isMobile!: boolean;
 
-  constructor(private masterService: MasterService, private primengConfig: PrimeNGConfig) {
+  constructor(private masterService: MasterService, private primengConfig: PrimeNGConfig,private sharedServiceService:SharedServiceService) {
 
   }
-
+  triggerComponentBMethod() {
+    this.sharedServiceService.callMethod();
+  }
   ngOnInit(): void {
+    
+    this.triggerComponentBMethod();
     this.getLoginInfo();
     this.getTodoList();
     this.rewardImagesDisplayIntervalTime();
