@@ -19,7 +19,7 @@ export const environment = {
   pos:"http://172.16.202.10/kbldc/webapps/posnet/",
   al_br:"http://kbldc.ktkbank.com/kbldc/webapps/adipage/Adipage_2/#secp",
   customer_info:"http://172.16.202.210:8023/",
-  return_cons:"",
+  return_cons:"http://172.16.202.10/kbldc/webcomps/rreturn/",
   branch_exc_directive:"http://172.16.202.10/kbldc/testapps/brdir/include/listbranch.php",
   pre_apr_card:"http://172.16.202.10/kbldc/webcomps/pacc/",
   returns:"http://172.16.202.10/kbldc/webcomps/rreturn/",
