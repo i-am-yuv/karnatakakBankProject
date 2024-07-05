@@ -237,6 +237,7 @@ export class LoginComponent implements OnInit {
       });
       setTimeout(() => {
         this.router.navigate(["/dashboard"]);
+        
       }, 2000);
     }
     else if (username == '9745899658') {
