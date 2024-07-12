@@ -2,11 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { EmployeeLateRequest } from './notification';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
+  
  
  
   apiurl: string = environment.commonUrl;
@@ -45,6 +47,15 @@ export class NotificationService {
     .then((data) => {
       return data;
     });
+  }
+  async checkLeaves(username: string) {
+    var url =
+    this.apiurl +
+    'api/leave/absencedata/'+encodeURIComponent(username);
+    
+    const leavedata = await lastValueFrom(this.http.get<any>(url));
+
+    return leavedata;
   }
   approveRequest(employeeLateRequest: EmployeeLateRequest) {
     var url =

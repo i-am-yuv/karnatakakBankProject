@@ -279,6 +279,7 @@ export class LayoutComponent implements OnInit {
   name: any;
   role: any;
 totalRecords:number=0;
+leaveData!:any;
   isCheckIn: boolean = false;
   // mobile view checkin and checkout state
   // checkedIn!: boolean;
@@ -296,6 +297,7 @@ totalRecords:number=0;
     this.subscription = this.sharedService.methodCalled$.subscribe(() => {
       this.fetchCheckInData();
     });
+
     this.getLoginInfo();
     this.checkTabletView();
     this.notificationService.getEmployeeLateRequests(0,1000000,'','ASC').then((res:any)=>{
@@ -412,7 +414,16 @@ totalRecords:number=0;
   checkInTimee!: Date;
   isBeforeDeadline!: boolean;
   checkInTime() {
-
+    this.notificationService.checkLeaves(this.authService.getUserName()).then((res)=>{
+      console.log("leaveData>>>"+JSON.stringify(res));
+      this.leaveData=res?.response?.employee?.date;
+      if(this.leaveData){
+        this.notifyInfo("You have leaves on "+this.leaveData+" dates so pelase go and update");
+      }
+      
+    }).catch((e)=>{
+      this.notifyError("Some Error occured while checking absentData");
+    });  
     this.notificationService.checkAnyRequestExistByUser(this.authService.getUserName()).then((res:any)=>{
       if(res){
         this.notifyInfo("You have already raised checkin request so wait for approval ");
