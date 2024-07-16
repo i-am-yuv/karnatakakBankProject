@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MasterService } from '../master.service';
+import { LayoutService } from 'src/app/shared/layout/layout.service';
 
 @Component({
   selector: 'app-report',
@@ -43,9 +44,10 @@ export class ReportComponent implements OnInit {
    
   
 
-  constructor(private masterService : MasterService) { }
+  constructor(private masterService : MasterService,private layoutService:LayoutService) { }
 
   ngOnInit(): void {
+    this.layoutService.getData('reports');
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuickLink } from './quicklink';
 import { QuicklinkService } from './quicklink.service';
+import { LayoutService } from 'src/app/shared/layout/layout.service';
 
 @Component({
   selector: 'app-quick-links',
@@ -10,9 +11,11 @@ import { QuicklinkService } from './quicklink.service';
 export class QuickLinksComponent implements OnInit {
   isMobile!: boolean;
   environments:any;
-  constructor(private quickLinkService:QuicklinkService) { }
+  constructor(private quickLinkService:QuicklinkService,private layoutService:LayoutService) { }
   quickLlinks:QuickLink[]=[];
   ngOnInit(): void {
+    
+    this.layoutService.getData('quick-links')
     this.checkScreenSize();
     window.addEventListener('resize', () => {
       this.checkScreenSize();

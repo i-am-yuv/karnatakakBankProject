@@ -9,6 +9,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { QuickLinksComponent } from './quick-links/quick-links.component';
+import { EmployeeAttendenceComponent } from './employee-attendence/employee-attendence.component';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { QuickLinksComponent } from './quick-links/quick-links.component';
     TodoListsComponent,
     NotificationComponent,
     CalendarComponent,
-    QuickLinksComponent
+    QuickLinksComponent,
+    EmployeeAttendenceComponent,
+
   ],
   imports: [
     CommonModule,
