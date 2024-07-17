@@ -1,0 +1,21 @@
+.present-button, .absent-button {
+    width: 95px;
+    height: 31px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.present-button.active {
+    background-color: green;
+    border-color: green;
+    color: #FFFFFF;
+}
+
+.absent-button.active {
+    background-color: red;
+    color: #FFFFFF;
+}
+
+.p-calendar {
+    margin-top: 10px;
+  }

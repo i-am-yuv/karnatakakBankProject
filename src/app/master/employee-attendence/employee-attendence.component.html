@@ -36,24 +36,38 @@
 
                     </div>
 
-                    <div style="font-size: 18px; font-weight: 400; color: #101828;border-radius: 9px;">
-                        <img src="assets/calendar_icon.png"
-                            style="margin-right:224px;width: 87px;height: 40px;border: 1px  #6D6D6D;border-radius: 8px;">
+                    <!-- <div style="font-size: 18px; font-weight: 400; color: #101828; border-radius: 9px;">
+                        <img src="assets/calendar_icon.png" (click)="showCalendar = !showCalendar"
+                            style="cursor: pointer; margin-right: 224px; width: 87px; height: 40px;  border-radius: 8px;">
 
+                        <p-calendar *ngIf="showCalendar" appendTo="body"></p-calendar>
+
+                        
+                    </div> -->
+                    <div style="font-size: 18px; font-weight: 400; color: #101828; border-radius: 9px;">
+                        <!-- <img src="assets/calendar_icon.png" (click)="showCalendar = !showCalendar"
+                            style="cursor: pointer; margin-right: 224px; width: 87px; height: 40px;  border-radius: 8px;"> -->
+
+                            <p-calendar 
+                            [showIcon]="true" 
+                            inputId="buttondisplay" 
+                            [showOnFocus]="false" ></p-calendar>
+                        
                     </div>
                 </div>
 
                 <!-- Table Starts From here -->
                 <div>
-                    <p-table [value]="users" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10, 20, 50]"
-                        [scrollable]="true">
+                    <p-table #dt [columns]="cols" [value]="users" [scrollable]="true"
+                        [globalFilterFields]="['userName','employeeId','status', 'role']">
                         <ng-template pTemplate="header">
                             <tr>
-                                <th style="background-color: #92278F;color: #FFFFFF;font-weight: 700;">Employee Name</th>
+                                <th style="background-color: #92278F;color: #FFFFFF;font-weight: 700;">Employee Name
+                                </th>
                                 <th style="background-color: #92278F;color: #FFFFFF;font-weight: 700;"> Employee Id
                                 </th>
                                 <th style="background-color: #92278F;color: #FFFFFF;font-weight: 700;">Status</th>
-                                
+
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-record let-rowIndex="rowIndex">
@@ -70,40 +84,74 @@
 
                                 </td>
                                 <td style="color: #6D6D6D;">{{ record.employeeId }}</td>
-                                
 
-                                <td>
+                                <!-- if checkin completed -->
+                                <td *ngIf="record.checkIn">
                                     <div class="flex gap-4" style="align-items: center; justify-content: start;">
-                                        <button class="" style="width: 95px;height: 31px;border-radius: 4px;background-color: #B0B0B0;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF;">Present</button>
-                                        <button class="" style="width: 95px;height: 31px;border-radius: 4px;color: #6D6D6D;font-size: 14px;">Absent</button>
-                                        <!-- <i class="pi pi-eye" style="color: #6D6D6D; cursor: pointer;" (click)="viewReport(record.fileName)"></i>
-                                        <i class="pi pi-download" style="color: #6D6D6D; cursor: pointer;"></i> -->
+                                        <button *ngIf="!record.present"
+                                            style="width: 95px;height: 31px;border-radius: 4px;background-color: #B0B0B0;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF;"
+                                            [disabled]="record.present  || record.absent"
+                                            (click)="presentData('present',record)">Present</button>
+                                        <!-- isPresent -->
+                                        <button *ngIf="record.present " class="" style="width: 95px;height: 31px;border-radius: 4px;background-color: #B0B0B0;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF; background-color: green;
+                                            border-color: green;
+                                            color: #FFFFFF;" [disabled]="record.present || record.absent "
+                                            (click)="presentData('present',record)">Present</button>
+
+
+
+
+                                        <button *ngIf="!record.absent"
+                                            style="width: 95px;height: 31px;border-radius: 4px;color: #6D6D6D;font-size: 14px;"
+                                            [disabled]="record.absent  || record.present"
+                                            (click)="presentData('absent',record)">Absent</button>
+
+
+
+                                        <button *ngIf="record.absent"
+                                            style="width: 95px;height: 31px;border-radius: 4px;background-color: red;color: #FFFFFF;font-size: 14px;"
+                                            [disabled]="record.absent  || record.present"
+                                            (click)="presentData('absent',record)">Absent</button>
                                     </div>
                                 </td>
-<!-- 
-                                <td *ngIf="record.status=='inactive'"
-                                    class="flex align-items-center justify-content-start">
-                                    <div class=" flex align-items-center justify-content-center p-1 mb-1"
-                                        style="font-size: 14px;font-weight:400; color:#344054;background-color: #BCBCBC;border-radius: 16px;align-items: center;text-align: center;width: 97px;border: 1px solid #BCBCBC;">
+                                <!-- if checkin not completed -->
+                                <td *ngIf="!record.checkIn">
+                                    <div class="flex gap-4" style="align-items: center; justify-content: start;">
+                                        <button *ngIf="!record.isPresent"
+                                            style="width: 95px;height: 31px;border-radius: 4px;background-color: #B0B0B0;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF;"
+                                            [disabled]="record.isPresent"
+                                            (click)="presentData('present',record)">Present</button>
+                                        <!-- isPresent -->
+                                        <button *ngIf="record.isPresent " class="" style="width: 95px;height: 31px;border-radius: 4px;background-color: #B0B0B0;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF; background-color: green;
+                                        border-color: green;
+                                        color: #FFFFFF;" [disabled]="record.isPresent"
+                                            (click)="presentData('present',record)">Present</button>
 
-                                        {{ record.status }}
+
+
+
+                                        <button *ngIf="!record.isAbsent"
+                                            style="width: 95px;height: 31px;border-radius: 4px;color: #6D6D6D;font-size: 14px;"
+                                            [disabled]="record.isAbsent"
+                                            (click)="presentData('absent',record)">Absent</button>
+
+
+
+                                        <button *ngIf="record.isAbsent"
+                                            style="width: 95px;height: 31px;border-radius: 4px;background-color: red;color: #FFFFFF;font-size: 14px;"
+                                            [disabled]="record.isAbsent"
+                                            (click)="presentData('absent',record)">Absent</button>
                                     </div>
                                 </td>
-                                <td *ngIf="record.status=='active'"
-                                    class="flex align-items-center justify-content-start">
-                                    <div class=" flex align-items-center justify-content-center p-1 mb-1"
-                                        style="font-size: 14px;font-weight:400; color:#FFFFFF;background-color: #22C55E;border-radius: 16px;align-items: center;text-align: center;width: 97px;border: 1px solid #16A34A;">
-
-                                        {{ record.status }}
-                                    </div>
-                                </td> -->
-
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="footer">
-                        <div class="flex justify-content-end w-fit mr-8 " style="background-color: #92278F;margin-top: 28px;float: inline-end;">
-                           <button class="" style="border-radius: 4px;width: 184px;height: 39px;background-color: #92278F;color:#FFFFFF;border: 1px #92278F;float: right;">Submit</button>
-                        </div>
+                            <div class="flex justify-content-end w-fit mr-8 "
+                                style="background-color: #92278F;margin-top: 28px;float: inline-end;">
+                                <button class=""
+                                    style="border-radius: 4px;width: 184px;height: 39px;background-color: #92278F;color:#FFFFFF;border: 1px #92278F;float: right;"
+                                    (click)="finalSweeperAttendenceSubmit()"> Submit</button>
+                            </div>
                         </ng-template>
                     </p-table>
 

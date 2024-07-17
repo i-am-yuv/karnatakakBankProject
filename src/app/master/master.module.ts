@@ -10,6 +10,9 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { QuickLinksComponent } from './quick-links/quick-links.component';
 import { EmployeeAttendenceComponent } from './employee-attendence/employee-attendence.component';
+import { CalendarModule } from 'primeng/calendar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -25,6 +28,7 @@ import { EmployeeAttendenceComponent } from './employee-attendence/employee-atte
   imports: [
     CommonModule,
     MasterRoutingModule,
+    CalendarModule,FormsModule,ReactiveFormsModule,
     SharedModule, FullCalendarModule
   ]
 })
