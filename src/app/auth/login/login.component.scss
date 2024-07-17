@@ -6,7 +6,7 @@
   display: inline-block;
   padding-right: 50px;
   padding-left: 0;
-  animation: moveText 2s linear infinite;
+  animation: moveText 2s linear reverse infinite;
   white-space: nowrap;
 }
 
@@ -99,4 +99,21 @@
   .col-5 {
     flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
   }
+}
+
+
+.custom-toast-center {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+.custom-toast-center-warning {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: #ffbf00;
 }

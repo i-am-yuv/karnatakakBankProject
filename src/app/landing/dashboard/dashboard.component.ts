@@ -4,6 +4,8 @@ import { MasterService } from 'src/app/master/master.service';
 import { PrimeNGConfig } from 'primeng/api';
 import { SharedServiceService } from 'src/app/shared-service.service';
 import { Subscription } from 'rxjs';
+import { LayoutService } from 'src/app/shared/layout/layout.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -141,7 +143,7 @@ export class DashboardComponent implements OnInit {
 
   isMobile!: boolean;
 
-  constructor(private masterService: MasterService, private primengConfig: PrimeNGConfig,private sharedServiceService:SharedServiceService) {
+  constructor(private layoutService:LayoutService,private masterService: MasterService, private primengConfig: PrimeNGConfig,private sharedServiceService:SharedServiceService) {
 
   }
   triggerComponentBMethod() {
@@ -160,6 +162,7 @@ export class DashboardComponent implements OnInit {
     window.addEventListener('resize', () => {
       this.checkScreenSize();
     });
+    this.layoutService.getData('dashboard');
   }
 
   checkScreenSize() {
@@ -243,4 +246,55 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+
+
+  openLink(type:any){
+    if(type=='branch details'){
+      const url = environment.branch_details;
+      window.open(url, '_blank');
+    }
+    else if(type=='branch performance'){
+      const url = environment.branch_performance;
+      window.open(url, '_blank');
+    }
+    else if(type=='payroll'){
+      const url = environment.payroll;
+      window.open(url, '_blank');
+    }
+    
+    else if(type=='leave'){
+      const url = environment.leave;
+      window.open(url, '_blank');
+    }
+    else if(type=='info'){
+      const url = environment.info;
+      window.open(url, '_blank');
+    }
+    
+    else if(type=='performance'){
+      const url = environment.performance;
+      window.open(url, '_blank');
+    }
+    else if(type=='reimbursement'){
+      const url = environment.reimbursement;
+      window.open(url, '_blank');
+    }
+
+    else if(type=='travel'){
+      const url = environment.travel;
+      window.open(url, '_blank');
+    }
+    else if(type=='ourJourney'){
+      const url = environment.ourJourney;
+      window.open(url, '_blank');
+    }
+    else if(type=='learningDev'){
+      const url = environment.learningDev;
+      window.open(url, '_blank');
+    }
+    else if(type=='rewardRec'){
+      const url = environment.rewardRec;
+      window.open(url, '_blank');
+    }
+  }
 }

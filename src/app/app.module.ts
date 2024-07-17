@@ -10,6 +10,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './auth/jwt-interceptor';
 import { CommonModule } from '@angular/common';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
-    CommonModule,FullCalendarModule
+    CommonModule,FullCalendarModule,FormsModule,ReactiveFormsModule,CalendarModule,
   ],
   providers: [MessageService, HttpClientModule,
     ConfirmationService,

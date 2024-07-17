@@ -259,7 +259,7 @@
 
 
 import { HttpClient } from '@angular/common/http';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { CheckIn, CheckOut, TimeSheet } from './checkkIn';
@@ -268,6 +268,7 @@ import { NotificationService } from 'src/app/master/notification/notification.se
 import { environment } from 'src/environments/environment';
 import { SharedServiceService } from 'src/app/shared-service.service';
 import { Subscription } from 'rxjs';
+import { LayoutService } from './layout.service';
 
 @Component({
   selector: 'app-layout',
@@ -286,18 +287,30 @@ leaveData!:any;
 
   extendBranchDetails = false;
   extendHRCorner = false;
-
-  constructor(private router: Router,private messageService: MessageService,private notificationService:NotificationService,
+  currentPage !: string ;
+  constructor(private cd: ChangeDetectorRef,private layoutS : LayoutService,private router: Router,private messageService: MessageService,private notificationService:NotificationService,
     private confirmationService: ConfirmationService, private message: MessageService, 
     private http: HttpClient, private authService: AuthService,
-  private sharedService:SharedServiceService) { }
+  private sharedService:SharedServiceService) { 
+    this.currentPage='';
+  }
   private subscription!: Subscription;
 
   ngOnInit(): void {
     this.subscription = this.sharedService.methodCalled$.subscribe(() => {
       this.fetchCheckInData();
     });
-
+    this.layoutS.currentPageData.subscribe(
+      (res)=>{
+          console.log(res);
+          this.currentPage=res;
+          this.cd.detectChanges();
+      },
+      (err)=>{
+         this.currentPage = 'dashboard';
+         this.cd.detectChanges();
+      }
+    )
     this.getLoginInfo();
     this.checkTabletView();
     this.notificationService.getEmployeeLateRequests(0,1000000,'','ASC').then((res:any)=>{
@@ -648,7 +661,9 @@ leaveData!:any;
   }
 
   findDashboard() {
-    if (this.name == 'Pooja') {
+    this.router.navigate(["/dashboard"]);
+    if
+     (this.name == 'Pooja') {
       this.router.navigate(["/dashboard"]);
     }
     else if (this.name == 'Narayanan') {
@@ -713,6 +728,56 @@ leaveData!:any;
   hyperlinkDocumentCenter(){
     const url = environment.fold;
     window.open(url, '_blank');
+  }
+
+  openLink(type:any){
+    if(type=='branch details'){
+      const url = environment.branch_details;
+      window.open(url, '_blank');
+    }
+    else if(type=='branch performance'){
+      const url = environment.branch_performance;
+      window.open(url, '_blank');
+    }
+    else if(type=='payroll'){
+      const url = environment.payroll;
+      window.open(url, '_blank');
+    }
+    
+    else if(type=='leave'){
+      const url = environment.leave;
+      window.open(url, '_blank');
+    }
+    else if(type=='info'){
+      const url = environment.info;
+      window.open(url, '_blank');
+    }
+    
+    else if(type=='performance'){
+      const url = environment.performance;
+      window.open(url, '_blank');
+    }
+    else if(type=='reimbursement'){
+      const url = environment.reimbursement;
+      window.open(url, '_blank');
+    }
+
+    else if(type=='travel'){
+      const url = environment.travel;
+      window.open(url, '_blank');
+    }
+    else if(type=='ourJourney'){
+      const url = environment.ourJourney;
+      window.open(url, '_blank');
+    }
+    else if(type=='learningDev'){
+      const url = environment.learningDev;
+      window.open(url, '_blank');
+    }
+    else if(type=='rewardRec'){
+      const url = environment.rewardRec;
+      window.open(url, '_blank');
+    }
   }
 }
 

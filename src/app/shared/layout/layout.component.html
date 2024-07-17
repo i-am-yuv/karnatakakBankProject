@@ -10,14 +10,14 @@
                     *ngIf="!isCompressed">
                     <img src="https://karnatakabank.com/sites/default/files/logo.gif" alt="Image"
                         style="width: 168px; height: auto;" class="cursor-pointer" (click)="findDashboard()">
-                    <img *ngIf="!isCompressed" class="cursor-pointer" src="/assets/menu_open.png" alt="Image"
+                    <img *ngIf="!isCompressed" class="cursor-pointer" src="assets/menu_open.png" alt="Image"
                         style="width: 24px; height: 24px;" (click)="togglePanel()">
                 </div>
 
                 <div class="flex align-items-center justify-content-around" style="height: 88px;" *ngIf="isCompressed">
-                    <!-- <img class="cursor-pointer" src="/assets/menu_open.png" alt="Image" style="width: 24px; height: 24px;"
+                    <!-- <img class="cursor-pointer" src="assets/menu_open.png" alt="Image" style="width: 24px; height: 24px;"
                     (click)="togglePanel()"> -->
-                    <img *ngIf="isCompressed" class="cursor-pointer" src="/assets/Vector (4).png" alt="Image"
+                    <img *ngIf="isCompressed" class="cursor-pointer" src="assets/Vector (4).png" alt="Image"
                         style="width: 20px; height: 16px;" (click)="togglePanel()">
                 </div>
 
@@ -25,7 +25,7 @@
                     <div class="flex align-items-center justify-content-between"
                         style="border-bottom:1px solid #E9EBF0;" *ngIf="!isCompressed">
                         <div class="flex align-items-center justify-content-start" (click)="findDashboard()">
-                            <img src="/assets/Avatar.png" alt="Image" style="width: 50px; height: auto;"
+                            <img src="assets/Avatar.png" alt="Image" style="width: 50px; height: auto;"
                                 class="cursor-pointer">
                             <div class="ml-3" style="width: inherit;">
                                 <p style="color: #92278F;font-weight: 700;font-size: 12px;">{{name}}</p>
@@ -33,12 +33,12 @@
                             </div>
                         </div>
                         <div class="text-right">
-                            <img src="/assets/unfold_more.png" alt="Image" style="width: 24px; height: 24px;">
+                            <img src="assets/unfold_more.png" alt="Image" style="width: 24px; height: 24px;">
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-around mx-2" *ngIf="isCompressed">
-                        <img src="/assets/Avatar.png" alt="Image" style="width: 50px; height: auto;">
+                        <img src="assets/Avatar.png" alt="Image" style="width: 50px; height: auto;">
                     </div>
                 </div>
 
@@ -46,51 +46,53 @@
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed" (click)="findDashboard()">
-                        <img src="/assets/dashboard_customize.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img [ngClass]="{ selectedTab : this.currentPage ==='dashboard' , unselectedTab : this.currentPage !=='dashboard' }" src="assets/dahsboard_icon.png" alt="Image" style="width: 20px; height: 20px;">
                         <div class="ml-3">
-                            <div style="color: #92278F; font-weight: 700; font-size: 14px;" class="cursor-pointer" routerLink="/dashboard">Dashboard
+                            <div  [ngClass]="{ selectedTab : this.currentPage ==='dashboard' , unselectedTab : this.currentPage !=='dashboard' }" style=" font-weight: 700; font-size: 14px;" class="cursor-pointer" routerLink="/dashboard">Dashboard
                             </div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed" (click)="findDashboard()">
-                        <img src="/assets/dashboard_customize.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img src="assets/dashboard_customize.png" alt="Image" style="width: 24px; height: 24px;">
                     </div>
                 </div>
 
                 <!-- To do list -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed" routerLink="/master/todo-lists">
-                        <img src="/assets/fluent_notepad-edit-16-regular.png" alt="Image"
-                            style="width: 24px; height: 24px;">
-                        <div class="ml-3">
-                            <div style="color: #6D6D6D; font-weight: 700; font-size: 14px; ">To do list
-                            </div>
+                         *ngIf="!isCompressed" routerLink="/master/todo-lists">
+                      <img [ngClass]="{ selectedTab : currentPage === 'to-do-list' , unselectedTab : currentPage !== 'to-do-list' }" src="assets/fluent_notepad-edit-16-regular.png" alt="Image"
+                           style="width: 24px; height: 24px;">
+                      <div class="ml-3">
+                        <div [ngClass]="{ selectedTab : currentPage === 'to-do-list' , unselectedTab : currentPage !== 'to-do-list' }" style="font-weight: 700; font-size: 14px;">
+                          To do list
                         </div>
+                      </div>
                     </div>
-
+                  
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
-                        *ngIf="isCompressed" routerLink="/master/todo-lists">
-                        <img src="/assets/fluent_notepad-edit-16-regular.png" alt="Image"
-                            style="width: 24px; height: 24px;">
+                         *ngIf="isCompressed" routerLink="/master/todo-lists">
+                      <img src="assets/fluent_notepad-edit-16-regular.png" alt="Image"
+                           style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : currentPage === 'to-do-list' , unselectedTab : currentPage !== 'to-do-list' }">
                     </div>
-                </div>
+                  </div>
+                  
 
                 <!-- Updates -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed">
-                        <img src="/assets/access_time.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img src="assets/access_time.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='update' , unselectedTab : this.currentPage!=='update' }">
                         <div class="ml-3">
-                            <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Updates</div>
+                            <div style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='update' , unselectedTab : this.currentPage!=='update' }">Updates</div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="/assets/access_time.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img src="assets/access_time.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='update' , unselectedTab : this.currentPage!=='update' }">
                     </div>
                 </div>
 
@@ -98,15 +100,15 @@
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed" routerLink="/master/report">
-                        <img src="/assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='reports' , unselectedTab : this.currentPage!=='reports' }">
                         <div class="ml-3">
-                            <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Reports</div>
+                            <div style="font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='reports' , unselectedTab : this.currentPage!=='reports' }">Reports</div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed" routerLink="/master/report">
-                        <img src="/assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='reports' , unselectedTab : this.currentPage!=='reports' }">
                     </div>
                 </div>
 
@@ -114,15 +116,15 @@
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed" routerLink="/master/calender">
-                        <img src="/assets/Group.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img src="assets/Group.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='calendar' , unselectedTab : this.currentPage!=='calendar' }">
                         <div class="ml-3">
-                            <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Calender</div>
+                            <div style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='calendar' , unselectedTab : this.currentPage!=='calendar' }">Calender</div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed" >
-                        <img src="/assets/Group.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img src="assets/Group.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='calendar' , unselectedTab : this.currentPage!=='calendar' }">
                     </div>
                 </div>
 
@@ -130,16 +132,16 @@
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed">
-                        <img src="/assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img src="assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='customer-insights' , unselectedTab : this.currentPage!=='customer-insights' }">
                         <div class="ml-3">
-                            <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Customer
+                            <div style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='customer-insights' , unselectedTab : this.currentPage!=='customer-insights' }">Customer
                                 insights</div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="/assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img src="assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='customer-insights' , unselectedTab : this.currentPage!=='customer-insights' }">
                     </div>
                 </div>
 
@@ -147,16 +149,16 @@
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed">
-                        <img src="/assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img src="assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='news' , unselectedTab : this.currentPage!=='news' }">
                         <div class="ml-3">
-                            <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Events & news
+                            <div style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='news' , unselectedTab : this.currentPage!=='news' }">Events & news
                             </div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="/assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img src="assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='news' , unselectedTab : this.currentPage!=='news' }">
                     </div>
                 </div>
 
@@ -164,18 +166,18 @@
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed">
-                        <img src="/assets/icon-park-outline_message-security (1).png" alt="Image"
-                            style="width: 24px; height: 24px;">
+                        <img src="assets/icon-park-outline_message-security (1).png" alt="Image"
+                            style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='people-connect' , unselectedTab : this.currentPage!=='people-connect' }">
                         <div class="ml-3">
-                            <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">People connect
+                            <div style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='people-connect' , unselectedTab : this.currentPage!=='people-connect' }">People connect
                             </div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="/assets/icon-park-outline_message-security (1).png" alt="Image"
-                            style="width: 24px; height: 24px;">
+                        <img src="assets/icon-park-outline_message-security (1).png" alt="Image"
+                            style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='people-connect' , unselectedTab : this.currentPage!=='people-connect' }">
                     </div>
                 </div>
 
@@ -183,9 +185,9 @@
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed" (click)="hyperlinkDocumentCenter()"> 
-                        <img src="/assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='document-center' , unselectedTab : this.currentPage!=='document-center' }">
                         <div class="ml-3">
-                            <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Document
+                            <div style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='document-center' , unselectedTab : this.currentPage!=='document-center' }">Document
                                 centre
                             </div>
                         </div>
@@ -193,46 +195,63 @@
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="/assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='document-center' , unselectedTab : this.currentPage!=='document-center' }">
                     </div>
                 </div>
 
                    <!-- Quick Links -->
                    <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed" routerLink="/master/quick-links"> 
-                        <img src="/assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
+                        *ngIf="!isCompressed" routerLink="/master/quick-links" [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }"> 
+                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">
                         <div class="ml-3">
-                            <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Quick Links
+                            <div style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">Quick Links
                             </div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="/assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">
+                    </div>
+                </div>
+
+                <!-- Employee-attendence -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" routerLink="/master/employee-attendence"> 
+                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='employee-attendence' , unselectedTab : this.currentPage!=='employee-attendence' }">
+                        <div class="ml-3">
+                            <div [ngClass]="{selectedTab : this.currentPage=='users' , unselectedTab: this.currentPage!='users' }" style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='employee-attendence' , unselectedTab : this.currentPage!=='employee-attendence' }"> Employee Attendence 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed">
+                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='employee-attendence' , unselectedTab : this.currentPage!=='employee-attendence' }">
                     </div>
                 </div>
                 <!-- Secure Chat  -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed">
-                        <img src="/assets/material-symbols_chat-outline.png" alt="Image"
-                            style="width: 24px; height: 24px;">
+                        <img src="assets/material-symbols_chat-outline.png" alt="Image"
+                            style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='secure-chat' , unselectedTab : this.currentPage!=='secure-chat' }">
                         <div class="ml-3">
-                            <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Secure Chat
+                            <div style="font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='secure-chat' , unselectedTab : this.currentPage!=='secure-chat' }">Secure Chat
                             </div>
                         </div>
                         <div
                             style="width: 24px; height: 24px; margin-left: 12px;
-                                  display: flex; align-items: center;justify-content: center;  padding: 3px; background: #F9D4FF; border-radius: 50%;">
+                                  display: flex; align-items: center;justify-content: center;  padding: 3px; background: #F9D4FF; border-radius: 50%;" [ngClass]="{ selectedTab : this.currentPage==='secure-chat' , unselectedTab : this.currentPage!=='secure-chat' }">
                             <p style="color: #92278F; font-weight: 700; font-size: 12px; ">21</p>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="/assets/material-symbols_chat-outline.png" alt="Image"
+                        <img src="assets/material-symbols_chat-outline.png" alt="Image"
                             style="width: 24px; height: 24px;">
                     </div>
                 </div>
@@ -241,15 +260,15 @@
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed" (click)="hyperlinkCircular()">
-                        <img src="/assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img src="assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='circular' , unselectedTab : this.currentPage!=='circular' }">
                         <div class="ml-3">
-                            <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Circular</div>
+                            <div [ngClass]="{selectedTab : this.currentPage=='users' , unselectedTab: this.currentPage!='users' }" style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='circular' , unselectedTab : this.currentPage!=='circular' }">Circular</div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="/assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;">
+                        <img src="assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='circular' , unselectedTab : this.currentPage!=='circular' }">
                     </div>
                 </div>
 
@@ -257,18 +276,18 @@
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed" (click)="hyperlinkHelpdesk()">
-                        <img src="/assets/streamline_customer-support-1.png" alt="Image"
-                            style="width: 24px; height: 24px;">
+                        <img src="assets/streamline_customer-support-1.png" alt="Image"
+                            style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='helpdesk' , unselectedTab : this.currentPage!=='helpdesk' }">
                         <div class="ml-3">
-                            <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Help desk
+                            <div style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='helpdesk' , unselectedTab : this.currentPage!=='helpdesk' }">Help desk
                             </div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="/assets/streamline_customer-support-1.png" alt="Image"
-                            style="width: 24px; height: 24px;">
+                        <img src="assets/streamline_customer-support-1.png" alt="Image"
+                            style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='helpdesk' , unselectedTab : this.currentPage!=='helpdesk' }">
                     </div>
                 </div>
 
@@ -302,11 +321,11 @@
                         <!-- Branch Details -->
                         <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
-                                *ngIf="!isCompressed">
-                                <img src="/assets/branch details icon.png" alt="Image"
+                                *ngIf="!isCompressed" (click)="openLink('branch details')">
+                                <img src="assets/branch details icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Branch
+                                    <div style=" font-weight: 700; font-size: 14px;">Branch
                                         Details
                                     </div>
                                 </div>
@@ -314,7 +333,7 @@
 
                             <div class="flex align-items-center justify-content-start cursor-pointer mx-4 mt-4"
                                 *ngIf="isCompressed">
-                                <img src="/assets/branch details icon.png" alt="Image"
+                                <img src="assets/branch details icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                             </div>
                         </div>
@@ -322,11 +341,11 @@
                         <!-- Branch Performance -->
                         <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
-                                *ngIf="!isCompressed">
-                                <img src="/assets/branch performance icon.png" alt="Image"
+                                *ngIf="!isCompressed" (click)="openLink('branch performance')">
+                                <img src="assets/branch performance icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Branch
+                                    <div style=" font-weight: 700; font-size: 14px;">Branch
                                         Performance
                                     </div>
                                 </div>
@@ -334,7 +353,7 @@
 
                             <div class="flex align-items-center justify-content-start cursor-pointer mx-4 mt-4"
                                 *ngIf="isCompressed">
-                                <img src="/assets/branch performance icon.png" alt="Image"
+                                <img src="assets/branch performance icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                             </div>
                         </div>
@@ -373,10 +392,10 @@
                         <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
                                 *ngIf="!isCompressed">
-                                <img src="/assets/my attendance icon.png" alt="Image"
+                                <img src="assets/my attendance icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">My
+                                    <div style=" font-weight: 700; font-size: 14px;">My
                                         attendance
                                     </div>
                                 </div>
@@ -384,7 +403,7 @@
 
                             <div class="flex align-items-center justify-content-start cursor-pointer mx-4 mt-4"
                                 *ngIf="isCompressed">
-                                <img src="/assets/my attendance icon.png" alt="Image"
+                                <img src="assets/my attendance icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                             </div>
                         </div>
@@ -392,10 +411,10 @@
                         <!-- My Leave -->
                         <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
-                                *ngIf="!isCompressed">
-                                <img src="/assets/my leave icon.png" alt="Image" style="width: 24px; height: 24px;">
+                                *ngIf="!isCompressed" (click)="openLink('leave')">
+                                <img src="assets/my leave icon.png" alt="Image" style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">My
+                                    <div style=" font-weight: 700; font-size: 14px;">My
                                         leave
                                     </div>
                                 </div>
@@ -403,18 +422,18 @@
 
                             <div class="flex align-items-center justify-content-start cursor-pointer mx-4 mt-4"
                                 *ngIf="isCompressed">
-                                <img src="/assets/my leave icon.png" alt="Image" style="width: 24px; height: 24px;">
+                                <img src="assets/my leave icon.png" alt="Image" style="width: 24px; height: 24px;">
                             </div>
                         </div>
 
                         <!-- My Reimbursement -->
                         <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
-                                *ngIf="!isCompressed">
-                                <img src="/assets/my reimbursement icon.png" alt="Image"
+                                *ngIf="!isCompressed" (click)="openLink('reimbursement')">
+                                <img src="assets/my reimbursement icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">My
+                                    <div style=" font-weight: 700; font-size: 14px;">My
                                         Reimbursement
                                     </div>
                                 </div>
@@ -422,7 +441,7 @@
 
                             <div class="flex align-items-center justify-content-start cursor-pointer mx-4 mt-4"
                                 *ngIf="isCompressed">
-                                <img src="/assets/my reimbursement icon.png" alt="Image"
+                                <img src="assets/my reimbursement icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                             </div>
                         </div>
@@ -430,11 +449,11 @@
                         <!-- My Payroll Info -->
                         <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
-                                *ngIf="!isCompressed">
-                                <img src="/assets/my payroll info icon.png" alt="Image"
+                                *ngIf="!isCompressed" (click)="openLink('payroll')">
+                                <img src="assets/my payroll info icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">My
+                                    <div style=" font-weight: 700; font-size: 14px;">My
                                         payroll info
                                     </div>
                                 </div>
@@ -442,7 +461,7 @@
 
                             <div class="flex align-items-center justify-content-start cursor-pointer mx-4 mt-4"
                                 *ngIf="isCompressed">
-                                <img src="/assets/my payroll info icon.png" alt="Image"
+                                <img src="assets/my payroll info icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                             </div>
                         </div>
@@ -451,9 +470,9 @@
                         <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
                                 *ngIf="!isCompressed">
-                                <img src="/assets/my referrals icon.png" alt="Image" style="width: 24px; height: 24px;">
+                                <img src="assets/my referrals icon.png" alt="Image" style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">My
+                                    <div style=" font-weight: 700; font-size: 14px;">My
                                         Referrals
                                     </div>
                                 </div>
@@ -461,18 +480,18 @@
 
                             <div class="flex align-items-center justify-content-start cursor-pointer mx-4 mt-4"
                                 *ngIf="isCompressed">
-                                <img src="/assets/my referrals icon.png" alt="Image" style="width: 24px; height: 24px;">
+                                <img src="assets/my referrals icon.png" alt="Image" style="width: 24px; height: 24px;">
                             </div>
                         </div>
 
                         <!-- My Performance -->
                         <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
-                                *ngIf="!isCompressed">
-                                <img src="/assets/my performance icon.png" alt="Image"
+                                *ngIf="!isCompressed" (click)="openLink('performance')">
+                                <img src="assets/my performance icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">My
+                                    <div style=" font-weight: 700; font-size: 14px;">My
                                         Performance
                                     </div>
                                 </div>
@@ -480,7 +499,7 @@
 
                             <div class="flex align-items-center justify-content-start cursor-pointer mx-4 mt-4"
                                 *ngIf="isCompressed">
-                                <img src="/assets/my performance icon.png" alt="Image"
+                                <img src="assets/my performance icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                             </div>
                         </div>
@@ -488,10 +507,10 @@
                         <!-- My Travel -->
                         <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
-                                *ngIf="!isCompressed">
-                                <img src="/assets/my travel icon.png" alt="Image" style="width: 24px; height: 24px;">
+                                *ngIf="!isCompressed" (click)="openLink('travel')">
+                                <img src="assets/my travel icon.png" alt="Image" style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">My
+                                    <div style=" font-weight: 700; font-size: 14px;">My
                                         Travel
                                     </div>
                                 </div>
@@ -499,7 +518,7 @@
 
                             <div class="flex align-items-center justify-content-start cursor-pointer mx-4 mt-4"
                                 *ngIf="isCompressed">
-                                <img src="/assets/my travel icon.png" alt="Image" style="width: 24px; height: 24px;">
+                                <img src="assets/my travel icon.png" alt="Image" style="width: 24px; height: 24px;">
                             </div>
                         </div>
 
@@ -511,7 +530,7 @@
                     <div class="bg-white cursor-pointer" routerLink="/"
                         style="width: 15%; height: 60px; position: fixed; bottom: 0;" *ngIf="!isCompressed">
                         <div class="flex align-items-center justify-content-center mx-2 mt-4">
-                            <img src="/assets/material-symbols_logout.png" alt="Image"
+                            <img src="assets/material-symbols_logout.png" alt="Image"
                                 style="width: 24px; height: 24px;">
                             <div style="color: #92278F; font-weight: 700; font-size: 14px; margin-left: 16px;">Logout
                             </div>
@@ -522,7 +541,7 @@
                         style="height: 60px; position: fixed; bottom: 0; border-right:1px solid #E9EBF0; border-top:1px solid #E9EBF0;"
                         *ngIf="isCompressed" routerLink="/">
                         <div class="flex align-items-center justify-content-center mx-4 mt-4">
-                            <img src="/assets/material-symbols_logout.png" alt="Image"
+                            <img src="assets/material-symbols_logout.png" alt="Image"
                                 style="width: 24px; height: 24px;">
                         </div>
                     </div>
@@ -538,7 +557,7 @@
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                             (click)="findDashboard()">
-                            <img src="/assets/dashboard_customize.png" alt="Image" style="width: 24px; height: 24px;">
+                            <img src="assets/dahsboard_icon.png" alt="Image" style="width: 24px; height: 24px;">
                             <div class="ml-3">
                                 <div style="color: #92278F; font-weight: 700; font-size: 14px;">Dashboard
                                 </div>
@@ -550,10 +569,10 @@
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                             routerLink="/master/todo-lists" (click)="this.sidebarVisible=false">
-                            <img src="/assets/fluent_notepad-edit-16-regular.png" alt="Image"
-                                style="width: 24px; height: 24px;">
+                            <img src="assets/fluent_notepad-edit-16-regular.png" alt="Image"
+                                style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='to-do-list' , unselectedTab : this.currentPage!=='to-do-list' }">
                             <div class="ml-3">
-                                <div style="color: #6D6D6D; font-weight: 700; font-size: 14px; ">To do list
+                                <div style=" font-weight: 700; font-size: 14px; " [ngClass]="{ selectedTab : this.currentPage==='to-do-list' , unselectedTab : this.currentPage!=='to-do-list' }">To do list
                                 </div>
                             </div>
                         </div>
@@ -562,9 +581,9 @@
                     <!-- Updates -->
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
-                            <img src="/assets/access_time.png" alt="Image" style="width: 24px; height: 24px;">
+                            <img src="assets/access_time.png" alt="Image" style="width: 24px; height: 24px;">
                             <div class="ml-3">
-                                <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Updates</div>
+                                <div style=" font-weight: 700; font-size: 14px;">Updates</div>
                             </div>
                         </div>
                     </div>
@@ -573,9 +592,9 @@
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                             routerLink="/master/report" (click)="this.sidebarVisible=false">
-                            <img src="/assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;">
+                            <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;">
                             <div class="ml-3">
-                                <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Reports</div>
+                                <div style=" font-weight: 700; font-size: 14px;">Reports</div>
                             </div>
                         </div>
 
@@ -584,9 +603,9 @@
                     <!-- Calender -->
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
-                            <img src="/assets/Group.png" alt="Image" style="width: 24px; height: 24px;">
+                            <img src="assets/Group.png" alt="Image" style="width: 24px; height: 24px;">
                             <div class="ml-3">
-                                <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Calender</div>
+                                <div style=" font-weight: 700; font-size: 14px;">Calender</div>
                             </div>
                         </div>
                     </div>
@@ -594,9 +613,9 @@
                     <!-- Customer insights -->
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
-                            <img src="/assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;">
+                            <img src="assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;">
                             <div class="ml-3">
-                                <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Customer
+                                <div style=" font-weight: 700; font-size: 14px;">Customer
                                     insights</div>
                             </div>
                         </div>
@@ -606,9 +625,9 @@
                     <!-- Events & news -->
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
-                            <img src="/assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;">
+                            <img src="assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;">
                             <div class="ml-3">
-                                <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Events & news
+                                <div style=" font-weight: 700; font-size: 14px;">Events & news
                                 </div>
                             </div>
                         </div>
@@ -617,10 +636,10 @@
                     <!-- People connect -->
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
-                            <img src="/assets/icon-park-outline_message-security (1).png" alt="Image"
+                            <img src="assets/icon-park-outline_message-security (1).png" alt="Image"
                                 style="width: 24px; height: 24px;">
                             <div class="ml-3">
-                                <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">People connect
+                                <div style=" font-weight: 700; font-size: 14px;">People connect
                                 </div>
                             </div>
                         </div>
@@ -629,9 +648,9 @@
                     <!-- Document centre -->
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
-                            <img src="/assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
+                            <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
                             <div class="ml-3">
-                                <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Document
+                                <div style=" font-weight: 700; font-size: 14px;">Document
                                     centre
                                 </div>
                             </div>
@@ -641,10 +660,10 @@
 
                     <!-- Quick Links -->
                     <div>
-                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
-                            <img src="/assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer" routerLink="/master/quick-links">
+                            <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
                             <div class="ml-3">
-                                <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">
+                                <div style=" font-weight: 700; font-size: 14px;">
                                     Quick Links
                                 </div>
                             </div>
@@ -652,14 +671,27 @@
                     </div>
 
 
+                    <!-- Employee-attendence -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer" routerLink="/master/employee-attendence">
+                            <img src="assets/solar_document-linear.png" alt="Image"
+                                style="width: 24px; height: 24px;">
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 14px;">
+                                    Employee Attendence
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                
                     <!-- Secure Chat  -->
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
-                            <img src="/assets/material-symbols_chat-outline.png" alt="Image"
+                            <img src="assets/material-symbols_chat-outline.png" alt="Image"
                                 style="width: 24px; height: 24px;">
                             <div class="ml-3">
-                                <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Secure Chat
+                                <div style=" font-weight: 700; font-size: 14px;">Secure Chat
                                 </div>
                             </div>
                             <div
@@ -673,9 +705,9 @@
                     <!-- Circular -->
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
-                            <img src="/assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;">
+                            <img src="assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;">
                             <div class="ml-3">
-                                <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Circular</div>
+                                <div style=" font-weight: 700; font-size: 14px;">Circular</div>
                             </div>
                         </div>
                     </div>
@@ -686,10 +718,10 @@
                     <!-- Help desk -->
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
-                            <img src="/assets/streamline_customer-support-1.png" alt="Image"
+                            <img src="assets/streamline_customer-support-1.png" alt="Image"
                                 style="width: 24px; height: 24px;">
                             <div class="ml-3">
-                                <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Help desk
+                                <div style=" font-weight: 700; font-size: 14px;">Help desk
                                 </div>
                             </div>
                         </div>
@@ -716,10 +748,10 @@
                             <!-- Branch Details -->
                             <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
-                                    <img src="/assets/branch details icon.png" alt="Image"
+                                    <img src="assets/branch details icon.png" alt="Image"
                                         style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Branch
+                                        <div style=" font-weight: 700; font-size: 14px;">Branch
                                             Details
                                         </div>
                                     </div>
@@ -729,10 +761,10 @@
                             <!-- Branch Performance -->
                             <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
-                                    <img src="/assets/branch performance icon.png" alt="Image"
+                                    <img src="assets/branch performance icon.png" alt="Image"
                                         style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">Branch
+                                        <div style=" font-weight: 700; font-size: 14px;">Branch
                                             Performance
                                         </div>
                                     </div>
@@ -766,10 +798,10 @@
                             <!-- My Attendance -->
                             <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
-                                    <img src="/assets/my attendance icon.png" alt="Image"
+                                    <img src="assets/my attendance icon.png" alt="Image"
                                         style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">My
+                                        <div style=" font-weight: 700; font-size: 14px;">My
                                             attendance
                                         </div>
                                     </div>
@@ -779,9 +811,9 @@
                             <!-- My Leave -->
                             <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
-                                    <img src="/assets/my leave icon.png" alt="Image" style="width: 24px; height: 24px;">
+                                    <img src="assets/my leave icon.png" alt="Image" style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">My
+                                        <div style=" font-weight: 700; font-size: 14px;">My
                                             leave
                                         </div>
                                     </div>
@@ -791,10 +823,10 @@
                             <!-- My Reimbursement -->
                             <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
-                                    <img src="/assets/my reimbursement icon.png" alt="Image"
+                                    <img src="assets/my reimbursement icon.png" alt="Image"
                                         style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">My
+                                        <div style=" font-weight: 700; font-size: 14px;">My
                                             Reimbursement
                                         </div>
                                     </div>
@@ -804,10 +836,10 @@
                             <!-- My Payroll Info -->
                             <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
-                                    <img src="/assets/my payroll info icon.png" alt="Image"
+                                    <img src="assets/my payroll info icon.png" alt="Image"
                                         style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">My
+                                        <div style=" font-weight: 700; font-size: 14px;">My
                                             payroll info
                                         </div>
                                     </div>
@@ -817,10 +849,10 @@
                             <!-- My Referrals -->
                             <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
-                                    <img src="/assets/my referrals icon.png" alt="Image"
+                                    <img src="assets/my referrals icon.png" alt="Image"
                                         style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">My
+                                        <div style=" font-weight: 700; font-size: 14px;">My
                                             Referrals
                                         </div>
                                     </div>
@@ -830,10 +862,10 @@
                             <!-- My Performance -->
                             <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
-                                    <img src="/assets/my performance icon.png" alt="Image"
+                                    <img src="assets/my performance icon.png" alt="Image"
                                         style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">My
+                                        <div style=" font-weight: 700; font-size: 14px;">My
                                             Performance
                                         </div>
                                     </div>
@@ -843,10 +875,10 @@
                             <!-- My Travel -->
                             <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
-                                    <img src="/assets/my travel icon.png" alt="Image"
+                                    <img src="assets/my travel icon.png" alt="Image"
                                         style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style="color: #6D6D6D; font-weight: 700; font-size: 14px;">My
+                                        <div style=" font-weight: 700; font-size: 14px;">My
                                             Travel
                                         </div>
                                     </div>
@@ -860,7 +892,7 @@
                     <div style="display: flex; justify-content: center; background-color:black;">
                         <div class="cursor-pointer" routerLink="/" style=" height: 60px; position: fixed; bottom: 0;">
                             <div class="flex align-items-center justify-content-center mx-2 mt-4">
-                                <img src="/assets/material-symbols_logout.png" alt="Image"
+                                <img src="assets/material-symbols_logout.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                                 <div style="color: #92278F; font-weight: 700; font-size: 14px; margin-left: 16px;">
                                     Logout
@@ -905,23 +937,23 @@
                     *ngIf="isCompressed">
                     <img src="https://karnatakabank.com/sites/default/files/logo.gif" alt="Image"
                         style="width: 168px; height: auto;">
-                    <!-- <img src="/assets/menu_open.png" alt="Image" style="width: 24px; height: 24px;"
+                    <!-- <img src="assets/menu_open.png" alt="Image" style="width: 24px; height: 24px;"
                         (click)="togglePanel()"> -->
                 </div>
 
                 <!-- Search With Mic starts -->
                 <div *ngIf="this.isTabletView == false" class="col-2 flex align-items-center justify-content-center"
                     style="margin-right: 25px;">
-                    <div class="flex align-items-center justify-content-start border-round-md"
+                   <!-- <div class="flex align-items-center justify-content-start border-round-md"
                         style="height: 48px; border: 2px solid #E9EBF0;">
                         <span class="p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input type="text" pInputText placeholder="Search" style="border: none;" />
-                        </span>
-                        <img class="mr-2" src="/assets/Icon (1).png" width="24px" height="24px" alt="">
-                    </div>
-
-                    <img class="mx-2" src="/assets/keyboard_voice.png" alt="Image" style="width: 24px; height: 24px;">
+                        </span> 
+                         <img class="mr-2" src="assets/Icon (1).png" width="24px" height="24px" alt="">
+                    </div>-->
+                    <div style="width: 24px; height: 24px;"></div>
+                    <!-- <img class="mx-2" src="assets/keyboard_voice.png" alt="Image" style="width: 24px; height: 24px;"> -->
                 </div>
                 <!-- Search With Mic starts Ends -->
 
@@ -965,15 +997,15 @@
                 </div>
 
                 <div *ngIf="this.isTabletView == false"
-                    class="col-2 flex align-items-center justify-content-center px-5">
-                    <img class="mr-2" src="/assets/icon-park-outline_message-security.png" alt="Image"
+                    class="col-2 flex align-items-center justify-content-center px-5 gap-2">
+                    <img class="mr-2" src="assets/icon-park-outline_message-security.png" alt="Image"
                         style="width: 24px; height: 24px;">
 
-                    <img class="mr-2" src="/assets/ant-design_home-outlined.png" alt="Image"
+                    <img class="mr-2" src="assets/ant-design_home-outlined.png" alt="Image"
                         style=" width: 24px; height: 24px;" (click)="findDashboard()" class="cursor-pointer">
 
                         <div style="position: relative; display: inline-block;">
-                            <img class="ml-2" src="/assets/notifications_none.png" alt="Image" class="cursor-pointer" [routerLink]="['/master/notification']" style="width: 24px; height: 24px;">
+                            <img class="ml-2" src="assets/notifications_none.png" alt="Image" class="cursor-pointer" [routerLink]="['/master/notification']" style="width: 24px; height: 24px;">
                             <span *ngIf="totalRecords > 0" class="notification-count">{{ totalRecords > 99 ? '99+' : totalRecords }}</span>
                           </div>
                           

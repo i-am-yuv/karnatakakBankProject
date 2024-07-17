@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="w-full h-screen"
     style="background: url('/assets/login\ background.png'); background-size: cover; background-position: center;">
     <div class=" flex align-items-center justify-content-between px-5" style="height: 100px;">
@@ -7,12 +8,23 @@
         </div>
         <div class="w-full flex align-items-center justify-content-end gap-8 mr-8"
             *ngIf="isLessThan800px() ? false : true ">
-            <div class="text-xl cursor-pointer" style="color: #92278F;">Home</div>
-            <div class="text-xl cursor-pointer" style="color: #92278F;">Support</div>
+            <!-- <div class="text-xl cursor-pointer" style="color: #92278F;">Home</div> -->
+            <!-- <div class="text-xl cursor-pointer" style="color: #92278F;">Support</div> -->
+            <div class="flex align-items-center justify-content-center gap-2"
+                        style="border-radius: 40px;background-color: #92278F;padding: 6px 19px">
+                        <div class=""
+                            style="width: 63px;height: 19px;color: #FFFFFF;font-weight: 400;font-size: 14px;text-align: center;font-family: Manrope;">
+                            SUPPORT</div>
+                        <div class="">
+                            <img src="assets/support_icon_i.png" style="margin-top: 4px;" width="28" height="28">
+
+                        </div>
+
+                    </div>
         </div>
-        <button *ngIf="isLessThan800px() ? false : true " pButton pRipple label="Login"
+        <!-- <button *ngIf="isLessThan800px() ? false : true " pButton pRipple label="Login"
             class="p-button-help border-round-sm" style="background-color: #92278F; width: 125px;">
-        </button>
+        </button> -->
     </div>
 
     <!-- Celebrating 100 Years Animation -->
@@ -57,7 +69,7 @@
         <!-- Left side panel -->
         <div class="col-7">
             <div class="flex mt-5" style="flex-wrap: wrap;">
-                <div class="col-7 p-2">
+                <div class="col-7 p-2" (click)="rbiGuildelinesUpdate()">
                     <div class="border-round-2xl" style="background-color: #F4EFEE; height: 270px;">
                         <div class="flex" style="justify-content: space-between; align-items: start;">
                             <div class="col-8">
@@ -89,7 +101,7 @@
                     </div>
                 </div>
 
-                <div class="col-5 p-2">
+                <div class="col-5 p-2" (click)="rbiGuildelinesUpdate()">
                     <div class="border-round-2xl " style="background-color: #F4EFEE; height: 270px;">
                         <div class="flex align-items-center justify-content-center mx-2" style="flex-wrap: wrap;">
                             <div class="col-8">
@@ -106,8 +118,8 @@
                                     <div style="color: #606060; font-size: 7px;">INR . NSE . Disclaimer</div>
                                 </div>
                                 <div class="mt-2">
-                                    <p-dropdown [options]="goldLoans" optionLabel="name" optionValue="name"
-                                        placeholder="Chennai" (onChange)="findGoldRate( $event.value)"></p-dropdown>
+                                    <!-- <p-dropdown [options]="goldLoans" optionLabel="name" optionValue="name"
+                                        placeholder="Chennai" (onChange)="findGoldRate( $event.value)"></p-dropdown> -->
                                 </div>
 
 
@@ -178,11 +190,11 @@
 
                 <div class="flex align-items-center justify-content-between mb-6" style="margin-top: 32px;">
                     <div class="flex align-items-center">
-                        <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
-                        <label for="rememberme1" class="text-sm">Remember me</label>
+                        <!-- <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
+                        <label for="rememberme1" class="text-sm">Remember me</label> -->
                     </div>
                     <a class="font-medium no-underline ml-2 text-right cursor-pointer text-sm"
-                        style="color: #92278F;">Forgot
+                        style="color: #92278F;" (click)="forgetPassword()">Forgot
                         password?</a>
                 </div>
 

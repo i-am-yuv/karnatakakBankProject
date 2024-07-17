@@ -94,6 +94,13 @@ export class LoginComponent implements OnInit {
 
   loading: boolean = false;
   onClickLogin() {
+
+    var userName=this.loginForm.get('username')?.value;
+    var password=this.loginForm.get('password')?.value;
+    if(userName==undefined || password==undefined){
+      this.notifyError("Please Enter username and password");
+      return;
+    }
     //    alert(JSON.stringify(this.loginForm.value));
 
     // if (this.loginForm.value.username == '7204839067' && this.loginForm.value.password == '123456') {
@@ -157,14 +164,54 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('token', res.jwt);
       sessionStorage.setItem('refreshToken', res.refreshToken);
       this.navigateToDashboard(res);
+      //this.notifySuccess("Login Successful");
+      this.message.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Login Successful',
+        life: 2000,
+      });
     })
       .catch((err) => {
-        
-      console.log("login error>>>>"+JSON.stringify(err));
+
+        this.notifyError("Login Failed or Invalid AD Credentials Try Again");
+        // this.message.add({
+        //   severity: 'error',
+        //   summary: 'Error',
+        //   detail: 'Login Failed or Invalid AD Credentials',
+        //   life: 2000,
+        // });
+        console.log("login error>>>>" + JSON.stringify(err));
         this.loading = false;
       })
   }
-
+  notifySuccess(message: string) {
+    this.message.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: message,
+      life: 1000,
+      styleClass: 'custom-toast-center'
+    });
+  }
+  notifyError(message: string) {
+    this.message.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: message,
+      life: 1000,
+      styleClass: 'custom-toast-center'
+    });
+  }
+  notifyInfo(message: string) {
+    this.message.add({
+      severity: 'info',
+      summary: 'Info',
+      detail: message,
+      life: 1000,
+      styleClass: 'custom-toast-center-warning'
+    });
+  }
   openWebsite(url: any) {
     window.open(url, '_blank');
   }
@@ -182,6 +229,10 @@ export class LoginComponent implements OnInit {
     this.secondVisible = !this.secondVisible;
   }
 
+  forgetPassword() {
+  
+    this.notifyInfo("Please Contact Your AD Adminstrator");
+  }
   toggleThirdVisible() {
     this.thirdVisible = !this.thirdVisible;
   }
@@ -212,32 +263,27 @@ export class LoginComponent implements OnInit {
     )
   }
 
-  navigateToDashboard(res:any) {
-    
-     // alert("navigateToDashboard");
-      
+  navigateToDashboard(res: any) {
+
+    // alert("navigateToDashboard");
+
 
     var username = this.authService.getUserName();
     var roles = this.authService.getRoles();
 
-  //  alert("navigateToDashboard>>>"+username+"   "+roles);
-      
+    //  alert("navigateToDashboard>>>"+username+"   "+roles);
+
     //  alert(username);
     //  alert(roles);
 
-//alert("username == 'splenta_ramesh'>>>   "+(username === 'ramesh_splenta'));
+    //alert("username == 'splenta_ramesh'>>>   "+(username === 'ramesh_splenta'));
     if (true) {
-      sessionStorage.setItem('loginBy',res.displayName);
+      sessionStorage.setItem('loginBy', res.displayName);
       sessionStorage.setItem('loginRole', roles);
-      this.message.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: 'Login Successfully',
-        life: 2000,
-      });
+
       setTimeout(() => {
         this.router.navigate(["/dashboard"]);
-        
+
       }, 2000);
     }
     else if (username == '9745899658') {
@@ -291,7 +337,10 @@ export class LoginComponent implements OnInit {
       });
       this.router.navigate(["/dashboard/digital-team"]);
     }
-this.loading = false;
+    this.loading = false;
   }
 
+  rbiGuildelinesUpdate() {
+    this.notifyInfo("Site Under Construction");
+  }
 }

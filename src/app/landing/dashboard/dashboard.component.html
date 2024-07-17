@@ -55,7 +55,8 @@
 
 
         </div>
-
+        <!-- Celebrating 100 Years Animation -->
+     
         <!-- Animated -->
         <div class="mx-2 " style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap;">
             <div class="col-8">
@@ -65,9 +66,9 @@
                     <div class="col-7 ">
                         <div class="flex align-items-start justify-content-between">
 
-                            <div class="w-full flex flex-column justify-content-start  mr-2 py-2"
+                            <div class="w-full flex flex-column justify-content-start  mr-2 py-2 cursor-pointer"
                                 [ngStyle]="{'height.px': isMobile ? 175 : 155}"
-                                style="border-radius: 16px; background: white;">
+                                style="border-radius: 16px; background: white;" (click)="openLink('ourJourney')">
                                 <div class="px-4" style="color: #92278F; font-weight: 700; font-size: 16px;
                                       ">Our Mission
                                 </div>
@@ -88,9 +89,9 @@
                                 </div>
                             </div>
 
-                            <div class="w-full flex flex-column justify-content-start justify-content-between ml-2 py-2"
+                            <div class="w-full flex flex-column justify-content-start justify-content-between ml-2 py-2 cursor-pointer"
                                 [ngStyle]="{'height.px': isMobile ? 175 : 155}"
-                                style="border-radius: 16px; background: white;">
+                                style="border-radius: 16px; background: white;" (click)="openLink('ourJourney')">
                                 <div>
                                     <div class="px-4" style="color: #92278F; font-weight: 700; font-size: 16px;">Our
                                         Vision
@@ -208,7 +209,7 @@
                                         </div>
                                     </div> -->
                                     <div class="animated-container" (mouseenter)="expandCard()"
-                                        (mouseleave)="shrinkCard()">
+                                        (mouseleave)="shrinkCard()" (click)="openLink('info')">
                                         <div class="content">
                                             <div class="icon-container">
                                                 <img src="/assets/Group 1171276671 (3).png" alt="Image"
@@ -225,8 +226,8 @@
                         </div>
                     </div>
 
-                    <div class="col-5">
-                        <div class="bg-white border-round-xl py-2 px-3">
+                    <div class="col-5" >
+                        <div class="bg-white border-round-xl py-2 px-3 cursor-pointer" (click)="openLink('rewardRec')">
 
                             <div class="font-bold" style="font-size: 16px; color:#92278F;">
                                 Reward and Recognition
@@ -386,10 +387,10 @@
                     </div>
 
                     <div class="col-5">
-                        <div class="" class="" style="background: #FFFFFF; border-radius: 16px; height: 220px;">
+                        <div class="cursor-pointer" style="background: #FFFFFF; border-radius: 16px; height: 220px;" (click)="openLink('ourJourney')">
 
-                            <div class="pt-3 px-2"
-                                style=" display: flex; justify-content: space-between; align-items: center;">
+                            <div class="pt-3 px-2 "
+                                style=" display: flex; justify-content: space-between; align-items: center;" >
                                 <div style="font-size: 16px; color: #92278F; font-weight: 700;">
                                     Our Journey
                                 </div>
@@ -488,7 +489,7 @@
 
                 <div style="display: flex; justify-content: start; align-items: start; flex-wrap: wrap;">
                     <div class="col-7">
-                        <div style="height: 250px; background: #FFFFFF; border-radius: 16px;" class="pt-4 px-4">
+                        <div style="height: 250px; background: #FFFFFF; border-radius: 16px;" class="pt-4 px-4 cursor-pointer" (click)="openLink('learningDev')" >
                             <div style="font-size: 16px; font-weight: 700; color: #92278F;">Learning and Development
                             </div>
 

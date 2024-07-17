@@ -4,7 +4,7 @@
 
 export const environment = {
   //commonUrl : 'https://api.ifyn.com/kbldc/',
-  commonUrl : 'http://localhost:9002/kbldc/',
+  commonUrl : 'http://10.20.6.60:9002/kbldc/',
   helpDeskUrl:"http://172.16.202.111:8025/index.php",
   hyperLinkCircular:"http://172.16.202.10:2080/kbldc/webapps/kdoc/out/out.ViewFolder.php",
   fold:"http://172.16.202.10/kbldc/webapps/fold/",
@@ -23,6 +23,18 @@ export const environment = {
   branch_exc_directive:"http://172.16.202.10/kbldc/testapps/brdir/include/listbranch.php",
   pre_apr_card:"http://172.16.202.10/kbldc/webcomps/pacc/",
   returns:"http://172.16.202.10/kbldc/webcomps/rreturn/",
+
+  branch_performance:"http://172.16.202.148/kbldc/webapps/tgt/",
+  branch_details:"http://172.16.202.10/index.htm/index.php?option=com_weblinks&catid=40&Itemid=60#",
+  ourJourney:"https://karnatakabank.com/about/bank",
+  learningDev:"http://172.16.202.202:8450/psp/KBELMPRD/EMPLOYEE/ELM/c/LM_SS_LEARNING.LM_SS_LEARNING_UI.GBL",
+  rewardRec:"http://172.16.202.10/kbldc/common/images/app_droid/BEST_TAT_KBLDC_UPDATE.pdf",
+  travel:"http://hrms.ktkbank.com/psc/kbhrprd_newwin/EMPLOYEE/HRMS/c/NUI_FRAMEWORK.PTNUI_MENU_COMP.GBL?sa=&FLDR=ZZ_TA_TRAVELCLAIM&ICDoModal=1&ICGrouplet=1",
+  reimbursement:"http://hrms.ktkbank.com/psc/kbhrprd_newwin/EMPLOYEE/HRMS/c/NUI_FRAMEWORK.PTNUI_MENU_COMP.GBL?sa=&FLDR=ZZ_REIMBURSEMENT&ICDoModal=1&ICGrouplet=1",
+  performance:"https://kblrise.ktkbank.com/kbl-pms/web-app/login",
+  info:"http://hrms.ktkbank.com/psc/kbhrprd_newwin/EMPLOYEE/HRMS/c/NUI_FRAMEWORK.PTNUI_MENU_COMP.GBL?sa=&FLDR=HC_PERSONAL_INFO_ESS&ICDoModal=1&ICGrouplet=1",
+  leave:"http://hrms.ktkbank.com/psc/kbhrprd_newwin/EMPLOYEE/HRMS/c/NUI_FRAMEWORK.PTNUI_MENU_COMP.GBL?sa=&FLDR=HC_TIME_REPORTING&ICDoModal=1&ICGrouplet=1",
+  payroll:"http://hrms.ktkbank.com/psc/kbhrprd_newwin/EMPLOYEE/HRMS/c/NUI_FRAMEWORK.PTNUI_MENU_COMP.GBL?sa=&FLDR=ZZ_GP_SS&ICDoModal=1&ICGrouplet=1",
   production: false
 };
 
