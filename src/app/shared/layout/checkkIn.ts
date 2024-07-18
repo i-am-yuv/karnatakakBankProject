@@ -25,3 +25,8 @@ export interface TimeSheet{
     longitude?:any;
        
 }
+
+export interface LeaveData{
+    date?:any[];
+    employeeId?:any;
+  }

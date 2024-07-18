@@ -1,4 +1,3 @@
-
 <div class="w-full">
     <div class="flex">
 
@@ -46,9 +45,12 @@
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed" (click)="findDashboard()">
-                        <img [ngClass]="{ selectedTab : this.currentPage ==='dashboard' , unselectedTab : this.currentPage !=='dashboard' }" src="assets/dahsboard_icon.png" alt="Image" style="width: 20px; height: 20px;">
+                        <img [ngClass]="{ selectedTab : this.currentPage ==='dashboard' , unselectedTab : this.currentPage !=='dashboard' }"
+                            src="assets/dahsboard_icon.png" alt="Image" style="width: 20px; height: 20px;">
                         <div class="ml-3">
-                            <div  [ngClass]="{ selectedTab : this.currentPage ==='dashboard' , unselectedTab : this.currentPage !=='dashboard' }" style=" font-weight: 700; font-size: 14px;" class="cursor-pointer" routerLink="/dashboard">Dashboard
+                            <div [ngClass]="{ selectedTab : this.currentPage ==='dashboard' , unselectedTab : this.currentPage !=='dashboard' }"
+                                style=" font-weight: 700; font-size: 14px;" class="cursor-pointer"
+                                routerLink="/dashboard">Dashboard
                             </div>
                         </div>
                     </div>
@@ -62,37 +64,44 @@
                 <!-- To do list -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                         *ngIf="!isCompressed" routerLink="/master/todo-lists">
-                      <img [ngClass]="{ selectedTab : currentPage === 'to-do-list' , unselectedTab : currentPage !== 'to-do-list' }" src="assets/fluent_notepad-edit-16-regular.png" alt="Image"
-                           style="width: 24px; height: 24px;">
-                      <div class="ml-3">
-                        <div [ngClass]="{ selectedTab : currentPage === 'to-do-list' , unselectedTab : currentPage !== 'to-do-list' }" style="font-weight: 700; font-size: 14px;">
-                          To do list
+                        *ngIf="!isCompressed" routerLink="/master/todo-lists">
+                        <img [ngClass]="{ selectedTab : currentPage === 'to-do-list' , unselectedTab : currentPage !== 'to-do-list' }"
+                            src="assets/fluent_notepad-edit-16-regular.png" alt="Image"
+                            style="width: 24px; height: 24px;">
+                        <div class="ml-3">
+                            <div [ngClass]="{ selectedTab : currentPage === 'to-do-list' , unselectedTab : currentPage !== 'to-do-list' }"
+                                style="font-weight: 700; font-size: 14px;">
+                                To do list
+                            </div>
                         </div>
-                      </div>
                     </div>
-                  
+
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
-                         *ngIf="isCompressed" routerLink="/master/todo-lists">
-                      <img src="assets/fluent_notepad-edit-16-regular.png" alt="Image"
-                           style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : currentPage === 'to-do-list' , unselectedTab : currentPage !== 'to-do-list' }">
+                        *ngIf="isCompressed" routerLink="/master/todo-lists">
+                        <img src="assets/fluent_notepad-edit-16-regular.png" alt="Image"
+                            style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : currentPage === 'to-do-list' , unselectedTab : currentPage !== 'to-do-list' }">
                     </div>
-                  </div>
-                  
+                </div>
+
 
                 <!-- Updates -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed">
-                        <img src="assets/access_time.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='update' , unselectedTab : this.currentPage!=='update' }">
+                        <img src="assets/access_time.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='update' , unselectedTab : this.currentPage!=='update' }">
                         <div class="ml-3">
-                            <div style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='update' , unselectedTab : this.currentPage!=='update' }">Updates</div>
+                            <div style=" font-weight: 700; font-size: 14px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='update' , unselectedTab : this.currentPage!=='update' }">
+                                Updates</div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="assets/access_time.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='update' , unselectedTab : this.currentPage!=='update' }">
+                        <img src="assets/access_time.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='update' , unselectedTab : this.currentPage!=='update' }">
                     </div>
                 </div>
 
@@ -100,15 +109,19 @@
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed" routerLink="/master/report">
-                        <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='reports' , unselectedTab : this.currentPage!=='reports' }">
+                        <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='reports' , unselectedTab : this.currentPage!=='reports' }">
                         <div class="ml-3">
-                            <div style="font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='reports' , unselectedTab : this.currentPage!=='reports' }">Reports</div>
+                            <div style="font-weight: 700; font-size: 14px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='reports' , unselectedTab : this.currentPage!=='reports' }">
+                                Reports</div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed" routerLink="/master/report">
-                        <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='reports' , unselectedTab : this.currentPage!=='reports' }">
+                        <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='reports' , unselectedTab : this.currentPage!=='reports' }">
                     </div>
                 </div>
 
@@ -116,15 +129,19 @@
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed" routerLink="/master/calender">
-                        <img src="assets/Group.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='calendar' , unselectedTab : this.currentPage!=='calendar' }">
+                        <img src="assets/Group.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='calendar' , unselectedTab : this.currentPage!=='calendar' }">
                         <div class="ml-3">
-                            <div style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='calendar' , unselectedTab : this.currentPage!=='calendar' }">Calender</div>
+                            <div style=" font-weight: 700; font-size: 14px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='calendar' , unselectedTab : this.currentPage!=='calendar' }">
+                                Calender</div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
-                        *ngIf="isCompressed" >
-                        <img src="assets/Group.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='calendar' , unselectedTab : this.currentPage!=='calendar' }">
+                        *ngIf="isCompressed">
+                        <img src="assets/Group.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='calendar' , unselectedTab : this.currentPage!=='calendar' }">
                     </div>
                 </div>
 
@@ -132,16 +149,20 @@
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed">
-                        <img src="assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='customer-insights' , unselectedTab : this.currentPage!=='customer-insights' }">
+                        <img src="assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='customer-insights' , unselectedTab : this.currentPage!=='customer-insights' }">
                         <div class="ml-3">
-                            <div style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='customer-insights' , unselectedTab : this.currentPage!=='customer-insights' }">Customer
+                            <div style=" font-weight: 700; font-size: 14px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='customer-insights' , unselectedTab : this.currentPage!=='customer-insights' }">
+                                Customer
                                 insights</div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='customer-insights' , unselectedTab : this.currentPage!=='customer-insights' }">
+                        <img src="assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='customer-insights' , unselectedTab : this.currentPage!=='customer-insights' }">
                     </div>
                 </div>
 
@@ -149,16 +170,20 @@
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed">
-                        <img src="assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='news' , unselectedTab : this.currentPage!=='news' }">
+                        <img src="assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='news' , unselectedTab : this.currentPage!=='news' }">
                         <div class="ml-3">
-                            <div style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='news' , unselectedTab : this.currentPage!=='news' }">Events & news
+                            <div style=" font-weight: 700; font-size: 14px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='news' , unselectedTab : this.currentPage!=='news' }">
+                                Events & news
                             </div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='news' , unselectedTab : this.currentPage!=='news' }">
+                        <img src="assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='news' , unselectedTab : this.currentPage!=='news' }">
                     </div>
                 </div>
 
@@ -167,9 +192,12 @@
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed">
                         <img src="assets/icon-park-outline_message-security (1).png" alt="Image"
-                            style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='people-connect' , unselectedTab : this.currentPage!=='people-connect' }">
+                            style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='people-connect' , unselectedTab : this.currentPage!=='people-connect' }">
                         <div class="ml-3">
-                            <div style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='people-connect' , unselectedTab : this.currentPage!=='people-connect' }">People connect
+                            <div style=" font-weight: 700; font-size: 14px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='people-connect' , unselectedTab : this.currentPage!=='people-connect' }">
+                                People connect
                             </div>
                         </div>
                     </div>
@@ -177,17 +205,21 @@
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
                         <img src="assets/icon-park-outline_message-security (1).png" alt="Image"
-                            style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='people-connect' , unselectedTab : this.currentPage!=='people-connect' }">
+                            style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='people-connect' , unselectedTab : this.currentPage!=='people-connect' }">
                     </div>
                 </div>
 
                 <!-- Document centre -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed" (click)="hyperlinkDocumentCenter()"> 
-                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='document-center' , unselectedTab : this.currentPage!=='document-center' }">
+                        *ngIf="!isCompressed" (click)="hyperlinkDocumentCenter()">
+                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='document-center' , unselectedTab : this.currentPage!=='document-center' }">
                         <div class="ml-3">
-                            <div style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='document-center' , unselectedTab : this.currentPage!=='document-center' }">Document
+                            <div style=" font-weight: 700; font-size: 14px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='document-center' , unselectedTab : this.currentPage!=='document-center' }">
+                                Document
                                 centre
                             </div>
                         </div>
@@ -195,41 +227,52 @@
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='document-center' , unselectedTab : this.currentPage!=='document-center' }">
+                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='document-center' , unselectedTab : this.currentPage!=='document-center' }">
                     </div>
                 </div>
 
-                   <!-- Quick Links -->
-                   <div>
+                <!-- Quick Links -->
+                <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed" routerLink="/master/quick-links" [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }"> 
-                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">
+                        *ngIf="!isCompressed" routerLink="/master/quick-links"
+                        [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">
+                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">
                         <div class="ml-3">
-                            <div style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">Quick Links
+                            <div style=" font-weight: 700; font-size: 14px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">
+                                Quick Links
                             </div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">
+                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">
                     </div>
                 </div>
 
                 <!-- Employee-attendence -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed" routerLink="/master/employee-attendence"> 
-                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='employee-attendence' , unselectedTab : this.currentPage!=='employee-attendence' }">
+                        *ngIf="!isCompressed" routerLink="/master/employee-attendence">
+                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='employee-attendence' , unselectedTab : this.currentPage!=='employee-attendence' }">
                         <div class="ml-3">
-                            <div [ngClass]="{selectedTab : this.currentPage=='users' , unselectedTab: this.currentPage!='users' }" style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='employee-attendence' , unselectedTab : this.currentPage!=='employee-attendence' }"> Employee Attendence 
+                            <div [ngClass]="{selectedTab : this.currentPage=='users' , unselectedTab: this.currentPage!='users' }"
+                                style=" font-weight: 700; font-size: 14px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='employee-attendence' , unselectedTab : this.currentPage!=='employee-attendence' }">
+                                Employee Attendence
                             </div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='employee-attendence' , unselectedTab : this.currentPage!=='employee-attendence' }">
+                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='employee-attendence' , unselectedTab : this.currentPage!=='employee-attendence' }">
                     </div>
                 </div>
                 <!-- Secure Chat  -->
@@ -237,14 +280,17 @@
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed">
                         <img src="assets/material-symbols_chat-outline.png" alt="Image"
-                            style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='secure-chat' , unselectedTab : this.currentPage!=='secure-chat' }">
+                            style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='secure-chat' , unselectedTab : this.currentPage!=='secure-chat' }">
                         <div class="ml-3">
-                            <div style="font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='secure-chat' , unselectedTab : this.currentPage!=='secure-chat' }">Secure Chat
+                            <div style="font-weight: 700; font-size: 14px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='secure-chat' , unselectedTab : this.currentPage!=='secure-chat' }">
+                                Secure Chat
                             </div>
                         </div>
-                        <div
-                            style="width: 24px; height: 24px; margin-left: 12px;
-                                  display: flex; align-items: center;justify-content: center;  padding: 3px; background: #F9D4FF; border-radius: 50%;" [ngClass]="{ selectedTab : this.currentPage==='secure-chat' , unselectedTab : this.currentPage!=='secure-chat' }">
+                        <div style="width: 24px; height: 24px; margin-left: 12px;
+                                  display: flex; align-items: center;justify-content: center;  padding: 3px; background: #F9D4FF; border-radius: 50%;"
+                            [ngClass]="{ selectedTab : this.currentPage==='secure-chat' , unselectedTab : this.currentPage!=='secure-chat' }">
                             <p style="color: #92278F; font-weight: 700; font-size: 12px; ">21</p>
                         </div>
                     </div>
@@ -260,15 +306,20 @@
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed" (click)="hyperlinkCircular()">
-                        <img src="assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='circular' , unselectedTab : this.currentPage!=='circular' }">
+                        <img src="assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='circular' , unselectedTab : this.currentPage!=='circular' }">
                         <div class="ml-3">
-                            <div [ngClass]="{selectedTab : this.currentPage=='users' , unselectedTab: this.currentPage!='users' }" style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='circular' , unselectedTab : this.currentPage!=='circular' }">Circular</div>
+                            <div [ngClass]="{selectedTab : this.currentPage=='users' , unselectedTab: this.currentPage!='users' }"
+                                style=" font-weight: 700; font-size: 14px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='circular' , unselectedTab : this.currentPage!=='circular' }">
+                                Circular</div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='circular' , unselectedTab : this.currentPage!=='circular' }">
+                        <img src="assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='circular' , unselectedTab : this.currentPage!=='circular' }">
                     </div>
                 </div>
 
@@ -277,9 +328,12 @@
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed" (click)="hyperlinkHelpdesk()">
                         <img src="assets/streamline_customer-support-1.png" alt="Image"
-                            style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='helpdesk' , unselectedTab : this.currentPage!=='helpdesk' }">
+                            style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='helpdesk' , unselectedTab : this.currentPage!=='helpdesk' }">
                         <div class="ml-3">
-                            <div style=" font-weight: 700; font-size: 14px;" [ngClass]="{ selectedTab : this.currentPage==='helpdesk' , unselectedTab : this.currentPage!=='helpdesk' }">Help desk
+                            <div style=" font-weight: 700; font-size: 14px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='helpdesk' , unselectedTab : this.currentPage!=='helpdesk' }">
+                                Help desk
                             </div>
                         </div>
                     </div>
@@ -287,7 +341,8 @@
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
                         <img src="assets/streamline_customer-support-1.png" alt="Image"
-                            style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='helpdesk' , unselectedTab : this.currentPage!=='helpdesk' }">
+                            style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='helpdesk' , unselectedTab : this.currentPage!=='helpdesk' }">
                     </div>
                 </div>
 
@@ -392,8 +447,7 @@
                         <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
                                 *ngIf="!isCompressed">
-                                <img src="assets/my attendance icon.png" alt="Image"
-                                    style="width: 24px; height: 24px;">
+                                <img src="assets/my attendance icon.png" alt="Image" style="width: 24px; height: 24px;">
                                 <div class="ml-3">
                                     <div style=" font-weight: 700; font-size: 14px;">My
                                         attendance
@@ -403,8 +457,7 @@
 
                             <div class="flex align-items-center justify-content-start cursor-pointer mx-4 mt-4"
                                 *ngIf="isCompressed">
-                                <img src="assets/my attendance icon.png" alt="Image"
-                                    style="width: 24px; height: 24px;">
+                                <img src="assets/my attendance icon.png" alt="Image" style="width: 24px; height: 24px;">
                             </div>
                         </div>
 
@@ -570,9 +623,12 @@
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                             routerLink="/master/todo-lists" (click)="this.sidebarVisible=false">
                             <img src="assets/fluent_notepad-edit-16-regular.png" alt="Image"
-                                style="width: 24px; height: 24px;" [ngClass]="{ selectedTab : this.currentPage==='to-do-list' , unselectedTab : this.currentPage!=='to-do-list' }">
+                                style="width: 24px; height: 24px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='to-do-list' , unselectedTab : this.currentPage!=='to-do-list' }">
                             <div class="ml-3">
-                                <div style=" font-weight: 700; font-size: 14px; " [ngClass]="{ selectedTab : this.currentPage==='to-do-list' , unselectedTab : this.currentPage!=='to-do-list' }">To do list
+                                <div style=" font-weight: 700; font-size: 14px; "
+                                    [ngClass]="{ selectedTab : this.currentPage==='to-do-list' , unselectedTab : this.currentPage!=='to-do-list' }">
+                                    To do list
                                 </div>
                             </div>
                         </div>
@@ -660,7 +716,8 @@
 
                     <!-- Quick Links -->
                     <div>
-                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer" routerLink="/master/quick-links">
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            routerLink="/master/quick-links">
                             <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
                             <div class="ml-3">
                                 <div style=" font-weight: 700; font-size: 14px;">
@@ -673,9 +730,9 @@
 
                     <!-- Employee-attendence -->
                     <div>
-                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer" routerLink="/master/employee-attendence">
-                            <img src="assets/solar_document-linear.png" alt="Image"
-                                style="width: 24px; height: 24px;">
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            routerLink="/master/employee-attendence">
+                            <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
                             <div class="ml-3">
                                 <div style=" font-weight: 700; font-size: 14px;">
                                     Employee Attendence
@@ -683,8 +740,8 @@
                             </div>
                         </div>
                     </div>
-                    
-               
+
+
                     <!-- Secure Chat  -->
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
@@ -875,8 +932,7 @@
                             <!-- My Travel -->
                             <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
-                                    <img src="assets/my travel icon.png" alt="Image"
-                                        style="width: 24px; height: 24px;">
+                                    <img src="assets/my travel icon.png" alt="Image" style="width: 24px; height: 24px;">
                                     <div class="ml-3">
                                         <div style=" font-weight: 700; font-size: 14px;">My
                                             Travel
@@ -944,7 +1000,7 @@
                 <!-- Search With Mic starts -->
                 <div *ngIf="this.isTabletView == false" class="col-2 flex align-items-center justify-content-center"
                     style="margin-right: 25px;">
-                   <!-- <div class="flex align-items-center justify-content-start border-round-md"
+                    <!-- <div class="flex align-items-center justify-content-start border-round-md"
                         style="height: 48px; border: 2px solid #E9EBF0;">
                         <span class="p-input-icon-left">
                             <i class="pi pi-search"></i>
@@ -963,24 +1019,28 @@
                     <div class="w-full border-round-sm flex align-items-center justify-content-between py-2"
                         style="height: 48px; background: #92278F;">
 
-                        <div *ngIf="!isCheckIn"  class="cursor-pointer w-full h-full flex align-items-center justify-content-center border-round-xs mx-2"
+                        <div *ngIf="!isCheckIn"
+                            class="cursor-pointer w-full h-full flex align-items-center justify-content-center border-round-xs mx-2"
                             [ngClass]="{ 'bg-white' : !isCheckIn }" (click)="checkInTime()">
                             <p [ngClass]="{ 'selectedText' : !isCheckIn , 'noneSelectedText' : isCheckIn}"
                                 style="font-size: 12px; font-weight: 700;">Checkin</p>
                         </div>
-                        <div *ngIf="isCheckIn"  class="w-full h-full flex align-items-center justify-content-center border-round-xs mx-2"
-                           >
+                        <div *ngIf="isCheckIn"
+                            class="w-full h-full flex align-items-center justify-content-center border-round-xs mx-2">
                             <p [ngClass]="{ 'selectedText' : !isCheckIn , 'noneSelectedText' : isCheckIn}"
                                 style="font-size: 12px; font-weight: 700;">Checkin</p>
                         </div>
 
-                        <div *ngIf="isCheckIn" class="cursor-pointer  w-full h-full flex align-items-center justify-content-center border-round-xs mx-2"
-                            [ngClass]="{ 'noneChecked' : !isCheckIn}" [ngClass]="{ 'bg-white' : isCheckIn }" (click)="checkOutTime()">
+                        <div *ngIf="isCheckIn"
+                            class="cursor-pointer  w-full h-full flex align-items-center justify-content-center border-round-xs mx-2"
+                            [ngClass]="{ 'noneChecked' : !isCheckIn}" [ngClass]="{ 'bg-white' : isCheckIn }"
+                            (click)="checkOutTime()">
                             <p [ngClass]="{ 'selectedText' : isCheckIn , 'noneSelectedText' : !isCheckIn}"
                                 style="font-size: 12px; font-weight: 700;">Checkout</p>
                         </div>
-                        
-                        <div *ngIf="!isCheckIn" class="w-full h-full flex align-items-center justify-content-center border-round-xs mx-2"
+
+                        <div *ngIf="!isCheckIn"
+                            class="w-full h-full flex align-items-center justify-content-center border-round-xs mx-2"
                             [ngClass]="{ 'noneChecked' : isCheckIn}">
                             <p [ngClass]="{ 'selectedText' : isCheckIn , 'noneSelectedText' : !isCheckIn}"
                                 style="font-size: 12px; font-weight: 700;">Checkout</p>
@@ -1004,11 +1064,13 @@
                     <img class="mr-2" src="assets/ant-design_home-outlined.png" alt="Image"
                         style=" width: 24px; height: 24px;" (click)="findDashboard()" class="cursor-pointer">
 
-                        <div style="position: relative; display: inline-block;">
-                            <img class="ml-2" src="assets/notifications_none.png" alt="Image" class="cursor-pointer" [routerLink]="['/master/notification']" style="width: 24px; height: 24px;">
-                            <span *ngIf="totalRecords > 0" class="notification-count">{{ totalRecords > 99 ? '99+' : totalRecords }}</span>
-                          </div>
-                          
+                    <div style="position: relative; display: inline-block;">
+                        <img class="ml-2" src="assets/notifications_none.png" alt="Image" class="cursor-pointer"
+                            [routerLink]="['/master/notification']" style="width: 24px; height: 24px;">
+                        <span *ngIf="totalRecords > 0" class="notification-count">{{ totalRecords > 99 ? '99+' :
+                            totalRecords }}</span>
+                    </div>
+
                 </div>
             </div>
 
@@ -1023,57 +1085,32 @@
 </div>
 
 
-<p-dialog [(visible)]="timesheetDialog" [style]="{width: '450px'}" header="CheckIn" [modal]="true"
-    styleClass="p-fluid">
+<p-dialog [(visible)]="timesheetDialog" [style]="{width: '450px'}" header="CheckIn" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="field">
             <label for="username">user Name</label>
-            <input
-            type="text"
-            pInputText
-            name="username"
-            #username="ngModel"
-            [(ngModel)]="timesheet.username"
-            required
-            pattern="^[a-zA-Z]+$"
-            minlength="1"
-            maxlength="255"
-          />
-          <small class="p-error" *ngIf="submitted && !timesheet.username">User Name Required.</small>
+            <input type="text" pInputText name="username" #username="ngModel" [(ngModel)]="timesheet.username" required
+                pattern="^[a-zA-Z]+$" minlength="1" maxlength="255" />
+            <small class="p-error" *ngIf="submitted && !timesheet.username">User Name Required.</small>
         </div>
         <div class="field">
             <label for="approvername">Approver Name</label>
-          <input
-            type="text"
-            pInputText
-            name="approvername"
-            #approvername="ngModel"
-            [(ngModel)]="timesheet.approvername"
-            required
-          />
-          <small class="p-error" *ngIf="submitted && !timesheet.approvername">Approver Name Required</small>
+            <input type="text" pInputText name="approvername" #approvername="ngModel"
+                [(ngModel)]="timesheet.approvername" required />
+            <small class="p-error" *ngIf="submitted && !timesheet.approvername">Approver Name Required</small>
         </div>
-        
+
         <div class="field">
             <label for="reason">Reason</label>
-          <input
-            type="text"
-            pInputText
-            name="reason"
-            #reason="ngModel"
-            [(ngModel)]="timesheet.reason"
-            required
-          />
-          <small class="p-error" *ngIf="submitted && !timesheet.reason">Reason Required</small>
+            <input type="text" pInputText name="reason" #reason="ngModel" [(ngModel)]="timesheet.reason" required />
+            <small class="p-error" *ngIf="submitted && !timesheet.reason">Reason Required</small>
         </div>
     </ng-template>
 
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple 
-        label="SendToAprover"
-        icon="pi pi-check"
-        (click)="sendToAprover(timesheet)" class="p-button-text"></button>
+        <button pButton pRipple label="SendToAprover" icon="pi pi-check" (click)="sendToAprover(timesheet)"
+            class="p-button-text"></button>
 
     </ng-template>
 </p-dialog>
@@ -1081,3 +1118,39 @@
 <p-toast></p-toast>
 
 <p-confirmDialog></p-confirmDialog>
+
+<p-dialog [(visible)]="displayPopup" [modal]="true" [closable]="false" [style]="{width: '400px'}" *ngIf="leaveData.length>0">
+    <p-header>
+        Leave Update<br/><p >You have leaves on below dates so pelase go and update</p>
+    </p-header>
+    <div class="flex align-items-center justify-content-center info" style="padding: 20px;">
+
+        <p-table [columns]="cols" [value]="leaveData">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>
+                        Employee Id
+                    </th>
+
+                    <th>
+                        Leave Date
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-leave>
+                <tr>
+                    <td>
+                        {{ leave.employeeId}}
+
+                    </td>
+                    <td>
+                        {{ leave.date}}
+
+                    </td>
+
+                </tr>
+
+            </ng-template>
+        </p-table>
+    </div>
+</p-dialog>

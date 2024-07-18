@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CalendarModule } from 'primeng/calendar';
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
+    TableModule,
     CommonModule,FullCalendarModule,FormsModule,ReactiveFormsModule,CalendarModule,
   ],
   providers: [MessageService, HttpClientModule,

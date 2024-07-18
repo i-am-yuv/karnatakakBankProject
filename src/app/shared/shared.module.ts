@@ -40,6 +40,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     InputSwitchModule,
     FormsModule,
     ToastModule,
+    TableModule,
     DialogModule,
     FullCalendarModule
 

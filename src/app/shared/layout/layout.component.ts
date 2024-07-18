@@ -262,7 +262,7 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-import { CheckIn, CheckOut, TimeSheet } from './checkkIn';
+import { CheckIn, CheckOut, LeaveData, TimeSheet } from './checkkIn';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { NotificationService } from 'src/app/master/notification/notification.service';
 import { environment } from 'src/environments/environment';
@@ -275,49 +275,55 @@ import { LayoutService } from './layout.service';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
+
 export class LayoutComponent implements OnInit {
 
   name: any;
   role: any;
-totalRecords:number=0;
-leaveData!:any;
+  totalRecords: number = 0;
+  leaveData: LeaveData[]=[];
   isCheckIn: boolean = false;
   // mobile view checkin and checkout state
   // checkedIn!: boolean;
 
   extendBranchDetails = false;
   extendHRCorner = false;
-  currentPage !: string ;
-  constructor(private cd: ChangeDetectorRef,private layoutS : LayoutService,private router: Router,private messageService: MessageService,private notificationService:NotificationService,
-    private confirmationService: ConfirmationService, private message: MessageService, 
+  currentPage !: string;
+  constructor(private cd: ChangeDetectorRef, private layoutS: LayoutService, private router: Router, private messageService: MessageService, private notificationService: NotificationService,
+    private confirmationService: ConfirmationService, private message: MessageService,
     private http: HttpClient, private authService: AuthService,
-  private sharedService:SharedServiceService) { 
-    this.currentPage='';
+    private sharedService: SharedServiceService) {
+    this.currentPage = '';
   }
   private subscription!: Subscription;
-
+ 
+  get(val:any){
+    
+    console.log("val>>> "+val)
+    return JSON.stringify(val);
+  }
   ngOnInit(): void {
     this.subscription = this.sharedService.methodCalled$.subscribe(() => {
       this.fetchCheckInData();
     });
     this.layoutS.currentPageData.subscribe(
-      (res)=>{
-          console.log(res);
-          this.currentPage=res;
-          this.cd.detectChanges();
+      (res) => {
+        console.log(res);
+        this.currentPage = res;
+        this.cd.detectChanges();
       },
-      (err)=>{
-         this.currentPage = 'dashboard';
-         this.cd.detectChanges();
+      (err) => {
+        this.currentPage = 'dashboard';
+        this.cd.detectChanges();
       }
     )
     this.getLoginInfo();
     this.checkTabletView();
-    this.notificationService.getEmployeeLateRequests(0,1000000,'','ASC').then((res:any)=>{
+    this.notificationService.getEmployeeLateRequests(0, 1000000, '', 'ASC').then((res: any) => {
 
-      res.content.forEach((element:any) => {
-        if(!element.reject && !element.approve){
-          this.totalRecords=this.totalRecords+1;
+      res.content.forEach((element: any) => {
+        if (!element.reject && !element.approve) {
+          this.totalRecords = this.totalRecords + 1;
         }
       });
       //this.totalRecords=res.totalElements;
@@ -326,25 +332,25 @@ leaveData!:any;
     //   this.checkInTime();
     // }
 
-    
+
   }
   fetchCheckInData() {
-    this.authService.getUser().then((res)=>{
-      this.isCheckIn=res.checkIn;
+    this.authService.getUser().then((res) => {
+      this.isCheckIn = res.checkIn;
     })
     // Add the logic you want to execute in Component B
   }
   getLoginInfo() {
     this.name = sessionStorage.getItem('loginBy');
     this.role = sessionStorage.getItem('loginRole');
-    this.authService.getUser().then((res)=>{
-      this.isCheckIn=res.checkIn;
+    this.authService.getUser().then((res) => {
+      this.isCheckIn = res.checkIn;
     })
   }
-  timesheet!:TimeSheet;
-  timesheetDialog!:boolean;
+  timesheet!: TimeSheet;
+  timesheetDialog!: boolean;
   submitted!: boolean;
-  sendToAprover(timesheet:TimeSheet){
+  sendToAprover(timesheet: TimeSheet) {
 
 
     if (navigator.geolocation) {
@@ -354,15 +360,15 @@ leaveData!:any;
           const longitude = position.coords.longitude;
 
           console.log(latitude + "   " + longitude);
-          timesheet.latitude=position.coords.latitude;
-          timesheet.longitude=position.coords.longitude;
-          
-          this.authService.sendToAprover(timesheet).then((res:any)=>{
+          timesheet.latitude = position.coords.latitude;
+          timesheet.longitude = position.coords.longitude;
+
+          this.authService.sendToAprover(timesheet).then((res: any) => {
 
             this.notifySuccess("Successfully Submitted for approval");
-            this.timesheetDialog=false;
-      
-          }).catch((err=>{
+            this.timesheetDialog = false;
+
+          }).catch((err => {
             //alert(JSON.stringify(err));
             this.notifyError("Something issue happend");
           }));
@@ -379,7 +385,7 @@ leaveData!:any;
 
 
 
-   
+
   }
   openNew() {
     this.timesheet = {};
@@ -426,114 +432,112 @@ leaveData!:any;
   currentTime!: string;
   checkInTimee!: Date;
   isBeforeDeadline!: boolean;
+  displayPopup: boolean = false;
+  cols!: any;
   checkInTime() {
-    this.notificationService.checkLeaves(this.authService.getUserName()).then((res)=>{
-      console.log("leaveData>>>"+JSON.stringify(res));
-      this.leaveData=res?.response?.employee?.date;
-      if(this.leaveData){
-        this.notifyInfo("You have leaves on "+this.leaveData+" dates so pelase go and update");
+    this.notificationService.checkLeaves(this.authService.getUserName()).then((res) => {
+      this.leaveData=res;
+
+      if (this.leaveData) {
+        this.displayPopup = true;
+
+        setTimeout(() => {
+          this.displayPopup = false;
+        }, 3000);
       }
-      
-    }).catch((e)=>{
+
+    }).catch((e) => {
       this.notifyError("Some Error occured while checking absentData");
-    });  
-    this.notificationService.checkAnyRequestExistByUser(this.authService.getUserName()).then((res:any)=>{
-      if(res){
-        this.notifyInfo("You have already raised checkin request so wait for approval ");
-        return;
-      }
-      else{
-        this.checkInTimee = new Date();
-        const deadline = new Date();
-        deadline.setHours(6, 15, 0, 0); // Set the deadline to 9:45 AM
-    
-        this.isBeforeDeadline = this.checkInTimee < deadline;
-        //on time
-        if(this.isBeforeDeadline){
-         
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-              (position) => {
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
-      
-                console.log(latitude + "   " + longitude);
-      
-                this.checkIn = {
-                  "latitude": position.coords.latitude,
-                  "longitude": position.coords.longitude,
-                  "empId": this.authService.getUserName()
-                };
-                // this.checkIn.latitude = position.coords.latitude;
-                // this.checkIn.longitude = position.coords.longitude;
-      
-                this.authService.docheckIn(this.checkIn).then((res: any) => {
-                  this.checkIn=res?.user?.checkIn;
-                  if (res.status==false || res.status=="false") {
-                    this.notifyError(res.msg);
-                    // this.message.add({
-                    //   severity: 'error',
-                    //   summary: 'Error In CheckIn',
-                    //   detail: res.msg,
-                    //   life: 3000,
-                    // });
-                  }
-                  else {
-                    this.isCheckIn = true;
-                    console.log(JSON.stringify(res));
-                   
-                    this.notifySuccess(res.msg);
-                    // this.message.add({
-                    //   severity: 'sucess',
-                    //   summary: 'Successfully CheckedIn',
-                    //   detail: 'Successfully CheckedIn',
-                    //   life: 3000,
-                    //   styleClass: 'custom-toast-center'
-                    // });
-                  }
-      
-                }).catch((e) => { 
-      
-                 this.notifyError("Issue Happend While CheckIn");
-                    
-                
-                });
-              },
-              (error) => {
-                console.error('Error getting geolocation:', error.message);
-      
-              }
-            );
-          } else {
-            console.error('Geolocation is not supported by this browser.');
-      
+    });
+    setTimeout(() => {
+      this.displayPopup = false;
+
+      this.notificationService.checkAnyRequestExistByUser(this.authService.getUserName()).then((res: any) => {
+        if (res) {
+          this.notifyInfo("You have already raised checkin request so wait for approval ");
+          return;
+        }
+        else {
+          this.checkInTimee = new Date();
+          const deadline = new Date();
+          deadline.setHours(6, 15, 0, 0); // Set the deadline to 9:45 AM
+  
+          this.isBeforeDeadline = this.checkInTimee < deadline;
+          //on time
+          if (this.isBeforeDeadline) {
+  
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(
+                (position) => {
+                  const latitude = position.coords.latitude;
+                  const longitude = position.coords.longitude;
+  
+                  console.log(latitude + "   " + longitude);
+  
+                  this.checkIn = {
+                    "latitude": position.coords.latitude,
+                    "longitude": position.coords.longitude,
+                    "empId": this.authService.getUserName()
+                  };
+                 
+                  this.authService.docheckIn(this.checkIn).then((res: any) => {
+                    this.checkIn = res?.user?.checkIn;
+                    if (res.status == false || res.status == "false") {
+                      this.notifyError(res.msg);
+                     
+                    }
+                    else {
+                      this.isCheckIn = true;
+                      console.log(JSON.stringify(res));
+  
+                      this.notifySuccess(res.msg);
+                      
+                    }
+  
+                  }).catch((e) => {
+  
+                    this.notifyError("Issue Happend While CheckIn");
+  
+  
+                  });
+                },
+                (error) => {
+                  console.error('Error getting geolocation:', error.message);
+  
+                }
+              );
+            } else {
+              console.error('Geolocation is not supported by this browser.');
+  
+            }
+          }
+          else {
+            //check in time over so need to implement maker checker flow
+            this.notifyError("Your allowed checkin time has over so please submit request to your reporting manager");
+            this.timesheetDialog = true;
+            this.timesheet = {};
+            this.timesheet.approvername = "KH REDDY";
+            this.timesheet.username = this.authService.getUserName();
+  
           }
         }
-        else{
-          //check in time over so need to implement maker checker flow
-          this.notifyError("Your allowed checkin time has over so please submit request to your reporting manager");
-          this.timesheetDialog=true;
-          this.timesheet={};
-          this.timesheet.approvername="KH REDDY";
-          this.timesheet.username=this.authService.getUserName();
+      });
+    }, 2000);
+  
     
-        }
-      }
-    });
-   
   }
   //  isToday(date: Date): boolean {
   //   const today = new Date();
-  
+
   //   // Extract year, month, and day
   //   const todayYear = today.getFullYear();
   //   const todayMonth = today.getMonth();
   //   const todayDay = today.getDate();
-  
+
   //   const dateYear = date.getFullYear();
   //   const dateMonth = date.getMonth();
   //   const dateDay = date.getDate();
-  
+
   //   // Compare year, month, and day
   //   return todayYear === dateYear && todayMonth === dateMonth && todayDay === dateDay;
   // }
@@ -554,7 +558,7 @@ leaveData!:any;
 
     //     }
     // })
-    
+
 
 
     this.checkOutTimee = new Date();
@@ -577,24 +581,24 @@ leaveData!:any;
             (position) => {
               const latitude = position.coords.latitude;
               const longitude = position.coords.longitude;
-    
+
               console.log(latitude + "   " + longitude);
-    
-    
+
+
               this.checkOut = {
                 "latitude": position.coords.latitude,
                 "longitude": position.coords.longitude,
                 "empId": this.authService.getUserName()
               };
-    
+
               console.log(JSON.stringify(this.checkOut))
               this.authService.docheckOut(this.checkOut, position.coords.longitude, position.coords.latitude).then((res: any) => {
                 console.log(JSON.stringify(res));
-                this.checkOut=res?.user?.checkIn;
-                if (res.status==false || res.status=="false") {
-    
+                this.checkOut = res?.user?.checkIn;
+                if (res.status == false || res.status == "false") {
+
                   this.notifyError(res.msg);
-                  
+
                   // this.message.add({
                   //   severity: 'error',
                   //   summary: 'Error Checkout',
@@ -614,13 +618,13 @@ leaveData!:any;
                   //   styleClass: 'custom-toast-center'
                   // });
                 }
-    
-    
+
+
               }).catch((e) => {
-    
-             
+
+
                 this.notifyError("Issue Happend While CheckedOut");
-                  
+
                 // this.message.add({
                 //   severity: 'error',
                 //   summary: 'Successfully CheckedOut',
@@ -631,39 +635,39 @@ leaveData!:any;
               });
               // Using OpenStreetMap Nominatim API
               // const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
-    
+
               // this.http.get(apiUrl).subscribe(
               //   (data: any) => {
               //     this.locationName = data.display_name;
               //     console.log('Location Name:', this.locationName);
-    
+
               //   },
               //   (error: any) => {
               //     console.error('Nominatim API error:', error);
-    
+
               //   }
               // );
             },
             (error) => {
               console.error('Error getting geolocation:', error.message);
-    
+
             }
           );
         } else {
           console.error('Geolocation is not supported by this browser.');
-    
+
         }
       },
     });
 
 
- 
+
   }
 
   findDashboard() {
     this.router.navigate(["/dashboard"]);
     if
-     (this.name == 'Pooja') {
+      (this.name == 'Pooja') {
       this.router.navigate(["/dashboard"]);
     }
     else if (this.name == 'Narayanan') {
@@ -674,7 +678,7 @@ leaveData!:any;
     }
     else if (this.name == 'Yuvraj') {
       this.router.navigate(["/dashboard/business-head"]);
-      
+
     }
     else if (this.name == 'kaushik') {
       this.router.navigate(["/dashboard/digital-team"]);
@@ -725,56 +729,56 @@ leaveData!:any;
     const url = environment.helpDeskUrl;
     window.open(url, '_blank');
   }
-  hyperlinkDocumentCenter(){
+  hyperlinkDocumentCenter() {
     const url = environment.fold;
     window.open(url, '_blank');
   }
 
-  openLink(type:any){
-    if(type=='branch details'){
+  openLink(type: any) {
+    if (type == 'branch details') {
       const url = environment.branch_details;
       window.open(url, '_blank');
     }
-    else if(type=='branch performance'){
+    else if (type == 'branch performance') {
       const url = environment.branch_performance;
       window.open(url, '_blank');
     }
-    else if(type=='payroll'){
+    else if (type == 'payroll') {
       const url = environment.payroll;
       window.open(url, '_blank');
     }
-    
-    else if(type=='leave'){
+
+    else if (type == 'leave') {
       const url = environment.leave;
       window.open(url, '_blank');
     }
-    else if(type=='info'){
+    else if (type == 'info') {
       const url = environment.info;
       window.open(url, '_blank');
     }
-    
-    else if(type=='performance'){
+
+    else if (type == 'performance') {
       const url = environment.performance;
       window.open(url, '_blank');
     }
-    else if(type=='reimbursement'){
+    else if (type == 'reimbursement') {
       const url = environment.reimbursement;
       window.open(url, '_blank');
     }
 
-    else if(type=='travel'){
+    else if (type == 'travel') {
       const url = environment.travel;
       window.open(url, '_blank');
     }
-    else if(type=='ourJourney'){
+    else if (type == 'ourJourney') {
       const url = environment.ourJourney;
       window.open(url, '_blank');
     }
-    else if(type=='learningDev'){
+    else if (type == 'learningDev') {
       const url = environment.learningDev;
       window.open(url, '_blank');
     }
-    else if(type=='rewardRec'){
+    else if (type == 'rewardRec') {
       const url = environment.rewardRec;
       window.open(url, '_blank');
     }
