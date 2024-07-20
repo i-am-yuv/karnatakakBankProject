@@ -19,3 +19,24 @@
 .p-calendar {
     margin-top: 10px;
   }
+
+
+  
+.present-button {
+   
+    cursor: not-allowed; /* To indicate that the button is not clickable */
+}
+
+.present-button:disabled {
+    
+}
+
+
+.absent-button {
+    
+    cursor: not-allowed; /* To indicate that the button is not clickable */
+}
+
+.absent-button:disabled {
+    
+}

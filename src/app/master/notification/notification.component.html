@@ -1,74 +1,114 @@
 <div class="w-full p-4">
     <div class="ml-2" style="color: #92278F; font-weight: 700; font-size: 20px;">Employee Late CheckIn Requests</div>
 
-    <div class="flex" style="flex-wrap: wrap;">
+    <div class="flex justify-content-center " style="flex-wrap: wrap; background-color: #f2f2f2;height: 100vh;">
         <div class="col-12">
 
             <p-table #dt [value]="employeeLateRequests" [columns]="cols"
-            [globalFilterFields]="['paymentTypeIdentifier','paymentTypeCode', 'paymentTypeName']" responsiveLayout="scroll"
-            [(selection)]="selectedEmployeeLateRequests" [rowHover]="true" dataKey="id" styleClass="p-datatable-gridlines"
-            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"   [rows]="10" [paginator]="true" [lazy]="true" (onLazyLoad)="loadEmployeeRequests($event)"
-            [totalRecords]="totalRecords" [rowsPerPageOptions]="[10,25,50]">
-            <ng-template pTemplate="caption">
-                <div class="flex align-items-center justify-content-between">
-                    <!-- <h5 class="m-0">Manage EmployeeLateRequests</h5> -->
-                    <span class="p-input-icon-left">
-                        <!--<i class="pi pi-search"></i>
+                [globalFilterFields]="['paymentTypeIdentifier','paymentTypeCode', 'paymentTypeName']"
+                responsiveLayout="scroll" [(selection)]="selectedEmployeeLateRequests" [rowHover]="true" dataKey="id"
+                styleClass="p-datatable-gridlines"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [showCurrentPageReport]="true" [rows]="10" [paginator]="true" [lazy]="true"
+                (onLazyLoad)="loadEmployeeRequests($event)" [totalRecords]="totalRecords"
+                [rowsPerPageOptions]="[10,25,50]">
+                <ng-template pTemplate="caption">
+                    <div class="flex align-items-center justify-content-between">
+                        <!-- <h5 class="m-0">Manage EmployeeLateRequests</h5> -->
+                        <span class="p-input-icon-left">
+                            <!--<i class="pi pi-search"></i>
                          <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')"
                             placeholder="Search..." /> -->
-                    </span>
-                </div>
-            </ng-template>
-            <ng-template pTemplate="header">
-                <tr>
-                    <!-- <th style="width: 3rem">
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <!-- <th style="width: 3rem">
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                     </th> -->
-                    <th pSortableColumn="username">UserName <p-sortIcon field="username">
-                        </p-sortIcon>
-                    </th>
-                    <th pSortableColumn="approvername">ApproverName <p-sortIcon field="approvername"></p-sortIcon>
-                    </th>
-                    <th pSortableColumn="reason">Reason <p-sortIcon field="reason"></p-sortIcon>
-                    </th>
-                    <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon>
-                    </th>
-                    <th>Approve</th>
-                    
-                    <th>Reject</th>
-                    
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-employeeLateRequest>
-                <tr>
-                    <!-- <td>
+                        <th pSortableColumn="username">UserName <p-sortIcon field="username">
+                            </p-sortIcon>
+                        </th>
+                        <th pSortableColumn="approvername">ApproverName <p-sortIcon field="approvername"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="reason">Reason <p-sortIcon field="reason"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon>
+                        </th>
+                        <th>Approve</th>
+
+                        <th>Reject</th>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-employeeLateRequest>
+                    <tr>
+                        <!-- <td>
                         <p-tableCheckbox [value]="employeeLateRequest"></p-tableCheckbox>
                     </td> -->
-                    <td>{{employeeLateRequest.username}}</td>
-    
-                    <td>{{employeeLateRequest.approvername}}</td>
-                    <td>{{employeeLateRequest.reason}}</td>
-                    <td>{{employeeLateRequest.status}}</td>
-                    <td>
-                        <button pButton pRipple icon="pi pi-check" class="p-button-text p-button-info p-0 mr-2"
-                            (click)="approveRequest(employeeLateRequest)" [disabled]="employeeLateRequest.approve || employeeLateRequest.reject"></button>
-                        </td>
-                            <td>
-                        <button pButton pRipple icon="pi pi-times" class="p-button-text p-button-danger p-0"
-                            (click)="rejectRequest(employeeLateRequest)" [disabled]="employeeLateRequest.reject || employeeLateRequest.approve"></button>
-                    </td>
+                        <td>{{employeeLateRequest.username}}</td>
 
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="summary">
-                <div class="flex align-items-center justify-content-between">
-                    In total there are {{employeeLateRequests ? employeeLateRequests.length : 0 }} requests.
-                </div>
-            </ng-template>
-        </p-table>
-    
-          
-           
+                        <td>{{employeeLateRequest.approvername}}</td>
+                        <td>{{employeeLateRequest.reason}}</td>
+                        <td>{{employeeLateRequest.status}}</td>
+                        <td *ngIf="!employeeLateRequest.reject && !employeeLateRequest.approve">
+                            <!-- <button pButton pRipple icon="pi pi-check" class="p-button-text p-button-info p-0 mr-2"
+                            ></button> -->
+                            <button
+                                style="cursor: pointer;background-color: green;width: 95px;height: 31px;border-radius: 4px;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF;"
+                                (click)="approveRequest(employeeLateRequest)"
+                                title="Approve Request"
+                                [disabled]="employeeLateRequest.reject || employeeLateRequest.approve"
+                                >Approve</button>
+
+
+                        </td>
+                        <td *ngIf="!employeeLateRequest.reject && !employeeLateRequest.approve">
+                            <button
+                            style="background-color: red;width: 95px;height: 31px;border-radius: 4px;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF; cursor: pointer;"
+                            (click)="rejectRequest(employeeLateRequest)"
+                            title="Reject Request"
+                                [disabled]="employeeLateRequest.reject || employeeLateRequest.approve"
+                            >Reject</button>
+                            <!-- <button pButton pRipple icon="pi pi-times" class="p-button-text p-button-danger p-0"
+                               ></button> -->
+                        </td>
+                        <td *ngIf="employeeLateRequest.approve || employeeLateRequest.reject">
+                            <button
+                            style="background-color: green;width: 95px;height: 31px;border-radius: 4px;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF;"
+                            (click)="rejectRequest(employeeLateRequest)"
+                            class="approve-button"
+                                [disabled]="true"
+                                title="Already Processed"
+                            >Approve</button>
+                            <!-- <button pButton pRipple icon="pi pi-times" class="p-button-text p-button-danger p-0"
+                               ></button> -->
+                        </td>
+                        <td *ngIf="employeeLateRequest.approve || employeeLateRequest.reject">
+                            <button
+                            class="reject-button"
+                            style="background-color: red;width: 95px;height: 31px;border-radius: 4px;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF;"
+                            (click)="rejectRequest(employeeLateRequest)"
+                                [disabled]="true"
+                                title="Already Processed"
+                            >Reject</button>
+                            <!-- <button pButton pRipple icon="pi pi-times" class="p-button-text p-button-danger p-0"
+                               ></button> -->
+                        </td>
+
+                      
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="flex align-items-center justify-content-between">
+                        In total there are {{employeeLateRequests ? employeeLateRequests.length : 0 }} requests.
+                    </div>
+                </ng-template>
+            </p-table>
+
+
+
         </div>
     </div>
 </div>

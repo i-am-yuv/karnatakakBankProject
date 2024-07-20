@@ -48,11 +48,8 @@
                         <!-- <img src="assets/calendar_icon.png" (click)="showCalendar = !showCalendar"
                             style="cursor: pointer; margin-right: 224px; width: 87px; height: 40px;  border-radius: 8px;"> -->
 
-                            <p-calendar 
-                            [showIcon]="true" 
-                            inputId="buttondisplay" 
-                            [showOnFocus]="false" ></p-calendar>
-                        
+                        <p-calendar [showIcon]="true" inputId="buttondisplay" [showOnFocus]="false"></p-calendar>
+
                     </div>
                 </div>
 
@@ -86,16 +83,50 @@
                                 <td style="color: #6D6D6D;">{{ record.employeeId }}</td>
 
                                 <!-- if checkin completed -->
-                                <td *ngIf="record.checkIn">
+                                <td *ngIf="record.checkIn && (record.present==true && record.absent==false)">
+                                    <div class="flex gap-4" style="align-items: center; justify-content: start;">
+                                        <!-- isPresent -->
+                                        <button class="" style="width: 95px;height: 31px;border-radius: 4px;background-color: #B0B0B0;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF; background-color: green;
+                                        border-color: green;
+                                        color: #FFFFFF;cursor: not-allowed;" [disabled]="true"
+                                            title="Already Marked Attendance For the Day"
+                                            (click)="presentData('present',record)">Present</button>
+
+                                        <button 
+                                            style="cursor: not-allowed;width: 95px;height: 31px;border-radius: 4px;color: #FFFFFF;font-size: 14px;background-color: grey;"
+                                            [disabled]="true" title="Already Marked Attendance For the Day"
+                                            (click)="presentData('absent',record)">Absent</button>
+                                    </div>
+                                </td>
+
+
+
+                                <td *ngIf="record.checkIn && (record.present==false && record.absent==true)">
+                                    <div class="flex gap-4" style="align-items: center; justify-content: start;">
+                                        <!-- isPresent -->
+                                        <button class="" style="width: 95px;height: 31px;border-radius: 4px;background-color: #B0B0B0;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF; background-color: grey;
+                                        border-color: green;
+                                        color: #FFFFFF;cursor: not-allowed;" [disabled]="true"
+                                            title="Already Marked Attendance For the Day"
+                                            (click)="presentData('present',record)">Present</button>
+
+                                        <button 
+                                            style="cursor: not-allowed;width: 95px;height: 31px;border-radius: 4px;background-color: red;color: #FFFFFF;font-size: 14px;"
+                                            [disabled]="true" title="Already Marked Attendance For the Day"
+                                            (click)="presentData('absent',record)">Absent</button>
+                                    </div>
+                                </td>
+                                <!-- if checkin not completed -->
+                                <td *ngIf="!record.checkIn">
                                     <div class="flex gap-4" style="align-items: center; justify-content: start;">
                                         <button *ngIf="!record.present"
                                             style="width: 95px;height: 31px;border-radius: 4px;background-color: #B0B0B0;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF;"
-                                            [disabled]="record.present  || record.absent"
+                                            [disabled]="record.present"
                                             (click)="presentData('present',record)">Present</button>
                                         <!-- isPresent -->
-                                        <button *ngIf="record.present " class="" style="width: 95px;height: 31px;border-radius: 4px;background-color: #B0B0B0;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF; background-color: green;
-                                            border-color: green;
-                                            color: #FFFFFF;" [disabled]="record.present || record.absent "
+                                        <button *ngIf="record.present" class="" style="width: 95px;height: 31px;border-radius: 4px;background-color: #B0B0B0;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF; background-color: green;
+                                        border-color: green;
+                                        color: #FFFFFF;" [disabled]="record.present"
                                             (click)="presentData('present',record)">Present</button>
 
 
@@ -103,43 +134,14 @@
 
                                         <button *ngIf="!record.absent"
                                             style="width: 95px;height: 31px;border-radius: 4px;color: #6D6D6D;font-size: 14px;"
-                                            [disabled]="record.absent  || record.present"
+                                            [disabled]="record.absent"
                                             (click)="presentData('absent',record)">Absent</button>
 
 
 
                                         <button *ngIf="record.absent"
                                             style="width: 95px;height: 31px;border-radius: 4px;background-color: red;color: #FFFFFF;font-size: 14px;"
-                                            [disabled]="record.absent  || record.present"
-                                            (click)="presentData('absent',record)">Absent</button>
-                                    </div>
-                                </td>
-                                <!-- if checkin not completed -->
-                                <td *ngIf="!record.checkIn">
-                                    <div class="flex gap-4" style="align-items: center; justify-content: start;">
-                                        <button *ngIf="!record.isPresent"
-                                            style="width: 95px;height: 31px;border-radius: 4px;background-color: #B0B0B0;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF;"
-                                            [disabled]="record.isPresent"
-                                            (click)="presentData('present',record)">Present</button>
-                                        <!-- isPresent -->
-                                        <button *ngIf="record.isPresent " class="" style="width: 95px;height: 31px;border-radius: 4px;background-color: #B0B0B0;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF; background-color: green;
-                                        border-color: green;
-                                        color: #FFFFFF;" [disabled]="record.isPresent"
-                                            (click)="presentData('present',record)">Present</button>
-
-
-
-
-                                        <button *ngIf="!record.isAbsent"
-                                            style="width: 95px;height: 31px;border-radius: 4px;color: #6D6D6D;font-size: 14px;"
-                                            [disabled]="record.isAbsent"
-                                            (click)="presentData('absent',record)">Absent</button>
-
-
-
-                                        <button *ngIf="record.isAbsent"
-                                            style="width: 95px;height: 31px;border-radius: 4px;background-color: red;color: #FFFFFF;font-size: 14px;"
-                                            [disabled]="record.isAbsent"
+                                            [disabled]="record.absent"
                                             (click)="presentData('absent',record)">Absent</button>
                                     </div>
                                 </td>

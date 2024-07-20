@@ -130,11 +130,17 @@ export class EmployeeAttendenceComponent implements OnInit {
 
     //calling final api to submit attendence for sweepers
     this.employeeAttendenceService.submitAttendence(this.finalEmployees).then((res) => {
+      this.employeeAttendenceService.getAllEmployees().then((res) => {
+        this.users = res;
+      });
       this.messageService.add({
         severity: 'success',
         summary: 'Successful',
-        detail: 'SuccessFully Submitted'
+        detail: 'SuccessFully Marked Attendence'
       })
+
+
+      
     });;
   }
 }

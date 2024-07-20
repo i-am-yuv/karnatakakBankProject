@@ -281,7 +281,7 @@ export class LayoutComponent implements OnInit {
   name: any;
   role: any;
   totalRecords: number = 0;
-  leaveData: LeaveData[]=[];
+  leaveData: LeaveData[] = [];
   isCheckIn: boolean = false;
   // mobile view checkin and checkout state
   // checkedIn!: boolean;
@@ -296,10 +296,10 @@ export class LayoutComponent implements OnInit {
     this.currentPage = '';
   }
   private subscription!: Subscription;
- 
-  get(val:any){
-    
-    console.log("val>>> "+val)
+
+  get(val: any) {
+
+    console.log("val>>> " + val)
     return JSON.stringify(val);
   }
   ngOnInit(): void {
@@ -366,6 +366,17 @@ export class LayoutComponent implements OnInit {
           this.authService.sendToAprover(timesheet).then((res: any) => {
 
             this.notifySuccess("Successfully Submitted for approval");
+            this.notificationService.getEmployeeLateRequests(0, 1000000, '', 'ASC').then((res: any) => {
+
+              res.content.forEach((element: any) => {
+                if (!element.reject && !element.approve) {
+                  this.totalRecords = this.totalRecords + 1;
+                  this.cd.detectChanges();
+                }
+              });
+              //this.totalRecords=res.totalElements;
+            });
+
             this.timesheetDialog = false;
 
           }).catch((err => {
@@ -406,7 +417,7 @@ export class LayoutComponent implements OnInit {
       severity: 'success',
       summary: 'Success',
       detail: message,
-      life: 1000,
+      life: 3000,
       styleClass: 'custom-toast-center'
     });
   }
@@ -415,7 +426,7 @@ export class LayoutComponent implements OnInit {
       severity: 'error',
       summary: 'Error',
       detail: message,
-      life: 1000,
+      life: 4000,
       styleClass: 'custom-toast-center'
     });
   }
@@ -424,7 +435,7 @@ export class LayoutComponent implements OnInit {
       severity: 'warn',
       summary: 'Warning',
       detail: message,
-      life: 1000,
+      life: 4000,
       styleClass: 'custom-toast-center-warning'
     });
   }
@@ -435,8 +446,10 @@ export class LayoutComponent implements OnInit {
   displayPopup: boolean = false;
   cols!: any;
   checkInTime() {
+
+    ///checkign any leaves in hrms
     this.notificationService.checkLeaves(this.authService.getUserName()).then((res) => {
-      this.leaveData=res;
+      this.leaveData = res;
 
       if (this.leaveData) {
         this.displayPopup = true;
@@ -461,70 +474,77 @@ export class LayoutComponent implements OnInit {
           this.checkInTimee = new Date();
           const deadline = new Date();
           deadline.setHours(6, 15, 0, 0); // Set the deadline to 9:45 AM
-  
+
           this.isBeforeDeadline = this.checkInTimee < deadline;
           //on time
           if (this.isBeforeDeadline) {
-  
+
             if (navigator.geolocation) {
               navigator.geolocation.getCurrentPosition(
                 (position) => {
                   const latitude = position.coords.latitude;
                   const longitude = position.coords.longitude;
-  
+
                   console.log(latitude + "   " + longitude);
-  
+
                   this.checkIn = {
                     "latitude": position.coords.latitude,
                     "longitude": position.coords.longitude,
                     "empId": this.authService.getUserName()
                   };
-                 
+
                   this.authService.docheckIn(this.checkIn).then((res: any) => {
                     this.checkIn = res?.user?.checkIn;
                     if (res.status == false || res.status == "false") {
                       this.notifyError(res.msg);
-                     
+
                     }
                     else {
                       this.isCheckIn = true;
                       console.log(JSON.stringify(res));
-  
-                      this.notifySuccess(res.msg);
                       
+                      this.notifySuccess(res.msg);
+
                     }
-  
+
                   }).catch((e) => {
-  
+
                     this.notifyError("Issue Happend While CheckIn");
-  
-  
+
+
                   });
                 },
                 (error) => {
                   console.error('Error getting geolocation:', error.message);
-  
+
                 }
               );
             } else {
               console.error('Geolocation is not supported by this browser.');
-  
+
             }
           }
           else {
             //check in time over so need to implement maker checker flow
-            this.notifyError("Your allowed checkin time has over so please submit request to your reporting manager");
-            this.timesheetDialog = true;
-            this.timesheet = {};
-            this.timesheet.approvername = "KH REDDY";
-            this.timesheet.username = this.authService.getUserName();
-  
+            this.notifyInfo("Your allowed checkin time has over so please submit request to your reporting manager");
+            this.layoutS.getManagerNameByEmployee(this.authService.getUserId()).then((res: any) => {
+              this.timesheetDialog = true;
+              this.timesheet = {};
+              if (res) {
+                this.timesheet.approvername = res?.supervisors[0]?.supervisorId
+                this.timesheet.username = this.authService.getUserName();
+              }
+            }).catch((e:any)=>{
+               this.notifyError("Error occured while fetching Reporting Manager");
+            });
+
+
           }
         }
       });
     }, 2000);
-  
-    
+
+    this.cd.detectChanges();
   }
   //  isToday(date: Date): boolean {
   //   const today = new Date();
