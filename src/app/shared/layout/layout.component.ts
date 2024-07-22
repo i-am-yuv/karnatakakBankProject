@@ -527,7 +527,7 @@ export class LayoutComponent implements OnInit {
           else {
             //check in time over so need to implement maker checker flow
             this.notifyInfo("Your allowed checkin time has over so please submit request to your reporting manager");
-            this.layoutS.getManagerNameByEmployee(this.authService.getUserName()).then((res: any) => {
+            this.layoutS.getManagerNameByEmployee(this.authService.getUserName().substring(1,this.authService.getUserName().length)).then((res: any) => {
               this.timesheetDialog = true;
               this.timesheet = {};
               if (res) {
