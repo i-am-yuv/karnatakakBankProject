@@ -532,7 +532,7 @@ export class LayoutComponent implements OnInit {
               this.timesheet = {};
               if (res) {
                 var approverName=res?.supervisors[0]?.supervisorId;
-                this.timesheet.approvername = approverName.substring(1,this.authService.getUserName().length);
+                this.timesheet.approvername = approverName;
                 this.timesheet.username = this.authService.getUserName();
               }
             }).catch((e:any)=>{
