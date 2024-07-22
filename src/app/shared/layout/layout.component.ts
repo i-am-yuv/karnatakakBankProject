@@ -531,7 +531,8 @@ export class LayoutComponent implements OnInit {
               this.timesheetDialog = true;
               this.timesheet = {};
               if (res) {
-                this.timesheet.approvername = res?.supervisors[0]?.supervisorId
+                var approverName=res?.supervisors[0]?.supervisorId;
+                this.timesheet.approvername = approverName.substring(1,this.authService.getUserName().length);
                 this.timesheet.username = this.authService.getUserName();
               }
             }).catch((e:any)=>{

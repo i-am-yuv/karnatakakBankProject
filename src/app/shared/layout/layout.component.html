@@ -1090,13 +1090,13 @@
         <div class="field">
             <label for="username">user Name</label>
             <input type="text" pInputText name="username" #username="ngModel" [(ngModel)]="timesheet.username" required
-                pattern="^[a-zA-Z]+$" minlength="1" maxlength="255" />
+                pattern="^[a-zA-Z]+$" minlength="1" maxlength="255" disabled="true" />
             <small class="p-error" *ngIf="submitted && !timesheet.username">User Name Required.</small>
         </div>
         <div class="field">
             <label for="approvername">Approver Name</label>
             <input type="text" pInputText name="approvername" #approvername="ngModel"
-                [(ngModel)]="timesheet.approvername" required />
+                [(ngModel)]="timesheet.approvername" required disabled="true" />
             <small class="p-error" *ngIf="submitted && !timesheet.approvername">Approver Name Required</small>
         </div>
 

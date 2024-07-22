@@ -17,7 +17,7 @@ export class EmployeeAttendenceService {
 
 
   getAllEmployees() {
-    var url = this.apiurl + 'api/attendance/reporteesBySupervisor/'+encodeURIComponent(this.authService.getUserId());
+    var url = this.apiurl + 'api/attendance/reporteesBySupervisor/'+encodeURIComponent(this.authService.getUserName().substring(1,this.authService.getUserName().length));
     return (
       this.http
         .get<any>(url)

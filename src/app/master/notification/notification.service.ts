@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { EmployeeLateRequest } from './notification';
 import { lastValueFrom } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class NotificationService {
  
   apiurl: string = environment.commonUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private authService:AuthService) {}
 
   getEmployeeLateRequests(pageNo: number, pageSize: number | undefined, sortField: string | undefined, sortDir: string) {
       //console.log(sortField + '\nsdf');
@@ -26,7 +27,8 @@ export class NotificationService {
       '&sortField=' +
       sortField +
       '&sortDir=' +
-      sortDir;
+      sortDir+
+      '&supervisorId='+encodeURIComponent(this.authService.getUserName().substring(1,this.authService.getUserName().length));
     // var url = this.apiurl + '/vendors/all';
     return this.http
       .get<any>(url)
