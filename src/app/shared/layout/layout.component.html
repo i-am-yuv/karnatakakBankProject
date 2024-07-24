@@ -1102,8 +1102,9 @@
 
         <div class="field">
             <label for="reason">Reason</label>
-            <input type="text" pInputText name="reason" #reason="ngModel" [(ngModel)]="timesheet.reason" required />
+            <input type="text" pInputText name="reason" #reason="ngModel" [(ngModel)]="timesheet.reason" required maxlength="50" />
             <small class="p-error" *ngIf="submitted && !timesheet.reason">Reason Required</small>
+            <p style="float: right;font-size: 15px;">{{timesheet.reason.length==0?0:timesheet.reason.length}}/50</p>
         </div>
     </ng-template>
 

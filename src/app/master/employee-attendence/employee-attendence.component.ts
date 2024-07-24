@@ -14,7 +14,7 @@ import { EmployeeAttendenceService } from './employee-attendence.service';
 })
 export class EmployeeAttendenceComponent implements OnInit {
   users!: Employee[];
-  today: Date = new Date();
+  selectedDate: Date = new Date(); 
   @ViewChild('dt') dt!: Table;
   date1: Date | undefined;
   uploadUrl = '324324'; // demo URL

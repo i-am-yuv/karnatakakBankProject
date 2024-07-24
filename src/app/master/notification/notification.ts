@@ -15,4 +15,5 @@ export interface EmployeeLateRequest{
 	 isReject?:any;
 	
 	 reason?:any;
+	 dayType?:any;
 }

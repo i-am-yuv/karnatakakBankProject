@@ -323,7 +323,7 @@ export class LayoutComponent implements OnInit {
     deadline.setHours(18, 0o0, 0, 0); // Set the deadline to 6:00 PM
 
     this.isBeforeDeadline = this.checkOutTimee < deadline;
-    
+
     if (this.isBeforeDeadline == true) {
       const result = await this.displayCheckOutMessage("CheckOut Update");
       if (result == true) {
@@ -586,7 +586,7 @@ export class LayoutComponent implements OnInit {
     return new Promise<boolean>((resolve) => {
       Swal.fire({
         title: 'Leave Update',
-        html: `<p>You have leaves on the below dates, so please go and update.</p>${tableContent}`,
+        html: `<p>You were absent on the following dates. Please apply for leave through the HRMS Portal.</p>${tableContent}`,
         icon: 'info',
         focusConfirm: false,
         //showCloseButton: true,
@@ -601,7 +601,27 @@ export class LayoutComponent implements OnInit {
       });
     });
   }
+  displayLateMessageInfoMessage(msg: any): Promise<boolean> {
 
+
+    return new Promise<boolean>((resolve) => {
+      Swal.fire({
+        title: 'CheckIn',
+        html: `<p>Your allowed checkin time has over so please submit request to your reporting manager</p>`,
+        icon: 'info',
+        focusConfirm: false,
+        //showCloseButton: true,
+        showCancelButton: false,
+        timer: 3000, // Show the message for 3 seconds
+        timerProgressBar: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          console.log("Button clicked, returning true");
+          resolve(true);
+        }
+      });
+    });
+  }
   displayCheckOutMessage(msg: any): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
       Swal.fire({
@@ -629,11 +649,11 @@ export class LayoutComponent implements OnInit {
         title: tit,
         html: `<p>${msg}</p>`,
         icon: 'success',
-        focusConfirm: false, 
+        focusConfirm: false,
         //showCloseButton: true,
         //showCancelButton: true,
-        timer:2000,
-        
+        timer: 2000,
+
       })
     });
   }
@@ -710,10 +730,14 @@ export class LayoutComponent implements OnInit {
         console.error('Geolocation is not supported by this browser.');
       }
     } else {
-      this.sharedService.displayInfoMessage("Your allowed checkin time has over so please submit request to your reporting manager");
+
+      this.displayLateMessageInfoMessage("Your allowed checkin time has over so please submit request to your reporting manager");
+      setTimeout(() => {
+        this.timesheetDialog = true;
+      }, 3000)
       try {
         const res: any = await this.layoutS.getManagerNameByEmployee(this.authService.getUserName().substring(1, this.authService.getUserName().length));
-        this.timesheetDialog = true;
+        //  
         this.timesheet = {};
         if (res) {
           var approverName = res?.supervisors[0]?.supervisorId;

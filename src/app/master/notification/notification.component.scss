@@ -32,3 +32,7 @@
     color: #FFFFFF;
     border: 1px solid #B0B0B0;
 }
+
+.grey-background {
+    background-color: grey !important; /* Use !important to ensure priority over inline styles */
+}

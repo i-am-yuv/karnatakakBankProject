@@ -36,7 +36,7 @@
                         </th>
                         <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon>
                         </th>
-                        <th>Approve</th>
+                        <th class="flex gap-4 justify-content-center align-items-center">Approve</th>
 
                         <th>Reject</th>
 
@@ -52,52 +52,54 @@
                         <td>{{employeeLateRequest.approvername}}</td>
                         <td>{{employeeLateRequest.reason}}</td>
                         <td>{{employeeLateRequest.status}}</td>
-                        <td *ngIf="!employeeLateRequest.reject && !employeeLateRequest.approve">
+                        <td *ngIf="!employeeLateRequest.reject && !employeeLateRequest.approve"
+                            class="flex gap-3 justify-content-center align-items-center">
                             <!-- <button pButton pRipple icon="pi pi-check" class="p-button-text p-button-info p-0 mr-2"
                             ></button> -->
                             <button
                                 style="cursor: pointer;background-color: green;width: 95px;height: 31px;border-radius: 4px;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF;"
-                                (click)="approveRequest(employeeLateRequest)"
-                                title="Approve Request"
-                                [disabled]="employeeLateRequest.reject || employeeLateRequest.approve"
-                                >Approve</button>
+                                (click)="approveRequest(employeeLateRequest,'HalfDay')" title="Approve Request"
+                                [disabled]="employeeLateRequest.reject || employeeLateRequest.approve">HalfDay</button>
 
-
+                            <button
+                                style="cursor: pointer;background-color: green;width: 95px;height: 31px;border-radius: 4px;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF;"
+                                (click)="approveRequest(employeeLateRequest,'FulDay')" title="Approve Request"
+                                [disabled]="employeeLateRequest.reject || employeeLateRequest.approve">FulDay</button>
                         </td>
                         <td *ngIf="!employeeLateRequest.reject && !employeeLateRequest.approve">
                             <button
-                            style="background-color: red;width: 95px;height: 31px;border-radius: 4px;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF; cursor: pointer;"
-                            (click)="rejectRequest(employeeLateRequest)"
-                            title="Reject Request"
-                                [disabled]="employeeLateRequest.reject || employeeLateRequest.approve"
-                            >Reject</button>
+                                style="background-color: red;width: 95px;height: 31px;border-radius: 4px;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF; cursor: pointer;"
+                                (click)="rejectRequest(employeeLateRequest)" title="Reject Request"
+                                [disabled]="employeeLateRequest.reject || employeeLateRequest.approve">Reject</button>
+                            <!-- <button pButton pRipple icon="pi pi-times" class="p-button-text p-button-danger p-0"
+                               ></button> -->
+                        </td>
+                        <td *ngIf="employeeLateRequest.approve || employeeLateRequest.reject"
+                            class="flex gap-3 justify-content-center align-items-center">
+                            <button
+                                style="background-color: green;width: 95px;height: 31px;border-radius: 4px;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF;"
+                                (click)="rejectRequest(employeeLateRequest)"
+                                [style.background-color]="(employeeLateRequest.approve && (employeeLateRequest.dayType.length>0 && employeeLateRequest.dayType=='HalfDay')) ? 'green' : 'grey'"
+                                class="approve-button" [disabled]="true" title="Already Processed">HalfDay </button>
+                            <button
+                                style="background-color: green;width: 95px;height: 31px;border-radius: 4px;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF;"
+                                (click)="rejectRequest(employeeLateRequest)"
+                                [style.background-color]="(employeeLateRequest.approve && (employeeLateRequest.dayType.length>0 && employeeLateRequest.dayType=='FulDay'))? 'green' : 'grey'"
+                                class="approve-button" [disabled]="true" title="Already Processed">FulDay</button>
                             <!-- <button pButton pRipple icon="pi pi-times" class="p-button-text p-button-danger p-0"
                                ></button> -->
                         </td>
                         <td *ngIf="employeeLateRequest.approve || employeeLateRequest.reject">
-                            <button
-                            style="background-color: green;width: 95px;height: 31px;border-radius: 4px;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF;"
-                            (click)="rejectRequest(employeeLateRequest)"
-                            class="approve-button"
-                                [disabled]="true"
-                                title="Already Processed"
-                            >Approve</button>
-                            <!-- <button pButton pRipple icon="pi pi-times" class="p-button-text p-button-danger p-0"
-                               ></button> -->
-                        </td>
-                        <td *ngIf="employeeLateRequest.approve || employeeLateRequest.reject">
-                            <button
-                            class="reject-button"
-                            style="background-color: red;width: 95px;height: 31px;border-radius: 4px;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF;"
-                            (click)="rejectRequest(employeeLateRequest)"
-                                [disabled]="true"
-                                title="Already Processed"
-                            >Reject</button>
+                            <button class="reject-button"
+                                style="background-color: red;width: 95px;height: 31px;border-radius: 4px;border: 1px #B0B0B0;font-size: 14px;color: #FFFFFF;"
+                                (click)="rejectRequest(employeeLateRequest)"
+                                [style.background-color]="employeeLateRequest.reject ? 'red' : 'grey'" [disabled]="true"
+                                title="Already Processed">Reject</button>
                             <!-- <button pButton pRipple icon="pi pi-times" class="p-button-text p-button-danger p-0"
                                ></button> -->
                         </td>
 
-                      
+
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="summary">

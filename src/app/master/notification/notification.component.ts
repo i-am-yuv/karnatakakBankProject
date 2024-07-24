@@ -26,9 +26,10 @@ cols!:any;
 
   }
 
-  approveRequest(employeeLateRequest:EmployeeLateRequest){
+  approveRequest(employeeLateRequest:EmployeeLateRequest,daytype:any){
     employeeLateRequest.isApprove=true;
-    employeeLateRequest.status="APD";
+    employeeLateRequest.status="Approved";
+    employeeLateRequest.dayType=daytype;
     this.notificationService.approveRequest(employeeLateRequest).then((res:any)=>{
       this.messageService.add({
         severity: 'success',
