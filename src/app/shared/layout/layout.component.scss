@@ -60,14 +60,14 @@
     }
 }
 
-
 .custom-toast-center {
     position: fixed;
-    top: 60%;
+    top: 10%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     z-index: 9999;
   }
+  
   .custom-toast-center-warning {
     position: fixed;
     top: 60%;
@@ -120,3 +120,23 @@
     text-align: center;
     font-size: 16px;
 }
+.custom-swal-popup {
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .custom-swal-title {
+    font-size: 1.5em;
+    color: #4caf50;
+  }
+  
+  .custom-confirm-button {
+    background-color: #28a745 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 5px !important;
+    padding: 10px 20px !important;
+    font-size: 6em !important;
+  }
+  

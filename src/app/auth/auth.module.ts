@@ -5,7 +5,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { SharedModule } from '../shared/shared.module';
 
-
+import Swal from 'sweetalert2';
 @NgModule({
   declarations: [
     LoginComponent

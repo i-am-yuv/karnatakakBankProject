@@ -5,6 +5,8 @@ import { MessageService } from 'primeng/api';
 import { Checkbox } from 'primeng/checkbox';
 import { MasterService } from 'src/app/master/master.service';
 import { AuthService } from '../auth.service';
+import Swal from 'sweetalert2';
+import { SharedServiceService } from 'src/app/shared-service.service';
 
 @Component({
   selector: 'app-login',
@@ -53,7 +55,7 @@ export class LoginComponent implements OnInit {
   yourForm !: FormGroup;
 
   constructor(private router: Router, private message: MessageService, private formBuilder: FormBuilder,
-    private masterService: MasterService, private authService: AuthService) { }
+    private masterService: MasterService, private authService: AuthService,private sharedService:SharedServiceService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -92,70 +94,18 @@ export class LoginComponent implements OnInit {
     this.passwordVisible = !this.passwordVisible;
   }
 
+
+
   loading: boolean = false;
   onClickLogin() {
 
-    var userName=this.loginForm.get('username')?.value;
-    var password=this.loginForm.get('password')?.value;
-    if(userName==undefined || password==undefined){
-      this.notifyError("Please Enter username and password");
+    var userName = this.loginForm.get('username')?.value;
+    var password = this.loginForm.get('password')?.value;
+    if (userName == undefined || password == undefined) {
+      //      this.sharedService.displayErrorMessage("Please Enter username and password");
+      this.sharedService.displayErrorMessage("Please Enter username and password");
       return;
     }
-    //    alert(JSON.stringify(this.loginForm.value));
-
-    // if (this.loginForm.value.username == '7204839067' && this.loginForm.value.password == '123456') {
-    //   sessionStorage.setItem('loginBy', "Pooja");
-    //   sessionStorage.setItem('loginRole', "Employee");
-    //   this.message.add({
-    //     severity: 'success',
-    //     summary: 'Success',
-    //     detail: 'Login Successfully',
-    //     life: 2000,
-    //   });
-    //   setTimeout(() => {
-    //     this.router.navigate(["/dashboard"]);
-    //   }, 2000);
-    // }
-    // else if (this.loginForm.value.username == '9745899658' && this.loginForm.value.password == '123456') {
-    //   sessionStorage.setItem('loginBy', "Narayanan");
-    //   sessionStorage.setItem('loginRole', "Branch Manager");
-    //   this.message.add({
-    //     severity: 'success',
-    //     summary: 'Success',
-    //     detail: 'Login Successfully',
-    //     life: 2000,
-    //   });
-    //   setTimeout(() => {
-    //     this.router.navigate(["/dashboard/branchManager"]);
-    //   }, 2000);
-
-    // }
-    // else if (this.loginForm.value.username == '7683876626' && this.loginForm.value.password == '123456') {
-    //   sessionStorage.setItem('loginBy', "Gyana");
-    //   sessionStorage.setItem('loginRole', "CEO Portal");
-    //   this.message.add({
-    //     severity: 'success',
-    //     summary: 'Success',
-    //     detail: 'Login Successfully',
-    //     life: 2000,
-    //   });
-
-    //   setTimeout(() => {
-    //     this.router.navigate(["/dashboard/ceoPortal"]);
-    //   }, 2000);
-
-    // }
-    // else if (this.loginForm.value.username == '7300234997' && this.loginForm.value.password == '123456') {
-    //   sessionStorage.setItem('loginBy', "Yuvraj");
-    //   sessionStorage.setItem('loginRole', "Business Head Manager");
-    //   this.message.add({
-    //     severity: 'success',
-    //     summary: 'Success',
-    //     detail: 'Login Successfully',
-    //     life: 3000,
-    //   });
-    //   this.router.navigate(["/dashboard/business-head"]);
-    // }
 
     this.loading = true; // loader 
     this.authService.authenticate(this.loginForm.value).then((res) => {
@@ -163,18 +113,22 @@ export class LoginComponent implements OnInit {
       //alert(JSON.stringify(res));
       sessionStorage.setItem('token', res.jwt);
       sessionStorage.setItem('refreshToken', res.refreshToken);
-      this.navigateToDashboard(res);
-      //this.notifySuccess("Login Successful");
-      this.message.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: 'Login Successful',
-        life: 2000,
+    //  this.displaySuccessMessage("Login Successful");
+    this.sharedService.displaySuccessMessage("Login Successful").then(() => {
+        this.navigateToDashboard(res);
       });
+     // this.navigateToDashboard(res);
+      //this.notifySuccess("Login Successful");
+      // this.message.add({
+      //   severity: 'success',
+      //   summary: 'Success',
+      //   detail: 'Login Successful',
+      //   life: 2000,
+      // });
     })
       .catch((err) => {
 
-        this.notifyError("Login Failed or Invalid AD Credentials Try Again");
+        this.sharedService.displayErrorMessage("Login Failed or Invalid AD Credentials Try Again");
         // this.message.add({
         //   severity: 'error',
         //   summary: 'Error',
@@ -190,7 +144,7 @@ export class LoginComponent implements OnInit {
       severity: 'success',
       summary: 'Success',
       detail: message,
-      life: 1000,
+      life: 3000,
       styleClass: 'custom-toast-center'
     });
   }
@@ -230,7 +184,7 @@ export class LoginComponent implements OnInit {
   }
 
   forgetPassword() {
-  
+
     this.notifyInfo("Please Contact Your AD Adminstrator");
   }
   toggleThirdVisible() {
@@ -280,11 +234,11 @@ export class LoginComponent implements OnInit {
     if (true) {
       sessionStorage.setItem('loginBy', res.displayName);
       sessionStorage.setItem('loginRole', roles);
+      this.router.navigate(["/dashboard"]);
 
-      setTimeout(() => {
-        this.router.navigate(["/dashboard"]);
-
-      }, 2000);
+      // setTimeout(() => {
+        
+      // }, 1000);
     }
     else if (username == '9745899658') {
       sessionStorage.setItem('loginBy', "Narayanan");

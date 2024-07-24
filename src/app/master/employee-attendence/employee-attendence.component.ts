@@ -14,7 +14,7 @@ import { EmployeeAttendenceService } from './employee-attendence.service';
 })
 export class EmployeeAttendenceComponent implements OnInit {
   users!: Employee[];
-  
+  today: Date = new Date();
   @ViewChild('dt') dt!: Table;
   date1: Date | undefined;
   uploadUrl = '324324'; // demo URL
@@ -102,7 +102,7 @@ export class EmployeeAttendenceComponent implements OnInit {
       this.users[this.findIndexById(employee.id)] = employee;
 
     }
-    this.cdr.detectChanges();
+    //this.cdr.detectChanges();
   }
 
 

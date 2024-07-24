@@ -117,3 +117,17 @@
   z-index: 9999;
   background-color: #ffbf00;
 }
+
+
+/* Ensure high specificity */
+.swal2-popup .swal2-actions .custom-confirm-button {
+  background-color: #92278F !important;
+  color: white !important;
+}
+
+/* Add hover and focus states for better UX */
+.swal2-popup .swal2-actions .custom-confirm-button:hover,
+.swal2-popup .swal2-actions .custom-confirm-button:focus {
+  background-color: #7a206c !important; /* Adjust to a suitable color for hover and focus states */
+  color: white !important;
+}

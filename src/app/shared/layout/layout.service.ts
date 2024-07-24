@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LayoutService {
 
+
   currentPage !: Observable<any>;
 
   currentPageData = new Subject<any>();
@@ -41,4 +42,6 @@ export class LayoutService {
     
 
   }
+
+
 }

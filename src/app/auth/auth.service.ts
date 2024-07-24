@@ -113,6 +113,10 @@ export class AuthService {
     return user;
   }
 
+  getCurrentUser(){
+    return this.getUser();
+
+  }
   getUserName(): string {
     const token = sessionStorage.getItem('token');
     let jwt: any = {};
@@ -178,4 +182,7 @@ export class AuthService {
     const authenticate = await lastValueFrom(this.http.post<any>(url, authPayload));
     return authenticate;
   }
+
+
+  
 }
