@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { CheckIn } from './checkkIn';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,12 @@ import { environment } from 'src/environments/environment';
 export class LayoutService {
 
 
+
   currentPage !: Observable<any>;
 
   currentPageData = new Subject<any>();
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.currentPage = this.currentPageData.asObservable();
   }
 
@@ -22,26 +24,36 @@ export class LayoutService {
 
 
 
-  getData(data :any )
-  {
-       this.currentPageData.next(data);
+  getData(data: any) {
+    this.currentPageData.next(data);
   }
 
-  getManagerNameByEmployee(employeeId:any): any {
+  getManagerNameByEmployee(employeeId: any): any {
 
     var url =
-    this.apiurl +
-    'api/attendance/managerByEmployee/'+encodeURIComponent(employeeId!);  
+      this.apiurl +
+      'api/attendance/managerByEmployee/' + encodeURIComponent(employeeId!);
     return this.http
       .get<any>(url)
       .toPromise()
       .then((data) => {
-          return data;
-       
+        return data;
+
       });
-    
+
 
   }
 
+  checkDistance(checkIn: CheckIn) {
 
+    var url =
+      this.apiurl +
+      'api/attendance/calculate-distance/';
+    return this.http
+      .post<any>(url, checkIn)
+      .toPromise()
+      .then((data) => {
+        return data;
+      });
+  }
 }

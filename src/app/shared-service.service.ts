@@ -109,11 +109,11 @@ export class SharedServiceService {
   displaySuccessMessage(msg: any) {
     return  Swal.fire({
        title: 'Successful',
-       text: msg,
+       html: `<p style="font-size:23px;">${msg}</p>`,
        icon: 'success',
       // showCloseButton: true,
        focusConfirm: false,
-       timer: 1000,
+       timer: 3000,
        timerProgressBar: true,
        customClass: {
          confirmButton: 'custom-confirm-button'
@@ -128,11 +128,12 @@ export class SharedServiceService {
    displayErrorMessage(msg: any) {
      Swal.fire({
        title: 'Something Went Wrong!',
-       html: msg,
+       html: `<p style="font-size:23px;">${msg}</p>`,
+       
        icon: 'error',
        //showCloseButton: true,
        focusConfirm: false,
-       timer: 1000,
+       timer: 3000,
        timerProgressBar: true,
      }).then((result) => {
        if (result.dismiss === Swal.DismissReason.timer) {
@@ -145,11 +146,12 @@ export class SharedServiceService {
    displayInfoMessage(msg: any) {
      Swal.fire({
        title: 'Information',
-       text: msg,
+      // text: msg,
+       html: `<p style="font-size:23px;">${msg}</p>`,
        icon: 'info',
        //showCloseButton: true,
        focusConfirm: false,
-       timer: 1000,
+       timer: 3000,
        timerProgressBar: true,
      }).then((result) => {
        if (result.dismiss === Swal.DismissReason.timer) {

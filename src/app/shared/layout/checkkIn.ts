@@ -15,9 +15,9 @@ export interface CheckOut {
 }
 
 export interface TimeSheet{
-    username?:any;
+    userName?:any;
     approvername?:any;
-    reason?:any;
+    reason?:string;
     isApprove?:any;
     isReject?:any;
     status?:any;

@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { CheckIn, CheckOut, LeaveData, TimeSheet } from './checkkIn';
-import { ConfirmationService, MessageService } from 'primeng/api';
 import { NotificationService } from 'src/app/master/notification/notification.service';
 import { environment } from 'src/environments/environment';
 import { SharedServiceService } from 'src/app/shared-service.service';
@@ -18,38 +16,56 @@ import Swal from 'sweetalert2';
 })
 
 export class LayoutComponent implements OnInit {
-
+  sidebarVisible: boolean = false;
+  isTabletView: boolean = false;
+  isCompressed: boolean = false;
+  checkOutTimee!: Date;
   name: any;
   role: any;
   totalRecords: number = 0;
   leaveData: LeaveData[] = [];
   isCheckIn: boolean = false;
-  // mobile view checkin and checkout state
-  // checkedIn!: boolean;
+  timesheet: TimeSheet = {};
+  timesheetDialog!: boolean;
+  submitted!: boolean;
 
+  locationName!: any;
+  logintime!: any;
+  checkIn!: CheckIn;
+  checkOut!: CheckOut;
+
+  currentTime!: string;
+  checkInTimee!: Date;
+  isBeforeDeadline!: boolean;
+  displayPopup: boolean = false;
+  cols!: any;
+  isDaycheckIn: boolean = false;
   extendBranchDetails = false;
   extendHRCorner = false;
   currentPage !: string;
-  constructor(private layoutS: LayoutService, private router: Router, private messageService: MessageService, private notificationService: NotificationService,
-    private confirmationService: ConfirmationService, private message: MessageService,
-    private http: HttpClient, private authService: AuthService,
+  subscription!: Subscription;
+
+  constructor(private cdr: ChangeDetectorRef, private layoutS: LayoutService, private router: Router, private notificationService: NotificationService,
+    private authService: AuthService,
     private sharedService: SharedServiceService) {
     this.currentPage = '';
   }
-  private subscription!: Subscription;
 
-  get(val: any) {
-
-    console.log("val>>> " + val)
-    return JSON.stringify(val);
+  ngAfterViewChecked() {
+    this.cdr.detectChanges();
   }
+  // get(val: any) {
+
+  //   console.log("val>>> " + val)
+  //   return JSON.stringify(val);
+  // }
   ngOnInit(): void {
     this.subscription = this.sharedService.methodCalled$.subscribe(() => {
       this.fetchCheckInData();
     });
     this.layoutS.currentPageData.subscribe(
       (res) => {
-        console.log(res);
+        //console.log(res);
         this.currentPage = res;
 
       },
@@ -67,11 +83,8 @@ export class LayoutComponent implements OnInit {
           this.totalRecords = this.totalRecords + 1;
         }
       });
-      //this.totalRecords=res.totalElements;
     });
-    // if (this.checkedIn = true) {
-    //   this.checkInTime();
-    // }
+
 
 
   }
@@ -79,7 +92,6 @@ export class LayoutComponent implements OnInit {
     this.authService.getUser().then((res) => {
       this.isCheckIn = res.checkIn;
     })
-    // Add the logic you want to execute in Component B
   }
   getLoginInfo() {
     this.name = sessionStorage.getItem('loginBy');
@@ -88,9 +100,7 @@ export class LayoutComponent implements OnInit {
       this.isCheckIn = res.checkIn;
     })
   }
-  timesheet!: TimeSheet;
-  timesheetDialog!: boolean;
-  submitted!: boolean;
+
   sendToAprover(timesheet: TimeSheet) {
 
 
@@ -103,7 +113,6 @@ export class LayoutComponent implements OnInit {
           console.log(latitude + "   " + longitude);
           timesheet.latitude = position.coords.latitude;
           timesheet.longitude = position.coords.longitude;
-
           this.authService.sendToAprover(timesheet).then((res: any) => {
 
             this.sharedService.displaySuccessMessage("Successfully Submitted for approval");
@@ -149,174 +158,41 @@ export class LayoutComponent implements OnInit {
     this.submitted = false;
   }
 
-  locationName!: any;
-  logintime!: any;
-  checkIn!: CheckIn;
-  checkOut!: CheckOut;
-  notifySuccess(message: string) {
-    this.message.add({
-      severity: 'success',
-      summary: 'Success',
-      detail: message,
-      life: 3000,
-      styleClass: 'custom-toast-center'
-    });
-  }
-  notifyError(message: string) {
-    this.message.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: message,
-      life: 4000,
-      styleClass: 'custom-toast-center'
-    });
-  }
-  notifyInfo(message: string) {
-    this.message.add({
-      severity: 'warn',
-      summary: 'Warning',
-      detail: message,
-      life: 4000,
-      styleClass: 'custom-toast-center-warning'
-    });
-  }
+  // notifySuccess(message: string) {
+  //   this.message.add({
+  //     severity: 'success',
+  //     summary: 'Success',
+  //     detail: message,
+  //     life: 3000,
+  //     styleClass: 'custom-toast-center'
+  //   });
+  // }
+  // notifyError(message: string) {
+  //   this.message.add({
+  //     severity: 'error',
+  //     summary: 'Error',
+  //     detail: message,
+  //     life: 4000,
+  //     styleClass: 'custom-toast-center'
+  //   });
+  // }
+  // notifyInfo(message: string) {
+  //   this.message.add({
+  //     severity: 'warn',
+  //     summary: 'Warning',
+  //     detail: message,
+  //     life: 4000,
+  //     styleClass: 'custom-toast-center-warning'
+  //   });
+  // }
 
-  currentTime!: string;
-  checkInTimee!: Date;
-  isBeforeDeadline!: boolean;
-  displayPopup: boolean = false;
-  cols!: any;
-  isDaycheckIn: boolean = false;
   async checkInTime(): Promise<void> {
     if (await this.checkDayCheckIn() && await this.checkLeaves() && await this.checkExistingRequest()) {
       await this.performCheckIn();
     }
-
-
-    // //check Already checkin for the day or not
-
-    // this.authService.getUser().then((res) => {
-    //   if (res.dayCheckIn == true) {
-    //     this.sharedService.displayInfoMessage("You have already checkedIn For the Day");
-    //     this.isDaycheckIn=true;
-    //   }
-    // })
-    // ///checkign any leaves in hrms
-    // this.notificationService.checkLeaves(this.authService.getUserName()).then((res) => {
-    //   this.leaveData = res;
-
-    //   if (this.leaveData) {
-    //     this.displayPopup = true;
-
-    //     setTimeout(() => {
-    //       this.displayPopup = false;
-    //     }, 3000);
-    //   }
-
-    // }).catch((e) => {
-    //   this.sharedService.displayErrorMessage("Some Error occured while checking absentData");
-    // });
-    // setTimeout(() => {
-    //   this.displayPopup = false;
-
-    //   this.notificationService.checkAnyRequestExistByUser(this.authService.getUserName()).then((res: any) => {
-    //     if (res) {
-    //       this.sharedService.displayInfoMessage("You have already raised checkin request so wait for approval ");
-    //       return;
-    //     }
-    //     else {
-    //       this.checkInTimee = new Date();
-    //       const deadline = new Date();
-    //       deadline.setHours(9, 45, 0, 0); // Set the deadline to 9:45 AM
-
-    //       this.isBeforeDeadline = this.checkInTimee < deadline;
-    //       //on time
-    //       if (this.isBeforeDeadline) {
-
-    //         if (navigator.geolocation) {
-    //           navigator.geolocation.getCurrentPosition(
-    //             (position) => {
-    //               const latitude = position.coords.latitude;
-    //               const longitude = position.coords.longitude;
-
-    //               console.log(latitude + "   " + longitude);
-
-    //               this.checkIn = {
-    //                 "latitude": position.coords.latitude,
-    //                 "longitude": position.coords.longitude,
-    //                 "empId": this.authService.getUserName()
-    //               };
-
-    //               this.authService.docheckIn(this.checkIn).then((res: any) => {
-    //                 this.checkIn = res?.user?.checkIn;
-    //                 if (res.status == false || res.status == "false") {
-    //                   this.sharedService.displayErrorMessage(res.msg);
-
-    //                 }
-    //                 else {
-    //                   this.isCheckIn = true;
-    //                   console.log(JSON.stringify(res));
-
-    //                   this.sharedService.displaySuccessMessage(res.msg);
-
-    //                 }
-
-    //               }).catch((e) => {
-
-    //                 this.sharedService.displayErrorMessage("Issue Happend While CheckIn");
-
-
-    //               });
-    //             },
-    //             (error) => {
-    //               console.error('Error getting geolocation:', error.message);
-
-    //             }
-    //           );
-    //         } else {
-    //           console.error('Geolocation is not supported by this browser.');
-
-    //         }
-    //       }
-    //       else {
-    //         //check in time over so need to implement maker checker flow
-    //         this.sharedService.displayInfoMessage("Your allowed checkin time has over so please submit request to your reporting manager");
-    //         this.layoutS.getManagerNameByEmployee(this.authService.getUserName().substring(1, this.authService.getUserName().length)).then((res: any) => {
-    //           this.timesheetDialog = true;
-    //           this.timesheet = {};
-    //           if (res) {
-    //             var approverName = res?.supervisors[0]?.supervisorId;
-    //             this.timesheet.approvername = approverName;
-    //             this.timesheet.username = this.authService.getUserName();
-    //           }
-    //         }).catch((e: any) => {
-    //           this.sharedService.displayErrorMessage("Error occured while fetching Reporting Manager");
-    //         });
-
-
-    //       }
-    //     }
-    //   });
-    // }, 2000);
-
-
   }
-  //  isToday(date: Date): boolean {
-  //   const today = new Date();
 
-  //   // Extract year, month, and day
-  //   const todayYear = today.getFullYear();
-  //   const todayMonth = today.getMonth();
-  //   const todayDay = today.getDate();
 
-  //   const dateYear = date.getFullYear();
-  //   const dateMonth = date.getMonth();
-  //   const dateDay = date.getDate();
-
-  //   // Compare year, month, and day
-  //   return todayYear === dateYear && todayMonth === dateMonth && todayDay === dateDay;
-  // }
-  checkOutTimee!: Date;
   async checkOutTime() {
     this.checkOutTimee = new Date();
     const deadline = new Date();
@@ -450,7 +326,6 @@ export class LayoutComponent implements OnInit {
     }
   }
 
-  isCompressed: boolean = false;
 
   togglePanel() {
     this.isCompressed = !this.isCompressed;
@@ -473,7 +348,7 @@ export class LayoutComponent implements OnInit {
   }
 
   // code for left pannel removal for less than tablet view
-  isTabletView: boolean = false;
+
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.checkTabletView();
@@ -483,7 +358,6 @@ export class LayoutComponent implements OnInit {
     this.isTabletView = window.innerWidth < 1000;
   }
 
-  sidebarVisible: boolean = false;
 
   hyperlinkCircular() {
     const url = environment.hyperLinkCircular;
@@ -586,7 +460,7 @@ export class LayoutComponent implements OnInit {
     return new Promise<boolean>((resolve) => {
       Swal.fire({
         title: 'Leave Update',
-        html: `<p>You were absent on the following dates. Please apply for leave through the HRMS Portal.</p>${tableContent}`,
+        html: `<p style="font-size:23px;">You were absent on the following dates. Please apply for leave through the HRMS Portal.</p>${tableContent}`,
         icon: 'info',
         focusConfirm: false,
         //showCloseButton: true,
@@ -603,16 +477,14 @@ export class LayoutComponent implements OnInit {
   }
   displayLateMessageInfoMessage(msg: any): Promise<boolean> {
 
-
     return new Promise<boolean>((resolve) => {
       Swal.fire({
         title: 'CheckIn',
-        html: `<p>Your allowed checkin time has over so please submit request to your reporting manager</p>`,
+        html: `<p style="font-size:23px;">${msg}</p>`,
         icon: 'info',
         focusConfirm: false,
-        //showCloseButton: true,
         showCancelButton: false,
-        timer: 3000, // Show the message for 3 seconds
+        // timer: 3000, 
         timerProgressBar: true,
       }).then((result) => {
         if (result.isConfirmed) {
@@ -621,12 +493,14 @@ export class LayoutComponent implements OnInit {
         }
       });
     });
+
   }
+
   displayCheckOutMessage(msg: any): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
       Swal.fire({
         title: msg,
-        html: `<p>Are you sure you want to early Checkout?</p>`,
+        html: `<p style="font-size:23px;">Are you sure you want to early Checkout?</p>`,
         icon: 'info',
         focusConfirm: false,
         //showCloseButton: true,
@@ -647,7 +521,7 @@ export class LayoutComponent implements OnInit {
     return new Promise<boolean>((resolve) => {
       Swal.fire({
         title: tit,
-        html: `<p>${msg}</p>`,
+        html: `<p style="font-size:23px;">${msg}</p>`,
         icon: 'success',
         focusConfirm: false,
         //showCloseButton: true,
@@ -687,6 +561,7 @@ export class LayoutComponent implements OnInit {
     return true;
   }
 
+  rmanager!:any;
   async performCheckIn(): Promise<void> {
     this.checkInTimee = new Date();
     const deadline = new Date();
@@ -708,19 +583,34 @@ export class LayoutComponent implements OnInit {
               empId: this.authService.getUserName()
             };
 
-            try {
-              const res: any = await this.authService.docheckIn(this.checkIn);
-              this.checkIn = res?.user?.checkIn;
-              if (res.status == false || res.status == "false") {
-                this.sharedService.displayErrorMessage(res.msg);
-              } else {
-                this.isCheckIn = true;
-                console.log(JSON.stringify(res));
-                this.sharedService.displaySuccessMessage(res.msg);
+            this.layoutS.checkDistance(this.checkIn).then(async (res) => {
+              if (res.status) {
+                try {
+                  const res: any = await this.authService.docheckIn(this.checkIn);
+                  this.checkIn = res?.user?.checkIn;
+                  if (res.status == false || res.status == "false") {
+                    this.sharedService.displayErrorMessage(res.msg);
+                  } else {
+                    this.isCheckIn = true;
+                    console.log(JSON.stringify(res));
+                    this.sharedService.displaySuccessMessage(res.msg);
+                  }
+                } catch (e) {
+                  console.log(JSON.stringify(e));
+                  this.sharedService.displayErrorMessage("Issue Happend While CheckIn");
+                }
               }
-            } catch (e) {
-              this.sharedService.displayErrorMessage("Issue Happend While CheckIn");
-            }
+              else {
+                this.sharedService.displayErrorMessage(res.message)
+                return;
+              }
+
+            }).catch((e) => {
+
+              this.sharedService.displayErrorMessage("Issue Happend while fetching branch location");
+            });
+
+
           },
           (error) => {
             console.error('Error getting geolocation:', error.message);
@@ -731,21 +621,77 @@ export class LayoutComponent implements OnInit {
       }
     } else {
 
-      this.displayLateMessageInfoMessage("Your allowed checkin time has over so please submit request to your reporting manager");
-      setTimeout(() => {
-        this.timesheetDialog = true;
-      }, 3000)
-      try {
-        const res: any = await this.layoutS.getManagerNameByEmployee(this.authService.getUserName().substring(1, this.authService.getUserName().length));
-        //  
-        this.timesheet = {};
-        if (res) {
-          var approverName = res?.supervisors[0]?.supervisorId;
-          this.timesheet.approvername = approverName;
-          this.timesheet.username = this.authService.getUserName();
+      const result = await this.displayLateMessageInfoMessage("Your allowed checkin time has over so please submit request to your reporting manager");
+      if (result) {
+        try {
+          const res: any = await this.layoutS.getManagerNameByEmployee(this.authService.getUserName().substring(1, this.authService.getUserName().length));
+            this.rmanager=res;
+          //  
+          //this.timesheet = {};
+          if (res) {
+
+
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(
+                async (position) => {
+                  const latitude = position.coords.latitude;
+                  const longitude = position.coords.longitude;
+
+                  console.log(latitude + "   " + longitude);
+
+                  this.checkIn = {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    empId: this.authService.getUserName()
+                  };
+
+                  this.layoutS.checkDistance(this.checkIn).then(async (res) => {
+                    if (!res.status) {
+                      const result = await this.displayLateMessageInfoMessage(res.message);
+                      if (result) {
+                        this.timesheetDialog = true;
+                        var approverName = this.rmanager?.supervisors[0]?.supervisorId;
+                        this.timesheet.approvername = approverName;
+                        this.timesheet.reason = "";
+                        this.timesheet.userName = this.authService.getUserName();
+                      }
+                    }
+                    else {
+                      return;
+                    }
+
+                  }).catch((e) => {
+
+                    this.sharedService.displayErrorMessage("Issue Happend while fetching branch location");
+                  });
+
+
+                },
+                (error) => {
+                  console.error('Error getting geolocation:', error.message);
+                }
+              );
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          }
+        } catch (e: any) {
+          console.log("else >>> " + JSON.stringify(e));
+          this.sharedService.displayErrorMessage("Error occured while fetching Reporting Manager");
         }
-      } catch (e: any) {
-        this.sharedService.displayErrorMessage("Error occured while fetching Reporting Manager");
+
       }
     }
   }

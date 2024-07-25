@@ -1075,7 +1075,7 @@
             </div>
 
             <!-- Page Outlets -->
-            <div class="" style="background: #E9EBF0">
+            <div  style="background: #E9EBF0">
                 <router-outlet></router-outlet>
             </div>
 
@@ -1085,13 +1085,13 @@
 </div>
 
 
-<p-dialog [(visible)]="timesheetDialog" [style]="{width: '450px'}" header="CheckIn" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="timesheetDialog" [style]="{width: '550px'}" header="Late CheckIn" [modal]="true" styleClass="p-fluid custom-dialog">
     <ng-template pTemplate="content">
         <div class="field">
-            <label for="username">user Name</label>
-            <input type="text" pInputText name="username" #username="ngModel" [(ngModel)]="timesheet.username" required
-                pattern="^[a-zA-Z]+$" minlength="1" maxlength="255" disabled="true" />
-            <small class="p-error" *ngIf="submitted && !timesheet.username">User Name Required.</small>
+            <label for="userName">User Name</label>
+            <input type="text" pInputText name="userName" #userName="ngModel" [(ngModel)]="timesheet.userName" required
+                pattern="^[ -zA-Z]+$" minlength="1" maxlength="255" disabled="true" />
+            <small class="p-error" *ngIf="submitted && !timesheet.userName">User Name Required.</small>
         </div>
         <div class="field">
             <label for="approvername">Approver Name</label>
@@ -1104,7 +1104,7 @@
             <label for="reason">Reason</label>
             <input type="text" pInputText name="reason" #reason="ngModel" [(ngModel)]="timesheet.reason" required maxlength="50" />
             <small class="p-error" *ngIf="submitted && !timesheet.reason">Reason Required</small>
-            <p style="float: right;font-size: 15px;">{{timesheet.reason.length==0?0:timesheet.reason.length}}/50</p>
+            <p style="float: right;font-size: 15px;">{{timesheet.reason?.length==0?0:timesheet.reason?.length}}/50</p>
         </div>
     </ng-template>
 
