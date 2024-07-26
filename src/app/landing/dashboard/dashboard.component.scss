@@ -61,7 +61,6 @@
     /* For Chrome, Safari, and Opera */
   }
 }
-
 .scroll-container2 {
   height: 180px;
   overflow-y: auto;
@@ -150,12 +149,6 @@
   }
 }
 
-// @media screen and (max-width: 768px) {
-//   .col-6 {
-//     flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
-//   }
-// }
-
 
 .flex-item {
   flex: 0 0 calc(50% - 10px);
@@ -232,13 +225,29 @@
 
 
 
+
+
+
+
+// @media screen and (max-width: 768px) {
+//   .col-6 {
+//     flex: 0 0 100%; /* Each column takes 100% width on smaller screens */
+//   }
+// }
+
+
+
+
+
+
+
 .banner {
   overflow: hidden;
 }
 
 .animation-logo {
   display: inline-block;
-  padding-right: 50px;
+  padding-right: 9px;
   padding-left: 0;
   animation: moveText 2s linear reverse infinite;
   white-space: nowrap;

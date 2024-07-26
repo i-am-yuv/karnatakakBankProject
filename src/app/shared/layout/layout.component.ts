@@ -460,7 +460,7 @@ export class LayoutComponent implements OnInit {
     return new Promise<boolean>((resolve) => {
       Swal.fire({
         title: 'Leave Update',
-        html: `<p style="font-size:23px;">You were absent on the following dates. Please apply for leave through the HRMS Portal.</p>${tableContent}`,
+        html: `<p style="font-size:20px;">You were absent on the following dates. Please apply for leave through the HRMS Portal.</p>${tableContent}`,
         icon: 'info',
         focusConfirm: false,
         //showCloseButton: true,
@@ -480,7 +480,7 @@ export class LayoutComponent implements OnInit {
     return new Promise<boolean>((resolve) => {
       Swal.fire({
         title: 'CheckIn',
-        html: `<p style="font-size:23px;">${msg}</p>`,
+        html: `<p style="font-size:20px;">${msg}</p>`,
         icon: 'info',
         focusConfirm: false,
         showCancelButton: false,
@@ -500,7 +500,7 @@ export class LayoutComponent implements OnInit {
     return new Promise<boolean>((resolve) => {
       Swal.fire({
         title: msg,
-        html: `<p style="font-size:23px;">Are you sure you want to early Checkout?</p>`,
+        html: `<p style="font-size:20px;">Are you sure you want to early Checkout?</p>`,
         icon: 'info',
         focusConfirm: false,
         //showCloseButton: true,
@@ -521,7 +521,7 @@ export class LayoutComponent implements OnInit {
     return new Promise<boolean>((resolve) => {
       Swal.fire({
         title: tit,
-        html: `<p style="font-size:23px;">${msg}</p>`,
+        html: `<p style="font-size:20px;">${msg}</p>`,
         icon: 'success',
         focusConfirm: false,
         //showCloseButton: true,
@@ -561,7 +561,7 @@ export class LayoutComponent implements OnInit {
     return true;
   }
 
-  rmanager!:any;
+  rmanager!: any;
   async performCheckIn(): Promise<void> {
     this.checkInTimee = new Date();
     const deadline = new Date();
@@ -569,65 +569,84 @@ export class LayoutComponent implements OnInit {
 
     this.isBeforeDeadline = this.checkInTimee < deadline;
     if (this.isBeforeDeadline) {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          async (position) => {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
 
-            console.log(latitude + "   " + longitude);
+      try {
+        const res: any = await this.layoutS.getManagerNameByEmployee(this.authService.getUserName().substring(1, this.authService.getUserName().length));
+        this.rmanager = res;
+        //  
+        //this.timesheet = {};
+        if (res) {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              async (position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
 
-            this.checkIn = {
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
-              empId: this.authService.getUserName()
-            };
+                console.log(latitude + "   " + longitude);
 
-            this.layoutS.checkDistance(this.checkIn).then(async (res) => {
-              if (res.status) {
-                try {
-                  const res: any = await this.authService.docheckIn(this.checkIn);
-                  this.checkIn = res?.user?.checkIn;
-                  if (res.status == false || res.status == "false") {
-                    this.sharedService.displayErrorMessage(res.msg);
-                  } else {
-                    this.isCheckIn = true;
-                    console.log(JSON.stringify(res));
-                    this.sharedService.displaySuccessMessage(res.msg);
+                this.checkIn = {
+                  latitude: position.coords.latitude,
+                  longitude: position.coords.longitude,
+                  empId: this.authService.getUserName()
+                };
+
+                this.layoutS.checkDistance(this.checkIn).then(async (res) => {
+                    let result = await this.displayLateMessageInfoMessage(res.message);
+                  
+                  if (result && res.status) {
+                    this.timesheetDialog = true;
+                    var approverName = this.rmanager?.supervisors[0]?.supervisorId;
+                    this.timesheet.approvername = approverName;
+                    this.timesheet.reason = "";
+                    this.timesheet.userName = this.authService.getUserName();
                   }
-                } catch (e) {
-                  console.log(JSON.stringify(e));
-                  this.sharedService.displayErrorMessage("Issue Happend While CheckIn");
-                }
+                  else {
+                    try {
+                      const res: any = await this.authService.docheckIn(this.checkIn);
+                      this.checkIn = res?.user?.checkIn;
+                      if (res.status == false || res.status == "false") {
+                        this.sharedService.displayErrorMessage(res.msg);
+                      } else {
+                        this.isCheckIn = true;
+                        console.log(JSON.stringify(res));
+                        this.sharedService.displaySuccessMessage(res.msg);
+                      }
+                    } catch (e) {
+                      console.log(JSON.stringify(e));
+                      this.sharedService.displayErrorMessage("Issue Happend While CheckIn");
+                    }
+
+                  }
+
+                }).catch((e) => {
+
+                  this.sharedService.displayErrorMessage("Issue Happend while fetching branch location");
+                });
+
+
+              },
+              (error) => {
+                console.error('Error getting geolocation:', error.message);
               }
-              else {
-                this.sharedService.displayErrorMessage(res.message)
-                return;
-              }
-
-            }).catch((e) => {
-
-              this.sharedService.displayErrorMessage("Issue Happend while fetching branch location");
-            });
-
-
-          },
-          (error) => {
-            console.error('Error getting geolocation:', error.message);
+            );
           }
-        );
-      } else {
-        console.error('Geolocation is not supported by this browser.');
+        }
+        else {
+          this.sharedService.displayErrorMessage("Error Occured while fetching approverName");
+        }
+      } catch (e: any) {
+        console.log("else >>> " + JSON.stringify(e));
+        this.sharedService.displayErrorMessage("Error occured while fetching Reporting Manager");
       }
-    } else {
 
+    } else {
+      ///crossed checkIN TIME
       const result = await this.displayLateMessageInfoMessage("Your allowed checkin time has over so please submit request to your reporting manager");
       if (result) {
         try {
           const res: any = await this.layoutS.getManagerNameByEmployee(this.authService.getUserName().substring(1, this.authService.getUserName().length));
-            this.rmanager=res;
-          //  
-          //this.timesheet = {};
+          this.rmanager = res;
+
           if (res) {
 
 
@@ -646,19 +665,17 @@ export class LayoutComponent implements OnInit {
                   };
 
                   this.layoutS.checkDistance(this.checkIn).then(async (res) => {
-                    if (!res.status) {
-                      const result = await this.displayLateMessageInfoMessage(res.message);
-                      if (result) {
-                        this.timesheetDialog = true;
-                        var approverName = this.rmanager?.supervisors[0]?.supervisorId;
-                        this.timesheet.approvername = approverName;
-                        this.timesheet.reason = "";
-                        this.timesheet.userName = this.authService.getUserName();
-                      }
+                    let result = await this.displayLateMessageInfoMessage(res.message);
+
+                    //const result = await this.displayLateMessageInfoMessage(res.message);
+                    if (result && res.status) {
+                      this.timesheetDialog = true;
+                      var approverName = this.rmanager?.supervisors[0]?.supervisorId;
+                      this.timesheet.approvername = approverName;
+                      this.timesheet.reason = "";
+                      this.timesheet.userName = this.authService.getUserName();
                     }
-                    else {
-                      return;
-                    }
+
 
                   }).catch((e) => {
 
@@ -686,6 +703,9 @@ export class LayoutComponent implements OnInit {
 
 
 
+          }
+          else {
+            this.sharedService.displayErrorMessage("Error Occured while fetching approverName");
           }
         } catch (e: any) {
           console.log("else >>> " + JSON.stringify(e));

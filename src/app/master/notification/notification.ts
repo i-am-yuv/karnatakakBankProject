@@ -4,7 +4,7 @@ export interface Notification {
 
 export interface EmployeeLateRequest{
 
-     username?:any;
+	userName?:any;
 
 	 approvername?:any;
 

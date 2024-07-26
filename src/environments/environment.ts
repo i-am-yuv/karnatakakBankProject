@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  //commonUrl : 'https://api.ifyn.com/kbldc/',
+  //commonUrl : 'https://kbldcuat.ktkbank.com/kbldc/',
+  
   commonUrl : 'http://localhost:9002/kbldc/',
   helpDeskUrl:"http://172.16.202.111:8025/index.php",
   hyperLinkCircular:"http://172.16.202.10:2080/kbldc/webapps/kdoc/out/out.ViewFolder.php",

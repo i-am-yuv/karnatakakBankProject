@@ -6,6 +6,7 @@ import { LayoutService } from 'src/app/shared/layout/layout.service';
 import { Calendar } from 'primeng/calendar';
 import { Table } from 'primeng/table';
 import { EmployeeAttendenceService } from './employee-attendence.service';
+import { SharedServiceService } from 'src/app/shared-service.service';
 
 @Component({
   selector: 'app-employee-attendence',
@@ -23,7 +24,7 @@ export class EmployeeAttendenceComponent implements OnInit {
   showCalendar = false;
   date!: Date;
 
-  constructor(private employeeAttendenceService: EmployeeAttendenceService, private cdr: ChangeDetectorRef, private messageService: MessageService, private router: Router, private layoutService: LayoutService) {
+  constructor(private sharedServiceService:SharedServiceService,private employeeAttendenceService: EmployeeAttendenceService, private cdr: ChangeDetectorRef, private messageService: MessageService, private router: Router, private layoutService: LayoutService) {
 
   }
   ngOnInit() {
@@ -133,11 +134,13 @@ export class EmployeeAttendenceComponent implements OnInit {
       this.employeeAttendenceService.getAllEmployees().then((res) => {
         this.users = res;
       });
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Successful',
-        detail: 'SuccessFully Marked Attendence'
-      })
+
+      this.sharedServiceService.displaySuccessMessage("SuccessFully Marked Attendence")
+      // this.messageService.add({
+      //   severity: 'success',
+      //   summary: 'Successful',
+      //   detail: 'SuccessFully Marked Attendence'
+      // })
 
 
       

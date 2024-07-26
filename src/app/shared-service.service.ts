@@ -109,7 +109,7 @@ export class SharedServiceService {
   displaySuccessMessage(msg: any) {
     return  Swal.fire({
        title: 'Successful',
-       html: `<p style="font-size:23px;">${msg}</p>`,
+       html: `<p style="font-size:20px;">${msg}</p>`,
        icon: 'success',
       // showCloseButton: true,
        focusConfirm: false,
@@ -128,7 +128,7 @@ export class SharedServiceService {
    displayErrorMessage(msg: any) {
      Swal.fire({
        title: 'Something Went Wrong!',
-       html: `<p style="font-size:23px;">${msg}</p>`,
+       html: `<p style="font-size:20px;">${msg}</p>`,
        
        icon: 'error',
        //showCloseButton: true,
@@ -147,7 +147,7 @@ export class SharedServiceService {
      Swal.fire({
        title: 'Information',
       // text: msg,
-       html: `<p style="font-size:23px;">${msg}</p>`,
+       html: `<p style="font-size:20px;">${msg}</p>`,
        icon: 'info',
        //showCloseButton: true,
        focusConfirm: false,
