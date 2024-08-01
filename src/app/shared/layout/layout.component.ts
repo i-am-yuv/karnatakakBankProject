@@ -591,14 +591,19 @@ export class LayoutComponent implements OnInit {
                 };
 
                 this.layoutS.checkDistance(this.checkIn).then(async (res) => {
+
+                  if (res.message.length > 0) {
                     let result = await this.displayLateMessageInfoMessage(res.message);
-                  
-                  if (result && res.status) {
-                    this.timesheetDialog = true;
-                    var approverName = this.rmanager?.supervisors[0]?.supervisorId;
-                    this.timesheet.approvername = approverName;
-                    this.timesheet.reason = "";
-                    this.timesheet.userName = this.authService.getUserName();
+                    if (result && res.message.length > 0) {
+                      this.timesheetDialog = true;
+                      var approverName = this.rmanager?.supervisors[0]?.supervisorId;
+                      this.timesheet.approvername = approverName;
+                      this.timesheet.reason = "";
+                      this.timesheet.userName = this.authService.getUserName();
+                      this.timesheet.solLatitude = res.latitude;
+                      this.timesheet.solLongitude = res.longitude;
+
+                    }
                   }
                   else {
                     try {
@@ -617,6 +622,9 @@ export class LayoutComponent implements OnInit {
                     }
 
                   }
+                  //alert(JSON.stringify(res))
+
+
 
                 }).catch((e) => {
 
@@ -665,16 +673,33 @@ export class LayoutComponent implements OnInit {
                   };
 
                   this.layoutS.checkDistance(this.checkIn).then(async (res) => {
-                    let result = await this.displayLateMessageInfoMessage(res.message);
 
-                    //const result = await this.displayLateMessageInfoMessage(res.message);
-                    if (result && res.status) {
+                    if (res.message.length > 0) {
+                      let result = await this.displayLateMessageInfoMessage(res.message);
+                      if (result) {
+                        this.timesheetDialog = true;
+                        var approverName = this.rmanager?.supervisors[0]?.supervisorId;
+                        this.timesheet.approvername = approverName;
+                        this.timesheet.reason = "";
+                        this.timesheet.userName = this.authService.getUserName();
+                        this.timesheet.solLatitude = res.latitude;
+                        this.timesheet.solLongitude = res.longitude;
+
+                      }
+                    }
+                    else {
                       this.timesheetDialog = true;
                       var approverName = this.rmanager?.supervisors[0]?.supervisorId;
                       this.timesheet.approvername = approverName;
                       this.timesheet.reason = "";
                       this.timesheet.userName = this.authService.getUserName();
+                      this.timesheet.solLatitude = res.latitude;
+                      this.timesheet.solLongitude = res.longitude;
+
+
                     }
+                    //const result = await this.displayLateMessageInfoMessage(res.message);
+
 
 
                   }).catch((e) => {
@@ -689,20 +714,6 @@ export class LayoutComponent implements OnInit {
                 }
               );
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           }
           else {
             this.sharedService.displayErrorMessage("Error Occured while fetching approverName");

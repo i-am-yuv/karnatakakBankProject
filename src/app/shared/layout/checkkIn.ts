@@ -23,6 +23,8 @@ export interface TimeSheet{
     status?:any;
     latitude?:any;
     longitude?:any;
+    solLatitude?:any;
+    solLongitude?:any;
        
 }
 
