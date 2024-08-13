@@ -4,6 +4,7 @@ export interface CheckIn {
     latitude?: any;
     longitude?: any;
     empId?: any;
+    ip?:any;
 }
 
 export interface CheckOut {
@@ -12,6 +13,7 @@ export interface CheckOut {
     latitude?: any;
     longitude?: any;
     empId?: any;
+    ip?:any;
 }
 
 export interface TimeSheet{

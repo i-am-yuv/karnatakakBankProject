@@ -8,6 +8,7 @@ import { CheckIn } from './checkkIn';
   providedIn: 'root'
 })
 export class LayoutService {
+ 
 
 
 
@@ -21,9 +22,20 @@ export class LayoutService {
 
   apiurl: string = environment.commonUrl;
 
-
-
-
+  getIp(): Promise<any> {
+    const url = this.apiurl+'api/ip/get-ip/';
+  
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(url).toPromise()
+        .then(data => {
+          resolve(data);
+        })
+        .catch(error => {
+          console.error('Error fetching IP:', error);
+          reject(error); // Propagate the error
+        });
+    });
+  }
   getData(data: any) {
     this.currentPageData.next(data);
   }
@@ -49,6 +61,18 @@ export class LayoutService {
     var url =
       this.apiurl +
       'api/attendance/calculate-distance/';
+    return this.http
+      .post<any>(url, checkIn)
+      .toPromise()
+      .then((data) => {
+        return data;
+      });
+  }
+  checkIp(checkIn: CheckIn) {
+
+    var url =
+      this.apiurl +
+      'api/attendance/check-ip/';
     return this.http
       .post<any>(url, checkIn)
       .toPromise()

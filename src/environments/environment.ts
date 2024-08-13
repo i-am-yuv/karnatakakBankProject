@@ -5,7 +5,7 @@
 export const environment = {
   //commonUrl : 'https://kbldcuat.ktkbank.com/kbldc/',
   
-  commonUrl : 'http://localhost:9002/kbldc/',
+  commonUrl : 'http://10.20.3.93:9002/kbldc/',
   helpDeskUrl:"http://172.16.202.111:8025/index.php",
   hyperLinkCircular:"http://172.16.202.10:2080/kbldc/webapps/kdoc/out/out.ViewFolder.php",
   fold:"http://172.16.202.10/kbldc/webapps/fold/",

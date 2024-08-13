@@ -31,7 +31,8 @@ export class JwtInterceptor implements HttpInterceptor {
         const accountToken = sessionStorage.getItem("token");
         if (accountToken) {
             return request.clone({
-                setHeaders: { Authorization: `Bearer ${accountToken}` }
+                setHeaders: { Authorization: `Bearer ${accountToken}`},
+
             });
         }
         return request;

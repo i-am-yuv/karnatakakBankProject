@@ -8,6 +8,7 @@ import { SharedServiceService } from 'src/app/shared-service.service';
 import { Subscription } from 'rxjs';
 import { LayoutService } from './layout.service';
 import Swal from 'sweetalert2';
+import { GeolocationService } from './geo';
 
 @Component({
   selector: 'app-layout',
@@ -45,12 +46,58 @@ export class LayoutComponent implements OnInit {
   currentPage !: string;
   subscription!: Subscription;
 
-  constructor(private cdr: ChangeDetectorRef, private layoutS: LayoutService, private router: Router, private notificationService: NotificationService,
+  constructor(private geo: GeolocationService, private cdr: ChangeDetectorRef, private layoutS: LayoutService, private router: Router, private notificationService: NotificationService,
     private authService: AuthService,
     private sharedService: SharedServiceService) {
     this.currentPage = '';
+
+
+    // alert(JSON.stringify(coordinates));
+    //  alert(JSON.stringify(this.geolocationService.getCurrentPosition()));
   }
 
+  // getCurrentLocation() {
+  //   this.geo.getGeolocation().subscribe(
+  //     (response: any) => {
+  //       const coordinates = {
+  //         lat: response.location.lat,
+  //         lng: response.location.lng
+  //       };
+  //       console.log('Coordinates:', coordinates);
+  //     },
+  //     (error: any) => {
+  //       console.error('Error fetching location:', error);
+  //     }
+  //   );
+
+  //   // return new Promise((resolve, reject) => {
+  //   //   if (navigator.geolocation) {
+  //   //     navigator.geolocation.getCurrentPosition(
+  //   //       (position) => {
+  //   //         if (position) {
+  //   //           console.log(
+  //   //             'Latitude: ' +
+  //   //               position.coords.latitude +
+  //   //               'Longitude: ' +
+  //   //               position.coords.longitude
+  //   //           );
+  //   //           let lat = position.coords.latitude;
+  //   //           let lng = position.coords.longitude;
+
+  //   //           const location = {
+  //   //             lat,
+  //   //             lng,
+  //   //           };
+  //   //           resolve(location);
+  //   //         }
+  //   //       },
+  //   //       (error) => console.log(error)
+  //   //     );
+  //   //   } else {
+  //   //     reject('Geolocation is not supported by this browser.');
+  //   //   }
+  //   // });
+  // }
   ngAfterViewChecked() {
     this.cdr.detectChanges();
   }
@@ -103,46 +150,67 @@ export class LayoutComponent implements OnInit {
 
   sendToAprover(timesheet: TimeSheet) {
 
+    timesheet.latitude = 0;
+    timesheet.longitude = 0;
+    this.authService.sendToAprover(timesheet).then((res: any) => {
 
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
+      this.sharedService.displaySuccessMessage("Successfully Submitted for approval");
+      this.notificationService.getEmployeeLateRequests(0, 1000000, '', 'ASC').then((res: any) => {
 
-          console.log(latitude + "   " + longitude);
-          timesheet.latitude = position.coords.latitude;
-          timesheet.longitude = position.coords.longitude;
-          this.authService.sendToAprover(timesheet).then((res: any) => {
+        res.content.forEach((element: any) => {
+          if (!element.reject && !element.approve) {
+            this.totalRecords = this.totalRecords + 1;
 
-            this.sharedService.displaySuccessMessage("Successfully Submitted for approval");
-            this.notificationService.getEmployeeLateRequests(0, 1000000, '', 'ASC').then((res: any) => {
+          }
+        });
+        //this.totalRecords=res.totalElements;
+      });
 
-              res.content.forEach((element: any) => {
-                if (!element.reject && !element.approve) {
-                  this.totalRecords = this.totalRecords + 1;
+      this.timesheetDialog = false;
 
-                }
-              });
-              //this.totalRecords=res.totalElements;
-            });
+    }).catch((err => {
+      //alert(JSON.stringify(err));
+      this.sharedService.displayErrorMessage("Something issue happend");
+    }));
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(
+    //     (position) => {
+    //       const latitude = position.coords.latitude;
+    //       const longitude = position.coords.longitude;
 
-            this.timesheetDialog = false;
+    //       console.log(latitude + "   " + longitude);
+    //       timesheet.latitude = position.coords.latitude;
+    //       timesheet.longitude = position.coords.longitude;
+    //       this.authService.sendToAprover(timesheet).then((res: any) => {
 
-          }).catch((err => {
-            //alert(JSON.stringify(err));
-            this.sharedService.displayErrorMessage("Something issue happend");
-          }));
-        },
-        (error) => {
-          console.error('Error getting geolocation:', error.message);
+    //         this.sharedService.displaySuccessMessage("Successfully Submitted for approval");
+    //         this.notificationService.getEmployeeLateRequests(0, 1000000, '', 'ASC').then((res: any) => {
 
-        }
-      );
-    } else {
-      console.error('Geolocation is not supported by this browser.');
+    //           res.content.forEach((element: any) => {
+    //             if (!element.reject && !element.approve) {
+    //               this.totalRecords = this.totalRecords + 1;
 
-    }
+    //             }
+    //           });
+    //           //this.totalRecords=res.totalElements;
+    //         });
+
+    //         this.timesheetDialog = false;
+
+    //       }).catch((err => {
+    //         //alert(JSON.stringify(err));
+    //         this.sharedService.displayErrorMessage("Something issue happend");
+    //       }));
+    //     },
+    //     (error) => {
+    //       console.error('Error getting geolocation:', error.message);
+
+    //     }
+    //   );
+    // } else {
+    //   console.error('Geolocation is not supported by this browser.');
+
+    // }
 
 
 
@@ -157,35 +225,6 @@ export class LayoutComponent implements OnInit {
     this.timesheetDialog = false;
     this.submitted = false;
   }
-
-  // notifySuccess(message: string) {
-  //   this.message.add({
-  //     severity: 'success',
-  //     summary: 'Success',
-  //     detail: message,
-  //     life: 3000,
-  //     styleClass: 'custom-toast-center'
-  //   });
-  // }
-  // notifyError(message: string) {
-  //   this.message.add({
-  //     severity: 'error',
-  //     summary: 'Error',
-  //     detail: message,
-  //     life: 4000,
-  //     styleClass: 'custom-toast-center'
-  //   });
-  // }
-  // notifyInfo(message: string) {
-  //   this.message.add({
-  //     severity: 'warn',
-  //     summary: 'Warning',
-  //     detail: message,
-  //     life: 4000,
-  //     styleClass: 'custom-toast-center-warning'
-  //   });
-  // }
-
   async checkInTime(): Promise<void> {
     if (await this.checkDayCheckIn() && await this.checkLeaves() && await this.checkExistingRequest()) {
       await this.performCheckIn();
@@ -254,51 +293,78 @@ export class LayoutComponent implements OnInit {
     else {
 
       this.isCheckIn = true;
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-
-            console.log(latitude + "   " + longitude);
 
 
-            this.checkOut = {
-              "latitude": position.coords.latitude,
-              "longitude": position.coords.longitude,
-              "empId": this.authService.getUserName()
-            };
+      this.checkOut = {
+        "latitude": 0,
+        "longitude": 0,
+        "empId": this.authService.getUserName()
+      };
 
-            console.log(JSON.stringify(this.checkOut))
-            this.authService.docheckOut(this.checkOut, position.coords.longitude, position.coords.latitude).then(async (res: any) => {
-              console.log(JSON.stringify(res));
-              this.checkOut = res?.user?.checkIn;
-              if (res.status == false || res.status == "false") {
+      console.log(JSON.stringify(this.checkOut))
+      this.authService.docheckOut(this.checkOut, 0, 0).then(async (res: any) => {
+        console.log(JSON.stringify(res));
+        this.checkOut = res?.user?.checkIn;
+        if (res.status == false || res.status == "false") {
 
-                this.sharedService.displayErrorMessage(res.msg);
-              }
-              else {
-                this.isCheckIn = false;
-                this.sharedService.displaySuccessMessage(res.msg);
-                const result = await this.displayCheckOutSuccessMessage("CheckOut Update", res.msg);
+          this.sharedService.displayErrorMessage(res.msg);
+        }
+        else {
+          this.isCheckIn = false;
+          this.sharedService.displaySuccessMessage(res.msg);
+          const result = await this.displayCheckOutSuccessMessage("CheckOut Update", res.msg);
 
-              }
+        }
 
 
-            }).catch((e) => {
-              this.sharedService.displayErrorMessage("Issue Happend While CheckedOut");
-            });
+      }).catch((e) => {
+        this.sharedService.displayErrorMessage("Issue Happend While CheckedOut");
+      });
+      // if (navigator.geolocation) {
+      //   navigator.geolocation.getCurrentPosition(
+      //     (position) => {
+      //       const latitude = position.coords.latitude;
+      //       const longitude = position.coords.longitude;
 
-          },
-          (error) => {
-            console.error('Error getting geolocation:', error.message);
+      //       console.log(latitude + "   " + longitude);
 
-          }
-        );
-      } else {
-        console.error('Geolocation is not supported by this browser.');
 
-      }
+      //       this.checkOut = {
+      //         "latitude": position.coords.latitude,
+      //         "longitude": position.coords.longitude,
+      //         "empId": this.authService.getUserName()
+      //       };
+
+      //       console.log(JSON.stringify(this.checkOut))
+      //       this.authService.docheckOut(this.checkOut, position.coords.longitude, position.coords.latitude).then(async (res: any) => {
+      //         console.log(JSON.stringify(res));
+      //         this.checkOut = res?.user?.checkIn;
+      //         if (res.status == false || res.status == "false") {
+
+      //           this.sharedService.displayErrorMessage(res.msg);
+      //         }
+      //         else {
+      //           this.isCheckIn = false;
+      //           this.sharedService.displaySuccessMessage(res.msg);
+      //           const result = await this.displayCheckOutSuccessMessage("CheckOut Update", res.msg);
+
+      //         }
+
+
+      //       }).catch((e) => {
+      //         this.sharedService.displayErrorMessage("Issue Happend While CheckedOut");
+      //       });
+
+      //     },
+      //     (error) => {
+      //       console.error('Error getting geolocation:', error.message);
+
+      //     }
+      //   );
+      // } else {
+      //   console.error('Geolocation is not supported by this browser.');
+
+      // }
 
 
     }
@@ -565,7 +631,11 @@ export class LayoutComponent implements OnInit {
   async performCheckIn(): Promise<void> {
     this.checkInTimee = new Date();
     const deadline = new Date();
+    console.log("deadline>>> " + deadline + "\n this.checkInTimee " + this.checkInTimee);
+
     deadline.setHours(9, 45, 0, 0);
+    console.log("deadline>>> " + deadline + "\n(this.checkInTimee < deadline)>>" + (this.checkInTimee < deadline));
+
 
     this.isBeforeDeadline = this.checkInTimee < deadline;
     if (this.isBeforeDeadline) {
@@ -576,72 +646,130 @@ export class LayoutComponent implements OnInit {
         //  
         //this.timesheet = {};
         if (res) {
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-              async (position) => {
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
+          this.layoutS.getIp().then((res) => {
+            var ip = res.ipAddress;
+            this.checkIn = {
+              latitude: 0,
+              longitude: 0,
+              empId: this.authService.getUserName(),
+              ip: ip
+            };
 
-                console.log(latitude + "   " + longitude);
+            this.layoutS.checkIp(this.checkIn).then(async (res) => {
 
-                this.checkIn = {
-                  latitude: position.coords.latitude,
-                  longitude: position.coords.longitude,
-                  empId: this.authService.getUserName()
-                };
+              if (res.message.length > 0) {
+                let result = await this.displayLateMessageInfoMessage(res.message);
+                if (result && res.message.length > 0) {
+                  this.timesheetDialog = true;
+                  var approverName = this.rmanager?.supervisors[0]?.supervisorId;
+                  this.timesheet.approvername = approverName;
+                  this.timesheet.reason = "";
+                  this.timesheet.userName = this.authService.getUserName();
+                  this.timesheet.solLatitude = res.latitude;
+                  this.timesheet.solLongitude = res.longitude;
 
-                this.layoutS.checkDistance(this.checkIn).then(async (res) => {
-
-                  if (res.message.length > 0) {
-                    let result = await this.displayLateMessageInfoMessage(res.message);
-                    if (result && res.message.length > 0) {
-                      this.timesheetDialog = true;
-                      var approverName = this.rmanager?.supervisors[0]?.supervisorId;
-                      this.timesheet.approvername = approverName;
-                      this.timesheet.reason = "";
-                      this.timesheet.userName = this.authService.getUserName();
-                      this.timesheet.solLatitude = res.latitude;
-                      this.timesheet.solLongitude = res.longitude;
-
-                    }
-                  }
-                  else {
-                    try {
-                      const res: any = await this.authService.docheckIn(this.checkIn);
-                      this.checkIn = res?.user?.checkIn;
-                      if (res.status == false || res.status == "false") {
-                        this.sharedService.displayErrorMessage(res.msg);
-                      } else {
-                        this.isCheckIn = true;
-                        console.log(JSON.stringify(res));
-                        this.sharedService.displaySuccessMessage(res.msg);
-                      }
-                    } catch (e) {
-                      console.log(JSON.stringify(e));
-                      this.sharedService.displayErrorMessage("Issue Happend While CheckIn");
-                    }
-
-                  }
-                  //alert(JSON.stringify(res))
-
-
-
-                }).catch((e) => {
-
-                  this.sharedService.displayErrorMessage("Issue Happend while fetching branch location");
-                });
-
-
-              },
-              (error) => {
-                console.error('Error getting geolocation:', error.message);
+                }
               }
-            );
-          }
+              else {
+                try {
+                  const res: any = await this.authService.docheckIn(this.checkIn);
+                  this.checkIn = res?.user?.checkIn;
+                  if (res.status == false || res.status == "false") {
+                    this.sharedService.displayErrorMessage(res.msg);
+                  } else {
+                    this.isCheckIn = true;
+                    console.log(JSON.stringify(res));
+                    this.sharedService.displaySuccessMessage(res.msg);
+                  }
+                } catch (e) {
+                  console.log(JSON.stringify(e));
+                  this.sharedService.displayErrorMessage("Issue Happend While CheckIn");
+                }
+
+              }
+              //alert(JSON.stringify(res))
+
+
+
+            }).catch((e) => {
+
+              this.sharedService.displayErrorMessage("Issue Happend while fetching branch location");
+            });
+
+          }).catch((e) => {
+            this.sharedService.displayErrorMessage("Exception occured while fetching IP");
+          });
         }
         else {
           this.sharedService.displayErrorMessage("Error Occured while fetching approverName");
         }
+        // if (res) {
+        //   if (navigator.geolocation) {
+        //     navigator.geolocation.getCurrentPosition(
+        //       async (position) => {
+        //         const latitude = position.coords.latitude;
+        //         const longitude = position.coords.longitude;
+
+        //         console.log(latitude + "   " + longitude);
+
+        //         this.checkIn = {
+        //           latitude: position.coords.latitude,
+        //           longitude: position.coords.longitude,
+        //           empId: this.authService.getUserName()
+        //         };
+
+        //         this.layoutS.checkDistance(this.checkIn).then(async (res) => {
+
+        //           if (res.message.length > 0) {
+        //             let result = await this.displayLateMessageInfoMessage(res.message);
+        //             if (result && res.message.length > 0) {
+        //               this.timesheetDialog = true;
+        //               var approverName = this.rmanager?.supervisors[0]?.supervisorId;
+        //               this.timesheet.approvername = approverName;
+        //               this.timesheet.reason = "";
+        //               this.timesheet.userName = this.authService.getUserName();
+        //               this.timesheet.solLatitude = res.latitude;
+        //               this.timesheet.solLongitude = res.longitude;
+
+        //             }
+        //           }
+        //           else {
+        //             try {
+        //               const res: any = await this.authService.docheckIn(this.checkIn);
+        //               this.checkIn = res?.user?.checkIn;
+        //               if (res.status == false || res.status == "false") {
+        //                 this.sharedService.displayErrorMessage(res.msg);
+        //               } else {
+        //                 this.isCheckIn = true;
+        //                 console.log(JSON.stringify(res));
+        //                 this.sharedService.displaySuccessMessage(res.msg);
+        //               }
+        //             } catch (e) {
+        //               console.log(JSON.stringify(e));
+        //               this.sharedService.displayErrorMessage("Issue Happend While CheckIn");
+        //             }
+
+        //           }
+        //           //alert(JSON.stringify(res))
+
+
+
+        //         }).catch((e) => {
+
+        //           this.sharedService.displayErrorMessage("Issue Happend while fetching branch location");
+        //         });
+
+
+        //       },
+        //       (error) => {
+        //         console.error('Error getting geolocation:', error.message);
+        //       }
+        //     );
+        //   }
+        // }
+        // else {
+        //   this.sharedService.displayErrorMessage("Error Occured while fetching approverName");
+        // }
       } catch (e: any) {
         console.log("else >>> " + JSON.stringify(e));
         this.sharedService.displayErrorMessage("Error occured while fetching Reporting Manager");
@@ -654,70 +782,184 @@ export class LayoutComponent implements OnInit {
         try {
           const res: any = await this.layoutS.getManagerNameByEmployee(this.authService.getUserName().substring(1, this.authService.getUserName().length));
           this.rmanager = res;
-
           if (res) {
 
+            this.layoutS.getIp().then((res) => {
+              var ip = res.ipAddress;
+              this.checkIn = {
+                latitude: 0,
+                longitude: 0,
+                empId: this.authService.getUserName(),
+                ip: ip
+              };
+              this.layoutS.checkIp(this.checkIn).then(async (res) => {
 
-            if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(
-                async (position) => {
-                  const latitude = position.coords.latitude;
-                  const longitude = position.coords.longitude;
+                if (res.message.length > 0) {
+                  let result = await this.displayLateMessageInfoMessage(res.message);
+                  if (result) {
+                    this.timesheetDialog = true;
+                    var approverName = this.rmanager?.supervisors[0]?.supervisorId;
+                    this.timesheet.approvername = approverName;
+                    this.timesheet.reason = "";
+                    this.timesheet.userName = this.authService.getUserName();
+                    this.timesheet.solLatitude = res.latitude;
+                    this.timesheet.solLongitude = res.longitude;
 
-                  console.log(latitude + "   " + longitude);
-
-                  this.checkIn = {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                    empId: this.authService.getUserName()
-                  };
-
-                  this.layoutS.checkDistance(this.checkIn).then(async (res) => {
-
-                    if (res.message.length > 0) {
-                      let result = await this.displayLateMessageInfoMessage(res.message);
-                      if (result) {
-                        this.timesheetDialog = true;
-                        var approverName = this.rmanager?.supervisors[0]?.supervisorId;
-                        this.timesheet.approvername = approverName;
-                        this.timesheet.reason = "";
-                        this.timesheet.userName = this.authService.getUserName();
-                        this.timesheet.solLatitude = res.latitude;
-                        this.timesheet.solLongitude = res.longitude;
-
-                      }
-                    }
-                    else {
-                      this.timesheetDialog = true;
-                      var approverName = this.rmanager?.supervisors[0]?.supervisorId;
-                      this.timesheet.approvername = approverName;
-                      this.timesheet.reason = "";
-                      this.timesheet.userName = this.authService.getUserName();
-                      this.timesheet.solLatitude = res.latitude;
-                      this.timesheet.solLongitude = res.longitude;
-
-
-                    }
-                    //const result = await this.displayLateMessageInfoMessage(res.message);
-
-
-
-                  }).catch((e) => {
-
-                    this.sharedService.displayErrorMessage("Issue Happend while fetching branch location");
-                  });
-
-
-                },
-                (error) => {
-                  console.error('Error getting geolocation:', error.message);
+                  }
                 }
-              );
-            }
+                else {
+                  this.timesheetDialog = true;
+                  var approverName = this.rmanager?.supervisors[0]?.supervisorId;
+                  this.timesheet.approvername = approverName;
+                  this.timesheet.reason = "";
+                  this.timesheet.userName = this.authService.getUserName();
+                  this.timesheet.solLatitude = res.latitude;
+                  this.timesheet.solLongitude = res.longitude;
+
+
+                }
+                //const result = await this.displayLateMessageInfoMessage(res.message);
+
+
+
+              }).catch((e) => {
+
+                this.sharedService.displayErrorMessage("Issue Happend while fetching branch location");
+              });
+            }).catch((e) => {
+              this.sharedService.displayErrorMessage("Exception occured while fetching IP");
+            });
+
+
+
+            // if (navigator.geolocation) {
+            //   navigator.geolocation.getCurrentPosition(
+            //     async (position) => {
+            //       const latitude = position.coords.latitude;
+            //       const longitude = position.coords.longitude;
+
+            //       console.log(latitude + "   " + longitude);
+
+            //       this.checkIn = {
+            //         latitude: position.coords.latitude,
+            //         longitude: position.coords.longitude,
+            //         empId: this.authService.getUserName()
+            //       };
+
+            //       this.layoutS.checkDistance(this.checkIn).then(async (res) => {
+
+            //         if (res.message.length > 0) {
+            //           let result = await this.displayLateMessageInfoMessage(res.message);
+            //           if (result) {
+            //             this.timesheetDialog = true;
+            //             var approverName = this.rmanager?.supervisors[0]?.supervisorId;
+            //             this.timesheet.approvername = approverName;
+            //             this.timesheet.reason = "";
+            //             this.timesheet.userName = this.authService.getUserName();
+            //             this.timesheet.solLatitude = res.latitude;
+            //             this.timesheet.solLongitude = res.longitude;
+
+            //           }
+            //         }
+            //         else {
+            //           this.timesheetDialog = true;
+            //           var approverName = this.rmanager?.supervisors[0]?.supervisorId;
+            //           this.timesheet.approvername = approverName;
+            //           this.timesheet.reason = "";
+            //           this.timesheet.userName = this.authService.getUserName();
+            //           this.timesheet.solLatitude = res.latitude;
+            //           this.timesheet.solLongitude = res.longitude;
+
+
+            //         }
+            //         //const result = await this.displayLateMessageInfoMessage(res.message);
+
+
+
+            //       }).catch((e) => {
+
+            //         this.sharedService.displayErrorMessage("Issue Happend while fetching branch location");
+            //       });
+
+
+            //     },
+            //     (error) => {
+            //       console.error('Error getting geolocation:', error.message);
+            //     }
+            //   );
+            // }
           }
           else {
             this.sharedService.displayErrorMessage("Error Occured while fetching approverName");
           }
+
+
+
+
+
+          // if (res) {
+
+
+          //   if (navigator.geolocation) {
+          //     navigator.geolocation.getCurrentPosition(
+          //       async (position) => {
+          //         const latitude = position.coords.latitude;
+          //         const longitude = position.coords.longitude;
+
+          //         console.log(latitude + "   " + longitude);
+
+          //         this.checkIn = {
+          //           latitude: position.coords.latitude,
+          //           longitude: position.coords.longitude,
+          //           empId: this.authService.getUserName()
+          //         };
+
+          //         this.layoutS.checkDistance(this.checkIn).then(async (res) => {
+
+          //           if (res.message.length > 0) {
+          //             let result = await this.displayLateMessageInfoMessage(res.message);
+          //             if (result) {
+          //               this.timesheetDialog = true;
+          //               var approverName = this.rmanager?.supervisors[0]?.supervisorId;
+          //               this.timesheet.approvername = approverName;
+          //               this.timesheet.reason = "";
+          //               this.timesheet.userName = this.authService.getUserName();
+          //               this.timesheet.solLatitude = res.latitude;
+          //               this.timesheet.solLongitude = res.longitude;
+
+          //             }
+          //           }
+          //           else {
+          //             this.timesheetDialog = true;
+          //             var approverName = this.rmanager?.supervisors[0]?.supervisorId;
+          //             this.timesheet.approvername = approverName;
+          //             this.timesheet.reason = "";
+          //             this.timesheet.userName = this.authService.getUserName();
+          //             this.timesheet.solLatitude = res.latitude;
+          //             this.timesheet.solLongitude = res.longitude;
+
+
+          //           }
+          //           //const result = await this.displayLateMessageInfoMessage(res.message);
+
+
+
+          //         }).catch((e) => {
+
+          //           this.sharedService.displayErrorMessage("Issue Happend while fetching branch location");
+          //         });
+
+
+          //       },
+          //       (error) => {
+          //         console.error('Error getting geolocation:', error.message);
+          //       }
+          //     );
+          //   }
+          // }
+          // else {
+          //   this.sharedService.displayErrorMessage("Error Occured while fetching approverName");
+          // }
         } catch (e: any) {
           console.log("else >>> " + JSON.stringify(e));
           this.sharedService.displayErrorMessage("Error occured while fetching Reporting Manager");
