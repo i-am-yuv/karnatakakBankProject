@@ -109,19 +109,19 @@ export class LayoutComponent implements OnInit {
   //   return JSON.stringify(val);
   // }
   ngOnInit(): void {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        // Success callback
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        console.log(`Location accessed\nLatitude: ${latitude}\nLongitude: ${longitude}`);
-      },
-      (error) => {
-        // Error callback
-        alert('User not allowed');
-      },
-      { timeout: 10000 } // Options
-    );
+    // navigator.geolocation.getCurrentPosition(
+    //   (position) => {
+    //     // Success callback
+    //     const latitude = position.coords.latitude;
+    //     const longitude = position.coords.longitude;
+    //     console.log(`Location accessed\nLatitude: ${latitude}\nLongitude: ${longitude}`);
+    //   },
+    //   (error) => {
+    //     // Error callback
+    //     alert('User not allowed');
+    //   },
+    //   { timeout: 10000 } // Options
+    // );
     this.subscription = this.sharedService.methodCalled$.subscribe(() => {
       this.fetchCheckInData();
     });
