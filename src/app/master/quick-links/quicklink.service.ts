@@ -17,7 +17,7 @@ export class QuicklinkService {
 
   async getQuickLinks() {
     var url =
-      this.apiurl + 'api/quicklink/getallurls';
+      this.apiurl + 'api/links/all-quick-links';
     const quicklinks = await lastValueFrom(this.http.get<any>(url));
     return quicklinks;
   }

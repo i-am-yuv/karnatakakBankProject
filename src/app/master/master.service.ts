@@ -66,7 +66,7 @@ export class MasterService {
   
   async getRegionalNews()
   {
-    var url = this.apiurl + 'api/bank-news';
+    var url = this.apiurl + 'api/news/list';
     const news = await lastValueFrom(this.http.get<any>(url));
     return news;
   }

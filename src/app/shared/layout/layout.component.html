@@ -1,8 +1,8 @@
 <div class="w-full">
-    <div class="flex">
+    <div class="flex ">
 
         <!-- LEFT SIDEBAR PANEL -->
-        <div *ngIf="!isTabletView" class="bg-white left-panel" style="border-right:1px solid #E9EBF0;"
+        <div *ngIf="!isTabletView" class="bg-white left-panel" style="border-right:1px solid #E9EBF0;width: 300px;"
             [ngClass]="{'compressed': isCompressed}">
             <div>
                 <div class="flex align-items-center justify-content-around " style="height: 88px;"
@@ -49,7 +49,7 @@
                             src="assets/dahsboard_icon.png" alt="Image" style="width: 20px; height: 20px;">
                         <div class="ml-3">
                             <div [ngClass]="{ selectedTab : this.currentPage ==='dashboard' , unselectedTab : this.currentPage !=='dashboard' }"
-                                style=" font-weight: 700; font-size: 14px;" class="cursor-pointer"
+                                style=" font-weight: 700; font-size: 12px;" class="cursor-pointer"
                                 routerLink="/dashboard">Dashboard
                             </div>
                         </div>
@@ -61,208 +61,611 @@
                     </div>
                 </div>
 
-                <!-- To do list -->
+                <!-- Aadhaar Enrolment Centres -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed" routerLink="/master/todo-lists">
-                        <img [ngClass]="{ selectedTab : currentPage === 'to-do-list' , unselectedTab : currentPage !== 'to-do-list' }"
-                            src="assets/fluent_notepad-edit-16-regular.png" alt="Image"
-                            style="width: 24px; height: 24px;">
+                      *ngIf="!isCompressed" (click)="openLink('aadhaar-enrolment-centres')">
+                      <i class="pi pi-file-pdf" style="width: 24px; height: 24px;"></i>
+                      <div class="ml-3">
+                        <div [ngClass]="{
+                            selectedTab: currentPage === 'aadhaar-aerolment-centres',
+                            unselectedTab: currentPage !== 'aadhaar-aerolment-centres',
+                            visitedTab: visitedLinks.includes('aadhaar-enrolment-centres')
+                          }"
+                          style="font-weight: 700; font-size: 12px;">
+                          Aadhaar Enrolment Centres
+                        </div>
+                      </div>
+                    </div>
+                  
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                      *ngIf="isCompressed" (click)="openLink('aadhaar-enrolment-centres')">
+                      <i class="pi pi-file-pdf" style="width: 24px; height: 24px;"></i>
+                    </div>
+                  </div>
+                  
+
+
+                <!-- ADC (IB/MB/DC) -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="openLink('adc_ib_mb_dc')">
+                        <!-- <img src="assets/access_time.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='adc-(ib/mb/dc)' , unselectedTab : this.currentPage!=='adc-(ib/mb/dc)' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
                         <div class="ml-3">
-                            <div [ngClass]="{ selectedTab : currentPage === 'to-do-list' , unselectedTab : currentPage !== 'to-do-list' }"
-                                style="font-weight: 700; font-size: 14px;">
-                                To do list
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='adc-(ib/mb/dc)' , unselectedTab : this.currentPage!=='adc-(ib/mb/dc)' }">
+                                ADC (IB/MB/DC)</div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed">
+                        <!-- <img src="assets/access_time.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='adc-(ib/mb/dc)' , unselectedTab : this.currentPage!=='adc-(ib/mb/dc)' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </div>
+
+                <!-- Additional Links -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="openLink('additional-links')">
+                        <!-- <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='additional-links' , unselectedTab : this.currentPage!=='additional-links' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                        <div class="ml-3">
+                            <div style="font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='additional-links' , unselectedTab : this.currentPage!=='additional-links' }">
+                                Additional Links</div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed" (click)="openLink('additional-links')">
+                        <!-- <img src=" assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='additional-links' , unselectedTab : this.currentPage!=='additional-links' }">
+                                -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </div>
+
+                <!-- AppIn/Mandate Forms -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="openLink('appin_mandate-forms')">
+                        <!-- <img src="assets/Group.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='appin/mandate-forms' , unselectedTab : this.currentPage!=='appin/mandate-forms' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                        <div class="ml-3">
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='appin/mandate-forms' , unselectedTab : this.currentPage!=='appin/mandate-forms' }">
+                                AppIn/Mandate Forms</div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed" (click)="openLink('appin_mandate-forms')">
+                        <!-- <img src="assets/Group.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='appin/mandate-forms' , unselectedTab : this.currentPage!=='appin/mandate-forms' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </div>
+
+                <!-- Bank Policies -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="openLink('bank-policies')">
+                        <!-- <img src="assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='bank-policies' , unselectedTab : this.currentPage!=='bank-policies' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                        <div class="ml-3">
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='bank-policies' , unselectedTab : this.currentPage!=='bank-policies' }">
+                                Bank Policies
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed">
+                        <!-- <img src="assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='bank-policies' , unselectedTab : this.currentPage!=='bank-policies' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </div>
+
+                <!-- Branch Directory -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="openLink('branch-directory')">
+                        <!-- <img src="assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='branch-directory' , unselectedTab : this.currentPage!=='branch-directory' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                        <div class="ml-3">
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='branch-directory' , unselectedTab : this.currentPage!=='branch-directory' }">
+                                Branch Directory
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed">
+                        <!-- <img src="assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='branch-directory' , unselectedTab : this.currentPage!=='branch-directory' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </div>
+
+                <!-- Contact Centre FAQ -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="openLink('contact-centre-faq')">
+                        <!-- <img src="assets/icon-park-outline_message-security (1).png" alt="Image"
+                                        style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='contact-centre-faq' , unselectedTab : this.currentPage!=='contact-centre-faq' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                        <div class="ml-3">
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='contact-centre-faq' , unselectedTab : this.currentPage!=='contact-centre-faq' }">
+                                Contact Centre FAQ
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed">
+                        <!-- <img src="assets/icon-park-outline_message-security (1).png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='contact-centre-faq' , unselectedTab : this.currentPage!=='contact-centre-faq' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </div>
+
+                <!-- DCOE Contacts For Digi-Loan -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="openLink('dcoe-contacts-for-digi-loan')">
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='dcoe-contacts-for-digi-loan' , unselectedTab : this.currentPage!=='dcoe-contacts-for-digi-loan' }"> -->
+                        <i class="pi pi-file-pdf" style="width: 24px; height: 24px;"></i>
+                        <div class="ml-3">
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='dcoe-contacts-for-digi-loan' , unselectedTab : this.currentPage!=='dcoe-contacts-for-digi-loan' }">
+                                DCOE Contacts For Digi-Loan
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed">
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='dcoe-contacts-for-digi-loan' , unselectedTab : this.currentPage!=='dcoe-contacts-for-digi-loan' }"> -->
+                        <i class="pi pi-file-pdf" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </div>
+
+                <!-- e-HelpDesk -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="openLink('e-helpdesk')"
+                        [ngClass]="{ selectedTab : this.currentPage==='e-helpdesk' , unselectedTab : this.currentPage!=='e-helpdesk' }">
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='e-helpdesk' , unselectedTab : this.currentPage!=='e-helpdesk' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                        <div class="ml-3">
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='e-helpdesk' , unselectedTab : this.currentPage!=='e-helpdesk' }">
+                                e-HelpDesk
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed">
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='e-helpdesk' , unselectedTab : this.currentPage!=='e-helpdesk' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </div>
+
+                <!-- e Mail -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="openLink('e-mail')">
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='e-mail' , unselectedTab : this.currentPage!=='e-mail' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                        <div class="ml-3">
+                            <div [ngClass]="{selectedTab : this.currentPage=='users' , unselectedTab: this.currentPage!='users' }"
+                                style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='e-mail' , unselectedTab : this.currentPage!=='e-mail' }">
+                                e Mail
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed">
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='e-mail' , unselectedTab : this.currentPage!=='e-mail' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </div>
+
+                <!-- Far  -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="openLink('far')">
+                        <!-- <img src="assets/material-symbols_chat-outline.png" alt="Image"
+                                        style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='far' , unselectedTab : this.currentPage!=='far' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                        <div class="ml-3">
+                            <div style="font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='far' , unselectedTab : this.currentPage!=='far' }">
+                                Far
+                            </div>
+                        </div>
+                        <!-- <div style="width: 24px; height: 24px; margin-left: 12px;
+                                              display: flex; align-items: center;justify-content: center;  padding: 3px; background: #F9D4FF; border-radius: 50%;"
+                            [ngClass]="{ selectedTab : this.currentPage==='far' , unselectedTab : this.currentPage!=='far' }">
+                            <p style="color: #92278F; font-weight: 700; font-size: 12px; ">21</p>
+                        </div> -->
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed">
+                        <!-- <img src="assets/material-symbols_chat-outline.png" alt="Image"
+                                        style="width: 24px; height: 24px;"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </div>
+
+                <!-- Fold -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="openLink('fold')">
+                        <!-- <img [ngClass]="{ selectedTab : currentPage === 'fold' , unselectedTab : currentPage !== 'fold' }"
+                                        src="assets/fluent_notepad-edit-16-regular.png" alt="Image"
+                                        style="width: 24px; height: 24px;"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                        <div class="ml-3">
+                            <div [ngClass]="{ selectedTab : currentPage === 'fold' , unselectedTab : currentPage !== 'fold' }"
+                                style="font-weight: 700; font-size: 12px;">
+                                Fold
                             </div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed" routerLink="/master/todo-lists">
-                        <img src="assets/fluent_notepad-edit-16-regular.png" alt="Image"
-                            style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : currentPage === 'to-do-list' , unselectedTab : currentPage !== 'to-do-list' }">
+                        <!-- <img src="assets/fluent_notepad-edit-16-regular.png" alt="Image"
+                                        style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : currentPage === 'fold' , unselectedTab : currentPage !== 'fold' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
                     </div>
                 </div>
 
 
-                <!-- Updates -->
+                <!-- Head Office Contacts-->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed">
-                        <img src="assets/access_time.png" alt="Image" style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='update' , unselectedTab : this.currentPage!=='update' }">
+                        *ngIf="!isCompressed" (click)="openLink('head-office-contacts')">
+                        <!-- <img src="assets/access_time.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='update' , unselectedTab : this.currentPage!=='update' }"> -->
+                        <i class="pi pi-file-pdf" style="width: 24px; height: 24px;"></i>
                         <div class="ml-3">
-                            <div style=" font-weight: 700; font-size: 14px;"
-                                [ngClass]="{ selectedTab : this.currentPage==='update' , unselectedTab : this.currentPage!=='update' }">
-                                Updates</div>
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='head-office-contacts' , unselectedTab : this.currentPage!=='head-office-contacts' }">
+                                Head Office Contacts</div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="assets/access_time.png" alt="Image" style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='update' , unselectedTab : this.currentPage!=='update' }">
+                        <!-- <img src="assets/access_time.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='update' , unselectedTab : this.currentPage!=='update' }"> -->
+                        <i class="pi pi-file-pdf" style="width: 24px; height: 24px;"></i>
                     </div>
                 </div>
 
-                <!-- Reports -->
+                <!-- IBA -The Indian Banker-->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed" routerLink="/master/report">
-                        <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='reports' , unselectedTab : this.currentPage!=='reports' }">
+                        *ngIf="!isCompressed" (click)="openLink('indian-banker')">
+                        <!-- <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='reports' , unselectedTab : this.currentPage!=='reports' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
                         <div class="ml-3">
-                            <div style="font-weight: 700; font-size: 14px;"
-                                [ngClass]="{ selectedTab : this.currentPage==='reports' , unselectedTab : this.currentPage!=='reports' }">
-                                Reports</div>
+                            <div style="font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='indian-banker' , unselectedTab : this.currentPage!=='indian-banker' }">
+                                IBA -The Indian Banker</div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed" routerLink="/master/report">
-                        <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='reports' , unselectedTab : this.currentPage!=='reports' }">
+                        <!-- <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='reports' , unselectedTab : this.currentPage!=='reports' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
                     </div>
                 </div>
 
-                <!-- Calender -->
+                <!-- TDH Contacts -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed" routerLink="/master/calender">
-                        <img src="assets/Group.png" alt="Image" style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='calendar' , unselectedTab : this.currentPage!=='calendar' }">
+                        *ngIf="!isCompressed" (click)="openLink('tdh-contacts')">
+                        <!-- <img src="assets/Group.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='calendar' , unselectedTab : this.currentPage!=='calendar' }"> -->
+                        <i class="pi pi-file-pdf" style="width: 24px; height: 24px;"></i>
                         <div class="ml-3">
-                            <div style=" font-weight: 700; font-size: 14px;"
-                                [ngClass]="{ selectedTab : this.currentPage==='calendar' , unselectedTab : this.currentPage!=='calendar' }">
-                                Calender</div>
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='tdh-contacts' , unselectedTab : this.currentPage!=='tdh-contacts' }">
+                                TDH Contacts</div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="assets/Group.png" alt="Image" style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='calendar' , unselectedTab : this.currentPage!=='calendar' }">
+                        <!-- <img src="assets/Group.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='calendar' , unselectedTab : this.currentPage!=='calendar' }"> -->
+                        <i class="pi pi-file-pdf" style="width: 24px; height: 24px;"></i>
                     </div>
                 </div>
 
-                <!-- Customer insights -->
+                <!-- iCircular -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed">
-                        <img src="assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='customer-insights' , unselectedTab : this.currentPage!=='customer-insights' }">
+                        *ngIf="!isCompressed" (click)="openLink('icircular')">
+                        <!-- <img src="assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='customer-insights' , unselectedTab : this.currentPage!=='customer-insights' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
                         <div class="ml-3">
-                            <div style=" font-weight: 700; font-size: 14px;"
-                                [ngClass]="{ selectedTab : this.currentPage==='customer-insights' , unselectedTab : this.currentPage!=='customer-insights' }">
-                                Customer
-                                insights</div>
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='icircular' , unselectedTab : this.currentPage!=='icircular' }">
+                                iCircular</div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='customer-insights' , unselectedTab : this.currentPage!=='customer-insights' }">
+                        <!-- <img src="assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='customer-insights' , unselectedTab : this.currentPage!=='customer-insights' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
                     </div>
                 </div>
 
-                <!-- Events & news -->
+                <!-- IT & ContactCentre Contacts -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed">
-                        <img src="assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='news' , unselectedTab : this.currentPage!=='news' }">
+                        *ngIf="!isCompressed" (click)="openLink('itcontact')">
+                        <!-- <img src="assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='news' , unselectedTab : this.currentPage!=='news' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
                         <div class="ml-3">
-                            <div style=" font-weight: 700; font-size: 14px;"
-                                [ngClass]="{ selectedTab : this.currentPage==='news' , unselectedTab : this.currentPage!=='news' }">
-                                Events & news
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='itcontact' , unselectedTab : this.currentPage!=='itcontact' }">
+                                IT & ContactCentre Contacts
                             </div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='news' , unselectedTab : this.currentPage!=='news' }">
+                        <!-- <img src="assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='news' , unselectedTab : this.currentPage!=='news' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
                     </div>
                 </div>
 
-                <!-- People connect -->
+                <!-- IT Organisation Structure -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed">
-                        <img src="assets/icon-park-outline_message-security (1).png" alt="Image"
-                            style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='people-connect' , unselectedTab : this.currentPage!=='people-connect' }">
+                        *ngIf="!isCompressed" (click)="openLink('iorganisation')">
+                        <!-- <img src="assets/icon-park-outline_message-security (1).png" alt="Image"
+                                        style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='people-connect' , unselectedTab : this.currentPage!=='people-connect' }"> -->
+                        <i class="pi pi-file-pdf" style="width: 24px; height: 24px;"></i>
                         <div class="ml-3">
-                            <div style=" font-weight: 700; font-size: 14px;"
-                                [ngClass]="{ selectedTab : this.currentPage==='people-connect' , unselectedTab : this.currentPage!=='people-connect' }">
-                                People connect
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='iorganisation' , unselectedTab : this.currentPage!=='iorganisation' }">
+                                IT Organisation Structure
                             </div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="assets/icon-park-outline_message-security (1).png" alt="Image"
-                            style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='people-connect' , unselectedTab : this.currentPage!=='people-connect' }">
+                        <!-- <img src="assets/icon-park-outline_message-security (1).png" alt="Image"
+                                        style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='people-connect' , unselectedTab : this.currentPage!=='people-connect' }"> -->
+                        <i class="pi pi-file-pdf" style="width: 24px; height: 24px;"></i>
                     </div>
                 </div>
 
-                <!-- Document centre -->
+                <!-- IT Cell -White Papers -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed" (click)="hyperlinkDocumentCenter()">
-                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='document-center' , unselectedTab : this.currentPage!=='document-center' }">
+                        *ngIf="!isCompressed" (click)="openLink('itcellwhitepapers')">
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='document-center' , unselectedTab : this.currentPage!=='document-center' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
                         <div class="ml-3">
-                            <div style=" font-weight: 700; font-size: 14px;"
-                                [ngClass]="{ selectedTab : this.currentPage==='document-center' , unselectedTab : this.currentPage!=='document-center' }">
-                                Document
-                                centre
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='itcellwhitepapers' , unselectedTab : this.currentPage!=='itcellwhitepapers' }">
+                                IT Cell -White Papers
                             </div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='document-center' , unselectedTab : this.currentPage!=='document-center' }">
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='document-center' , unselectedTab : this.currentPage!=='document-center' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
                     </div>
                 </div>
 
-                <!-- Quick Links -->
+                <!-- Links -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed" routerLink="/master/quick-links"
                         [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">
-                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
                         <div class="ml-3">
-                            <div style=" font-weight: 700; font-size: 14px;"
-                                [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">
-                                Quick Links
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='links' , unselectedTab : this.currentPage!=='links' }">
+                                Links
                             </div>
                         </div>
                     </div>
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
                     </div>
                 </div>
+
+
+                <!-- Manual of Instructions -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="openLink('instructions')"
+                        [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                        <div class="ml-3">
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='instructions' , unselectedTab : this.currentPage!=='instructions' }">
+                                Manual of Instructions
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed">
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </div>
+
+
+                <!--  PC-HelpDesk -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="openLink('pchelpdesk')"
+                        [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                        <div class="ml-3">
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='pchelpdesk' , unselectedTab : this.currentPage!=='pchelpdesk' }">
+                                PC-HelpDesk
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed">
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </div>
+                <!--  SIM -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="openLink('sim')"
+                        [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                        <div class="ml-3">
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='sim' , unselectedTab : this.currentPage!=='sim' }">
+                                SIM
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed">
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </div>
+
+
+                <!-- Stamp Duty -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="openLink('stamp-duty')">
+                        <!-- <img src="assets/streamline_customer-support-1.png" alt="Image"
+                                        style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='stamp-duty' , unselectedTab : this.currentPage!=='stamp-duty' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                        <div class="ml-3">
+                            <div style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='stamp-duty' , unselectedTab : this.currentPage!=='stamp-duty' }">
+                                Stamp Duty
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed">
+                        <!-- <img src="assets/streamline_customer-support-1.png" alt="Image"
+                                        style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='stamp-duty' , unselectedTab : this.currentPage!=='stamp-duty' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </div>
+
+
+                <!-- Vigilance -->
+                <div>
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="openLink('vigilance')">
+                        <!-- <img src="assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='vigilance' , unselectedTab : this.currentPage!=='vigilance' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                        <div class="ml-3">
+                            <div [ngClass]="{selectedTab : this.currentPage=='users' , unselectedTab: this.currentPage!='users' }"
+                                style=" font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='vigilance' , unselectedTab : this.currentPage!=='vigilance' }">
+                                Vigilance</div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed">
+                        <!-- <img src="assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;"
+                                        [ngClass]="{ selectedTab : this.currentPage==='vigilance' , unselectedTab : this.currentPage!=='vigilance' }"> -->
+                        <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </div>
+
 
                 <!-- Employee-attendence -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed" routerLink="/master/employee-attendence">
-                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='employee-attendence' , unselectedTab : this.currentPage!=='employee-attendence' }">
+                        <i class="pi pi-book" style="width: 24px; height: 24px;"></i>
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='employee-attendence' , unselectedTab : this.currentPage!=='employee-attendence' }"> -->
                         <div class="ml-3">
                             <div [ngClass]="{selectedTab : this.currentPage=='users' , unselectedTab: this.currentPage!='users' }"
-                                style=" font-weight: 700; font-size: 14px;"
+                                style=" font-weight: 700; font-size: 12px;"
                                 [ngClass]="{ selectedTab : this.currentPage==='employee-attendence' , unselectedTab : this.currentPage!=='employee-attendence' }">
                                 Employee Attendence
                             </div>
@@ -271,19 +674,48 @@
 
                     <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
                         *ngIf="isCompressed">
-                        <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
-                            [ngClass]="{ selectedTab : this.currentPage==='employee-attendence' , unselectedTab : this.currentPage!=='employee-attendence' }">
+                        <i class="pi pi-book" style="width: 24px; height: 24px;"></i>
+
+                        <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='employee-attendence' , unselectedTab : this.currentPage!=='employee-attendence' }"> -->
                     </div>
                 </div>
-                <!-- Secure Chat  -->
+
+
+                <!-- LateCheckIns -->
                 <div>
+                    <!-- routerLink="/master/admin-dashboard" -->
+                    <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                        *ngIf="!isCompressed" (click)="lateCheckIn()">
+                        <!-- <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='LateCheckIns' , unselectedTab : this.currentPage!=='LateCheckIns' }"> -->
+                        <i class="pi pi-book" style="width: 24px; height: 24px;"></i>
+
+                        <div class="ml-3">
+                            <div style="font-weight: 700; font-size: 12px;"
+                                [ngClass]="{ selectedTab : this.currentPage==='LateCheckIns' , unselectedTab : this.currentPage!=='LateCheckIns' }">
+                                LateCheckIns</div>
+                        </div>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-start mx-4 mt-4 cursor-pointer"
+                        *ngIf="isCompressed" routerLink="/master/admin-dashboard">
+                        <i class="pi pi-book" style="width: 24px; height: 24px;"></i>
+
+                        <!-- <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='LateCheckIns' , unselectedTab : this.currentPage!=='LateCheckIns' }"> -->
+                    </div>
+                </div>
+
+                <!-- Secure Chat  -->
+                <!-- <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed">
                         <img src="assets/material-symbols_chat-outline.png" alt="Image"
                             style="width: 24px; height: 24px;"
                             [ngClass]="{ selectedTab : this.currentPage==='secure-chat' , unselectedTab : this.currentPage!=='secure-chat' }">
                         <div class="ml-3">
-                            <div style="font-weight: 700; font-size: 14px;"
+                            <div style="font-weight: 700; font-size: 12px;"
                                 [ngClass]="{ selectedTab : this.currentPage==='secure-chat' , unselectedTab : this.currentPage!=='secure-chat' }">
                                 Secure Chat
                             </div>
@@ -300,17 +732,17 @@
                         <img src="assets/material-symbols_chat-outline.png" alt="Image"
                             style="width: 24px; height: 24px;">
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Circular -->
-                <div>
+                <!-- <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed" (click)="hyperlinkCircular()">
                         <img src="assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;"
                             [ngClass]="{ selectedTab : this.currentPage==='circular' , unselectedTab : this.currentPage!=='circular' }">
                         <div class="ml-3">
                             <div [ngClass]="{selectedTab : this.currentPage=='users' , unselectedTab: this.currentPage!='users' }"
-                                style=" font-weight: 700; font-size: 14px;"
+                                style=" font-weight: 700; font-size: 12px;"
                                 [ngClass]="{ selectedTab : this.currentPage==='circular' , unselectedTab : this.currentPage!=='circular' }">
                                 Circular</div>
                         </div>
@@ -321,17 +753,17 @@
                         <img src="assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;"
                             [ngClass]="{ selectedTab : this.currentPage==='circular' , unselectedTab : this.currentPage!=='circular' }">
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Help desk -->
-                <div>
+                <!-- <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                         *ngIf="!isCompressed" (click)="hyperlinkHelpdesk()">
                         <img src="assets/streamline_customer-support-1.png" alt="Image"
                             style="width: 24px; height: 24px;"
                             [ngClass]="{ selectedTab : this.currentPage==='helpdesk' , unselectedTab : this.currentPage!=='helpdesk' }">
                         <div class="ml-3">
-                            <div style=" font-weight: 700; font-size: 14px;"
+                            <div style=" font-weight: 700; font-size: 12px;"
                                 [ngClass]="{ selectedTab : this.currentPage==='helpdesk' , unselectedTab : this.currentPage!=='helpdesk' }">
                                 Help desk
                             </div>
@@ -344,43 +776,43 @@
                             style="width: 24px; height: 24px;"
                             [ngClass]="{ selectedTab : this.currentPage==='helpdesk' , unselectedTab : this.currentPage!=='helpdesk' }">
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Branch Details Expansion -->
                 <div>
-                    <div class="flex align-items-center justify-content-start cursor-pointer ml-4 mt-4"
+                    <!-- <div class="flex align-items-center justify-content-start cursor-pointer ml-4 mt-4"
                         *ngIf="!isCompressed" (click)="toggleBranchDetails()">
                         <div style="color: #92278F; font-weight: 700; font-size: 18px;">Branch
                             details
                         </div>
                         <div class="ml-5">
                             <i class="pi pi-chevron-right" *ngIf="!extendBranchDetails"
-                                style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
+                                style="color: #92278F; font-weight: 700; font-size: 12px;"></i>
 
                             <i class="pi pi-chevron-down" *ngIf="extendBranchDetails"
-                                style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
+                                style="color: #92278F; font-weight: 700; font-size: 12px;"></i>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="flex align-items-center justify-content-start cursor-pointer mx-4 mt-4"
+                    <!-- <div class="flex align-items-center justify-content-start cursor-pointer mx-4 mt-4"
                         *ngIf="isCompressed" (click)="toggleBranchDetails()">
                         <i class="pi pi-chevron-right" *ngIf="!extendBranchDetails"
-                            style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
+                            style="color: #92278F; font-weight: 700; font-size: 12px;"></i>
 
                         <i class="pi pi-chevron-down" *ngIf="extendBranchDetails"
-                            style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
-                    </div>
+                            style="color: #92278F; font-weight: 700; font-size: 12px;"></i>
+                    </div> -->
 
                     <div *ngIf="extendBranchDetails">
 
                         <!-- Branch Details -->
-                        <div>
+                        <!-- <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
                                 *ngIf="!isCompressed" (click)="openLink('branch details')">
                                 <img src="assets/branch details icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style=" font-weight: 700; font-size: 14px;">Branch
+                                    <div style=" font-weight: 700; font-size: 12px;">Branch
                                         Details
                                     </div>
                                 </div>
@@ -391,16 +823,16 @@
                                 <img src="assets/branch details icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- Branch Performance -->
-                        <div>
+                        <!-- <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
                                 *ngIf="!isCompressed" (click)="openLink('branch performance')">
                                 <img src="assets/branch performance icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style=" font-weight: 700; font-size: 14px;">Branch
+                                    <div style=" font-weight: 700; font-size: 12px;">Branch
                                         Performance
                                     </div>
                                 </div>
@@ -411,45 +843,45 @@
                                 <img src="assets/branch performance icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>
 
                 <!-- HR Corner Expansion -->
                 <div style="margin-bottom: 80px;">
-                    <div class="flex align-items-center justify-content-start cursor-pointer ml-4 mt-4"
+                    <!-- <div class="flex align-items-center justify-content-start cursor-pointer ml-4 mt-4"
                         *ngIf="!isCompressed" (click)="toggleHRCorner()">
                         <div style="color: #92278F; font-weight: 700; font-size: 18px; ">HR Corner
                         </div>
 
                         <div class="ml-5">
                             <i class="pi pi-chevron-right" *ngIf="!extendHRCorner"
-                                style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
+                                style="color: #92278F; font-weight: 700; font-size: 12px;"></i>
 
                             <i class="pi pi-chevron-down" *ngIf="extendHRCorner"
-                                style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
+                                style="color: #92278F; font-weight: 700; font-size: 12px;"></i>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="flex align-items-center justify-content-start cursor-pointer mx-4 mt-4"
+                    <!-- <div class="flex align-items-center justify-content-start cursor-pointer mx-4 mt-4"
                         *ngIf="isCompressed" (click)="toggleHRCorner()">
                         <i class="pi pi-chevron-right" *ngIf="!extendHRCorner"
-                            style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
+                            style="color: #92278F; font-weight: 700; font-size: 12px;"></i>
 
                         <i class="pi pi-chevron-down" *ngIf="extendHRCorner"
-                            style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
-                    </div>
+                            style="color: #92278F; font-weight: 700; font-size: 12px;"></i>
+                    </div> -->
 
                     <div *ngIf="extendHRCorner">
 
                         <!-- My Attendance -->
-                        <div>
+                        <!-- <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
                                 *ngIf="!isCompressed">
                                 <img src="assets/my attendance icon.png" alt="Image" style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style=" font-weight: 700; font-size: 14px;">My
+                                    <div style=" font-weight: 700; font-size: 12px;">My
                                         attendance
                                     </div>
                                 </div>
@@ -459,15 +891,15 @@
                                 *ngIf="isCompressed">
                                 <img src="assets/my attendance icon.png" alt="Image" style="width: 24px; height: 24px;">
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- My Leave -->
-                        <div>
+                        <!-- <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
                                 *ngIf="!isCompressed" (click)="openLink('leave')">
                                 <img src="assets/my leave icon.png" alt="Image" style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style=" font-weight: 700; font-size: 14px;">My
+                                    <div style=" font-weight: 700; font-size: 12px;">My
                                         leave
                                     </div>
                                 </div>
@@ -477,16 +909,16 @@
                                 *ngIf="isCompressed">
                                 <img src="assets/my leave icon.png" alt="Image" style="width: 24px; height: 24px;">
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- My Reimbursement -->
-                        <div>
+                        <!-- <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
                                 *ngIf="!isCompressed" (click)="openLink('reimbursement')">
                                 <img src="assets/my reimbursement icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style=" font-weight: 700; font-size: 14px;">My
+                                    <div style=" font-weight: 700; font-size: 12px;">My
                                         Reimbursement
                                     </div>
                                 </div>
@@ -497,16 +929,16 @@
                                 <img src="assets/my reimbursement icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- My Payroll Info -->
-                        <div>
+                        <!-- <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
                                 *ngIf="!isCompressed" (click)="openLink('payroll')">
                                 <img src="assets/my payroll info icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style=" font-weight: 700; font-size: 14px;">My
+                                    <div style=" font-weight: 700; font-size: 12px;">My
                                         payroll info
                                     </div>
                                 </div>
@@ -517,15 +949,15 @@
                                 <img src="assets/my payroll info icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- My Referrals -->
-                        <div>
+                        <!-- <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
                                 *ngIf="!isCompressed">
                                 <img src="assets/my referrals icon.png" alt="Image" style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style=" font-weight: 700; font-size: 14px;">My
+                                    <div style=" font-weight: 700; font-size: 12px;">My
                                         Referrals
                                     </div>
                                 </div>
@@ -535,16 +967,16 @@
                                 *ngIf="isCompressed">
                                 <img src="assets/my referrals icon.png" alt="Image" style="width: 24px; height: 24px;">
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- My Performance -->
-                        <div>
+                        <!-- <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
                                 *ngIf="!isCompressed" (click)="openLink('performance')">
                                 <img src="assets/my performance icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style=" font-weight: 700; font-size: 14px;">My
+                                    <div style=" font-weight: 700; font-size: 12px;">My
                                         Performance
                                     </div>
                                 </div>
@@ -555,15 +987,15 @@
                                 <img src="assets/my performance icon.png" alt="Image"
                                     style="width: 24px; height: 24px;">
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- My Travel -->
-                        <div>
+                        <!-- <div>
                             <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4"
                                 *ngIf="!isCompressed" (click)="openLink('travel')">
                                 <img src="assets/my travel icon.png" alt="Image" style="width: 24px; height: 24px;">
                                 <div class="ml-3">
-                                    <div style=" font-weight: 700; font-size: 14px;">My
+                                    <div style=" font-weight: 700; font-size: 12px;">My
                                         Travel
                                     </div>
                                 </div>
@@ -573,7 +1005,7 @@
                                 *ngIf="isCompressed">
                                 <img src="assets/my travel icon.png" alt="Image" style="width: 24px; height: 24px;">
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>
@@ -585,7 +1017,7 @@
                         <div class="flex align-items-center justify-content-center mx-2 mt-4">
                             <img src="assets/material-symbols_logout.png" alt="Image"
                                 style="width: 24px; height: 24px;">
-                            <div style="color: #92278F; font-weight: 700; font-size: 14px; margin-left: 16px;">Logout
+                            <div style="color: #92278F; font-weight: 700; font-size: 12px; margin-left: 16px;">Logout
                             </div>
                         </div>
                     </div>
@@ -612,143 +1044,397 @@
                             (click)="findDashboard()">
                             <img src="assets/dahsboard_icon.png" alt="Image" style="width: 24px; height: 24px;">
                             <div class="ml-3">
-                                <div style="color: #92278F; font-weight: 700; font-size: 14px;">Dashboard
+                                <div style="color: #92278F; font-weight: 700; font-size: 12px;">Dashboard
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- To do list -->
+                    <!-- Aadhaar Enrolment Centres -->
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                            routerLink="/master/todo-lists" (click)="this.sidebarVisible=false">
-                            <img src="assets/fluent_notepad-edit-16-regular.png" alt="Image"
-                                style="width: 24px; height: 24px;"
-                                [ngClass]="{ selectedTab : this.currentPage==='to-do-list' , unselectedTab : this.currentPage!=='to-do-list' }">
+                            (click)="openLink('aadhaar-enrolment-centres')">
+                            <!-- <img src="assets/fluent_notepad-edit-16-regular.png" alt="Image"
+                            style="width: 24px; height: 24px;"
+                            [ngClass]="{ selectedTab : this.currentPage==='to-do-list' , unselectedTab : this.currentPage!=='to-do-list' }"> -->
+                            <i class="pi pi-file-pdf" style="width: 24px; height: 24px;"></i>
                             <div class="ml-3">
-                                <div style=" font-weight: 700; font-size: 14px; "
+                                <div style=" font-weight: 700; font-size: 12px; "
                                     [ngClass]="{ selectedTab : this.currentPage==='to-do-list' , unselectedTab : this.currentPage!=='to-do-list' }">
-                                    To do list
+                                    Aadhaar Enrolment Centres
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Updates -->
-                    <div>
-                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
-                            <img src="assets/access_time.png" alt="Image" style="width: 24px; height: 24px;">
-                            <div class="ml-3">
-                                <div style=" font-weight: 700; font-size: 14px;">Updates</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Reports -->
+                    <!-- ADC (IB/MB/DC) -->
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                            routerLink="/master/report" (click)="this.sidebarVisible=false">
-                            <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;">
+                            (click)="openLink('adc_ib_mb_dc')">
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <!-- <img src="assets/access_time.png" alt="Image" style="width: 24px; height: 24px;"> -->
                             <div class="ml-3">
-                                <div style=" font-weight: 700; font-size: 14px;">Reports</div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Calender -->
-                    <div>
-                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
-                            <img src="assets/Group.png" alt="Image" style="width: 24px; height: 24px;">
-                            <div class="ml-3">
-                                <div style=" font-weight: 700; font-size: 14px;">Calender</div>
+                                <div style=" font-weight: 700; font-size: 12px;">ADC (IB/MB/DC)</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Customer insights -->
-                    <div>
-                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
-                            <img src="assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;">
-                            <div class="ml-3">
-                                <div style=" font-weight: 700; font-size: 14px;">Customer
-                                    insights</div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Events & news -->
-                    <div>
-                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
-                            <img src="assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;">
-                            <div class="ml-3">
-                                <div style=" font-weight: 700; font-size: 14px;">Events & news
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- People connect -->
-                    <div>
-                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
-                            <img src="assets/icon-park-outline_message-security (1).png" alt="Image"
-                                style="width: 24px; height: 24px;">
-                            <div class="ml-3">
-                                <div style=" font-weight: 700; font-size: 14px;">People connect
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Document centre -->
-                    <div>
-                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
-                            <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
-                            <div class="ml-3">
-                                <div style=" font-weight: 700; font-size: 14px;">Document
-                                    centre
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- Quick Links -->
+                    <!-- Additional Links -->
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                            routerLink="/master/quick-links">
-                            <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
+                            routerLink="/master/report" (click)="openLink('additional-links')">
+                            <!-- <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
                             <div class="ml-3">
-                                <div style=" font-weight: 700; font-size: 14px;">
-                                    Quick Links
+                                <div style=" font-weight: 700; font-size: 12px;">Additional Links</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- AppIn/Mandate Forms -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('appin_mandate-forms')">
+                            <!-- <img src="assets/Group.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">AppIn/Mandate Forms</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bank Policies -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('bank-policies')">
+                            <!-- <img src="assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">Bank Policies</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Branch Directory -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('branch-directory')">
+                            <!-- <img src="assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">Branch Directory
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Centre FAQ -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('contact-centre-faq')">
+                            <!-- <img src="assets/icon-park-outline_message-security (1).png" alt="Image"
+                            style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">Contact Centre FAQ
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DCOE Contacts For Digi-Loan -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('dcoe-contacts-for-digi-loan')">
+                            <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-file-pdf" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">DCOE Contacts For Digi-Loan
                                 </div>
                             </div>
                         </div>
                     </div>
 
 
+                    <!-- e-HelpDesk -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('e-helpdesk')">
+                            <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">
+                                    e-HelpDesk
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- e Mail -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('e-mail')">
+                            <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">
+                                    e Mail
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Far  -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('far')">
+                            <!-- <img src="assets/material-symbols_chat-outline.png" alt="Image"
+                            style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">Far
+                                </div>
+                            </div>
+                            <!-- <div
+                                style="width: 24px; height: 24px; margin-left: 12px;
+                                  display: flex; align-items: center;justify-content: center;  padding: 3px; background: #F9D4FF; border-radius: 50%;">
+                                <p style="color: #92278F; font-weight: 700; font-size: 12px; ">21</p>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <!-- Fold -->
+
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('fold')">
+                            <!-- <img src="assets/material-symbols_chat-outline.png" alt="Image"
+                            style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">Fold
+                                </div>
+                            </div>
+                            <!-- <div
+                                style="width: 24px; height: 24px; margin-left: 12px;
+                                  display: flex; align-items: center;justify-content: center;  padding: 3px; background: #F9D4FF; border-radius: 50%;">
+                                <p style="color: #92278F; font-weight: 700; font-size: 12px; ">21</p>
+                            </div> -->
+                        </div>
+                    </div>
+
+
+
+                    <!-- Head Office Contacts-->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('head-office-contacts')">
+                            <!-- <img src="assets/access_time.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-file-pdf" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">Head Office Contacts</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IBA -The Indian Banker-->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('indian-banker')">
+                            <!-- <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">IBA -The Indian Banker</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- TDH Contacts -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('tdh-contacts')">
+                            <!-- <img src="assets/Group.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-file-pdf" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">TDH Contacts</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- iCircular -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('icircular')">
+                            <!-- <img src="assets/fluent-mdl2_insights.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">iCircular</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- IT & ContactCentre Contacts -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('itcontact')">
+                            <!-- <img src="assets/carbon_event.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">IT & ContactCentre Contacts
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IT Organisation Structure -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('iorganisation')">
+                            <!-- <img src="assets/icon-park-outline_message-security (1).png" alt="Image"
+                            style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-file-pdf" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;"> IT Organisation Structure
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IT Cell -White Papers -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('itcellwhitepapers')">
+                            <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">IT Cell -White Papers
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Links -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('links')">
+                            <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">
+                                    Links
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Manual of Instructions -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('instructions')">
+                            <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">
+                                    Manual of Instructions
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--  PC-HelpDesk -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('pchelpdesk')">
+                            <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">
+                                    PC-HelpDesk
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--  SIM -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('sim')">
+                            <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">
+                                    SIM
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stamp Duty -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('stamp-duty')">
+                            <!-- <img src="assets/streamline_customer-support-1.png" alt="Image"
+                            style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">Stamp Duty
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vigilance -->
+                    <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            (click)="openLink('vigilance')">
+                            <!-- <img src="assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">Vigilance</div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Employee-attendence -->
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
                             routerLink="/master/employee-attendence">
-                            <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;">
+                            <i class="pi pi-book" style="width: 24px; height: 24px;"></i>
+                            <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"> -->
                             <div class="ml-3">
-                                <div style=" font-weight: 700; font-size: 14px;">
+                                <div style=" font-weight: 700; font-size: 12px;">
                                     Employee Attendence
                                 </div>
                             </div>
                         </div>
                     </div>
 
-
-                    <!-- Secure Chat  -->
+                    <!-- LateCheckIns -->
                     <div>
+                        <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
+                            routerLink="/master/employee-attendence">
+                            <i class="pi pi-book" style="width: 24px; height: 24px;"></i>
+                            <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"> -->
+                            <div class="ml-3">
+                                <div style=" font-weight: 700; font-size: 12px;">
+                                    LateCheckIns
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Secure Chat  -->
+                    <!-- <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
                             <img src="assets/material-symbols_chat-outline.png" alt="Image"
                                 style="width: 24px; height: 24px;">
                             <div class="ml-3">
-                                <div style=" font-weight: 700; font-size: 14px;">Secure Chat
+                                <div style=" font-weight: 700; font-size: 12px;">Secure Chat
                                 </div>
                             </div>
                             <div
@@ -757,189 +1443,189 @@
                                 <p style="color: #92278F; font-weight: 700; font-size: 12px; ">21</p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Circular -->
-                    <div>
+                    <!-- <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
                             <img src="assets/oui_i-in-circle.png" alt="Image" style="width: 24px; height: 24px;">
                             <div class="ml-3">
-                                <div style=" font-weight: 700; font-size: 14px;">Circular</div>
+                                <div style=" font-weight: 700; font-size: 12px;">Circular</div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
 
 
 
                     <!-- Help desk -->
-                    <div>
+                    <!-- <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer">
                             <img src="assets/streamline_customer-support-1.png" alt="Image"
                                 style="width: 24px; height: 24px;">
                             <div class="ml-3">
-                                <div style=" font-weight: 700; font-size: 14px;">Help desk
+                                <div style=" font-weight: 700; font-size: 12px;">Help desk
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Branch Details Expansion -->
                     <div>
-                        <div class="flex align-items-center justify-content-start cursor-pointer ml-4 mt-4"
+                        <!-- <div class="flex align-items-center justify-content-start cursor-pointer ml-4 mt-4"
                             (click)="toggleBranchDetails()">
                             <div style="color: #92278F; font-weight: 700; font-size: 18px;">Branch
                                 details
                             </div>
                             <div class="ml-5">
                                 <i class="pi pi-chevron-right" *ngIf="!extendBranchDetails"
-                                    style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
+                                    style="color: #92278F; font-weight: 700; font-size: 12px;"></i>
 
                                 <i class="pi pi-chevron-down" *ngIf="extendBranchDetails"
-                                    style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
+                                    style="color: #92278F; font-weight: 700; font-size: 12px;"></i>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div *ngIf="extendBranchDetails">
 
                             <!-- Branch Details -->
-                            <div>
+                            <!-- <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
                                     <img src="assets/branch details icon.png" alt="Image"
                                         style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style=" font-weight: 700; font-size: 14px;">Branch
+                                        <div style=" font-weight: 700; font-size: 12px;">Branch
                                             Details
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- Branch Performance -->
-                            <div>
+                            <!-- <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
                                     <img src="assets/branch performance icon.png" alt="Image"
                                         style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style=" font-weight: 700; font-size: 14px;">Branch
+                                        <div style=" font-weight: 700; font-size: 12px;">Branch
                                             Performance
                                         </div>
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>
 
                     <!-- HR Corner Expansion -->
                     <div style="margin-bottom: 80px;">
-                        <div class="flex align-items-center justify-content-start cursor-pointer ml-4 mt-4"
+                        <!-- <div class="flex align-items-center justify-content-start cursor-pointer ml-4 mt-4"
                             (click)="toggleHRCorner()">
                             <div style="color: #92278F; font-weight: 700; font-size: 18px; ">HR Corner
                             </div>
 
                             <div class="ml-5">
                                 <i class="pi pi-chevron-right" *ngIf="!extendHRCorner"
-                                    style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
+                                    style="color: #92278F; font-weight: 700; font-size: 12px;"></i>
 
                                 <i class="pi pi-chevron-down" *ngIf="extendHRCorner"
-                                    style="color: #92278F; font-weight: 700; font-size: 14px;"></i>
+                                    style="color: #92278F; font-weight: 700; font-size: 12px;"></i>
                             </div>
-                        </div>
+                        </div> -->
 
 
 
                         <div *ngIf="extendHRCorner">
 
                             <!-- My Attendance -->
-                            <div>
+                            <!-- <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
                                     <img src="assets/my attendance icon.png" alt="Image"
                                         style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style=" font-weight: 700; font-size: 14px;">My
+                                        <div style=" font-weight: 700; font-size: 12px;">My
                                             attendance
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- My Leave -->
-                            <div>
+                            <!-- <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
                                     <img src="assets/my leave icon.png" alt="Image" style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style=" font-weight: 700; font-size: 14px;">My
+                                        <div style=" font-weight: 700; font-size: 12px;">My
                                             leave
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- My Reimbursement -->
-                            <div>
+                            <!-- <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
                                     <img src="assets/my reimbursement icon.png" alt="Image"
                                         style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style=" font-weight: 700; font-size: 14px;">My
+                                        <div style=" font-weight: 700; font-size: 12px;">My
                                             Reimbursement
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- My Payroll Info -->
-                            <div>
+                            <!-- <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
                                     <img src="assets/my payroll info icon.png" alt="Image"
                                         style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style=" font-weight: 700; font-size: 14px;">My
+                                        <div style=" font-weight: 700; font-size: 12px;">My
                                             payroll info
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- My Referrals -->
-                            <div>
+                            <!-- <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
                                     <img src="assets/my referrals icon.png" alt="Image"
                                         style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style=" font-weight: 700; font-size: 14px;">My
+                                        <div style=" font-weight: 700; font-size: 12px;">My
                                             Referrals
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- My Performance -->
-                            <div>
+                            <!-- <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
                                     <img src="assets/my performance icon.png" alt="Image"
                                         style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style=" font-weight: 700; font-size: 14px;">My
+                                        <div style=" font-weight: 700; font-size: 12px;">My
                                             Performance
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- My Travel -->
-                            <div>
+                            <!-- <div>
                                 <div class="flex align-items-center justify-content-start cursor-pointer ml-6 mt-4">
                                     <img src="assets/my travel icon.png" alt="Image" style="width: 24px; height: 24px;">
                                     <div class="ml-3">
-                                        <div style=" font-weight: 700; font-size: 14px;">My
+                                        <div style=" font-weight: 700; font-size: 12px;">My
                                             Travel
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>
@@ -950,7 +1636,7 @@
                             <div class="flex align-items-center justify-content-center mx-2 mt-4">
                                 <img src="assets/material-symbols_logout.png" alt="Image"
                                     style="width: 24px; height: 24px;">
-                                <div style="color: #92278F; font-weight: 700; font-size: 14px; margin-left: 16px;">
+                                <div style="color: #92278F; font-weight: 700; font-size: 12px; margin-left: 16px;">
                                     Logout
                                 </div>
                             </div>
@@ -1075,7 +1761,7 @@
             </div>
 
             <!-- Page Outlets -->
-            <div  style="background: #E9EBF0">
+            <div style="background: #E9EBF0">
                 <router-outlet></router-outlet>
             </div>
 
@@ -1085,7 +1771,8 @@
 </div>
 
 
-<p-dialog [(visible)]="timesheetDialog" [style]="{width: '550px'}" header="Late CheckIn" [modal]="true" styleClass="p-fluid custom-dialog">
+<p-dialog [(visible)]="timesheetDialog" [style]="{width: '550px'}" header="Late CheckIn" [modal]="true"
+    styleClass="p-fluid custom-dialog">
     <ng-template pTemplate="content">
         <div class="field">
             <label for="userName">User Name</label>
@@ -1102,7 +1789,8 @@
 
         <div class="field">
             <label for="reason">Reason</label>
-            <input type="text" pInputText name="reason" #reason="ngModel" [(ngModel)]="timesheet.reason" required maxlength="50" />
+            <input type="text" pInputText name="reason" #reason="ngModel" [(ngModel)]="timesheet.reason" required
+                maxlength="50" />
             <small class="p-error" *ngIf="submitted && !timesheet.reason">Reason Required</small>
             <p style="float: right;font-size: 15px;">{{timesheet.reason?.length==0?0:timesheet.reason?.length}}/50</p>
         </div>
@@ -1119,4 +1807,3 @@
 <p-toast></p-toast>
 
 <p-confirmDialog></p-confirmDialog>
-

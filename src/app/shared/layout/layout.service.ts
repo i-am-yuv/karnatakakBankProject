@@ -8,6 +8,8 @@ import { CheckIn } from './checkkIn';
   providedIn: 'root'
 })
 export class LayoutService {
+
+ 
  
 
 
@@ -79,5 +81,25 @@ export class LayoutService {
       .then((data) => {
         return data;
       });
+  }
+
+  getUrlByName(type: any) {
+    var url =this.apiurl+'api/links/linkByName/'+encodeURIComponent(type);
+    return this.http
+    .get<any>(url)
+    .toPromise()
+    .then((data) => {
+      return data;
+    });
+  }
+
+  getHolidays() {
+    var url =this.apiurl+'api/holiday/list/';
+    return this.http
+    .get<any>(url)
+    .toPromise()
+    .then((data) => {
+      return data;
+    });
   }
 }

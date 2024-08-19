@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { QuickLink } from './quicklink';
 import { QuicklinkService } from './quicklink.service';
 import { LayoutService } from 'src/app/shared/layout/layout.service';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-quick-links',
@@ -10,9 +11,12 @@ import { LayoutService } from 'src/app/shared/layout/layout.service';
 })
 export class QuickLinksComponent implements OnInit {
   isMobile!: boolean;
+  @ViewChild('dt') dt!: Table;
   environments:any;
+
   constructor(private quickLinkService:QuicklinkService,private layoutService:LayoutService) { }
-  quickLlinks:QuickLink[]=[];
+  quickLinks:QuickLink[]=[];
+  cols!: any[];
   ngOnInit(): void {
     
     this.layoutService.getData('quick-links')
@@ -21,8 +25,8 @@ export class QuickLinksComponent implements OnInit {
       this.checkScreenSize();
     });
 this.quickLinkService.getQuickLinks().then((res)=>{
-  this.quickLlinks=res;
-  this.environments=this.quickLinkService.updateValues(this.quickLlinks);
+  this.quickLinks=res;
+  this.environments=this.quickLinkService.updateValues(this.quickLinks);
 });
   }
   checkScreenSize() {
@@ -82,5 +86,21 @@ this.quickLinkService.getQuickLinks().then((res)=>{
       const url = this.environments.returns ;
       window.open(url, '_blank');
     }
+  }
+
+  applyFilterGlobal(event: Event, stringVal: any) {
+    this.dt.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+  }
+  visitedLinks: boolean[] = [];
+  markAsVisited(index: number, event: Event) {
+    event.preventDefault(); // Prevent the default behavior to avoid navigation for now
+    this.visitedLinks[index] = true;
+    
+    setTimeout(() => {
+      window.location.href = this.quickLinks[index].url; // Navigate after marking as visited
+    }, 100);
+  }
+  openLink(record:any){
+    window.open(record.url, '_blank');
   }
 }

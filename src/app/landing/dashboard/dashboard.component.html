@@ -56,7 +56,7 @@
 
         </div>
         <!-- Celebrating 100 Years Animation -->
-     
+
         <!-- Animated -->
         <div class="mx-2 " style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap;">
             <div class="col-8">
@@ -226,7 +226,7 @@
                         </div>
                     </div>
 
-                    <div class="col-5" >
+                    <div class="col-5">
                         <div class="bg-white border-round-xl py-2 px-3 cursor-pointer" (click)="openLink('rewardRec')">
 
                             <div class="font-bold" style="font-size: 16px; color:#92278F;">
@@ -387,10 +387,11 @@
                     </div>
 
                     <div class="col-5">
-                        <div class="cursor-pointer" style="background: #FFFFFF; border-radius: 16px; height: 220px;" (click)="openLink('ourJourney')">
+                        <div class="cursor-pointer" style="background: #FFFFFF; border-radius: 16px; height: 220px;"
+                            (click)="openLink('ourJourney')">
 
                             <div class="pt-3 px-2 "
-                                style=" display: flex; justify-content: space-between; align-items: center;" >
+                                style=" display: flex; justify-content: space-between; align-items: center;">
                                 <div style="font-size: 16px; color: #92278F; font-weight: 700;">
                                     Our Journey
                                 </div>
@@ -489,7 +490,8 @@
 
                 <div style="display: flex; justify-content: start; align-items: start; flex-wrap: wrap;">
                     <div class="col-7">
-                        <div style="height: 250px; background: #FFFFFF; border-radius: 16px;" class="pt-4 px-4 cursor-pointer" (click)="openLink('learningDev')" >
+                        <div style="height: 250px; background: #FFFFFF; border-radius: 16px;"
+                            class="pt-4 px-4 cursor-pointer" (click)="openLink('learningDev')">
                             <div style="font-size: 16px; font-weight: 700; color: #92278F;">Learning and Development
                             </div>
 
@@ -600,7 +602,7 @@
                 <div class="bg-white border-round-lg m-2 px-4 py-2">
                     <div class="" style="color: #92278F; font-size: 16px; font-weight: 700;"> Upcoming Holidays</div>
 
-                    <div class="scroll-container mt-2">
+                    <div *ngIf="holidaysData.length>0" class="scroll-container mt-2">
                         <div *ngFor="let holiday of holidaysData">
                             <div class="flex align-items-center border-round-lg mt-3 px-2"
                                 style="height: 44px; background-color: #F2F2F2;">
@@ -624,11 +626,15 @@
                         </div>
                     </div>
 
+                    <div *ngIf="holidaysData.length==0" class="scroll-container mt-2">
+                        <div class="flex align-items-center border-round-lg mt-3 px-2" style="text-align: center;">
+                            No Data</div>
+                    </div>
 
                     <div class="flex align-items-center justify-content-center">
                         <div class="flex align-items-center justify-content-center border-round-sm mt-4"
                             style="background-color: #92278F;  height: 30px;">
-                            <div class="p-2 text-white" style="font-size: 12px;">Holiday List</div>
+                            <!-- <div class="p-2 text-white" style="font-size: 12px;">Holiday List</div> -->
                         </div>
                     </div>
 
@@ -669,8 +675,8 @@
                     <div class="flex align-items-center justify-content-between">
                         <div class="" style="color: #92278F; margin-top: 30px; font-size: 16px; font-weight: 700;">
                             Regional News</div>
-                        <div class="font-semibold" style="color: #92278F; margin-top: 30px; font-size: 12px;">See
-                            all</div>
+                        <!-- <div class="font-semibold" style="color: #92278F; margin-top: 30px; font-size: 12px;">See
+                            all</div> -->
                     </div>
 
                     <div class="scroll-container4">
@@ -678,7 +684,7 @@
                             <div style="margin-top: 18px;">
                                 <div class="flex align-items-center justify-content-start">
                                     <img src="/assets/Avatar.png" width="25px" height="25px" alt="">
-                                    <div class="ml-3" style="font-size: 12px;">{{new}}
+                                    <div class="ml-3" style="font-size: 12px;">{{new.description}}
                                     </div>
                                 </div>
                                 <div class="text-right mt-1" style="font-size: 8px; color: #B687C6;">12 Hours ago </div>
