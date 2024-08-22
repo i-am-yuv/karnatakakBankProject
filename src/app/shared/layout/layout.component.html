@@ -511,7 +511,7 @@
                 <!-- Links -->
                 <div>
                     <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                        *ngIf="!isCompressed" routerLink="/master/quick-links"
+                        *ngIf="!isCompressed" (click)="openLink('links')"
                         [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }">
                         <!-- <img src="assets/solar_document-linear.png" alt="Image" style="width: 24px; height: 24px;"
                                         [ngClass]="{ selectedTab : this.currentPage==='quick-links' , unselectedTab : this.currentPage!=='quick-links' }"> -->
@@ -1129,7 +1129,7 @@
                     <!-- Additional Links -->
                     <div>
                         <div class="flex align-items-center justify-content-start ml-6 mt-4 cursor-pointer"
-                            routerLink="/master/report" (click)="openLink('additional-links')">
+                             (click)="openLink('additional-links')">
                             <!-- <img src="assets/mi_document.png" alt="Image" style="width: 24px; height: 24px;"> -->
                             <i class="pi pi-link" style="width: 24px; height: 24px;"></i>
                             <div class="ml-3">

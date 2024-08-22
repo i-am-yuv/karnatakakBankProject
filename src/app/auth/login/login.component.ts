@@ -308,7 +308,7 @@ export class LoginComponent implements OnInit {
 
       // })
     }
-    else if (typeOfCircular == '20 since') {
+    else if (typeOfCircular == '7 since') {
       
       var url='http://172.16.202.10:2080/kbldc/webapps/kdoc/out/out.DirectSearch.php?days=7';
       
@@ -318,7 +318,7 @@ export class LoginComponent implements OnInit {
         
       // })
     }
-    else if (typeOfCircular == '108 since') {
+    else if (typeOfCircular == '30 since') {
       var url='http://172.16.202.10:2080/kbldc/webapps/kdoc/out/out.DirectSearch.php?days=30';
       
       window.open(url, '_blank');

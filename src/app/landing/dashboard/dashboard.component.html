@@ -339,15 +339,17 @@
 
                 <div class="flex align-items-start justify-content-between " style="flex-wrap: wrap;">
                     <div class="col-7">
-                        <div class="bg-white py-3 px-4 cursor-pointer" style=" height: 220px; border-radius: 16px;" (click)="openLink('ivr_self_services')">
+                        <div class="bg-white py-3 px-4 cursor-pointer" style=" height: 220px; border-radius: 16px;"
+                            (click)="openLink('ivr_self_services')">
 
                             <div style="color: #92278F;font-size: 16px; font-weight: 700;">
                                 IVR-Self Service Options
                             </div>
 
                             <div class="flex mt-3 p-4 ml-8" style="width: 100px; height: 100px;">
-    <i class="pi pi-phone" style="text-align: center;font-size: 4rem; color: #333;align-items: center;"></i>
-</div>
+                                <i class="pi pi-phone"
+                                    style="text-align: center;font-size: 4rem; color: #333;align-items: center;"></i>
+                            </div>
 
 
 
@@ -392,9 +394,11 @@
                 <div class="flex align-items-start justify-content-between " style="flex-wrap: wrap;">
 
                     <div class="col-7">
-                        <div style="background: #FFFFFF; border-radius: 16px; height: 250px;" class="cursor-pointer"
+                        <div style="background: #FFFFFF; border-radius: 16px; height: 250px; width: 250px;"
+                            class="w-full cursor-pointer flex justify-content-center py-2"
                             routerLink="/master/quick-links/Abhyudaya/Abhyudaya">
-                            <img src="/assets/abyudaya.png" class="w-full h-full p-4">
+                            <img src="/assets/abyudaya.png" style="width: 100%; height: 100%; object-fit: contain;">
+
 
 
 
@@ -473,12 +477,14 @@
                     <div class="col-7">
                         <div style="height: 250px; background: #FFFFFF; border-radius: 16px;"
                             class="pt-4 px-4 cursor-pointer" (click)="openLink('learningDev')">
-                            <div style="font-size: 16px; font-weight: 700; color: #92278F;">Learning and Development(Finacle SSO Required)
+                            <div style="font-size: 16px; font-weight: 700; color: #92278F;">Learning and
+                                Development(Finacle SSO Required)
                             </div>
 
                             <div class="flex align-items-center justify-content-center gap-2"
                                 style="margin-top: 15.8px; margin-bottom: 5px;">
-                                <img class="w-full"  style="height: 160px;" src="/assets/Rectangle 40487.png" alt="Image">
+                                <img class="w-full" style="height: 160px;" src="/assets/Rectangle 40487.png"
+                                    alt="Image">
 
                                 <!-- First Card -->
                                 <!-- <div class="flex w-full align-items-center  border-round-xl"
@@ -496,9 +502,11 @@
                     </div>
 
                     <div class="col-5">
-                        <div style="height: 250px; background: #FFFFFF; border-radius: 16px;" class="cursor-pointer"  (click)="openLink('internet_banking')">
+                        <div style="height: 250px; background: #FFFFFF; border-radius: 16px;" class="cursor-pointer"
+                            (click)="openLink('internet_banking')">
                             <div class="px-2 py-8">
-                                <div style="display: flex; justify-content: center; align-items: center;text-align: center;color: #92278F;">
+                                <div
+                                    style="display: flex; justify-content: center; align-items: center;text-align: center;color: #92278F;">
                                     <!-- <img src="/assets/Frame 1618868136.png" style="width: 160px;" alt=""> -->
                                     Internet Banking – Bulk File Upload format
                                 </div>
@@ -585,8 +593,8 @@
                         </div>
                     </div>
 
-                    <div (click)="openLink('restructured_accounts')" style="margin-top: 19px;display: block;color: #92278F;"
-                         class="image-container cursor-pointer" >
+                    <div (click)="openLink('restructured_accounts')"
+                        style="margin-top: 19px;display: block;color: #92278F;" class="image-container cursor-pointer">
                         <!-- <img [src]="image.src" [alt]="image.alt" class="w-full h-auto"> -->
                         Restructured Accounts – FAQ
                     </div>

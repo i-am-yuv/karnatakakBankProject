@@ -131,3 +131,17 @@
   background-color: #7a206c !important; /* Adjust to a suitable color for hover and focus states */
   color: white !important;
 }
+
+.rotate-image {
+  width: 200px; /* Adjust the size as needed */
+  animation: rotate 4s linear infinite; /* Adjust duration as needed */
+}
+
+@keyframes rotate {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
