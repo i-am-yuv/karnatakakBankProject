@@ -213,9 +213,7 @@ export class LoginComponent implements OnInit {
     ).catch(
       (err) => {
         var text = err.error.text;
-        var any = text.split(':');;
-        this.goldRate = any[1];
-        console.log(err);
+        console.log(JSON.stringify(err));
       }
     )
   }
