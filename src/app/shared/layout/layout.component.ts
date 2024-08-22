@@ -243,8 +243,13 @@ export class LayoutComponent implements OnInit {
     this.timesheetDialog = false;
     this.submitted = false;
   }
+  // async checkInTime(): Promise<void> {
+  //   if (await this.checkDayCheckIn() && await this.checkLeaves() && await this.checkExistingRequest()) {
+  //     await this.performCheckIn();
+  //   }
+  // }
   async checkInTime(): Promise<void> {
-    if (await this.checkDayCheckIn() && await this.checkLeaves() && await this.checkExistingRequest()) {
+    if (await this.checkDayCheckIn() && await this.checkLeaves()) {
       await this.performCheckIn();
     }
   }
@@ -458,7 +463,7 @@ export class LayoutComponent implements OnInit {
   }
 
   openLink(type: any) {
-   
+
     this.currentPage = type;
     if (!this.visitedLinks.includes(type)) {
       this.visitedLinks.push(type);
@@ -469,11 +474,11 @@ export class LayoutComponent implements OnInit {
     if (type == 'aadhaar-enrolment-centres') {
       type = 'Aadhaar_Enrolment_centres';
       this.layoutS.getUrlByName(type).then((res) => {
-       if(res == undefined || res.length==0){
-        this.sharedService.displayErrorMessage("No Url Found with given "+type);
-       }else{
-        window.open(res[0].url, '_blank');
-       }
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
+          window.open(res[0].url, '_blank');
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
@@ -491,18 +496,18 @@ export class LayoutComponent implements OnInit {
     else if (type == 'additional-links') {
       type = 'Additional_Links';
       this.layoutS.getUrlByName(type).then((res) => {
-        if(res == undefined || res.length==0){
-          this.sharedService.displayErrorMessage("No Url Found with given "+type);
-         }else{
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
           window.open(res[0].url, '_blank');
-         }
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'appin_mandate-forms') {
-      
+
       type = "Appln_Madate_forms";
       this.router.navigate(['/master/quick-links/' + type + '/' + encodeURIComponent("AppIn/Mandate Forms")], { relativeTo: this.route });
 
@@ -516,11 +521,11 @@ export class LayoutComponent implements OnInit {
     else if (type == 'bank-policies') {
       type = 'Bank_Policies';
       this.layoutS.getUrlByName(type).then((res) => {
-        if(res == undefined || res.length==0){
-          this.sharedService.displayErrorMessage("No Url Found with given "+type);
-         }else{
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
           window.open(res[0].url, '_blank');
-         }
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
@@ -529,11 +534,11 @@ export class LayoutComponent implements OnInit {
     else if (type == 'branch-directory') {
       type = 'Branch_Directory';
       this.layoutS.getUrlByName(type).then((res) => {
-        if(res == undefined || res.length==0){
-          this.sharedService.displayErrorMessage("No Url Found with given "+type);
-         }else{
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
           window.open(res[0].url, '_blank');
-         }
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
@@ -542,11 +547,11 @@ export class LayoutComponent implements OnInit {
     else if (type == 'contact-centre-faq') {
       type = 'Contact_Centre_FAQ';
       this.layoutS.getUrlByName(type).then((res) => {
-        if(res == undefined || res.length==0){
-          this.sharedService.displayErrorMessage("No Url Found with given "+type);
-         }else{
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
           window.open(res[0].url, '_blank');
-         }
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
@@ -555,11 +560,11 @@ export class LayoutComponent implements OnInit {
     else if (type == 'dcoe-contacts-for-digi-loan') {
       type = 'DCOE_contacts_for_Digi_loans';
       this.layoutS.getUrlByName(type).then((res) => {
-        if(res == undefined || res.length==0){
-          this.sharedService.displayErrorMessage("No Url Found with given "+type);
-         }else{
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
           window.open(res[0].url, '_blank');
-         }
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
@@ -568,11 +573,11 @@ export class LayoutComponent implements OnInit {
     else if (type == 'e-helpdesk') {
       type = 'e_HelpDesk';
       this.layoutS.getUrlByName(type).then((res) => {
-        if(res == undefined || res.length==0){
-          this.sharedService.displayErrorMessage("No Url Found with given "+type);
-         }else{
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
           window.open(res[0].url, '_blank');
-         }
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
@@ -581,11 +586,11 @@ export class LayoutComponent implements OnInit {
     else if (type == 'e-mail') {
       type = 'e_Mail';
       this.layoutS.getUrlByName(type).then((res) => {
-        if(res == undefined || res.length==0){
-          this.sharedService.displayErrorMessage("No Url Found with given "+type);
-         }else{
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
           window.open(res[0].url, '_blank');
-         }
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
@@ -594,11 +599,11 @@ export class LayoutComponent implements OnInit {
     else if (type == 'far') {
       type = 'Far';
       this.layoutS.getUrlByName(type).then((res) => {
-        if(res == undefined || res.length==0){
-          this.sharedService.displayErrorMessage("No Url Found with given "+type);
-         }else{
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
           window.open(res[0].url, '_blank');
-         }
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
@@ -607,11 +612,11 @@ export class LayoutComponent implements OnInit {
     else if (type == 'fold') {
       type = 'Fold';
       this.layoutS.getUrlByName(type).then((res) => {
-        if(res == undefined || res.length==0){
-          this.sharedService.displayErrorMessage("No Url Found with given "+type);
-         }else{
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
           window.open(res[0].url, '_blank');
-         }
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
@@ -620,11 +625,11 @@ export class LayoutComponent implements OnInit {
     else if (type == 'head-office-contacts') {
       type = 'Head_Office_Contacts';
       this.layoutS.getUrlByName(type).then((res) => {
-        if(res == undefined || res.length==0){
-          this.sharedService.displayErrorMessage("No Url Found with given "+type);
-         }else{
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
           window.open(res[0].url, '_blank');
-         }
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
@@ -644,11 +649,11 @@ export class LayoutComponent implements OnInit {
     else if (type == 'tdh-contacts') {
       type = 'TDH_Contacts';
       this.layoutS.getUrlByName(type).then((res) => {
-        if(res == undefined || res.length==0){
-          this.sharedService.displayErrorMessage("No Url Found with given "+type);
-         }else{
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
           window.open(res[0].url, '_blank');
-         }
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
@@ -657,11 +662,11 @@ export class LayoutComponent implements OnInit {
     else if (type == 'icircular') {
       type = 'iCircular';
       this.layoutS.getUrlByName(type).then((res) => {
-        if(res == undefined || res.length==0){
-          this.sharedService.displayErrorMessage("No Url Found with given "+type);
-         }else{
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
           window.open(res[0].url, '_blank');
-         }
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
@@ -681,11 +686,11 @@ export class LayoutComponent implements OnInit {
     else if (type == 'iorganisation') {
       type = 'IT_Organisation_Structure'
       this.layoutS.getUrlByName(type).then((res) => {
-        if(res == undefined || res.length==0){
-          this.sharedService.displayErrorMessage("No Url Found with given "+type);
-         }else{
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
           window.open(res[0].url, '_blank');
-         }
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
@@ -727,11 +732,11 @@ export class LayoutComponent implements OnInit {
     else if (type == 'pchelpdesk') {
       type = 'PC_HelpDesk';
       this.layoutS.getUrlByName(type).then((res) => {
-        if(res == undefined || res.length==0){
-          this.sharedService.displayErrorMessage("No Url Found with given "+type);
-         }else{
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
           window.open(res[0].url, '_blank');
-         }
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
@@ -740,11 +745,11 @@ export class LayoutComponent implements OnInit {
     else if (type == 'sim') {
       type = 'SIM';
       this.layoutS.getUrlByName(type).then((res) => {
-        if(res == undefined || res.length==0){
-          this.sharedService.displayErrorMessage("No Url Found with given "+type);
-         }else{
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
           window.open(res[0].url, '_blank');
-         }
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
@@ -779,11 +784,11 @@ export class LayoutComponent implements OnInit {
     }
     else if (type == 'Bharti_AXA') {
       this.layoutS.getUrlByName(type).then((res) => {
-        if(res == undefined || res.length==0){
-          this.sharedService.displayErrorMessage("No Url Found with given "+type);
-         }else{
+        if (res == undefined || res.length == 0) {
+          this.sharedService.displayErrorMessage("No Url Found with given " + type);
+        } else {
           window.open(res[0].url, '_blank');
-         }
+        }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
@@ -1032,14 +1037,14 @@ export class LayoutComponent implements OnInit {
   }
 
 
-  async checkExistingRequest(): Promise<boolean> {
-    const res = await this.notificationService.checkAnyRequestExistByUser(this.authService.getUserName());
-    if (res) {
-      this.sharedService.displayInfoMessage("You have already raised checkin request so wait for approval");
-      return false;
-    }
-    return true;
-  }
+  // async checkExistingRequest(): Promise<boolean> {
+  //   const res = await this.notificationService.checkAnyRequestExistByUser(this.authService.getUserName());
+  //   if (res) {
+  //     this.sharedService.displayInfoMessage("You have already raised checkin request so wait for approval");
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
   rmanager!: any;
   async performCheckIn(): Promise<void> {
