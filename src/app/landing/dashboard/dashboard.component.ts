@@ -239,6 +239,9 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  showAlert(): void {
+    this.sharedServiceService.displayInfoMessage("Coming Soon..");
+  }
   allNews: any;
   getRegionalNews() {
     this.masterService.getRegionalNews().then(
@@ -258,6 +261,107 @@ export class DashboardComponent implements OnInit {
     if(type=='branch details'){
       const url = environment.branch_details;
       window.open(url, '_blank');
+    }
+    else if(type == 'ivr_self_services'){
+      this.layoutService.getUrlByName(type).then((res) => {
+        if(res == undefined || res.length==0){
+          this.sharedServiceService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
+      }).catch((e) => {
+        console.log(JSON.stringify(e));
+        this.sharedServiceService.displayErrorMessage("Some Issue while fetching url");
+      });
+    }
+    else if(type == 'restructured_accounts'){
+      this.layoutService.getUrlByName(type).then((res) => {
+        if(res == undefined || res.length==0){
+          this.sharedServiceService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
+      }).catch((e) => {
+        console.log(JSON.stringify(e));
+        this.sharedServiceService.displayErrorMessage("Some Issue while fetching url");
+      });
+    }
+    else if(type == 'internet_banking'){
+      this.layoutService.getUrlByName(type).then((res) => {
+        if(res == undefined || res.length==0){
+          this.sharedServiceService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
+      }).catch((e) => {
+        console.log(JSON.stringify(e));
+        this.sharedServiceService.displayErrorMessage("Some Issue while fetching url");
+      });
+    }
+    else if(type == 'demart_service'){
+      this.layoutService.getUrlByName(type).then((res) => {
+        if(res == undefined || res.length==0){
+          this.sharedServiceService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
+      }).catch((e) => {
+        console.log(JSON.stringify(e));
+        this.sharedServiceService.displayErrorMessage("Some Issue while fetching url");
+      });
+    }
+    
+    else if(type=='ad-portal'){
+      
+      this.layoutService.getUrlByName(type).then((res) => {
+        if(res == undefined || res.length==0){
+          this.sharedServiceService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
+      }).catch((e) => {
+        console.log(JSON.stringify(e));
+        this.sharedServiceService.displayErrorMessage("Some Issue while fetching url");
+      });
+    }
+    else if(type=='email'){
+     
+      this.layoutService.getUrlByName(type).then((res) => {
+        if(res == undefined || res.length==0){
+          this.sharedServiceService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
+      }).catch((e) => {
+        console.log(JSON.stringify(e));
+        this.sharedServiceService.displayErrorMessage("Some Issue while fetching url");
+      });
+    }
+   else if(type=='laps'){
+     
+    this.layoutService.getUrlByName(type).then((res) => {
+      if(res == undefined || res.length==0){
+        this.sharedServiceService.displayErrorMessage("No Url Found with given "+type);
+       }else{
+        window.open(res[0].url, '_blank');
+       }
+    }).catch((e) => {
+      console.log(JSON.stringify(e));
+      this.sharedServiceService.displayErrorMessage("Some Issue while fetching url");
+    });
+    }
+    if(type=='hrms'){
+     
+      this.layoutService.getUrlByName(type).then((res) => {
+        if(res == undefined || res.length==0){
+          this.sharedServiceService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
+      }).catch((e) => {
+        console.log(JSON.stringify(e));
+        this.sharedServiceService.displayErrorMessage("Some Issue while fetching url");
+      });
     }
     else if(type=='branch performance'){
       const url = environment.branch_performance;

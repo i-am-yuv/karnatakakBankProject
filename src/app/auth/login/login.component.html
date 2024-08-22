@@ -2,16 +2,14 @@
 
 <div class="w-full h-screen"
     style="background: url('/assets/login\ background.png'); background-size: cover; background-position: center;">
-    <div class=" flex align-items-center justify-content-between px-5" style="height: 100px;">
+    <div class=" flex align-items-center justify-content-between px-5" style="height: 70px;">
         <div>
             <!-- <img src="/assets/kbdcl logo.png" width="300px" height="55px" alt=""> -->
             <img src="https://karnatakabank.com/sites/default/files/logo.gif" width="300px" height="55px" alt="">
         </div>
-        <div class="w-full flex align-items-center justify-content-end gap-8 mr-8"
+        <!-- <div class="w-full flex align-items-center justify-content-end gap-8 mr-8"
             *ngIf="isLessThan800px() ? false : true ">
-            <!-- <div class="text-xl cursor-pointer" style="color: #92278F;">Home</div> -->
-            <!-- <div class="text-xl cursor-pointer" style="color: #92278F;">Support</div> -->
-            <div class="flex align-items-center justify-content-center gap-2"
+           <div class="flex align-items-center justify-content-center gap-2"
                         style="border-radius: 40px;background-color: #92278F;padding: 6px 19px">
                         <div class=""
                             style="width: 63px;height: 19px;color: #FFFFFF;font-weight: 400;font-size: 14px;text-align: center;font-family: Manrope;">
@@ -22,7 +20,7 @@
                         </div>
 
                     </div>
-        </div>
+        </div> -->
         <!-- <button *ngIf="isLessThan800px() ? false : true " pButton pRipple label="Login"
             class="p-button-help border-round-sm" style="background-color: #92278F; width: 125px;">
         </button> -->
@@ -68,22 +66,62 @@
     <div class="flex" style="flex-wrap: wrap-reverse; ">
 
         <!-- Left side panel -->
-        <div class="col-7">
+        <div class="col-9">
             <div class="flex mt-5" style="flex-wrap: wrap;">
-                <div class="col-7 p-2" (click)="rbiGuildelinesUpdate()">
+                <div class="col-5 p-2" >
+                    <div class="border-round-2xl " style="background-color: #F4EFEE; height: 270px;">
+                        <div class="flex align-items-center justify-content-center mx-2" style="flex-wrap: wrap;">
+                            <div class="col-8">
+                                <div class="text-xl mt-2" style="color: #92278F; font-weight: 500; font-size: 18px;">
+                                    Gold Rate</div>
+                              
+                                <div class="mt-4 pt-2 text-lg" style="height: 85px;text-align: left;">
+                                    <span>Latest IBJA <span style="text-decoration: underline;font-weight: 900;">Market Rate</span> for 22K Gold as on Today :<br/>Rs.<span class="text-2xl" style="text-decoration: underline;font-weight: 900;color: #92278F">{{goldRate.marketGoldRate}}</span></span>
+                                </div>
+                                <div class="mt-3 pt-2 text-lg" style="height: 85px;text-align: left;">
+                                    <span><span style="text-decoration: underline;font-weight: 900;">Average</span> IBJA Gold Price for 22K Gold last 30 Days : <br/>Rs.<span class="text-2xl" style="text-decoration: underline;font-weight: 900;color: #92278F;">{{goldRate.averageGoldRate}}</span></span>
+                                </div>
+
+
+                            </div>
+                            <div class="col-4" style="height: 100px; background-image: url('/assets/gold animation.gif'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+                                <!-- <img src="/assets/gold animation.gif" width="64px" height="77px" alt=""> -->
+                            </div>
+                        </div>
+                        <!-- <img class=" mx-3" src="/assets/graph image.png" style="width: full;" height="120px" alt=""> -->
+                    </div>
+                </div>
+                <div class="col-7 p-2" >
                     <div class="border-round-2xl" style="background-color: #F4EFEE; height: 270px;">
                         <div class="flex" style="justify-content: space-between; align-items: start;">
                             <div class="col-8">
-                                <div class="text-xl mt-2" style="color: #92278F; font-weight: 500; font-size: 18px;">RBI
-                                    Guidelines & Notification</div>
+                                <div class="text-xl mt-2" style="color: #92278F; font-weight: 500; font-size: 18px;">
+                                    iCircular New!</div>
                                 <!-- <div class="text-sm mt-3" style="color: #92278F;">Mar 01, 2024</div> -->
                             </div>
                             <div class="col-4">
-                                <img src="/assets/news.png" width="85px" alt="">
+                                <img src="/assets/inews.gif" width="85px" alt="">
                             </div>
                         </div>
-                        <div class="scroll-container">
-                            <div *ngFor="let rbiNoti of rbiGuildelines" class="pb-1">
+                        <div class="scroll-container justify-content-center align-items-center">
+                            <div class="flex flex-column justify-content-center align-items-center mx-2">
+                                <div class="col-12 gap-3" (click)="openLink('5 since')" >
+                                    <div class="flex justify-content-between mx-2 text-lg  mx-3"
+                                        style="color: #92278F;text-decoration: underline;"><span class="cursor-pointer">5 since yesterday</span>
+                                    </div>
+                                </div>
+                                <div class="col-12 " (click)="openLink('20 since')">
+                                    <div class="flex justify-content-between mx-2 text-lg  mx-3"
+                                        style="color: #92278F;text-decoration: underline;text-align: center;"><span class="cursor-pointer">20 -in last 7 days</span>
+                                    </div>
+                                </div>
+                                <div class="col-12" (click)="openLink('108 since')">
+                                    <div class="flex justify-content-between mx-2 text-lg  mx-3"
+                                        style="color: #92278F;text-decoration: underline;"><span class="cursor-pointer">108 -in last 30 days</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div *ngFor="let rbiNoti of rbiGuildelines" class="pb-1">
                                 <div class="text-sm  mx-3" style="color: #92278F;">{{rbiNoti.date}}</div>
                                 <div class="flex justify-content-between mx-2">
                                     <div class="text-xs col-9" style="color: #382A29;">{{rbiNoti.info}}
@@ -97,42 +135,12 @@
                                     </div>
 
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
 
-                <div class="col-5 p-2" (click)="rbiGuildelinesUpdate()">
-                    <div class="border-round-2xl " style="background-color: #F4EFEE; height: 270px;">
-                        <div class="flex align-items-center justify-content-center mx-2" style="flex-wrap: wrap;">
-                            <div class="col-8">
-                                <div class="text-xl mt-2" style="color: #92278F; font-weight: 500; font-size: 18px;">
-                                    Gold Rate</div>
-                                <div class="mt-1" style="color: #263238"><span
-                                        style="font-weight: 700; font-size: 12px;">₹
-                                        {{this.goldRate}}
-                                    </span>
-                                    <!-- Indian Rupee -->
-                                </div>
-                                <div class="flex justify-content-between mt-1">
-                                    <div style="color: #606060; font-size: 7px;">Feb 29, 8:34:24 PM UTC+5:30</div>
-                                    <div style="color: #606060; font-size: 7px;">INR . NSE . Disclaimer</div>
-                                </div>
-                                <div class="mt-2">
-                                    <!-- <p-dropdown [options]="goldLoans" optionLabel="name" optionValue="name"
-                                        placeholder="Chennai" (onChange)="findGoldRate( $event.value)"></p-dropdown> -->
-                                </div>
 
-
-                            </div>
-                            <div class="col-4"
-                                style="height: 100px; background-image: url('/assets/gold animation.gif'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-                                <!-- <img src="/assets/gold animation.gif" width="64px" height="77px" alt=""> -->
-                            </div>
-                        </div>
-                        <img class=" mx-3" src="/assets/graph image.png" style="width: full;" height="120px" alt="">
-                    </div>
-                </div>
             </div>
 
             <div class=" flex flex-column justify-content-center p-4 m-2 border-round-2xl"
@@ -140,7 +148,7 @@
                 <div class="text-lg" style="color: #92278F;">KBL Campaign Program</div>
 
                 <div class="flex mt-3 scroll-containerH" style="justify-content: start;">
-                    <img class="w-auto m-1" src="/assets/ads image 1.png" alt="">
+                    <img class="w-full m-1" src="/assets/ads image 1.png" alt="">
                     <img *ngIf="this.secondVisible" class="w-auto m-1" src="/assets/ads image 2.png" alt="">
                     <img *ngIf="this.thirdVisible" class="w-auto m-1" src="/assets/ads image 3.png" alt="">
                     <img *ngIf="this.fourthVisible" class="w-auto m-1" src="/assets/ads image 4.png" alt="">
@@ -156,7 +164,7 @@
         </div>
 
         <!-- login form -->
-        <div class="col-5 px-3">
+        <div class="col-3 px-3">
             <div class="flex align-items-center justify-content-center mt-3">
                 <img src="/assets/login top.png" alt="" width="150px">
             </div>
@@ -194,8 +202,8 @@
                         <!-- <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
                         <label for="rememberme1" class="text-sm">Remember me</label> -->
                     </div>
-                    <a class="font-medium no-underline ml-2 text-right cursor-pointer text-sm"
-                        style="color: #92278F;" (click)="forgetPassword()">Forgot
+                    <a class="font-medium no-underline ml-2 text-right cursor-pointer text-sm" style="color: #92278F;"
+                        (click)="forgetPassword()">Forgot
                         password?</a>
                 </div>
 

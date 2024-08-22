@@ -114,10 +114,10 @@
                             </div>
                         </div>
 
-                        <div class="pb-2" style="margin-top: 16px; border-radius: 16px; background: white;">
+                        <div class="pb-2 w-full" style="margin-top: 16px; border-radius: 16px; background: white;">
                             <div class="px-4"
                                 style="padding-top: 12px; color: #92278F; font-size: 16px; font-weight: 700;">
-                                My HR Symphony
+                                My HR Symphony(Finacle SSO Required)
                             </div>
 
                             <div class="gap-1" style="display: flex; justify-content: start; align-items: center;
@@ -133,14 +133,14 @@
                                         </div>
                                     </div> -->
                                     <div class="animated-container" (mouseenter)="expandCard()"
-                                        (mouseleave)="shrinkCard()">
+                                        (mouseleave)="shrinkCard()" (click)="openLink('hrms')">
                                         <div class="content">
                                             <div class="icon-container">
                                                 <img src="/assets/Group 1171276671.png" alt="Image"
                                                     style="width: 30px; height: 30px;">
                                             </div>
                                             <div class="text-container">
-                                                My Payroll
+                                                HRMS
                                             </div>
                                         </div>
                                     </div>
@@ -157,14 +157,14 @@
                                         </div>
                                     </div> -->
                                     <div class="animated-container" (mouseenter)="expandCard()"
-                                        (mouseleave)="shrinkCard()">
+                                        (mouseleave)="shrinkCard()" (click)="openLink('ad-portal')">
                                         <div class="content">
                                             <div class="icon-container">
                                                 <img src="/assets/Group 1171276671 (2).png" alt="Image"
                                                     style="width: 30px; height: 30px; ">
                                             </div>
                                             <div class="text-container">
-                                                My Attendance
+                                                AD Portal
                                             </div>
                                         </div>
                                     </div>
@@ -185,14 +185,14 @@
                                     </div> -->
 
                                     <div class="animated-container" (mouseenter)="expandCard()"
-                                        (mouseleave)="shrinkCard()">
+                                        (mouseleave)="shrinkCard()" (click)="openLink('email')">
                                         <div class="content">
                                             <div class="icon-container">
                                                 <img src="/assets/Group 1171276671 (2).png" alt="Image"
                                                     style="width: 30px; height: 30px;">
                                             </div>
                                             <div class="text-container">
-                                                My Leave
+                                                Email
                                             </div>
                                         </div>
                                     </div>
@@ -209,14 +209,14 @@
                                         </div>
                                     </div> -->
                                     <div class="animated-container" (mouseenter)="expandCard()"
-                                        (mouseleave)="shrinkCard()" (click)="openLink('info')">
+                                        (mouseleave)="shrinkCard()" (click)="openLink('laps')">
                                         <div class="content">
                                             <div class="icon-container">
                                                 <img src="/assets/Group 1171276671 (3).png" alt="Image"
                                                     style="width: 30px; height: 30px;">
                                             </div>
                                             <div class="text-container">
-                                                My Info
+                                                LAPS
                                             </div>
                                         </div>
                                     </div>
@@ -227,40 +227,50 @@
                     </div>
 
                     <div class="col-5">
-                        <div class="bg-white border-round-xl py-2 px-3 cursor-pointer" (click)="openLink('rewardRec')">
+                        <div class="bg-white border-round-xl px-3 cursor-pointer" style="height: 400px;"
+                            (click)="openLink('rewardRec')">
 
                             <div class="font-bold" style="font-size: 16px; color:#92278F;">
                                 Reward and Recognition
                                 <!-- Congratulation {{name}}! -->
                             </div>
 
-                            <div class="flex align-items-center justify-content-between mt-3 ">
+                            <div class="flex align-items-center justify-content-center mt-10 ">
 
                                 <div class="col-6 flex align-items-center justify-content-center"
                                     *ngFor="let image of rewardImages; let i = index" class="image-container"
                                     [style.display]="isRewardImageVisible(i) ? 'block' : 'none'">
-                                    <img class="border-round-lg" [src]="image.src" [alt]="image.alt" width="115"
-                                        height="108">
+                                    <img class="border-round-lg" [src]="image.src" [alt]="image.alt" width="135"
+                                        height="138">
                                 </div>
 
+
+                            </div>
+                            <div class="flex justify-content-center align-items-center gap-6 mt-3">
                                 <div
-                                    class="col-6 flex flex-column align-items-center justify-content-center gap-1 mt-2">
+                                    class="col-6 flex flex-column align-items-center justify-content-center gap-4 mt-2">
+
 
                                     <div class="flex align-items-center justify-content-between gap-2">
-                                        <img src="/assets/business impac award badge.png" width="60px" alt="">
-                                        <img src="/assets/long serving award badge.png" width="60px" alt="">
+                                        <img src="/assets/employee of the month badge.png" width="90px" alt="">
+                                        <img src="/assets/best achiver award badge.png" width="90px" alt="">
                                     </div>
-                                    <div class="flex align-items-center justify-content-between gap-2">
-                                        <img src="/assets/employee of the month badge.png" width="60px" alt="">
-                                        <img src="/assets/best achiver award badge.png" width="60px" alt="">
-                                    </div>
-                                    <!-- <div class="flex align-items-center justify-content-between gap-2">
-                                        <img src="/assets/business impact award.png" width="48px" alt="">
-                                        <img src="/assets/business impact award.png" width="48px" alt="">
-                                    </div> -->
+
                                 </div>
                             </div>
+                            <div class="flex justify-content-center align-items-center gap-4 mt-4">
+                                <div
+                                    class="col-6 flex flex-column align-items-center justify-content-center gap-4 mt-2">
 
+                                    <div class="flex align-items-center justify-content-between gap-2">
+                                        <img src="/assets/business impac award badge.png" width="90px" alt="">
+                                        <img src="/assets/long serving award badge.png" width="90px" alt="">
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <!-- 
                             <div class="w-full flex align-items-center justify-content-between mt-4">
                                 <div class="flex align-items-center justify-content-start">
                                     <img src="/assets/girls image.png" width="24px" alt="">
@@ -319,7 +329,7 @@
                             </div>
 
                             <div class="text-left mt-2" style="font-size: 10px; color: #848585;">Add comment...
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>
@@ -329,50 +339,16 @@
 
                 <div class="flex align-items-start justify-content-between " style="flex-wrap: wrap;">
                     <div class="col-7">
-                        <div class="bg-white py-3 px-4" style=" height: 220px; border-radius: 16px;">
+                        <div class="bg-white py-3 px-4 cursor-pointer" style=" height: 220px; border-radius: 16px;" (click)="openLink('ivr_self_services')">
 
                             <div style="color: #92278F;font-size: 16px; font-weight: 700;">
-                                Daily Feeds
+                                IVR-Self Service Options
                             </div>
 
-                            <div class="flex flex-column align-items-start justify-content-between mt-3 px-2"
-                                style=" background: url(/assets/background\ stars.png); background-size: cover;">
+                            <div class="flex mt-3 p-4 ml-8" style="width: 100px; height: 100px;">
+    <i class="pi pi-phone" style="text-align: center;font-size: 4rem; color: #333;align-items: center;"></i>
+</div>
 
-                                <div class="flex align-items-center justify-content-between">
-                                    <img src="/assets/1st annivarsary.png" width="56px" height="64px" alt="">
-
-                                    <div class="w-full flex flex-column align-items-center justify-content-center mx-3">
-                                        <div class="text-center font-bold" style="font-size: 16px; color: #92278F;">🥳
-                                            Happy! 🥳</div>
-                                        <div class="text-center font-semibold mt-3"
-                                            style="font-size: 10px; color: #92278F;">🤩Happy work
-                                            anniversary your dedication and contributes have made a lasting impact on
-                                            our
-                                            team
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="w-full bg-white flex align-items-center justify-content-between border-round-sm mt-4 px-2"
-                                    style=" height: 38px; box-shadow: 2px 2px 2px 2px rgba(173, 173, 173, 0.1);">
-                                    <div class="w-full flex align-items-center justify-content-between gap-3">
-
-                                        <div class="w-full flex align-items-center justify-content-center border-round-sm"
-                                            style="height: 28px; background: #F9F785BD;">
-                                            <div style="font-size: 10px; font-weight: 700; color: #92278F;">
-                                                Birthdays
-                                            </div>
-                                        </div>
-                                        <div class="w-full flex align-items-center justify-content-center border-round-sm"
-                                            style="height: 28px; background: #F9F785BD;">
-                                            <div style="font-size: 10px; font-weight: 700; color: #92278F;">
-                                                Work Anniversary
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
 
 
 
@@ -416,8 +392,14 @@
                 <div class="flex align-items-start justify-content-between " style="flex-wrap: wrap;">
 
                     <div class="col-7">
-                        <div style="background: #FFFFFF; border-radius: 16px; height: 200px;" class="pt-3 px-4">
-                            <div style="color: #92278F;font-size: 16px; font-weight: 700;">
+                        <div style="background: #FFFFFF; border-radius: 16px; height: 250px;" class="cursor-pointer"
+                            routerLink="/master/quick-links/Abhyudaya/Abhyudaya">
+                            <img src="/assets/abyudaya.png" class="w-full h-full p-4">
+
+
+
+                            <!-- <img src="/assets/abyudaya.png" alt="Image" class="align-items-start justify-content-around" style="width: 350px;height: 183px;"> -->
+                            <!-- <div style="color: #92278F;font-size: 16px; font-weight: 700;">
                                 To do list
                             </div>
 
@@ -426,7 +408,6 @@
                                 <div class="scroll-container3">
                                     <div *ngFor=" let task of todoList">
 
-                                        <!-- <div class=""> -->
 
                                         <div class="w-full flex align-items-center justify-content-between px-2"
                                             style=" height: 40px; border: 1px solid #92278F; background: #F9F785BF; border-radius: 24px; margin-top: 12px;">
@@ -461,7 +442,6 @@
 
 
                                         </div>
-                                        <!-- </div> -->
 
                                     </div>
                                     <div class="flex align-items-center justify-content-center py-2 mt-2">
@@ -473,15 +453,16 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>
 
-                    <div class="col-5">
+                    <div class="col-5" (click)="openLink('demart_service')">
                         <div class="p-2" style=" background: #FFFFFF; border-radius: 16px;
-                display: flex; justify-content: center; align-items: center;height: 200px; ">
-                            <img src="/assets/Component 5.png" alt="Image" class="w-full h-full">
+                display: flex; justify-content: center; align-items: center;height: 250px;color: #92278F; ">
+                            <!-- <img src="/assets/Component 5.png" alt="Image" class="w-full h-full"> -->
+                            Demat Service
                         </div>
                     </div>
 
@@ -492,95 +473,36 @@
                     <div class="col-7">
                         <div style="height: 250px; background: #FFFFFF; border-radius: 16px;"
                             class="pt-4 px-4 cursor-pointer" (click)="openLink('learningDev')">
-                            <div style="font-size: 16px; font-weight: 700; color: #92278F;">Learning and Development
+                            <div style="font-size: 16px; font-weight: 700; color: #92278F;">Learning and Development(Finacle SSO Required)
                             </div>
 
                             <div class="flex align-items-center justify-content-center gap-2"
                                 style="margin-top: 15.8px; margin-bottom: 5px;">
+                                <img class="w-full"  style="height: 160px;" src="/assets/Rectangle 40487.png" alt="Image">
 
                                 <!-- First Card -->
-                                <div class="flex flex-column align-items-center justify-content-between border-round-xl"
+                                <!-- <div class="flex w-full align-items-center  border-round-xl"
                                     style="background: #F2F2F2;" [ngClass]="{'ld-height': true}">
                                     <div style="margin: 2px ; padding: 5px;">
-                                        <img class="w-full" src="/assets/Rectangle 40487.png" alt="Image"
-                                            style=" height: 44.44px;">
-                                    </div>
-                                    <div style="margin-left: 7px; margin-right: 9px; margin-top: 3px;">
-                                        <div style="font-weight: 700; font-size: 10px; color: #92278F;">
-                                            Steps for Building an<br> Effective L&D 12 Strategy for<br>
-                                            Banking Professionals
-                                        </div>
-                                    </div>
-
-                                    <!-- First Card: Bottom Set -->
-                                    <div class="w-full flex align-items-center justify-content-between mb-2">
-                                        <div class="flex align-items-center justify-content-between">
-                                            <div style="margin-left: 6px; margin-top: 10px;">
-                                                <div class="flex align-items-center justify-content-center px-3"
-                                                    style=" height: 22.71px; border-radius: 16px; background: #92278F;">
-                                                    <div style="color: #FFFFFF; font-size: 10px; font-weight: 700;">
-                                                        Know More
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="flex align-items-center justify-content-center"
-                                            style="width: 30px; height: 30px; border-radius: 50px; background: #2D2D2D; margin-right: 4px; margin-top: 4px;">
-                                            <img src="/assets/mi_arrow-up.png" alt="Image"
-                                                style="width: 12px; height: 12px;">
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <!-- Second Card -->
-                                <div class="flex flex-column align-items-center justify-content-between border-round-xl"
-                                    style="background: #F2F2F2;" [ngClass]="{'ld-height': true}">
-                                    <div style="margin: 2px ; padding: 5px;">
-                                        <img class="w-full" src="/assets/Rectangle 40487.png" alt="Image"
-                                            style="height: 44.44px;">
-                                    </div>
-                                    <div style="margin-left: 7px; margin-right: 9px; margin-top: 3px;">
-                                        <div style="font-weight: 700; font-size: 10px; color: #92278F;">
-                                            Key L&D Trends to Focus on<br> for Banking Professionals
-                                        </div>
-                                    </div>
-
-                                    <!-- Second Card: Bottom Set -->
-                                    <div class="w-full flex align-items-center justify-content-between mb-2">
-
-                                        <div style="margin-left: 6px; margin-top: 10px;">
-                                            <div class="flex align-items-center justify-content-center px-3"
-                                                style="height: 22.71px; border-radius: 16px; background: #92278F;">
-                                                <div style="color: #FFFFFF; font-size: 10px; font-weight: 700;">
-                                                    Know More
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div
-                                            style="width: 30px; height: 30px; border-radius: 50px; background: #2D2D2D;
-                             display: flex; justify-content: center; align-items: center; margin-right: 4px; margin-top: 4px;">
-                                            <img src="/assets/mi_arrow-up.png" alt="Image"
-                                                style="width: 12px; height: 12px;">
-                                        </div>
+                                        <img class="w-full" src="/assets/Rectangle 40487.png" alt="Image">
 
                                     </div>
 
-                                </div>
+                                </div> -->
+
 
                             </div>
                         </div>
                     </div>
 
                     <div class="col-5">
-                        <div style="height: 250px; background: #FFFFFF; border-radius: 16px;">
-                            <div class="py-3 px-2">
-                                <div style="display: flex; justify-content: center; align-items: center;">
-                                    <img src="/assets/Frame 1618868136.png" style="width: 160px;" alt="">
+                        <div style="height: 250px; background: #FFFFFF; border-radius: 16px;" class="cursor-pointer"  (click)="openLink('internet_banking')">
+                            <div class="px-2 py-8">
+                                <div style="display: flex; justify-content: center; align-items: center;text-align: center;color: #92278F;">
+                                    <!-- <img src="/assets/Frame 1618868136.png" style="width: 160px;" alt=""> -->
+                                    Internet Banking – Bulk File Upload format
                                 </div>
-                                <div class="mt-2 text-center">
+                                <!-- <div class="mt-2 text-center">
                                     <div class="text-center" style="font-size: 10px; font-weight: 400; color: #92278F;">
                                         Experience personalized guidance, expert resources, and transformative practices
                                         designed to rejuvenate your body, mind, and spirit
@@ -591,7 +513,7 @@
                                         class="px-2 py-1">
                                         <div style="font-size: 12px; font-weight: 600; color: #FFFFFF;">Check Now</div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -657,19 +579,20 @@
                                     </div>
                                     <div style="font-size: 10px; color: black; opacity: 80%;">{{event.desc}}</div>
                                 </div>
-                                <img src="/assets/right arrow.png" width="5px" height="11px" alt="">
+                                <!-- <img src="/assets/right arrow.png" width="5px" height="11px" alt=""> -->
                             </div>
                             <hr class="mt-3" style="border: none; border-top: 1px solid lightgray;">
                         </div>
                     </div>
 
-                    <div style="margin-top: 19px;" *ngFor="let image of townhallImages; let i = index"
-                        class="image-container" [style.display]="isTownhallImageVisible(i) ? 'block' : 'none'">
-                        <img [src]="image.src" [alt]="image.alt" class="w-full h-auto">
+                    <div (click)="openLink('restructured_accounts')" style="margin-top: 19px;display: block;color: #92278F;"
+                         class="image-container cursor-pointer" >
+                        <!-- <img [src]="image.src" [alt]="image.alt" class="w-full h-auto"> -->
+                        Restructured Accounts – FAQ
                     </div>
 
                     <div class="flex align-items-center justify-content-center mt-2">
-                        <img src="/assets/bottom arrow.png" width="11px" height="5px" alt="">
+                        <!-- <img src="/assets/bottom arrow.png" width="11px" height="5px" alt=""> -->
                     </div>
 
                     <div class="flex align-items-center justify-content-between">

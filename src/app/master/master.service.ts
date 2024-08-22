@@ -58,7 +58,7 @@ export class MasterService {
 
   async getGoldRateByCity(city:any)
   {
-    var url = this.apiurl + 'gold-rate?city='+city;
+    var url = this.apiurl + 'api/goldrate/today-gold-rate';
     const goldRate = await lastValueFrom(this.http.get<any>(url));
     console.log(JSON.stringify(goldRate));
     return goldRate;

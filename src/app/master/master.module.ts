@@ -13,6 +13,7 @@ import { EmployeeAttendenceComponent } from './employee-attendence/employee-atte
 import { CalendarModule } from 'primeng/calendar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { ContactInfoComponent } from './contact-info/contact-info.component';
 
 
 
@@ -25,6 +26,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     QuickLinksComponent,
     EmployeeAttendenceComponent,
     AdminDashboardComponent,
+    ContactInfoComponent,
 
   ],
   imports: [

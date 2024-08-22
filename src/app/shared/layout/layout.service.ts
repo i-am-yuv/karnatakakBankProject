@@ -9,6 +9,7 @@ import { CheckIn } from './checkkIn';
 })
 export class LayoutService {
 
+
  
  
 
@@ -84,7 +85,17 @@ export class LayoutService {
   }
 
   getUrlByName(type: any) {
+   
     var url =this.apiurl+'api/links/linkByName/'+encodeURIComponent(type);
+    return this.http
+    .get<any>(url)
+    .toPromise()
+    .then((data) => {
+      return data;
+    });
+  }
+  getContactUrlByName(urlName: any) {
+    var url =this.apiurl+'api/contactinfo/byUrlName/'+encodeURIComponent(urlName);
     return this.http
     .get<any>(url)
     .toPromise()

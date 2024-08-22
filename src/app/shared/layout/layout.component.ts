@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { LayoutService } from './layout.service';
 import Swal from 'sweetalert2';
 import { GeolocationService } from './geo';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -21,7 +22,7 @@ export class LayoutComponent implements OnInit {
   isTabletView: boolean = false;
   isCompressed: boolean = false;
   checkOutTimee!: Date;
- 
+
   visitedLinks: string[] = [];
   name: any;
   role: any;
@@ -45,10 +46,12 @@ export class LayoutComponent implements OnInit {
   isDaycheckIn: boolean = false;
   extendBranchDetails = false;
   extendHRCorner = false;
-  currentPage : string="";
+  currentPage: string = "";
   subscription!: Subscription;
 
-  constructor(private geo: GeolocationService, private cdr: ChangeDetectorRef, private layoutS: LayoutService, private router: Router, private notificationService: NotificationService,
+  constructor(
+    private route: ActivatedRoute,
+    private geo: GeolocationService, private cdr: ChangeDetectorRef, private layoutS: LayoutService, private router: Router, private notificationService: NotificationService,
     private authService: AuthService,
     private sharedService: SharedServiceService) {
     this.currentPage = '';
@@ -455,7 +458,7 @@ export class LayoutComponent implements OnInit {
   }
 
   openLink(type: any) {
-    
+   
     this.currentPage = type;
     if (!this.visitedLinks.includes(type)) {
       this.visitedLinks.push(type);
@@ -463,313 +466,427 @@ export class LayoutComponent implements OnInit {
 
 
     /// new links
-     if (type == 'aadhaar-enrolment-centres') {
+    if (type == 'aadhaar-enrolment-centres') {
+      type = 'Aadhaar_Enrolment_centres';
       this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
+       if(res == undefined || res.length==0){
+        this.sharedService.displayErrorMessage("No Url Found with given "+type);
+       }else{
+        window.open(res[0].url, '_blank');
+       }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'adc_ib_mb_dc') {
-
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      this.router.navigate(['/master/quick-links/' + type + '/' + encodeURIComponent("ADC (IB/MB/DC)")], { relativeTo: this.route });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   window.open(res.url, '_blank');
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     else if (type == 'additional-links') {
-
+      type = 'Additional_Links';
       this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
+        if(res == undefined || res.length==0){
+          this.sharedService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'appin_mandate-forms') {
+      
+      type = "Appln_Madate_forms";
+      this.router.navigate(['/master/quick-links/' + type + '/' + encodeURIComponent("AppIn/Mandate Forms")], { relativeTo: this.route });
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   window.open(res.url, '_blank');
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     else if (type == 'bank-policies') {
-
+      type = 'Bank_Policies';
       this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
+        if(res == undefined || res.length==0){
+          this.sharedService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'branch-directory') {
-
+      type = 'Branch_Directory';
       this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
+        if(res == undefined || res.length==0){
+          this.sharedService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'contact-centre-faq') {
-
+      type = 'Contact_Centre_FAQ';
       this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
+        if(res == undefined || res.length==0){
+          this.sharedService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'dcoe-contacts-for-digi-loan') {
-
+      type = 'DCOE_contacts_for_Digi_loans';
       this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
+        if(res == undefined || res.length==0){
+          this.sharedService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'e-helpdesk') {
-
+      type = 'e_HelpDesk';
       this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
+        if(res == undefined || res.length==0){
+          this.sharedService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'e-mail') {
-
+      type = 'e_Mail';
       this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
+        if(res == undefined || res.length==0){
+          this.sharedService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'far') {
-
+      type = 'Far';
       this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
+        if(res == undefined || res.length==0){
+          this.sharedService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'fold') {
-
+      type = 'Fold';
       this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
+        if(res == undefined || res.length==0){
+          this.sharedService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'head-office-contacts') {
-
+      type = 'Head_Office_Contacts';
       this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
+        if(res == undefined || res.length==0){
+          this.sharedService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'indian-banker') {
+      type = 'IBA_The_Indian_Banker';
+      this.router.navigate(['/master/quick-links/' + type + '/' + encodeURIComponent("IBA -The Indian Banker")], { relativeTo: this.route });
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   window.open(res.url, '_blank');
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     else if (type == 'tdh-contacts') {
-
+      type = 'TDH_Contacts';
       this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
+        if(res == undefined || res.length==0){
+          this.sharedService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'icircular') {
-
+      type = 'iCircular';
       this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
+        if(res == undefined || res.length==0){
+          this.sharedService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'itcontact') {
+      type = 'IT & ContactCentre Contacts'
+      this.router.navigate(['/master/quick-links/' + type + '/' + encodeURIComponent(type)], { relativeTo: this.route });
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   window.open(res.url, '_blank');
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     else if (type == 'iorganisation') {
-
+      type = 'IT_Organisation_Structure'
       this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
+        if(res == undefined || res.length==0){
+          this.sharedService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'itcellwhitepapers') {
+      type = 'IT_Cell_White_papers';
+      this.router.navigate(['/master/quick-links/' + type + '/' + encodeURIComponent("IT Cell -White Papers")], { relativeTo: this.route });
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   window.open(res.url, '_blank');
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     else if (type == 'links') {
+      type = 'Links';
+      this.router.navigate(['/master/quick-links/' + type + '/' + encodeURIComponent("Links")], { relativeTo: this.route });
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   window.open(res.url, '_blank');
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     else if (type == 'instructions') {
+      type = 'Manual_Of_Instructions';
+      this.router.navigate(['/master/quick-links/' + type + '/' + encodeURIComponent("Manual of Instructions")], { relativeTo: this.route });
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   window.open(res.url, '_blank');
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     else if (type == 'pchelpdesk') {
-
+      type = 'PC_HelpDesk';
       this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
+        if(res == undefined || res.length==0){
+          this.sharedService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'sim') {
-
+      type = 'SIM';
       this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
+        if(res == undefined || res.length==0){
+          this.sharedService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
       }).catch((e) => {
         console.log(JSON.stringify(e));
         this.sharedService.displayErrorMessage("Some Issue while fetching url");
       });
     }
     else if (type == 'stamp-duty') {
+      type = 'Stamp_Duty';
+      this.router.navigate(['/master/quick-links/' + type + '/' + encodeURIComponent("Stamp Duty")], { relativeTo: this.route });
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   window.open(res.url, '_blank');
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     else if (type == 'vigilance') {
+      type = 'Vigilance';
+      this.router.navigate(['/master/quick-links/' + type + '/' + encodeURIComponent("Vigilance")], { relativeTo: this.route });
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   window.open(res.url, '_blank');
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     ///
+    else if (type == 'Abhyudaya') {
+      this.router.navigate(['/master/quick-links/' + type + '/' + encodeURIComponent("Abhyudaya")], { relativeTo: this.route });
 
+    }
+    else if (type == 'Bharti_AXA') {
+      this.layoutS.getUrlByName(type).then((res) => {
+        if(res == undefined || res.length==0){
+          this.sharedService.displayErrorMessage("No Url Found with given "+type);
+         }else{
+          window.open(res[0].url, '_blank');
+         }
+      }).catch((e) => {
+        console.log(JSON.stringify(e));
+        this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      });
+    }
     else if (type == 'payroll') {
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      this.sharedService.displayInfoMessage("Coming Soon...");
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   if(res == undefined || res.length==0){
+      //     this.sharedService.displayErrorMessage("No Url Found with given "+type);
+      //    }else{
+      //     window.open(res[0].url, '_blank');
+      //    }
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     else if (type == 'leave') {
+      this.sharedService.displayInfoMessage("Coming Soon...");
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   if(res == undefined || res.length==0){
+      //     this.sharedService.displayErrorMessage("No Url Found with given "+type);
+      //    }else{
+      //     window.open(res[0].url, '_blank');
+      //    }
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     else if (type == 'info') {
+      this.sharedService.displayInfoMessage("Coming Soon...");
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   window.open(res.url, '_blank');
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     else if (type == 'performance') {
+      this.sharedService.displayInfoMessage("Coming Soon...");
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   window.open(res.url, '_blank');
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     else if (type == 'reimbursement') {
+      this.sharedService.displayInfoMessage("Coming Soon...");
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   window.open(res.url, '_blank');
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
 
     else if (type == 'travel') {
+      this.sharedService.displayInfoMessage("Coming Soon...");
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   window.open(res.url, '_blank');
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     else if (type == 'ourJourney') {
+      this.sharedService.displayInfoMessage("Coming Soon...");
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   window.open(res.url, '_blank');
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     else if (type == 'branch performance') {
+      this.sharedService.displayInfoMessage("Coming Soon...");
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   window.open(res.url, '_blank');
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     else if (type == 'branch details') {
+      this.sharedService.displayInfoMessage("Coming Soon...");
 
-      this.layoutS.getUrlByName(type).then((res) => {
-        window.open(res.url, '_blank');
-      }).catch((e) => {
-        console.log(JSON.stringify(e));
-        this.sharedService.displayErrorMessage("Some Issue while fetching url");
-      });
+      // this.layoutS.getUrlByName(type).then((res) => {
+      //   window.open(res.url, '_blank');
+      // }).catch((e) => {
+      //   console.log(JSON.stringify(e));
+      //   this.sharedService.displayErrorMessage("Some Issue while fetching url");
+      // });
     }
     else if (type == 'learningDev') {
 
@@ -790,11 +907,6 @@ export class LayoutComponent implements OnInit {
       });
     }
   }
-
-
-
-
-
   async checkDayCheckIn(): Promise<boolean> {
     const res = await this.authService.getUser();
     if (res.dayCheckIn == true) {

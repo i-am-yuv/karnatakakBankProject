@@ -7,6 +7,8 @@ import { MasterService } from 'src/app/master/master.service';
 import { AuthService } from '../auth.service';
 import Swal from 'sweetalert2';
 import { SharedServiceService } from 'src/app/shared-service.service';
+import { QuicklinkService } from 'src/app/master/quick-links/quicklink.service';
+import { LayoutService } from 'src/app/shared/layout/layout.service';
 
 @Component({
   selector: 'app-login',
@@ -54,8 +56,8 @@ export class LoginComponent implements OnInit {
 
   yourForm !: FormGroup;
 
-  constructor(private router: Router, private message: MessageService, private formBuilder: FormBuilder,
-    private masterService: MasterService, private authService: AuthService,private sharedService:SharedServiceService) { }
+  constructor(private layoutService: LayoutService, private quicklinkService: QuicklinkService, private router: Router, private message: MessageService, private formBuilder: FormBuilder,
+    private masterService: MasterService, private authService: AuthService, private sharedService: SharedServiceService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -113,11 +115,12 @@ export class LoginComponent implements OnInit {
       //alert(JSON.stringify(res));
       sessionStorage.setItem('token', res.jwt);
       sessionStorage.setItem('refreshToken', res.refreshToken);
-    //  this.displaySuccessMessage("Login Successful");
-    this.sharedService.displaySuccessMessage("Login Successful").then(() => {
-        this.navigateToDashboard(res);
-      });
-     // this.navigateToDashboard(res);
+      this.navigateToDashboard(res);
+      //  this.displaySuccessMessage("Login Successful");
+      // this.sharedService.displaySuccessMessage("Login Successful").then(() => {
+
+      //   });
+      // this.navigateToDashboard(res);
       //this.notifySuccess("Login Successful");
       // this.message.add({
       //   severity: 'success',
@@ -237,7 +240,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(["/dashboard"]);
 
       // setTimeout(() => {
-        
+
       // }, 1000);
     }
     else if (username == '9745899658') {
@@ -297,4 +300,35 @@ export class LoginComponent implements OnInit {
   rbiGuildelinesUpdate() {
     this.notifyInfo("Site Under Construction");
   }
+  openLink(typeOfCircular: any) {
+
+    if (typeOfCircular == '5 since') {
+      var url='http://172.16.202.10:2080/kbldc/webapps/kdoc/out/out.DirectSearch.php?days=1';
+      
+      window.open(url, '_blank');
+      // this.layoutService.getUrlByName("icircularfor5days").then((res) => {
+
+      // })
+    }
+    else if (typeOfCircular == '20 since') {
+      
+      var url='http://172.16.202.10:2080/kbldc/webapps/kdoc/out/out.DirectSearch.php?days=7';
+      
+      window.open(url, '_blank');
+      // this.sharedService.displayInfoMessage("Coming Soon..");
+      // this.layoutService.getUrlByName("icircularfor20days").then((res) => {
+        
+      // })
+    }
+    else if (typeOfCircular == '108 since') {
+      var url='http://172.16.202.10:2080/kbldc/webapps/kdoc/out/out.DirectSearch.php?days=30';
+      
+      window.open(url, '_blank');
+      // this.sharedService.displayInfoMessage("Coming Soon..");
+      // this.layoutService.getUrlByName("icircularfor108days").then((res) => {
+
+      // })
+    }
+  }
 }
+
