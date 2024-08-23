@@ -327,6 +327,15 @@ export class LoginComponent implements OnInit {
 
       // })
     }
+    else if (typeOfCircular == 'itsec') {
+      var url='https://itsec.ktkbank.com/';
+      
+      window.open(url, '_blank');
+      // this.sharedService.displayInfoMessage("Coming Soon..");
+      // this.layoutService.getUrlByName("icircularfor108days").then((res) => {
+
+      // })
+    }
   }
 }
 

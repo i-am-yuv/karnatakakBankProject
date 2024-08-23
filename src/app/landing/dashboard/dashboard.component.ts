@@ -192,10 +192,10 @@ export class DashboardComponent implements OnInit {
   private currentRewardImageIndex = 0;
   rewardImages = [
     { src: '/assets/9486855 1.png', alt: 'Image 1' },
-    { src: '/assets/best achiever award.png', alt: 'Image 2' },
-    { src: '/assets/employee of the month.png', alt: 'Image 3' },
-    { src: '/assets/long service award.png', alt: 'Image 4' },
-    { src: '/assets/business impact award.png', alt: 'Image 5' }
+    // { src: '/assets/best achiever award.png', alt: 'Image 2' },
+    // { src: '/assets/employee of the month.png', alt: 'Image 3' },
+    // { src: '/assets/long service award.png', alt: 'Image 4' },
+    // { src: '/assets/business impact award.png', alt: 'Image 5' }
   ];
 
   isRewardImageVisible(index: number): boolean {
