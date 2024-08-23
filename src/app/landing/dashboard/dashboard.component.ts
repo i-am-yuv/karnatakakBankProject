@@ -267,7 +267,10 @@ export class DashboardComponent implements OnInit {
         if(res == undefined || res.length==0){
           this.sharedServiceService.displayErrorMessage("No Url Found with given "+type);
          }else{
-          window.open(res[0].url, '_blank');
+          const link = document.createElement('a');
+          link.href = res[0].url;
+          link.download = ''; // This will suggest the browser to download the file
+          link.click();
          }
       }).catch((e) => {
         console.log(JSON.stringify(e));
