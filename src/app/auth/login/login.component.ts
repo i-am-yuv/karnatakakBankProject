@@ -327,6 +327,13 @@ export class LoginComponent implements OnInit {
 
       // })
     }
+    else if(typeOfCircular == 'branch-directory'){
+      window.open('http://172.16.202.10/kbldc/testapps/brdir/include/listbranch.php','_blank');
+    }
+    else if(typeOfCircular == 'kbl-uday'){
+      window.open('http://172.20.101.71/daily/','_blank');
+    }
+    
     else if (typeOfCircular == 'itsec') {
       var url='https://itsec.ktkbank.com/';
       
