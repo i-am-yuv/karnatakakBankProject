@@ -127,7 +127,7 @@ export class AuthService {
     }
     return jwt.sub;
   }
-
+ 
   getAuthStatus() {
     const token = sessionStorage.getItem('token');
     let status = false;

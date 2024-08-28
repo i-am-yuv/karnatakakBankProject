@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CeoPortalComponent } from './ceo-portal/ceo-portal.component';
 import { BusinessHeadComponent } from './business-head/business-head.component';
 import { DigitalTeamComponent } from './digital-team/digital-team.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { DigitalTeamComponent } from './digital-team/digital-team.component';
   imports: [
     CommonModule,
     LandingRoutingModule,
-    SharedModule
+    SharedModule,
+    ConfirmDialogModule
   ]
 })
 export class LandingModule { }

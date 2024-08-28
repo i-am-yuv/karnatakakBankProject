@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
+import { Events, RegionalNews } from '../landing/dashboard/RegionalNews';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class MasterService {
+
+
+
 
   apiurl: string = environment.commonUrl;
 
@@ -20,8 +24,7 @@ export class MasterService {
     return allRoles;
   }
 
-  async todoListItems()
-  {
+  async todoListItems() {
     // var customerOnboardingTasks = [
     //   {
     //     date: '19 April',
@@ -49,55 +52,71 @@ export class MasterService {
     //     status: 'Upcoming'
     //   }
     // ];
-    
+
     var url = this.apiurl + 'todos';
     const todoList = await lastValueFrom(this.http.get<any>(url));
 
     return todoList;
   }
 
-  async getGoldRateByCity(city:any)
-  {
+  async getGoldRateByCity(city: any) {
     var url = this.apiurl + 'api/goldrate/today-gold-rate';
     const goldRate = await lastValueFrom(this.http.get<any>(url));
     console.log(JSON.stringify(goldRate));
     return goldRate;
   }
-  
-  async getRegionalNews()
-  {
+
+  createNews(regionalNews: RegionalNews) {
+    var url = this.apiurl + 'api/news/create';
+    return this.http
+      .post<any>(url, regionalNews)
+      .toPromise()
+      .then((data) => {
+        return data;
+      });
+
+  }
+  createEvent(events: Events) {
+    var url = this.apiurl + 'api/event/create';
+    return this.http
+      .post<any>(url, events)
+      .toPromise()
+      .then((data) => {
+        return data;
+      });
+  }
+  async getRegionalNews() {
     var url = this.apiurl + 'api/news/list';
     const news = await lastValueFrom(this.http.get<any>(url));
     return news;
   }
 
-  async getKarnatakBankShare(symbol : any)
-  {
-    var url = this.apiurl + 'api/stock/'+symbol;
+  async getEvents() {
+    var url = this.apiurl + 'api/event/list';
+    const news = await lastValueFrom(this.http.get<any>(url));
+    return news;
+  }
+  async getKarnatakBankShare(symbol: any) {
+    var url = this.apiurl + 'api/stock/' + symbol;
     const shareValue = await lastValueFrom(this.http.get<any>(url));
     return shareValue;
   }
 
-  async getBranchPerformace(region : any)
-  {
+  async getBranchPerformace(region: any) {
     var url = this.apiurl + 'performance';
     const performace = await lastValueFrom(this.http.get<any>(url));
-    if( region == 'West')
-    {
+    if (region == 'West') {
       return performace.West;
     }
-    else if( region == 'East')
-    {
+    else if (region == 'East') {
       return performace.East;
     }
-    else if( region == 'South')
-    {
+    else if (region == 'South') {
       return performace.South;
     }
-    else if( region == 'North')
-    {
+    else if (region == 'North') {
       return performace.North;
     }
   }
-  
+
 }

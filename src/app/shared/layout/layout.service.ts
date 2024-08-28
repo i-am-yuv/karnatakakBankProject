@@ -104,8 +104,8 @@ export class LayoutService {
     });
   }
 
-  getHolidays() {
-    var url =this.apiurl+'api/holiday/list/';
+  getHolidays(userId:any) {
+    var url =this.apiurl+'api/holiday/list/'+encodeURIComponent(userId!);
     return this.http
     .get<any>(url)
     .toPromise()

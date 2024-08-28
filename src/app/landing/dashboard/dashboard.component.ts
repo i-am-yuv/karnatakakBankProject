@@ -7,6 +7,8 @@ import { Subscription } from 'rxjs';
 import { LayoutService } from 'src/app/shared/layout/layout.service';
 import { environment } from 'src/environments/environment';
 import { Holiday } from './holiday';
+import { Events, RegionalNews } from './RegionalNews';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -41,6 +43,8 @@ import { Holiday } from './holiday';
 })
 export class DashboardComponent implements OnInit {
 
+  regionalNewsDailog!:boolean;
+  regionalNews!:RegionalNews;
   items = [
     { text: 'Celebrating 100 Years', visible: true },
     { text: 'Celebrating 100 Years', visible: true },
@@ -96,48 +100,49 @@ export class DashboardComponent implements OnInit {
   //   }
   // ];
 
-  upcomingEvents = [
-    {
-      title: "Financial Results Announcement",
-      desc: "Q1 Financial Results",
-      firstLetter: "F"
-    },
-    {
-      title: "Investor Conference Call",
-      desc: "Discuss performance and strategies",
-      firstLetter: "I"
-    },
-    {
-      title: "Product Launch",
-      desc: "Launch of new financial service",
-      firstLetter: "P"
-    },
-    {
-      title: "Annual General Meeting (AGM)",
-      desc: "Shareholders' gathering",
-      firstLetter: "A"
-    },
-    {
-      title: "Charity Event",
-      desc: "Community outreach program",
-      firstLetter: "C"
-    },
-    {
-      title: "Training or Seminar",
-      desc: "Employee and customer education",
-      firstLetter: "T"
-    },
-    {
-      title: "Regulatory Compliance Deadline",
-      desc: "Compliance with new regulations",
-      firstLetter: "R"
-    },
-    {
-      title: "Market Update Webinar",
-      desc: "Client market insights",
-      firstLetter: "M"
-    }
-  ];
+
+  //= [
+  //   {
+  //     title: "Financial Results Announcement",
+  //     desc: "Q1 Financial Results",
+  //     firstLetter: "F"
+  //   },
+  //   {
+  //     title: "Investor Conference Call",
+  //     desc: "Discuss performance and strategies",
+  //     firstLetter: "I"
+  //   },
+  //   {
+  //     title: "Product Launch",
+  //     desc: "Launch of new financial service",
+  //     firstLetter: "P"
+  //   },
+  //   {
+  //     title: "Annual General Meeting (AGM)",
+  //     desc: "Shareholders' gathering",
+  //     firstLetter: "A"
+  //   },
+  //   {
+  //     title: "Charity Event",
+  //     desc: "Community outreach program",
+  //     firstLetter: "C"
+  //   },
+  //   {
+  //     title: "Training or Seminar",
+  //     desc: "Employee and customer education",
+  //     firstLetter: "T"
+  //   },
+  //   {
+  //     title: "Regulatory Compliance Deadline",
+  //     desc: "Compliance with new regulations",
+  //     firstLetter: "R"
+  //   },
+  //   {
+  //     title: "Market Update Webinar",
+  //     desc: "Client market insights",
+  //     firstLetter: "M"
+  //   }
+  // ];
 
   subscription!:Subscription;
   name: any;
@@ -145,7 +150,7 @@ export class DashboardComponent implements OnInit {
 
   isMobile!: boolean;
 
-  constructor(private layoutService:LayoutService,private masterService: MasterService, private primengConfig: PrimeNGConfig,private sharedServiceService:SharedServiceService) {
+  constructor(private layoutService:LayoutService,private authService:AuthService,private masterService: MasterService, private primengConfig: PrimeNGConfig,private sharedServiceService:SharedServiceService) {
 
   }
   triggerComponentBMethod() {
@@ -159,7 +164,9 @@ export class DashboardComponent implements OnInit {
     this.rewardImagesDisplayIntervalTime();
     this.townhallImagesDisplayIntervalTime();
     this.getRegionalNews();
-    this.layoutService.getHolidays().then((res:any)=>{
+    this.getEvents();
+
+    this.layoutService.getHolidays(this.authService.getUserId()).then((res:any)=>{
       this.holidaysData=res;
     }).catch((e:any)=>{
 
@@ -242,7 +249,8 @@ export class DashboardComponent implements OnInit {
   showAlert(): void {
     this.sharedServiceService.displayInfoMessage("Coming Soon..");
   }
-  allNews: any;
+  allNews:RegionalNews[]=[];
+  upcomingEvents:Events[]=[];   
   getRegionalNews() {
     this.masterService.getRegionalNews().then(
       (res) => {
@@ -255,6 +263,17 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  getEvents() {
+    this.masterService.getEvents().then(
+      (res) => {
+        this.upcomingEvents = res;
+      }
+    ).catch(
+      (err) => {
+
+      }
+    )
+  }
 
 
   openLink(type:any){
@@ -410,4 +429,79 @@ export class DashboardComponent implements OnInit {
       window.open(url, '_blank');
     }
   }
+
+  AddNews(regionalNews:RegionalNews){
+    
+    this.masterService.createNews(regionalNews).then((res:any)=>{
+
+      this.allNews.push(res);
+      this.sharedServiceService.displaySuccessMessage("Added Successfully");
+      this.submitted=true;
+      this.regionalNewsDailog=false;
+
+    }).catch((e)=>{
+      this.submitted=false;
+      this.regionalNewsDailog=false;
+      this.sharedServiceService.displayErrorMessage("Exception Happend");
+    });
+
+  }
+  AddEvent(events:Events){
+    
+    this.masterService.createEvent(events).then((res:any)=>{
+
+      this.upcomingEvents.push(res);
+      this.sharedServiceService.displaySuccessMessage("Added Successfully");
+      this.eventSubmitted=true;
+      this.eventDailog=false;
+
+    }).catch((e)=>{
+      this.eventSubmitted=false;
+      this.eventDailog=false;
+      this.sharedServiceService.displayErrorMessage("Exception Happend");
+    });
+
+  }
+  submitted!: boolean;
+
+  eventDailog!:boolean;
+  eventSubmitted:boolean=false;
+  upcomingEvent!:Events;
+  openEventNew() {
+    this.upcomingEvent = {};
+    this.eventSubmitted = false;
+    this.eventDailog = true;
+  }
+  
+  hideEventDialog() {
+    this.regionalNewsDailog = false;
+    this.submitted = false;
+  }
+  openNewsNew(){
+    this.regionalNews = {};
+    this.submitted = false;
+    this.regionalNewsDailog = true;
+
+  }
+  hideNewsDialog() {
+    this.regionalNewsDailog = false;
+    this.submitted = false;
+  }
+   timeAgo(dateString: string): string {
+    const now = new Date();
+    const createdDate = new Date(dateString);
+    const diffInMs = now.getTime() - createdDate.getTime();
+    const diffInMinutes = Math.floor(diffInMs / (1000 * 60));
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    const diffInDays = Math.floor(diffInHours / 24);
+
+    if (diffInDays > 0) {
+        return `${diffInDays} day${diffInDays > 1 ? 's' : ''} ago`;
+    } else if (diffInHours > 0) {
+        return `${diffInHours} hour${diffInHours > 1 ? 's' : ''} ago`;
+    } else {
+        return `${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''} ago`;
+    }
 }
+}
+
